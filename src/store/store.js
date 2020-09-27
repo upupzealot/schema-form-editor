@@ -5,11 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    formConf: {
+      labelWidth: '80px',
+      labelPosition: 'right',
+      gutter: 20,
+    },
     fieldList: [],
     activeField: {},
   },
   mutations: {
-    fieldListChange(state, fieldList) {
+    setFormConf(state, formConf) {
+      state.formConf = formConf;
+    },
+    setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },
     setActiveField(state, field) {
