@@ -1,104 +1,110 @@
 <template>
-  <el-form label-width="80px">
-    <el-row :gutter="15">
-      <Draggable
-        :list="itemList"
-        :group="{ pull: 'clone', put: false }"
-        :clone="onClone"
-        :sort="false"
-        class="item-bar"
-      >
-        <el-col
-          v-for="item in itemList"
-          :key="item.type"
-        >
-          <el-form-item
-            :label="item.label"
-            class="example-form-item"
+  <el-row>
+    <el-col class="item-bar">
+      <el-form label-width="80px">
+        <el-divider content-position="left">
+          表单项
+        </el-divider>
+        <el-row :gutter="15">
+          <Draggable
+            :list="itemList"
+            :group="{ pull: 'clone', put: false }"
+            :clone="onClone"
+            :sort="false"
           >
-            <template v-if="item.type === 'input'">
-              <el-input
-                v-model="form.input"
-                placeholder="请输入"
-                class="example-component"
-              />
-            </template>
-
-            <template v-if="item.type === 'select'">
-              <el-select
-                v-model="form.select"
-                placeholder="下拉选项"
-                style="width: 100%"
-                class="example-component"
+            <el-col
+              v-for="item in itemList"
+              :key="item.type"
+            >
+              <el-form-item
+                :label="item.label"
+                class="example-form-item"
               >
-                <el-option
-                  label="选项一"
-                  value="option1"
-                />
-                <el-option
-                  label="选项二"
-                  value="option2"
-                />
-              </el-select>
-            </template>
+                <template v-if="item.type === 'input'">
+                  <el-input
+                    v-model="form.input"
+                    placeholder="请输入"
+                    class="example-component"
+                  />
+                </template>
 
-            <template v-if="item.type === 'radio'">
-              <el-radio
-                v-model="form.radio"
-                label="option1"
-                class="example-component"
-              >
-                选项一
-              </el-radio>
-              <el-radio
-                v-model="form.radio"
-                label="option2"
-                class="example-component"
-              >
-                选项二
-              </el-radio>
-            </template>
+                <template v-if="item.type === 'select'">
+                  <el-select
+                    v-model="form.select"
+                    placeholder="下拉选项"
+                    style="width: 100%"
+                    class="example-component"
+                  >
+                    <el-option
+                      label="选项一"
+                      value="option1"
+                    />
+                    <el-option
+                      label="选项二"
+                      value="option2"
+                    />
+                  </el-select>
+                </template>
 
-            <template v-if="item.type === 'checkbox'">
-              <el-checkbox-group v-model="form.checkbox">
-                <el-checkbox
-                  label="option1"
-                  class="example-component"
-                >
-                  选项一
-                </el-checkbox>
-                <el-checkbox
-                  label="option2"
-                  class="example-component"
-                >
-                  选项二
-                </el-checkbox>
-              </el-checkbox-group>
-            </template>
+                <template v-if="item.type === 'radio'">
+                  <el-radio
+                    v-model="form.radio"
+                    label="option1"
+                    class="example-component"
+                  >
+                    选项一
+                  </el-radio>
+                  <el-radio
+                    v-model="form.radio"
+                    label="option2"
+                    class="example-component"
+                  >
+                    选项二
+                  </el-radio>
+                </template>
 
-            <template v-if="item.type === 'switch'">
-              <el-switch
-                v-model="form.switch"
-                active-text="开"
-                inactive-text="关"
-                class="example-component"
-              />
-            </template>
+                <template v-if="item.type === 'checkbox'">
+                  <el-checkbox-group v-model="form.checkbox">
+                    <el-checkbox
+                      label="option1"
+                      class="example-component"
+                    >
+                      选项一
+                    </el-checkbox>
+                    <el-checkbox
+                      label="option2"
+                      class="example-component"
+                    >
+                      选项二
+                    </el-checkbox>
+                  </el-checkbox-group>
+                </template>
 
-            <template v-if="item.type === 'date-picker'">
-              <el-date-picker
-                v-model="form.datePicker"
-                type="date"
-                style="width:100%"
-                placeholder="选择日期"
-                class="example-component"
-              />
-            </template>
-          </el-form-item>
-        </el-col>
-      </Draggable>
-    </el-row>
-  </el-form>
+                <template v-if="item.type === 'switch'">
+                  <el-switch
+                    v-model="form.switch"
+                    active-text="开"
+                    inactive-text="关"
+                    class="example-component"
+                  />
+                </template>
+
+                <template v-if="item.type === 'date-picker'">
+                  <el-date-picker
+                    v-model="form.datePicker"
+                    type="date"
+                    style="width:100%"
+                    placeholder="选择日期"
+                    class="example-component"
+                  />
+                </template>
+              </el-form-item>
+            </el-col>
+          </Draggable>
+        </el-row>
+      </el-form>
+    </el-col>
+  </el-row>
 </template>
 
 <style>

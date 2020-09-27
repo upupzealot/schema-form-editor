@@ -1,43 +1,43 @@
 <template>
   <el-form label-width="80px">
-    <template v-for="field in fieldList">
-      <Input
-        v-if="field.type === 'input'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-      <Select
-        v-if="field.type === 'select'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-      <Radio
-        v-if="field.type === 'radio'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-      <Checkbox
-        v-if="field.type === 'checkbox'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-      <SSwitch
-        v-if="field.type === 'switch'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-      <DatePicker
-        v-if="field.type === 'date-picker'"
-        :key="field.id"
-        :field="field"
-        :form="data"
-      />
-    </template>
+    <el-row :gutter="20">
+      <el-col
+        v-for="field in fieldList"
+        :key="field.name"
+        :span="field.span"
+      >
+        <Input
+          v-if="field.type === 'input'"
+          :field="field"
+          :form="data"
+        />
+        <Select
+          v-if="field.type === 'select'"
+          :field="field"
+          :form="data"
+        />
+        <Radio
+          v-if="field.type === 'radio'"
+          :field="field"
+          :form="data"
+        />
+        <Checkbox
+          v-if="field.type === 'checkbox'"
+          :field="field"
+          :form="data"
+        />
+        <SSwitch
+          v-if="field.type === 'switch'"
+          :field="field"
+          :form="data"
+        />
+        <DatePicker
+          v-if="field.type === 'date-picker'"
+          :field="field"
+          :form="data"
+        />
+      </el-col>
+    </el-row>
   </el-form>
 </template>
 

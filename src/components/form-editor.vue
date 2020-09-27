@@ -1,13 +1,19 @@
 <template>
-  <el-row slot="footer">
-    <el-col>
-      <el-form label-width="80px">
+  <el-row>
+    <el-col class="form-editor">
+      <el-form
+        :label-position="formConf.labelPosition"
+        :label-width="formConf.labelWidth"
+        :gutter="formConf.gutter"
+      >
+        <el-divider content-position="left">
+          表单项编辑器
+        </el-divider>
         <el-row :gutter="15">
           <Draggable
             :list="fieldList"
             :group="{ put: true }"
             handle=".drag-handle"
-            class="form-editor"
             v-bind="dragOptions"
             @add="setActive"
             @end="setActive"
@@ -16,7 +22,6 @@
               v-for="field in fieldList"
               :key="field.id"
               :span="Number(field.span) || 24"
-              style="float: initial;"
             >
               <div
                 :class="{'form-item-wrap': true, 'active': field === activeField}"
@@ -164,6 +169,10 @@
   margin-bottom: 15px;
   padding: 10px 30px 10px 5px;
 }
+.item-bar .el-divider__text,
+.form-editor .el-divider__text {
+  color: #ccc;
+}
 .form-editor .example-form-item {
   padding-left: 50px;
 }
@@ -264,12 +273,15 @@ export default {
     };
   },
   computed: {
+    formConf() {
+      return this.$store.state.formConf;
+    },
     fieldList: {
       get() {
         return this.$store.state.fieldList;
       },
       set(fieldList) {
-        this.$store.commit('fieldListChange', fieldList);
+        this.$store.commit('setFieldList', fieldList);
       },
     },
     activeField: {
