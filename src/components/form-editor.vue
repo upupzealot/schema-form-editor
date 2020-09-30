@@ -9,69 +9,67 @@
         <el-divider content-position="left">
           表单项编辑器
         </el-divider>
-        <el-row :gutter="15">
-          <Draggable
+        <el-row :gutter="formConf.gutter">
+          <DraggableList
             :list="fieldList"
-            :group="{ put: true }"
-            handle=".drag-handle"
-            v-bind="dragOptions"
-            @add="setActive"
-            @end="setActive"
+            :group="{put: true}"
+            :selectable="true"
             style="padding-bottom: 50px;"
+            @select="onSelect"
           >
-            <el-col
+            <template
               v-for="field in fieldList"
-              :key="field.id"
-              :span="Number(field.span) || 24"
             >
-              <div
-                :class="{'form-item-wrap': true, 'active': field === activeField}"
-                @click="onSelect(field)"
+              <el-col
+                :key="field.id"
+                :span="Number(field.span) || 24"
               >
-                <div class="control drag drag-handle">
-                  <i class="el-icon-sort" />
-                </div>
-
-                <Input
-                  v-if="field.type === 'input'"
-                  :field="field"
-                  :form="form"
-                />
-                <Select
-                  v-if="field.type === 'select'"
-                  :field="field"
-                  :form="form"
-                />
-                <Radio
-                  v-if="field.type === 'radio'"
-                  :field="field"
-                  :form="form"
-                />
-                <Checkbox
-                  v-if="field.type === 'checkbox'"
-                  :field="field"
-                  :form="form"
-                />
-                <SSwitch
-                  v-if="field.type === 'switch'"
-                  :field="field"
-                  :form="form"
-                />
-                <DatePicker
-                  v-if="field.type === 'date-picker'"
-                  :field="field"
-                  :form="form"
-                />
-
-                <div class="control close">
-                  <i
-                    class="el-icon-close"
-                    @click="onDelete(field)"
+                <DraggableListItem
+                  :item="field"
+                  :active="field === activeField"
+                  @select="onSelect(field)"
+                  @delete="onDelete(field)"
+                >
+                  <Input
+                    v-if="field.type === 'input'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
                   />
-                </div>
-              </div>
-            </el-col>
-          </Draggable>
+                  <Select
+                    v-if="field.type === 'select'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                  <Radio
+                    v-if="field.type === 'radio'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                  <Checkbox
+                    v-if="field.type === 'checkbox'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                  <SSwitch
+                    v-if="field.type === 'switch'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                  <DatePicker
+                    v-if="field.type === 'date-picker'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                </DraggableListItem>
+              </el-col>
+            </template>
+          </DraggableList>
         </el-row>
       </el-form>
     </el-col>
@@ -160,79 +158,31 @@
 </template>
 
 <style>
-.form-editor .form-item,
-.form-editor .example-form-item {
-  margin-bottom: 0;
-}
-.form-editor .form-item-wrap,
-.form-editor .example-form-item {
-  border: 1px dashed #eee;
-  margin-bottom: 15px;
-  padding: 10px 30px 10px 5px;
-}
 .item-bar .el-divider__text,
 .form-editor .el-divider__text {
   color: #ccc;
 }
-.form-editor .example-form-item {
+.form-editor .example-form-item .draggable-list-item {
   padding-left: 50px;
+  padding-right: 30px;
 }
-.form-editor .form-item .el-form-item__label {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.form-editor .form-item-wrap .drag-handle {
-  line-height: 40px;
-  cursor: move;
+.form-editor .example-form-item .draggable-list-item .el-form-item {
+  width: 100%;
 }
 </style>
 
 <style scoped>
-.form-editor .form-item-wrap,
-.form-editor .example-form-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  border: 1px dashed #eee;
-  padding: 10px 5px;
-  margin-bottom: 15px;
-}
-.form-editor .form-item-wrap.active {
-  border: 1px dashed #999;
-  background-color: #f0f9ff;
-}
-.form-editor .form-item-wrap .form-item {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-.form-editor .form-item-wrap .control {
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  text-align: center;
-  margin-left: 5px;
-}
-.form-editor .form-item-wrap .control.drag {
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-}
-.form-editor .form-item-wrap .control.close {
-  cursor: pointer;
-}
-.form-editor .form-item-wrap .control.close .el-icon-close:hover {
-  color: #F56C6C;
+.draggable-list-item .el-form-item {
+  width: 100%;
 }
 </style>
 
 <script>
 import _ from 'lodash';
-import Draggable from 'vuedraggable';
 import omitDeep from 'omit-deep-lodash';
+
+import DraggableList from '@/components/common/draggable-list';
+import DraggableListItem from '@/components/common/draggable-list-item';
 
 import Input from '@/components/form-items/input';
 import Select from '@/components/form-items/select';
@@ -245,7 +195,8 @@ import FormRender from '@/components/form-render';
 
 export default {
   components: {
-    Draggable,
+    DraggableList,
+    DraggableListItem,
     Input,
     Select,
     Radio,
@@ -264,10 +215,6 @@ export default {
       previewSchema: {},
       previewData: {},
       previewDialogVisible: false,
-      dragOptions: {
-        animation: 200,
-        disabled: false,
-      }
     };
   },
   computed: {
@@ -301,9 +248,6 @@ export default {
     }
   },
   methods: {
-    setActive({ newIndex }) {
-      this.activeField = this.fieldList[newIndex];
-    },
     onSelect(field) {
       this.activeField = field;
     },
