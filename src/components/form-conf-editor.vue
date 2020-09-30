@@ -6,7 +6,10 @@
     <el-form-item label="列间距">
       <el-input v-model="formConf.gutter" />
     </el-form-item>
-    <el-form-item label="对齐方式">
+    <el-form-item
+      label="对齐方式"
+      style="margin: 0;"
+    >
       <el-radio
         v-model="formConf.labelPosition"
         label="left"

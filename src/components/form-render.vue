@@ -1,6 +1,9 @@
 <template>
-  <el-form label-width="80px">
-    <el-row :gutter="20">
+  <el-form
+    :label-width="formConf.labelWidth"
+    :label-position="formConf.labelPosition"
+  >
+    <el-row :gutter="formConf.gutter">
       <el-col
         v-for="field in fieldList"
         :key="field.name"
@@ -73,6 +76,9 @@ export default {
     }
   },
   computed: {
+    formConf() {
+      return this.schema.formConf;
+    },
     fieldList() {
       return this.schema.fieldList;
     }
