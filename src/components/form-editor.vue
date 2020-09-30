@@ -17,6 +17,7 @@
             v-bind="dragOptions"
             @add="setActive"
             @end="setActive"
+            style="padding-bottom: 50px;"
           >
             <el-col
               v-for="field in fieldList"
@@ -188,9 +189,6 @@
 </style>
 
 <style scoped>
-.form-editor {
-  padding: 0 0 50px;
-}
 .form-editor .form-item-wrap,
 .form-editor .example-form-item {
   display: flex;
@@ -203,7 +201,7 @@
 }
 .form-editor .form-item-wrap.active {
   border: 1px dashed #999;
-  background-color: #f0fff0;
+  background-color: #f0f9ff;
 }
 .form-editor .form-item-wrap .form-item {
   flex-grow: 1;
