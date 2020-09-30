@@ -143,7 +143,7 @@ export default {
       },
       itemList: [{
         type: 'input',
-        label: '单行文本',
+        label: '文本框',
         ...itemDefaults['input']
       }, {
         type: 'select',

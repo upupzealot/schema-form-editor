@@ -1,6 +1,7 @@
 <template>
   <el-row>
     <el-col class="item-editor">
+      <!-- 表单属性 -->
       <el-divider content-position="left">
         <i
           :class="{ 'el-icon-circle-plus-outline': !formConfOpen, 'el-icon-remove-outline': formConfOpen }"
@@ -16,30 +17,10 @@
           <FormConfEditor />
         </div>
       </el-collapse-transition>
-      <el-form label-width="80px">
-        <div class="divider-wrap">
-          <el-divider content-position="left">
-            <i
-              :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
-              @click="basicOpen = !basicOpen"
-            />
-            表单项属性
-          </el-divider>
-        </div>
-        <el-collapse-transition>
-          <div
-            v-show="basicOpen"
-            class="field-group"
-          >
-            <el-form-item label="Key">
-              <el-input v-model="field.name" />
-            </el-form-item>
-            <el-form-item label="标签">
-              <el-input v-model="field.label" />
-            </el-form-item>
-          </div>
-        </el-collapse-transition>
 
+      <!-- 表单项编辑器 -->
+      <el-form label-width="80px">
+        <!-- 布局 -->
         <div class="divider-wrap">
           <el-divider content-position="left">
             <i
@@ -63,6 +44,54 @@
           </div>
         </el-collapse-transition>
 
+        <!-- 表单项属性 -->
+        <div class="divider-wrap">
+          <el-divider content-position="left">
+            <i
+              :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
+              @click="basicOpen = !basicOpen"
+            />
+            表单项属性
+          </el-divider>
+        </div>
+        <el-collapse-transition>
+          <div
+            v-show="basicOpen"
+            class="field-group"
+          >
+            <el-form-item label="Key">
+              <el-input v-model="field.name" />
+            </el-form-item>
+            <el-form-item label="标签">
+              <el-input v-model="field.label" />
+            </el-form-item>
+            <InputForm
+              v-if="field.type === 'input'"
+              :field="field"
+            />
+            <SelectForm
+              v-if="field.type === 'select'"
+              :field="field"
+            />
+            <RadioForm
+              v-if="field.type === 'radio'"
+              :field="field"
+            />
+            <CheckboxForm
+              v-if="field.type === 'checkbox'"
+              :field="field"
+            />
+            <SSwitchForm
+              v-if="field.type === 'switch'"
+              :field="field"
+            />
+            <DatePickerForm
+              v-if="field.type === 'date-picker'"
+              :field="field"
+            />
+          </div>
+        </el-collapse-transition>
+
         <div class="divider-wrap">
           <el-divider content-position="left">
             <i
@@ -82,27 +111,6 @@
             </el-form-item>
           </div>
         </el-collapse-transition>
-
-        <SelectForm
-          v-if="field.type === 'select'"
-          :field="field"
-        />
-        <RadioForm
-          v-if="field.type === 'radio'"
-          :field="field"
-        />
-        <CheckboxForm
-          v-if="field.type === 'checkbox'"
-          :field="field"
-        />
-        <SSwitchForm
-          v-if="field.type === 'switch'"
-          :field="field"
-        />
-        <DatePickerForm
-          v-if="field.type === 'date-picker'"
-          :field="field"
-        />
       </el-form>
     </el-col>
   </el-row>
@@ -130,6 +138,7 @@
 <script>
 import FormConfEditor from '@/components/form-conf-editor';
 
+import InputForm from '@/components/schema-forms/input';
 import SelectForm from '@/components/schema-forms/select';
 import RadioForm from '@/components/schema-forms/radio';
 import CheckboxForm from '@/components/schema-forms/checkbox';
@@ -140,6 +149,7 @@ const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
   components: {
+    InputForm,
     FormConfEditor,
     SelectForm,
     RadioForm,
@@ -149,9 +159,9 @@ export default {
   },
   data() {
     return {
-      formConfOpen: true,
+      formConfOpen: false,
+      layoutOpen: false,
       basicOpen: true,
-      layoutOpen: true,
       validOpen: true,
     }
   },

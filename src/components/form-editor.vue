@@ -293,7 +293,10 @@ export default {
       },
     },
     schema() {
-      return omitDeep(this.fieldList, 'id');
+      return omitDeep({
+        formConf: _.cloneDeep(this.formConf),
+        fieldList: _.cloneDeep(this.fieldList),
+      }, 'id');
     },
     previewDataStr() {
       return JSON.stringify(this.previewData, null, 2);
@@ -330,9 +333,7 @@ export default {
       this.dataDialogVisible = true;
     },
     previewForm() {
-      this.previewSchema = {
-        fieldList: _.cloneDeep(this.fieldList),
-      };
+      this.previewSchema = _.cloneDeep(this.schema);
       this.previewDialogVisible = true;
     }
   },
