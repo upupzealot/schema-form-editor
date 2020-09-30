@@ -1,25 +1,20 @@
 <template>
-  <el-row class="schema-form">
-    <el-col>
+  <StandardForm>
+    <template slot="basic">
       <el-form-item label="开-文字">
         <el-input v-model="field.activeText" />
       </el-form-item>
       <el-form-item label="关-文字">
         <el-input v-model="field.inactiveText" />
       </el-form-item>
-    </el-col>
-  </el-row>
+    </template>
+  </StandardForm>
 </template>
 
 <script>
+import standard from './standard-mixin';
+
 export default {
-  props: {
-    field: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
+  mixins: [standard],
 };
 </script>
