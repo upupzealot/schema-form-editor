@@ -47,10 +47,10 @@ export default {
   },
   defaultSchema: {
     options: [{
-      label: '选项1',
+      label: '选项一',
       value: 'option1',
     }, {
-      label: '选项2',
+      label: '选项二',
       value: 'option2',
     }],
   }

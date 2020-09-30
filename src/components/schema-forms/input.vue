@@ -17,6 +17,38 @@
         </el-select>
       </el-form-item>
     </template>
+    <template slot="valid">
+      <el-form-item
+        label="校验类型"
+        class="schema-form"
+      >
+        <el-radio
+          v-model="field.validType"
+          label="required"
+        >
+          必填
+        </el-radio>
+        <el-radio
+          v-model="field.validType"
+          label="length"
+        >
+          长度
+        </el-radio>
+        <el-radio
+          v-model="field.validType"
+          label="regexp"
+        >
+          正则表达式
+        </el-radio>
+        <el-radio
+          v-model="field.validType"
+          label="func"
+          disabled
+        >
+          自定义函数
+        </el-radio>
+      </el-form-item>
+    </template>
   </StandardForm>
 </template>
 
@@ -33,7 +65,7 @@ export default {
       set(mode) {
         this.$set(this.field, 'mode', mode === 'textarea' ? 'textarea' : undefined);
       }
-    }
+    },
   },
 };
 </script>
