@@ -1,25 +1,22 @@
 <template>
-  <el-row class="schema-form">
-    <el-col>
-      <OptionList :field="field" />
-    </el-col>
-  </el-row>
+  <StandardForm>
+    <template slot="basic">
+      <OptionList
+        :field="field"
+        class="schema-form"
+      />
+    </template>
+  </StandardForm>
 </template>
 
 <script>
+import standard from './standard-mixin';
 import OptionList from './option-list';
 
 export default {
   components: {
     OptionList,
   },
-  props: {
-    field: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
+  mixins: [standard],
 };
 </script>

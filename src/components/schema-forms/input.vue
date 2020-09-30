@@ -1,31 +1,30 @@
 <template>
-  <el-form-item
-    label="组件模式"
-    class="schema-form"
-  >
-    <el-select v-model="mode">
-      <el-option
-        label="单行文本"
-        value="text"
-      />
-      <el-option
-        label="多行文本"
-        value="textarea"
-      />
-    </el-select>
-  </el-form-item>
+  <StandardForm>
+    <template slot="basic">
+      <el-form-item
+        label="组件模式"
+        class="schema-form"
+      >
+        <el-select v-model="mode">
+          <el-option
+            label="单行文本"
+            value="text"
+          />
+          <el-option
+            label="多行文本"
+            value="textarea"
+          />
+        </el-select>
+      </el-form-item>
+    </template>
+  </StandardForm>
 </template>
 
 <script>
+import standard from './standard-mixin';
+
 export default {
-  props: {
-    field: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
+  mixins: [standard],
   computed: {
     mode: {
       get() {
