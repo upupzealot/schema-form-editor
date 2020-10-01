@@ -56,7 +56,7 @@ export default {
     handle: {
       type: String,
       default() {
-        return '.draggable-list-item';
+        return '.draggable-list-item .drag-handle';
       }
     },
     options: {
