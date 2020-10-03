@@ -9,14 +9,9 @@
         :item="option"
         @delete="deleteOption"
       >
-        <el-form
-          label-width="40px"
-        >
+        <el-form label-width="40px">
           <el-row>
-            <el-col
-              :span="12"
-              style
-            >
+            <el-col :span="12">
               <el-form-item label="键">
                 <el-input v-model="option.label" />
               </el-form-item>

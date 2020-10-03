@@ -95,15 +95,14 @@
       :visible.sync="schemaDialogVisible"
     >
       <pre>{{ schemaStr }}</pre>
-      <span
-        slot="footer"
-        class="dialog-footer"
-      >
+      <template slot="footer">
         <el-button
           type="primary"
           @click="schemaDialogVisible = false"
-        >确 定</el-button>
-      </span>
+        >
+          确 定
+        </el-button>
+      </template>
     </el-dialog>
 
     <!-- 数据预览对话框 -->
@@ -112,15 +111,14 @@
       :visible.sync="dataDialogVisible"
     >
       <pre>{{ dataStr }}</pre>
-      <span
-        slot="footer"
-        class="dialog-footer"
-      >
+      <template slot="footer">
         <el-button
           type="primary"
           @click="dataDialogVisible = false"
-        >确 定</el-button>
-      </span>
+        >
+          确 定
+        </el-button>
+      </template>
     </el-dialog>
 
     <!-- 表单预览对话框 -->
@@ -133,6 +131,7 @@
         <el-col :span="12">
           <el-card>
             <FormRender
+              ref="previewForm"
               :schema="previewSchema"
               :data="previewData"
             />
@@ -144,15 +143,21 @@
           </el-card>
         </el-col>
       </el-row>
-      <span
-        slot="footer"
-        class="dialog-footer"
-      >
+      <template slot="footer">
+        <el-button
+          type="default"
+          style="float: left;"
+          @click="validateForm"
+        >
+          校 验
+        </el-button>
         <el-button
           type="primary"
           @click="previewDialogVisible = false"
-        >确 定</el-button>
-      </span>
+        >
+          确 定
+        </el-button>
+      </template>
     </el-dialog>
   </el-row>
 </template>
@@ -237,10 +242,14 @@ export default {
         this.$store.commit('setActiveField', field);
       },
     },
+    validRules() {
+      return this.$store.state.validRules;
+    },
     schema() {
       return omitDeep({
-        formConf: _.cloneDeep(this.formConf),
-        fieldList: _.cloneDeep(this.fieldList),
+        formConf: this.formConf,
+        fieldList: this.fieldList,
+        validRules: this.validRules,
       }, 'id');
     },
     previewDataStr() {
@@ -277,6 +286,10 @@ export default {
     previewForm() {
       this.previewSchema = _.cloneDeep(this.schema);
       this.previewDialogVisible = true;
+    },
+    async validateForm() {
+      const isValid = await this.$refs['previewForm'].validate();
+      console.log(isValid)
     }
   },
 };
