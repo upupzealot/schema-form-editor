@@ -1,7 +1,9 @@
 <template>
   <el-form
+    ref="form"
     :label-width="formConf.labelWidth"
     :label-position="formConf.labelPosition"
+    :model="data"
   >
     <el-row :gutter="formConf.gutter">
       <el-col
@@ -81,6 +83,13 @@ export default {
     },
     fieldList() {
       return this.schema.fieldList;
+    }
+  },
+  methods: {
+    async validate() {
+      return new Promise(resolve => {
+        this.$refs['form'].validate(resolve);
+      });
     }
   }
 }

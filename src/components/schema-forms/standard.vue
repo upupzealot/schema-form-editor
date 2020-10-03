@@ -65,9 +65,7 @@
         v-show="validOpen"
         class="field-group"
       >
-        <el-form-item label="必填">
-          <el-switch v-model="field.required" />
-        </el-form-item>
+        <ValidRules />
         <slot name="valid" />
       </div>
     </el-collapse-transition>
@@ -81,17 +79,21 @@
 </style>
 
 <script>
-import FormConfEditor from '@/components/form-conf-editor';
+import ValidRules from '@/components/schema-forms/validate-rules/rules'
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
+  components: {
+    ValidRules,
+  },
   data() {
     return {
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,
       validOpen: true,
+      requiredRule: {},
     }
   },
   computed: {

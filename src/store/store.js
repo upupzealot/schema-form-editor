@@ -12,16 +12,23 @@ export default new Vuex.Store({
     },
     fieldList: [],
     activeField: {},
+    validRules: {},
   },
   mutations: {
-    setFormConf(state, formConf) {
-      state.formConf = formConf;
-    },
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },
     setActiveField(state, field) {
       state.activeField = field;
     },
+    setValidRule(state, {name, rules}) {
+      const diff = {};
+      diff[name] = rules;
+
+      state.validRules = {
+        ...state.validRules,
+        ...diff,
+      };
+    }
   },
 });

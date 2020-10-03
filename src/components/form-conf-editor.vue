@@ -35,13 +35,8 @@
 <script>
 export default {
   computed: {
-    formConf: {
-      get() {
-        return this.$store.state.formConf;
-      },
-      set(formConf) {
-        this.$store.commit('setFormConf', formConf);
-      },
+    formConf() {
+      return this.$store.state.formConf;
     },
   },
 }

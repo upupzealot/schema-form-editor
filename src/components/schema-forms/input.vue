@@ -3,51 +3,28 @@
     <template slot="basic">
       <el-form-item
         label="组件模式"
-        class="schema-form"
+        prop="schema-form"
       >
-        <el-select v-model="mode">
-          <el-option
-            label="单行文本"
-            value="text"
-          />
-          <el-option
-            label="多行文本"
-            value="textarea"
-          />
-        </el-select>
+        <!-- <el-select v-model="mode"> -->
+        <el-radio
+          v-model="mode"
+          label="text"
+        >
+          单行文本
+        </el-radio>
+        <el-radio
+          v-model="mode"
+          label="textarea"
+        >
+          多行文本
+        </el-radio>
+        <!-- </el-select> -->
       </el-form-item>
     </template>
+
+    <!-- 校验 -->
     <template slot="valid">
-      <el-form-item
-        label="校验类型"
-        class="schema-form"
-      >
-        <el-radio
-          v-model="field.validType"
-          label="required"
-        >
-          必填
-        </el-radio>
-        <el-radio
-          v-model="field.validType"
-          label="length"
-        >
-          长度
-        </el-radio>
-        <el-radio
-          v-model="field.validType"
-          label="regexp"
-        >
-          正则表达式
-        </el-radio>
-        <el-radio
-          v-model="field.validType"
-          label="func"
-          disabled
-        >
-          自定义函数
-        </el-radio>
-      </el-form-item>
+      <RegexpValidate />
     </template>
   </StandardForm>
 </template>
@@ -55,7 +32,12 @@
 <script>
 import standard from './standard-mixin';
 
+import RegexpValidate from '@/components/schema-forms/validate-rules/regexp'
+
 export default {
+  components: {
+    RegexpValidate,
+  },
   mixins: [standard],
   computed: {
     mode: {
@@ -66,6 +48,42 @@ export default {
         this.$set(this.field, 'mode', mode === 'textarea' ? 'textarea' : undefined);
       }
     },
+    rules: {
+      get() {
+        return this.field.rules || [];
+      },
+      set(rules) {
+        if(rules.length) {
+          this.$set(this.field, 'rules', rules);
+        } else {
+          this.$set(this.field, 'rules', undefined);
+        }
+      }
+    },
   },
+  methods: {
+    createRule() {
+      const id = this.$id();
+      console.log(this.rules)
+      this.rules = [{
+        id,
+        type: 'regexp',
+      }, ...this.rules];
+    },
+    deleteRule(rule) {
+      this.$confirm('确认删除?', null, {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'danger',
+      }).then(() => {
+        this.rules = this.rules.filter(r => r.id !== rule.id);
+
+        this.$message({
+          type: 'success',
+          message: '已删除',
+        });
+      }).catch(() => {});
+    },
+  }
 };
 </script>
