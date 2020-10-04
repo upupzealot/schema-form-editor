@@ -65,7 +65,7 @@
         v-show="validOpen"
         class="field-group"
       >
-        <ValidRules />
+        <RequiredRule />
         <slot name="valid" />
       </div>
     </el-collapse-transition>
@@ -79,13 +79,13 @@
 </style>
 
 <script>
-import ValidRules from '@/components/schema-forms/validate-rules/rules'
+import RequiredRule from '@/components/schema-forms/validate-rules/required'
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
   components: {
-    ValidRules,
+    RequiredRule,
   },
   data() {
     return {
@@ -93,7 +93,6 @@ export default {
       layoutOpen: false,
       basicOpen: true,
       validOpen: true,
-      requiredRule: {},
     }
   },
   computed: {
