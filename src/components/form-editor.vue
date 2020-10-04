@@ -289,7 +289,6 @@ export default {
     },
     async validateForm() {
       const isValid = await this.$refs['previewForm'].validate();
-      console.log(isValid)
     }
   },
 };

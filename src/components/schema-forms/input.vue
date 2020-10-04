@@ -64,7 +64,6 @@ export default {
   methods: {
     createRule() {
       const id = this.$id();
-      console.log(this.rules)
       this.rules = [{
         id,
         type: 'regexp',
