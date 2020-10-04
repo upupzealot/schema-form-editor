@@ -1,28 +1,47 @@
 <template>
-  <el-form-item label="必填">
-    <el-form
-      label-width="61px"
-      :inline="true"
+  <div>
+    <el-form-item
+      label="必填"
+      style="margin-bottom: 15px;"
     >
       <el-switch v-model="required" />
-      <el-form-item
-        v-if="required"
-        label="提示"
-      >
+    </el-form-item>
+    <el-form
+      v-if="required"
+      label-width="80px"
+    >
+      <el-form-item label="提示">
         <el-input
           v-model="note"
           :placeholder="nodePlaceholder"
         />
       </el-form-item>
+      <el-form-item label="时机">
+        <el-checkbox-group
+          v-model="trigger"
+          :min="1"
+        >
+          <el-checkbox label="change">
+            值改变
+          </el-checkbox>
+          <el-checkbox label="blur">
+            失去焦点
+          </el-checkbox>
+          <el-checkbox label="focus">
+            获取焦点
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
     </el-form>
-  </el-form-item>
+  </div>
 </template>
 
 <script>
 import ruleMinxin from './rule-mixin'
+import ruleItemMinxin from './rule-item-mixin'
 
 export default {
-  mixins: [ruleMinxin],
+  mixins: [ruleMinxin, ruleItemMinxin],
   data() {
     return {
       rule: {
@@ -38,17 +57,6 @@ export default {
       },
       set(req) {
         this.$set(this.field, 'required', req || undefined)
-      }
-    },
-    nodePlaceholder() {
-      return `请输入${this.field.label}`;
-    },
-    note: {
-      get() {
-        return this.rule.note === this.nodePlaceholder ? '' : this.rule.note;
-      },
-      set(noteStr) {
-        this.$set(this.rule, 'note', noteStr || undefined)
       }
     },
   },
