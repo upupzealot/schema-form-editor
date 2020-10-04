@@ -9,12 +9,11 @@ export default {
       },
       set(list) {
         const ruleList = list.length ? list : undefined;
-        console.log(list)
         this.$store.commit('setValidRule', {
           name: this.field.name,
           rules: ruleList,
         });
       }
-    }
+    },
   }
 }
