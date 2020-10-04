@@ -1,24 +1,28 @@
 <template>
-  <el-form-item label="正则">
-    <DraggableList
-      :list="rules"
-    >
-      <DraggableListItem
-        v-for="rule in regexpRules"
-        :key="rule.id"
-        :item="rule"
-        @delete="deleteRule"
+  <div>
+    <el-form-item label="正则" />
+    <el-form-item>
+      <DraggableList
+        style="margin-left: -40px;"
+        :list="rules"
       >
-        <RegexpRule
-          :field="field"
-          :rule="rule"
-        />
-      </DraggableListItem>
-    </DraggableList>
-    <el-button @click="createRule">
-      新增校验规则
-    </el-button>
-  </el-form-item>
+        <DraggableListItem
+          v-for="rule in regexpRules"
+          :key="rule.id"
+          :item="rule"
+          @delete="deleteRule"
+        >
+          <RegexpRule
+            :field="field"
+            :rule="rule"
+          />
+        </DraggableListItem>
+      </DraggableList>
+      <el-button @click="createRule">
+        新增校验规则
+      </el-button>
+    </el-form-item>
+  </div>
 </template>
 
 <script>
