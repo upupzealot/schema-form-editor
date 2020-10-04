@@ -12,6 +12,5 @@ export default {
     Required,
   },
   mixins: [ruleMinxin],
-  
 }
 </script>
