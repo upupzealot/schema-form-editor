@@ -1,6 +1,10 @@
 <template>
   <div>
-    <el-form-item label="正则" />
+    <el-form-item label="正则">
+      <el-button @click="createRule">
+        新增校验规则
+      </el-button>
+    </el-form-item>
     <el-form-item>
       <DraggableList
         style="margin-left: -40px;"
@@ -18,9 +22,6 @@
           />
         </DraggableListItem>
       </DraggableList>
-      <el-button @click="createRule">
-        新增校验规则
-      </el-button>
     </el-form-item>
   </div>
 </template>

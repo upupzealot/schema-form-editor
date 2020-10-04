@@ -9,14 +9,17 @@
     >
       <el-input v-model="rule.regexp" />
     </el-form-item>
-    <el-form-item label="提示">
-      <el-input v-model="rule.note" />
-    </el-form-item>
+    <RuleItem :rule="rule" />
   </el-form>
 </template>
 
 <script>
+import RuleItem from './rule-item';
+
 export default {
+  components: {
+    RuleItem,
+  },
   props: {
     field: {
       type: Object,
