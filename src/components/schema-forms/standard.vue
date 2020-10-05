@@ -69,6 +69,24 @@
         <slot name="valid" />
       </div>
     </el-collapse-transition>
+
+    <div class="divider-wrap">
+      <el-divider content-position="left">
+        <i
+          :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
+          @click="effectOpen = !effectOpen"
+        />
+        联动
+      </el-divider>
+    </div>
+    <el-collapse-transition>
+      <div
+        v-show="effectOpen"
+        class="field-group"
+      >
+        <Effects fieldcontent="" />
+      </div>
+    </el-collapse-transition>
   </el-form>
 </template>
 
@@ -80,19 +98,22 @@
 
 <script>
 import RequiredRule from '@/components/schema-forms/validate-rules/required'
+import Effects from '@/components/schema-forms/effects'
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
   components: {
     RequiredRule,
+    Effects,
   },
   data() {
     return {
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,
-      validOpen: true,
+      validOpen: false,
+      effectOpen: true,
     }
   },
   computed: {
