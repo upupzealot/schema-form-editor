@@ -123,6 +123,7 @@
 
     <!-- 表单预览对话框 -->
     <el-dialog
+      v-if="previewDialogVisible"
       title="表单预览"
       width="70%"
       :visible.sync="previewDialogVisible"
