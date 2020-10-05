@@ -2,7 +2,7 @@
   <div>
     <el-form-item :label="label">
       <el-button @click="createItem">
-        新增{{label}}校验
+        新增{{ label }}校验
       </el-button>
     </el-form-item>
     <el-form-item>

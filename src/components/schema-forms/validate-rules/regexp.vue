@@ -1,7 +1,13 @@
 <template>
-  <RuleItemList label="正则" type="regexp">
+  <RuleItemList
+    label="正则"
+    type="regexp"
+  >
     <template v-slot:default="{ field, rule }">
-      <RegexpItem :field="field" :rule="rule" />
+      <RegexpItem
+        :field="field"
+        :rule="rule"
+      />
     </template>
   </RuleItemList>
 </template>

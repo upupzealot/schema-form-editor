@@ -1,7 +1,6 @@
 <template>
   <el-form-item
     :label="field.label"
-    :required="field.required"
     class="form-item"
   >
     <el-select

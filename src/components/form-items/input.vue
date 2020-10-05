@@ -1,7 +1,6 @@
 <template>
   <el-form-item
     :label="field.label"
-    :required="field.required"
     :prop="field.name"
     class="form-item"
   >

@@ -4,6 +4,7 @@
     :label-width="formConf.labelWidth"
     :label-position="formConf.labelPosition"
     :model="data"
+    :rules="validRules"
   >
     <el-row :gutter="formConf.gutter">
       <el-col
@@ -47,6 +48,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 import Input from '@/components/form-items/input';
 import Select from '@/components/form-items/select';
 import Radio from '@/components/form-items/radio';
@@ -83,6 +86,38 @@ export default {
     },
     fieldList() {
       return this.schema.fieldList;
+    },
+    validRules() {
+      _.filter
+      return _(this.schema.validRules)
+        .pickBy(rules => rules && rules.length)
+        .mapValues(rules => {
+          return rules.map(rule => {
+            if(rule.type === 'required') {
+              return {
+                required: true,
+                message: rule.note,
+                trigger: rule.trigger || 'blur',
+              };
+            } else if (rule.type === 'regexp') {
+              const regExp = new RegExp(rule.regexp);
+
+              return {
+                validator(r, value, callback) {
+                  const pass = regExp.test(value);
+                  if(pass) {
+                    callback();
+                  } else {
+                    callback(rule.note);
+                  }
+                },
+                trigger: rule.trigger || 'blur',
+              }
+              return rule;
+            }
+          })
+        })
+        .value();
     }
   },
   methods: {
