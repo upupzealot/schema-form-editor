@@ -19,21 +19,10 @@
 </template>
 
 <script>
+import standardMixin from './standard-mixin'
+
 export default {
-  props: {
-    form: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-    field: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
+  mixins: [standardMixin],
   defaultSchema: {
     options: [{
       label: '选项一',
