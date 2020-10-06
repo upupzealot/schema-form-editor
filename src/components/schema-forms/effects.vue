@@ -21,14 +21,6 @@ export default {
   components: {
     AceEditor,
   },
-  props: {
-    active: {
-      type: Boolean,
-      default() {
-        return false;
-      }
-    },
-  },
   data() {
     return {
       funcStr: '',
@@ -45,15 +37,6 @@ export default {
       set(funcStr) {
         this.funcStr = funcStr === tempStr ? '' : funcStr;
         this.$set(this.field, 'effect', this.funcStr || undefined);
-      }
-    }
-  },
-  watch: {
-    active(isActive) {
-      if(isActive) { 
-        this.$set(this.field, 'effect', this.funcStr);
-      } else {
-        this.$set(this.field, 'effect', undefined);
       }
     }
   },
