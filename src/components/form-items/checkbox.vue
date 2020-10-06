@@ -16,31 +16,10 @@
 </template>
 
 <script>
+import standardMixin from './standard-mixin'
+
 export default {
-  props: {
-    form: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-    field: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
-  watch: {
-    'field.name': {
-      handler(key, oldKey) {
-        if(oldKey) {
-          this.$set(this.form, key, this.form[oldKey]);
-          this.$set(this.form, oldKey, undefined);
-        }
-      }
-    }
-  },
+  mixins: [standardMixin],
   created() {
     this.$set(this.form, this.field.name, []);
   },

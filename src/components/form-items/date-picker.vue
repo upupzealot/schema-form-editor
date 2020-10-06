@@ -14,21 +14,10 @@
 </template>
 
 <script>
+import standardMixin from './standard-mixin'
+
 export default {
-  props: {
-    form: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-    field: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-  },
+  mixins: [standardMixin],
   data() {
     return {
       calendarId: this.$id(),
