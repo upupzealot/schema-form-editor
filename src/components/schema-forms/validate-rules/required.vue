@@ -2,6 +2,7 @@
   <div>
     <el-form-item
       label="必填"
+      label-width="40px"
       style="margin-bottom: 15px;"
     >
       <el-switch v-model="required" />
