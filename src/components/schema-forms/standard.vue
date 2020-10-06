@@ -72,21 +72,19 @@
 
     <div class="divider-wrap">
       <el-divider content-position="left">
+        <i
+          :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
+          @click="effectOpen = !effectOpen"
+        />
         联动
-        <el-switch
-          v-model="hasEffect"
-          style="transform: scale(.7)"
-        >
-          开启联动
-        </el-switch>
       </el-divider>
     </div>
     <el-collapse-transition>
       <div
-        v-show="hasEffect"
+        v-show="effectOpen"
         class="field-group"
       >
-        <Effects :active="hasEffect" />
+        <Effects />
       </div>
     </el-collapse-transition>
   </el-form>
@@ -115,7 +113,7 @@ export default {
       layoutOpen: false,
       basicOpen: true,
       validOpen: false,
-      hasEffect: false,
+      effectOpen: false,
     }
   },
   computed: {
@@ -130,7 +128,7 @@ export default {
         const value = Number(n);
         this.$set(this.field, 'span', spanValues.includes(value) ? value : undefined);
       }
-    }
+    },
   },
 };
 </script>
