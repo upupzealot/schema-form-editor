@@ -65,26 +65,23 @@
         v-show="validOpen"
         class="field-group"
       >
-        <RequiredRule />
+        <RequiredRule style="margin-left: 40px;" />
         <slot name="valid" />
       </div>
     </el-collapse-transition>
 
     <div class="divider-wrap">
       <el-divider content-position="left">
-        <i
-          :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
-          @click="effectOpen = !effectOpen"
-        />
         联动
+        <el-switch v-model="hasEffect" style="transform: scale(.7)">开启联动</el-switch>
       </el-divider>
     </div>
     <el-collapse-transition>
       <div
-        v-show="effectOpen"
+        v-show="hasEffect"
         class="field-group"
       >
-        <Effects fieldcontent="" />
+        <Effects :active="hasEffect" />
       </div>
     </el-collapse-transition>
   </el-form>
@@ -113,7 +110,7 @@ export default {
       layoutOpen: false,
       basicOpen: true,
       validOpen: false,
-      effectOpen: true,
+      hasEffect: false,
     }
   },
   computed: {
