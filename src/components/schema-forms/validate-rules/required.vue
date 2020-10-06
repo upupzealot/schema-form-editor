@@ -24,14 +24,6 @@ export default {
     RuleItem,
   },
   mixins: [ruleMinxin],
-  data() {
-    return {
-      rule: {
-        id: this.$id(),
-        type: 'required',
-      },
-    }
-  },
   computed: {
     required: {
       get() {
@@ -40,6 +32,15 @@ export default {
       set(req) {
         this.$set(this.field, 'required', req || undefined)
       }
+    },
+    rule() {
+      const reqRules = this.rules.filter(r => r.type === 'required');
+      // 每次生成一个新的对象，避免多个字段的 required rule 冲突
+      const reqRule = reqRules.length ? reqRules[0] : {
+        id: this.$id,
+        type: 'required',
+      };
+      return reqRule;
     },
   },
   watch: {
