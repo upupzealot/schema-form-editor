@@ -73,7 +73,12 @@
     <div class="divider-wrap">
       <el-divider content-position="left">
         联动
-        <el-switch v-model="hasEffect" style="transform: scale(.7)">开启联动</el-switch>
+        <el-switch
+          v-model="hasEffect"
+          style="transform: scale(.7)"
+        >
+          开启联动
+        </el-switch>
       </el-divider>
     </div>
     <el-collapse-transition>
