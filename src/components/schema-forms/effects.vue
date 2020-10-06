@@ -1,22 +1,38 @@
 <template>
-  <div>
-    <AceEditor
-      v-model="effect"
-      lang="javascript"
-      theme="github"
-      width="100%"
-      height="100px"
-      @init="initEditor"
-    />
-  </div>
+  <AceEditor
+    v-model="effect"
+    lang="javascript"
+    theme="github"
+    width="100%"
+    height="160px"
+    @init="initEditor"
+  />
 </template>
 
 <script>
 import AceEditor from 'vue2-ace-editor';
 
+const tempStr = `// watch('someField', val => {
+//   set('enabled', val !== 'someValue');
+// });
+`
+
 export default {
   components: {
     AceEditor,
+  },
+  props: {
+    active: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
+  },
+  data() {
+    return {
+      funcStr: '',
+    }
   },
   computed: {
     field() {
@@ -24,13 +40,20 @@ export default {
     },
     effect: {
       get() {
-        // watch('aaa', val => {
-        //   set('enabled', val !== 'aaa');
-        // });
-        return this.field.effect || '';
+        return this.funcStr || tempStr;
       },
       set(funcStr) {
-        this.$set(this.field, 'effect', funcStr);
+        this.funcStr = funcStr === tempStr ? '' : funcStr;
+        this.$set(this.field, 'effect', this.funcStr || undefined);
+      }
+    }
+  },
+  watch: {
+    active(isActive) {
+      if(isActive) { 
+        this.$set(this.field, 'effect', this.funcStr);
+      } else {
+        this.$set(this.field, 'effect', undefined);
       }
     }
   },
