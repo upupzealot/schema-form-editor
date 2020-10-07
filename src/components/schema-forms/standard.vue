@@ -2,91 +2,101 @@
   <!-- 表单项编辑器 -->
   <el-form label-width="80px">
     <!-- 布局 -->
-    <div class="divider-wrap">
-      <el-divider content-position="left">
-        <i
-          :class="{ 'el-icon-circle-plus-outline': !layoutOpen, 'el-icon-remove-outline': layoutOpen }"
-          @click="layoutOpen = !layoutOpen"
-        />
-        布局
-      </el-divider>
-    </div>
-    <el-collapse-transition>
-      <div
-        v-show="layoutOpen"
-        class="field-group"
-      >
-        <el-form-item label="栅格数">
-          <el-input
-            v-model="span"
-            placeholder="1~24 之间，24 不用填"
+    <div v-if="config.hasLayout !== false">
+      <div class="divider-wrap">
+        <el-divider content-position="left">
+          <i
+            :class="{ 'el-icon-circle-plus-outline': !layoutOpen, 'el-icon-remove-outline': layoutOpen }"
+            @click="layoutOpen = !layoutOpen"
           />
-        </el-form-item>
-        <slot name="layout" />
+          布局
+        </el-divider>
       </div>
-    </el-collapse-transition>
+      <el-collapse-transition>
+        <div
+          v-show="layoutOpen"
+          class="field-group"
+        >
+          <el-form-item label="栅格数">
+            <el-input
+              v-model="span"
+              placeholder="1~24 之间，24 不用填"
+            />
+          </el-form-item>
+          <slot name="layout" />
+        </div>
+      </el-collapse-transition>
+    </div>
 
     <!-- 表单项属性 -->
-    <div class="divider-wrap">
-      <el-divider content-position="left">
-        <i
-          :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
-          @click="basicOpen = !basicOpen"
-        />
-        表单项属性
-      </el-divider>
-    </div>
-    <el-collapse-transition>
-      <div
-        v-show="basicOpen"
-        class="field-group"
-      >
-        <el-form-item label="Key">
-          <el-input v-model="field.name" />
-        </el-form-item>
-        <el-form-item label="标签">
-          <el-input v-model="field.label" />
-        </el-form-item>
-        <slot name="basic" />
+    <div v-if="config.hasBasic !== false">
+      <div class="divider-wrap">
+        <el-divider content-position="left">
+          <i
+            :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
+            @click="basicOpen = !basicOpen"
+          />
+          表单项属性
+        </el-divider>
       </div>
-    </el-collapse-transition>
+      <el-collapse-transition>
+        <div
+          v-show="basicOpen"
+          class="field-group"
+        >
+          <el-form-item label="Key">
+            <el-input v-model="field.name" />
+          </el-form-item>
+          <el-form-item label="标签">
+            <el-input v-model="field.label" />
+          </el-form-item>
+          <slot name="basic" />
+        </div>
+      </el-collapse-transition>
+    </div>
 
-    <div class="divider-wrap">
-      <el-divider content-position="left">
-        <i
-          :class="{ 'el-icon-circle-plus-outline': !validOpen, 'el-icon-remove-outline': validOpen }"
-          @click="validOpen = !validOpen"
-        />
-        校验
-      </el-divider>
-    </div>
-    <el-collapse-transition>
-      <div
-        v-show="validOpen"
-        class="field-group"
-      >
-        <RequiredRule style="margin-left: 40px;" />
-        <slot name="valid" />
+    <!-- 校验规则 -->
+    <div v-if="config.hasValid !== false">
+      <div class="divider-wrap">
+        <el-divider content-position="left">
+          <i
+            :class="{ 'el-icon-circle-plus-outline': !validOpen, 'el-icon-remove-outline': validOpen }"
+            @click="validOpen = !validOpen"
+          />
+          校验
+        </el-divider>
       </div>
-    </el-collapse-transition>
+      <el-collapse-transition>
+        <div
+          v-show="validOpen"
+          class="field-group"
+        >
+          <RequiredRule style="margin-left: 40px;" />
+          <slot name="valid" />
+        </div>
+      </el-collapse-transition>
+    </div>
 
-    <div class="divider-wrap">
-      <el-divider content-position="left">
-        <i
-          :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
-          @click="effectOpen = !effectOpen"
-        />
-        联动
-      </el-divider>
-    </div>
-    <el-collapse-transition>
-      <div
-        v-show="effectOpen"
-        class="field-group"
-      >
-        <Effects />
+    <!-- 表单联动 -->
+    <div v-if="config.hasEffect !== false">
+      <div class="divider-wrap">
+        <el-divider content-position="left">
+          <i
+            :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
+            @click="effectOpen = !effectOpen"
+          />
+          联动
+        </el-divider>
       </div>
-    </el-collapse-transition>
+      <el-collapse-transition>
+        <div
+          v-show="effectOpen"
+          class="field-group"
+        >
+          <Effects />
+        </div>
+      </el-collapse-transition>
+    </div>
   </el-form>
 </template>
 
@@ -106,6 +116,14 @@ export default {
   components: {
     RequiredRule,
     Effects,
+  },
+  props: {
+    config: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
   },
   data() {
     return {

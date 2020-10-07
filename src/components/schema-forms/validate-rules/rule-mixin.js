@@ -1,8 +1,10 @@
 export default {
   computed: {
+    // 当前字段
     field() {
       return this.$store.state.activeField;
     },
+    // 当前字段的所有校验规则
     rules: {
       get() {
         return this.$store.state.validRules[this.field.name] || [];
