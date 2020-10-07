@@ -25,6 +25,7 @@
       <CheckboxForm v-if="field.type === 'checkbox'" />
       <SSwitchForm v-if="field.type === 'switch'" />
       <DatePickerForm v-if="field.type === 'date-picker'" />
+      <BlankForm v-if="field.type === 'blank'" />
     </el-col>
   </el-row>
 </template>
@@ -55,6 +56,8 @@ import CheckboxForm from '@/components/schema-forms/checkbox';
 import SSwitchForm from '@/components/schema-forms/switch';
 import DatePickerForm from '@/components/schema-forms/date-picker';
 
+import BlankForm from '@/components/schema-forms/blank';
+
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
@@ -66,6 +69,7 @@ export default {
     CheckboxForm,
     SSwitchForm,
     DatePickerForm,
+    BlankForm,
   },
   data() {
     return {

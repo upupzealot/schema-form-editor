@@ -105,6 +105,34 @@
             </el-col>
           </DraggableList>
         </el-row>
+        <el-divider content-position="left">
+          工具项
+        </el-divider>
+        <el-row :gutter="formConf.gutter">
+          <DraggableList
+            :list="utilList"
+            handle=".item-bar .example-form-item"
+            :group="{ pull: 'clone', put: false }"
+            :clone="onClone"
+            :sort="false"
+          >
+            <el-col
+              v-for="util in utilList"
+              :key="util.type"
+              class="example-form-item"
+            >
+              <DraggableListItem :has-control="false">
+                <el-form-item
+                  :label="util.label"
+                >
+                  <template v-if="util.type === 'blank'">
+                    <div class="example-component" />
+                  </template>
+                </el-form-item>
+              </DraggableListItem>
+            </el-col>
+          </DraggableList>
+        </el-row>
       </el-form>
     </el-col>
   </el-row>
@@ -140,10 +168,12 @@ export default {
   },
   data() {
     return {
+      // 示例表单项默认值
       form: {
         radio: 'option1',
         checkbox: ['option1'],
       },
+      // 表单项列表
       itemList: [{
         type: 'input',
         label: '文本框',
@@ -168,6 +198,12 @@ export default {
         type: 'date-picker',
         label: '时间选择',
         ...itemDefaults['datePicker']
+      }],
+      // 工具项列表
+      utilList: [{
+        type: 'blank',
+        label: '空白占位',
+        ...itemDefaults['blank']
       }],
     };
   },

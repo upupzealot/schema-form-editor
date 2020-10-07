@@ -42,6 +42,11 @@
           :field="field"
           :form="data"
         />
+        <Blank
+          v-if="field.type === 'blank'"
+          :field="field"
+          :form="data"
+        />
       </el-col>
     </el-row>
   </el-form>
@@ -57,6 +62,8 @@ import Checkbox from '@/components/form-items/checkbox';
 import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
+import Blank from '@/components/form-items/blank';
+
 export default {
   components: {
     Input,
@@ -65,6 +72,7 @@ export default {
     Checkbox,
     SSwitch,
     DatePicker,
+    Blank,
   },
   props: {
     schema: {

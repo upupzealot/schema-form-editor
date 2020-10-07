@@ -30,6 +30,7 @@
                   @select="onSelect(field)"
                   @delete="onDelete(field)"
                 >
+                  <!-- 表单项 -->
                   <Input
                     v-if="field.type === 'input'"
                     :field="field"
@@ -62,6 +63,13 @@
                   />
                   <DatePicker
                     v-if="field.type === 'date-picker'"
+                    :field="field"
+                    :form="form"
+                    class="slot-content"
+                  />
+                  <!-- 工具项 -->
+                  <Blank
+                    v-if="field.type === 'blank'"
                     :field="field"
                     :form="form"
                     class="slot-content"
@@ -197,6 +205,8 @@ import Checkbox from '@/components/form-items/checkbox';
 import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
+import Blank from '@/components/form-items/blank';
+
 import FormRender from '@/components/form-render';
 
 export default {
@@ -209,6 +219,7 @@ export default {
     Checkbox,
     SSwitch,
     DatePicker,
+    Blank,
     FormRender,
   },
   data() {
