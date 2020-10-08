@@ -5,7 +5,7 @@
     class="form-item"
   >
     <el-select
-      v-model="form[field.name]"
+      v-model="data[field.name]"
       placeholder="下拉选项"
       style="width: 100%"
     >

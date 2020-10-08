@@ -34,44 +34,46 @@
                   <Input
                     v-if="field.type === 'input'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <Select
                     v-if="field.type === 'select'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <Radio
                     v-if="field.type === 'radio'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <Checkbox
                     v-if="field.type === 'checkbox'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <SSwitch
                     v-if="field.type === 'switch'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <DatePicker
                     v-if="field.type === 'date-picker'"
                     :field="field"
-                    :form="form"
+                    :data="data"
                     class="slot-content"
                   />
                   <!-- 工具项 -->
                   <Blank
                     v-if="field.type === 'blank'"
                     :field="field"
-                    :form="form"
+                    :data="data"
+                    class="slot-content"
+                  />
                     class="slot-content"
                   />
                 </DraggableListItem>
@@ -224,7 +226,7 @@ export default {
   },
   data() {
     return {
-      form: {},
+      data: {},
       schemaStr: '',
       schemaDialogVisible: false,
       dataStr: '',
@@ -292,7 +294,7 @@ export default {
       this.schemaDialogVisible = true;
     },
     printData() {
-      this.dataStr = JSON.stringify(this.form, null, 2);
+      this.dataStr = JSON.stringify(this.data, null, 2);
       this.dataDialogVisible = true;
     },
     previewForm() {

@@ -1,6 +1,6 @@
 export default {
   props: {
-    form: {
+    data: {
       type: Object,
       default() {
         return {}
@@ -33,15 +33,15 @@ export default {
     },
     effectParams() {
       return [{
-        key: 'form',
-        value: this.form,
+        key: 'data',
+        value: this.data,
       }, {
         key: 'field',
-        value: this.form,
+        value: this.field,
       }, {
         key: 'watch',
         value: (path, func, opt) => {
-          this.$watch(`form.${path}`, func, { immediate: true, ...opt });
+          this.$watch(`data.${path}`, func, { immediate: true, ...opt });
         }
       }, {
         key: 'set',
