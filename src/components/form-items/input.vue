@@ -6,7 +6,7 @@
     class="form-item"
   >
     <el-input
-      v-model="form[field.name]"
+      v-model="data[field.name]"
       :type="field.mode"
     />
   </el-form-item>

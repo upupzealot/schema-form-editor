@@ -6,7 +6,7 @@
   >
     <el-date-picker
       :key="calendarId"
-      v-model="form[field.name]"
+      v-model="data[field.name]"
       style="width: 100%;"
       :type="field.mode"
       value-format="timestamp"
@@ -27,7 +27,7 @@ export default {
   watch: {
     'field.mode': {
       handler() {
-        this.$set(this.form, this.field.name, undefined);
+        this.$set(this.data, this.field.name, undefined);
         this.calendarId = this.$id();
         this.$forceUpdate();
       }

@@ -4,7 +4,7 @@
     :label="field.label"
     class="form-item"
   >
-    <el-checkbox-group v-model="form[field.name]">
+    <el-checkbox-group v-model="data[field.name]">
       <el-checkbox
         v-for="option in field.options"
         :key="option.value"
@@ -22,7 +22,7 @@ import standardMixin from './standard-mixin'
 export default {
   mixins: [standardMixin],
   created() {
-    this.$set(this.form, this.field.name, []);
+    this.$set(this.data, this.field.name, []);
   },
   defaultSchema: {
     options: [{

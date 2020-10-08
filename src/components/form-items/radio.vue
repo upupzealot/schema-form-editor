@@ -7,7 +7,7 @@
     <el-radio
       v-for="option in field.options"
       :key="option.value"
-      v-model="form[field.name]"
+      v-model="data[field.name]"
       :label="option.value"
     >
       <!-- 这里的 label 是值 -->

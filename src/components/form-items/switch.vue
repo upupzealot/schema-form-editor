@@ -5,7 +5,7 @@
     class="form-item"
   >
     <el-switch
-      v-model="form[field.name]"
+      v-model="data[field.name]"
       :active-text="field.activeText"
       :inactive-text="field.inactiveText"
     />
