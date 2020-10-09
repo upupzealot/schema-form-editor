@@ -15,37 +15,37 @@
         <Input
           v-if="field.type === 'input'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <Select
           v-if="field.type === 'select'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <Radio
           v-if="field.type === 'radio'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <Checkbox
           v-if="field.type === 'checkbox'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <SSwitch
           v-if="field.type === 'switch'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <DatePicker
           v-if="field.type === 'date-picker'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <Blank
           v-if="field.type === 'blank'"
           :field="field"
-          :form="data"
+          :data="data"
         />
         <FormRender
           v-if="field.type === 'subform'"
