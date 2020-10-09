@@ -138,7 +138,7 @@ export default {
     fieldList: {
       handler(fields) {
         fields.forEach(field => {
-          if(field.type === 'subform') {
+          if(field.type === 'subform' && !this.data[field.name]) {
             this.$set(this.data, field.name, {});
           }
         })
