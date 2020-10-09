@@ -47,6 +47,11 @@
           :field="field"
           :form="data"
         />
+        <FormRender
+          v-if="field.type === 'subform'"
+          :schema="field"
+          :data="data[field.name]"
+        />
       </el-col>
     </el-row>
   </el-form>
@@ -65,6 +70,7 @@ import DatePicker from '@/components/form-items/date-picker';
 import Blank from '@/components/form-items/blank';
 
 export default {
+  name: 'FormRender',
   components: {
     Input,
     Select,

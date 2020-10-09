@@ -1,34 +1,26 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import FormModule from './form'
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    $root: FormModule,
+  },
   state: {
-    formConf: {
-      labelWidth: '80px',
-      labelPosition: 'right',
-      gutter: 20,
-    },
-    fieldList: [],
+    // 当前字段
     activeField: {},
-    validRules: {},
+    // 当前（子）表单
+    activeForm: {},
   },
   mutations: {
-    setFieldList(state, fieldList) {
-      state.fieldList = fieldList;
-    },
     setActiveField(state, field) {
       state.activeField = field;
     },
-    setValidRule(state, {name, rules}) {
-      const diff = {};
-      diff[name] = rules;
-
-      state.validRules = {
-        ...state.validRules,
-        ...diff,
-      };
-    }
+    setActiveForm(state, form) {
+      state.activeForm = form;
+    },
   },
 });

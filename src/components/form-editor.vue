@@ -1,14 +1,12 @@
 <template>
   <el-row>
+    <!-- 表单项 -->
     <el-col class="form-editor">
       <el-form
         :label-position="formConf.labelPosition"
         :label-width="formConf.labelWidth"
         :gutter="formConf.gutter"
       >
-        <el-divider content-position="left">
-          表单项编辑器
-        </el-divider>
         <el-row :gutter="formConf.gutter">
           <DraggableList
             :list="fieldList"
@@ -74,6 +72,10 @@
                     :data="data"
                     class="slot-content"
                   />
+                  <Subform
+                    v-if="field.type === 'subform'"
+                    :field="field"
+                    :data="data"
                     class="slot-content"
                   />
                 </DraggableListItem>
@@ -83,15 +85,24 @@
         </el-row>
       </el-form>
     </el-col>
+
+    <!-- 控制按钮 -->
     <el-col>
-      <el-button @click="printSchema">
+      <el-button
+        :size="btnSize"
+        @click="printSchema"
+      >
         结构
       </el-button>
-      <el-button @click="printData">
+      <el-button
+        :size="btnSize"
+        @click="printData"
+      >
         数据
       </el-button>
     
       <el-button
+        :size="btnSize"
         style="float: right;"
         @click="previewForm"
       >
@@ -208,10 +219,13 @@ import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
+import Subform from '@/components/form-items/subform';
+import FormStoreModule from '@/store/form.js'
 
 import FormRender from '@/components/form-render';
 
 export default {
+  name: 'FormEditor',
   components: {
     DraggableList,
     DraggableListItem,
@@ -222,7 +236,16 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    Subform,
     FormRender,
+  },
+  props: {
+    formKey: {
+      type: String,
+      default() {
+        return '';
+      }
+    }
   },
   data() {
     return {
@@ -237,17 +260,6 @@ export default {
     };
   },
   computed: {
-    formConf() {
-      return this.$store.state.formConf;
-    },
-    fieldList: {
-      get() {
-        return this.$store.state.fieldList;
-      },
-      set(fieldList) {
-        this.$store.commit('setFieldList', fieldList);
-      },
-    },
     activeField: {
       get() {
         return this.$store.state.activeField;
@@ -256,13 +268,61 @@ export default {
         this.$store.commit('setActiveField', field);
       },
     },
+    activeForm: {
+      get() {
+        return this.$store.state.activeForm;
+      },
+      set(form) {
+        this.$store.commit('setActiveForm', form);
+      },
+    },
+    storeKey() {
+      return this.formKey || '$root';
+    },
+    form() {
+      return this.$store.state[this.storeKey];
+    },
+    formConf() {
+      return this.form.formConf;
+    },
+    fieldList: {
+      get() {
+        return this.form.fieldList;
+      },
+      set(fieldList) {
+        if(!this.formKey) {
+          this.$store.commit('setFieldList', fieldList);
+        } else {
+          this.$store.commit(`${this.storeKey}/setFieldList`, fieldList);
+        }
+      },
+    },
     validRules() {
-      return this.$store.state.validRules;
+      return this.form.validRules;
+    },
+    btnSize() {
+      return this.formKey ? 'mini' : '';
     },
     schema() {
+      const state = this.$store.state;
+      function mapFields(fields) {
+        const fieldList = _.cloneDeep(fields);
+        return fields.map(field => {
+          if(field.type === 'subform') {
+            return {
+              ...field,
+              ...state[field.name],
+              fieldList: mapFields(state[field.name].fieldList),
+            };
+          } else {
+            return field;
+          }
+        })
+      }
+
       return omitDeep({
         formConf: this.formConf,
-        fieldList: this.fieldList,
+        fieldList: mapFields(this.fieldList),
         validRules: this.validRules,
       }, 'id');
     },
@@ -270,8 +330,23 @@ export default {
       return JSON.stringify(this.previewData, null, 2);
     }
   },
+  watch: {
+    formKey: {
+      handler(newkey, oldkey) {
+        if(newkey) {
+          this.$store.registerModule(newkey, FormStoreModule);
+          if(oldkey) {
+            // TODO
+            // store 属性迁移
+            this.$store.unregisterModule(oldkey);
+          }
+        }
+      },
+      immediate: true,
+    }
+  },
   methods: {
-    onSelect(field) {
+    onSelect(field, $event) {
       this.activeField = field;
     },
     onDelete(field) {

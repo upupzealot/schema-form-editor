@@ -25,7 +25,7 @@
 
   border: 1px dashed #eee;
   margin-bottom: 15px;
-  padding: 10px 5px;
+  padding: 10px 5px 10px 0;
 }
 .draggable-list .draggable-list-item.active {
   border: 1px dashed #999;

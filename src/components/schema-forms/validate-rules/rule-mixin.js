@@ -7,11 +7,11 @@ export default {
     // 当前字段的所有校验规则
     rules: {
       get() {
-        return this.$store.state.validRules[this.field.name] || [];
+        return this.$store.state.$root.validRules[this.field.name] || [];
       },
       set(list) {
         const ruleList = list.length ? list : undefined;
-        this.$store.commit('setValidRule', {
+        this.$store.commit('$root/setValidRule', {
           name: this.field.name,
           rules: ruleList,
         });

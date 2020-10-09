@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import App from './app.vue';
+import FormEditor from '@/components/form-editor.vue'
 import router from './router';
 import store from './store/store';
 import md5 from 'md5'
@@ -14,6 +15,7 @@ Vue.prototype.$id = function () {
 }
 
 Vue.use(ElementUI);
+Vue.component('FormEditor', FormEditor);
 
 new Vue({
   router,
