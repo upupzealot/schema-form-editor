@@ -35,7 +35,9 @@ export default {
   },
   mixins: [standardMixin],
   created() {
-    this.$set(this.data, this.field.name, {});
+    if(!this.data[this.field.name]) {
+      this.$set(this.data, this.field.name, {});
+    }
   }
 }
 </script>
