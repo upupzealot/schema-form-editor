@@ -55,8 +55,8 @@ export default {
     'field.name': {
       handler(key, oldKey) {
         if(oldKey) {
-          this.$set(this.form, key, this.form[oldKey]);
-          this.$set(this.form, oldKey, undefined);
+          this.$set(this.data, key, this.form[oldKey]);
+          this.$set(this.data, oldKey, undefined);
         }
       }
     }

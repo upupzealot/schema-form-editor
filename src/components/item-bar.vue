@@ -124,9 +124,31 @@
               <DraggableListItem :has-control="false">
                 <el-form-item
                   :label="util.label"
+                  style="width: 100%;"
                 >
                   <template v-if="util.type === 'blank'">
-                    <div class="example-component" />
+                    <div
+                      class="example-component"
+                      :style="{
+                        border: '1px dashed #eee',
+                        height: '40px',
+                      }"
+                    />
+                  </template>
+
+                  <template v-if="util.type === 'subform'">
+                    <div
+                      class="example-component"
+                      :style="{
+                        border: '1px dashed #eee',
+                        lineHeight: 0,
+                        height: '40px',
+                      }"
+                    >
+                      <el-tag size="mini">
+                        子表单
+                      </el-tag>
+                    </div>
                   </template>
                 </el-form-item>
               </DraggableListItem>
@@ -204,12 +226,16 @@ export default {
         type: 'blank',
         label: '空白占位',
         ...itemDefaults['blank']
+      }, {
+        type: 'subform',
+        label: '子表单',
+        ...itemDefaults['subform']
       }],
     };
   },
   computed: {
     formConf() {
-      return this.$store.state.formConf;
+      return this.$store.state.$root.formConf;
     },
   },
   methods: {

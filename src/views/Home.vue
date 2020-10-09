@@ -9,7 +9,13 @@
         </el-col>
 
         <el-col :span="9">
-          <el-card shadow="never">
+          <el-card
+            shadow="never"
+            class="form-editor"
+          >
+            <el-divider content-position="left">
+              表单项编辑器
+            </el-divider>
             <FormEditor />
           </el-card>
         </el-col>
@@ -26,13 +32,14 @@
 
 <script>
 import ItemBar from '@/components/item-bar';
-import FormEditor from '@/components/form-editor';
+// 全局引入，避免循环引用
+// import FormEditor from '@/components/form-editor';
 import ItemEditor from '@/components/item-editor';
 
 export default {
   components: {
     ItemBar,
-    FormEditor,
+    // FormEditor,
     ItemEditor,
   },
 };

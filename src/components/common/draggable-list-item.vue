@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{'draggable-list-item': true, 'active': active}"
-    @click="onSelect"
+    @click.stop="onSelect"
   >
     <div
       v-if="hasControl"
@@ -36,7 +36,6 @@
   height: 20px;
   line-height: 20px;
   text-align: center;
-  margin-left: 5px;
 }
 .draggable-list .draggable-list-item .control.drag {
   height: 40px;
@@ -44,6 +43,7 @@
   line-height: 40px;
 }
 .draggable-list .draggable-list-item .control.close {
+  margin-left: 5px;
   cursor: pointer;
 }
 .draggable-list .draggable-list-item .control.close .el-icon-close:hover {
