@@ -36,7 +36,7 @@
 export default {
   computed: {
     formConf() {
-      return this.$store.state.$root.formConf;
+      return this.$store.state.activeForm.formConf;
     },
   },
 }

@@ -245,11 +245,16 @@ export default {
       default() {
         return '';
       }
+    },
+    data: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
   data() {
     return {
-      data: {},
       schemaStr: '',
       schemaDialogVisible: false,
       dataStr: '',
@@ -260,14 +265,7 @@ export default {
     };
   },
   computed: {
-    activeField: {
-      get() {
-        return this.$store.state.activeField;
-      },
-      set(field) {
-        this.$store.commit('setActiveField', field);
-      },
-    },
+    // 当前正在编辑的表单和字段
     activeForm: {
       get() {
         return this.$store.state.activeForm;
@@ -276,6 +274,15 @@ export default {
         this.$store.commit('setActiveForm', form);
       },
     },
+    activeField: {
+      get() {
+        return this.$store.state.activeField;
+      },
+      set(field) {
+        this.$store.commit('setActiveField', field);
+      },
+    },
+    // 计算属性
     storeKey() {
       return this.formKey || '$root';
     },
@@ -332,13 +339,15 @@ export default {
   },
   watch: {
     formKey: {
-      handler(newkey, oldkey) {
-        if(newkey) {
-          this.$store.registerModule(newkey, FormStoreModule);
-          if(oldkey) {
+      handler(newKey, oldKey) {
+        if(newKey) {
+          this.$store.registerModule(newKey, FormStoreModule);
+          this.$store.commit(`${newKey}/setFormKey`, this.storeKey);
+          this.activeForm = this.form;
+          if(oldKey) {
             // TODO
             // store 属性迁移
-            this.$store.unregisterModule(oldkey);
+            this.$store.unregisterModule(oldKey);
           }
         }
       },
@@ -348,6 +357,7 @@ export default {
   methods: {
     onSelect(field, $event) {
       this.activeField = field;
+      this.activeForm = this.form;
     },
     onDelete(field) {
       this.$confirm('确认删除?', null, {

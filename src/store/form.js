@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      formKey: '$root',
       formConf: {
         labelWidth: '80px',
         labelPosition: 'right',
@@ -12,6 +13,9 @@ export default {
     }
   },
   mutations: {
+    setFormKey(state, formKey) {
+      state.formKey = formKey;
+    },
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },

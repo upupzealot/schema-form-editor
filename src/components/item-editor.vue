@@ -86,6 +86,9 @@ export default {
     field() {
       return this.$store.state.activeField;
     },
+    form() {
+      return this.$store.state.$root;
+    },
     span: {
       get() {
         return this.field.span;
