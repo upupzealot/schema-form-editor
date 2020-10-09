@@ -5,19 +5,20 @@
   >
     <el-tag
       size="mini"
-      style="margin-left: -10px; margin-bottom: 10px;"
+      style="margin-bottom: 10px;"
     >
       子表单 {{ field.name }}
     </el-tag>
-    <FormEditor :form-key="field.name" />
+    <FormEditor
+      :form-key="field.name"
+      :data="data[field.name]"
+    />
   </div>
 </template>
 
 <style scoped>
 .subform-wrap {
   width: 100%;
-  border: 1px dashed #eee;
-  padding: 0 10px 10px 10px;
 }
 </style>
 
@@ -33,5 +34,8 @@ export default {
     // FormEditor,
   },
   mixins: [standardMixin],
+  created() {
+    this.$set(this.data, this.field.name, {});
+  }
 }
 </script>

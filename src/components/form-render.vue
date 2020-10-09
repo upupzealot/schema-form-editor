@@ -134,6 +134,18 @@ export default {
         .value();
     }
   },
+  watch: {
+    fieldList: {
+      handler(fields) {
+        fields.forEach(field => {
+          if(field.type === 'subform') {
+            this.$set(this.data, field.name, {});
+          }
+        })
+      },
+      immediate: true,
+    }
+  },
   methods: {
     async validate() {
       return new Promise(resolve => {

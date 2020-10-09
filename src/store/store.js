@@ -5,7 +5,7 @@ import FormModule from './form'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
     $root: FormModule,
   },
@@ -13,7 +13,7 @@ export default new Vuex.Store({
     // 当前字段
     activeField: {},
     // 当前（子）表单
-    activeForm: {},
+    activeForm: null, // 后续初始化为 $root
   },
   mutations: {
     setActiveField(state, field) {
@@ -24,3 +24,6 @@ export default new Vuex.Store({
     },
   },
 });
+store.commit('setActiveForm', store.state.$root);
+
+export default store;
