@@ -78,6 +78,12 @@
                     :data="data"
                     class="slot-content"
                   />
+                  <ItemList
+                    v-if="field.type === 'item-list'"
+                    :field="field"
+                    :data="data"
+                    class="slot-content"
+                  />
                 </DraggableListItem>
               </el-col>
             </template>
@@ -219,8 +225,9 @@ import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
-import Subform from '@/components/form-items/subform';
-import FormStoreModule from '@/store/form.js'
+import Subform from '@/components/editor-items/subform';
+import FormStoreModule from '@/store/form.js';
+import ItemList from '@/components/editor-items/item-list';
 
 import FormRender from '@/components/form-render';
 
@@ -237,6 +244,7 @@ export default {
     DatePicker,
     Blank,
     Subform,
+    ItemList,
     FormRender,
   },
   props: {
@@ -298,7 +306,7 @@ export default {
       },
       set(fieldList) {
         if(!this.formKey) {
-          this.$store.commit('setFieldList', fieldList);
+          this.$store.commit('$root/setFieldList', fieldList);
         } else {
           this.$store.commit(`${this.storeKey}/setFieldList`, fieldList);
         }

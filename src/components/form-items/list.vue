@@ -7,7 +7,7 @@
       size="mini"
       style="margin-bottom: 10px;"
     >
-      子表单 {{ field.name }}
+      列表项 {{ field.name }}
     </el-tag>
     <FormEditor
       :form-key="field.name"

@@ -27,6 +27,7 @@
       <DatePickerForm v-if="field.type === 'date-picker'" />
       <BlankForm v-if="field.type === 'blank'" />
       <SubformForm v-if="field.type === 'subform'" />
+      <ItemList v-if="field.type === 'item-list'" />
     </el-col>
   </el-row>
 </template>
@@ -59,6 +60,7 @@ import DatePickerForm from '@/components/schema-forms/date-picker';
 
 import BlankForm from '@/components/schema-forms/blank';
 import SubformForm from '@/components/schema-forms/subform';
+import ItemList from '@/components/schema-forms/list';
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
@@ -73,6 +75,7 @@ export default {
     DatePickerForm,
     BlankForm,
     SubformForm,
+    ItemList,
   },
   data() {
     return {
