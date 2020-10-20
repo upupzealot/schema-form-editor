@@ -78,7 +78,7 @@
                     :data="data"
                     class="slot-content"
                   />
-                  <ItemList
+                  <IItemList
                     v-if="field.type === 'item-list'"
                     :field="field"
                     :data="data"
@@ -227,9 +227,9 @@ import DatePicker from '@/components/form-items/date-picker';
 import Blank from '@/components/form-items/blank';
 import Subform from '@/components/editor-items/subform';
 import FormStoreModule from '@/store/form.js';
-import ItemList from '@/components/editor-items/item-list';
+import IItemList from '@/components/editor-items/item-list';
 
-import FormRender from '@/components/form-render';
+// import FormRender from '@/components/form-render';
 
 export default {
   name: 'FormEditor',
@@ -244,8 +244,8 @@ export default {
     DatePicker,
     Blank,
     Subform,
-    ItemList,
-    FormRender,
+    IItemList,
+    // FormRender,
   },
   props: {
     formKey: {
