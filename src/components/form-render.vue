@@ -52,6 +52,11 @@
           :schema="field"
           :data="data[field.name]"
         />
+        <ItemList
+          v-if="field.type === 'item-list'"
+          :field="field"
+          :data="data"
+        />
       </el-col>
     </el-row>
   </el-form>
@@ -68,6 +73,7 @@ import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
+import ItemList from '@/components/form-items/item-list';
 
 export default {
   name: 'FormRender',
@@ -79,6 +85,7 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    ItemList,
   },
   props: {
     schema: {
@@ -138,8 +145,11 @@ export default {
     fieldList: {
       handler(fields) {
         fields.forEach(field => {
-          if(field.type === 'subform' || field.type === 'item-list' && !this.data[field.name]) {
+          if(field.type === 'subform' && !this.data[field.name]) {
             this.$set(this.data, field.name, {});
+          }
+          if(field.type === 'item-list' && !this.data[field.name]) {
+            this.$set(this.data, field.name, []);
           }
         })
       },

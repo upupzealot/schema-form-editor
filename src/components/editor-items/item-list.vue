@@ -5,13 +5,21 @@
   >
     <el-tag
       size="mini"
-      style="margin-bottom: 10px;"
+      class="form-tag"
     >
       列表 {{ field.name }}
     </el-tag>
-    <el-button style="display: block;">
-      新增列表项
-    </el-button>
+    <ItemList
+      :form-key="field.name"
+      :data="data"
+      :field="field"
+    />
+    <el-tag
+      size="mini"
+      class="form-tag"
+    >
+      列表项表单
+    </el-tag>
     <FormEditor
       :form-key="field.name"
       :data="{}"
@@ -23,24 +31,28 @@
 .subform-wrap {
   width: 100%;
 }
+.form-tag {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.form-tag:first-child {
+  margin-top: 0;
+}
 </style>
 
 <script>
 import standardMixin from '../form-items/standard-mixin'
 
 // 全局引入，避免循环引用
+import ItemList from '../form-items/item-list'
 // import FormEditor from '@/components/form-editor'
 
 export default {
-  name: 'ItemList',
+  name: 'IItemList',
   components: {
     // FormEditor,
+    ItemList,
   },
   mixins: [standardMixin],
-  created() {
-    if(!this.data[this.field.name]) {
-      this.$set(this.data, this.field.name, {});
-    }
-  }
 }
 </script>
