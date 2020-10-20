@@ -150,6 +150,21 @@
                       </el-tag>
                     </div>
                   </template>
+
+                  <template v-if="util.type === 'item-list'">
+                    <div
+                      class="example-component"
+                      :style="{
+                        border: '1px dashed #eee',
+                        lineHeight: 0,
+                        height: '40px',
+                      }"
+                    >
+                      <el-tag size="mini">
+                        列表
+                      </el-tag>
+                    </div>
+                  </template>
                 </el-form-item>
               </DraggableListItem>
             </el-col>
@@ -230,6 +245,10 @@ export default {
         type: 'subform',
         label: '子表单',
         ...itemDefaults['subform']
+      }, {
+        type: 'item-list',
+        label: ' 列表',
+        ...itemDefaults['itemList']
       }],
     };
   },
