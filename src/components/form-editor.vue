@@ -323,7 +323,7 @@ export default {
       function mapFields(fields) {
         const fieldList = _.cloneDeep(fields);
         return fields.map(field => {
-          if(field.type === 'subform') {
+          if(field.type === 'subform' || field.type === 'item-list') {
             return {
               ...field,
               ...state[field.name],
