@@ -60,7 +60,7 @@ import DatePickerForm from '@/components/schema-forms/date-picker';
 
 import BlankForm from '@/components/schema-forms/blank';
 import SubformForm from '@/components/schema-forms/subform';
-import ItemList from '@/components/schema-forms/list';
+import ItemList from '@/components/schema-forms/item-list';
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
