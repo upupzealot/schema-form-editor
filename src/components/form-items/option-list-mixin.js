@@ -15,12 +15,24 @@ export default {
     },
   },
   watch: {
-    optionList(newValue) {
-      if(this.field.isRemote) {
-        this.$delete(this.field, 'options');
-      } else {
-        this.options = newValue;
-        this.$set(this.field, 'options', newValue);
+    optionList: {
+      handler(newValue) {
+        if(this.field.isRemote) {
+          this.$delete(this.field, 'options');
+        } else {
+          this.options = newValue;
+          this.$set(this.field, 'options', newValue);
+        }
+      }
+    },
+    'field.options': {
+      handler(newValue) {
+        if(this.field.isRemote) {
+          this.$delete(this.field, 'options');
+        } else {
+          this.options = newValue;
+          this.$set(this.field, 'options', newValue);
+        }
       }
     },
     'field.remoteConf.api': {
@@ -53,4 +65,7 @@ export default {
       immediate: true,
     }
   },
+  method: {
+    
+  }
 };
