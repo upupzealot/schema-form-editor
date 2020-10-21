@@ -6,7 +6,7 @@
   >
     <el-checkbox-group v-model="data[field.name]">
       <el-checkbox
-        v-for="option in field.options"
+        v-for="option in optionList"
         :key="option.value"
         :label="option.value"
       >
@@ -18,9 +18,10 @@
 
 <script>
 import standardMixin from './standard-mixin'
+import optionListMixin from './option-list-mixin'
 
 export default {
-  mixins: [standardMixin],
+  mixins: [standardMixin, optionListMixin],
   created() {
     this.$set(this.data, this.field.name, []);
   },

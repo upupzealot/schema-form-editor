@@ -5,7 +5,7 @@
     class="form-item"
   >
     <el-radio
-      v-for="option in field.options"
+      v-for="option in optionList"
       :key="option.value"
       v-model="data[field.name]"
       :label="option.value"
@@ -18,9 +18,10 @@
 
 <script>
 import standardMixin from './standard-mixin'
+import optionListMixin from './option-list-mixin'
 
 export default {
-  mixins: [standardMixin],
+  mixins: [standardMixin, optionListMixin],
   defaultSchema: {
     options: [{
       label: '选项一',
