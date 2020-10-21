@@ -53,7 +53,10 @@ export default {
   mixins: [standardMixin],
   computed: {
     schema() {
-      return this.$store.state[this.field.name];
+      return {
+        ...this.field,
+        type: 'subform',
+      };
     },
     items: {
       get() {
