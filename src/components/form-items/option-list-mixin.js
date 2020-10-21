@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      options: [],
+      options: this.field.options || [],
     }
   },
   computed: {
@@ -52,5 +52,4 @@ export default {
       immediate: true,
     }
   },
-  defaultSchema: {},
 };
