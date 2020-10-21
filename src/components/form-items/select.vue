@@ -10,7 +10,7 @@
       style="width: 100%"
     >
       <el-option
-        v-for="option in options"
+        v-for="option in optionList"
         :key="option.value"
         :label="option.label"
         :value="option.value"
@@ -30,16 +30,23 @@ export default {
     }
   },
   computed: {
-    options: {
+    optionList: {
       get() {
-        return this.field.options;
+        return this.options || [];
       },
       set(options) {
-        return this.$set(this.field, 'options', options);
+        this.options = options;
       }
     },
   },
   watch: {
+    optionList(newValue) {
+      if(this.field.isRemote) {
+        this.$delete(this.field, 'options');
+      } else {
+        this.$set(this.field, 'options', newValue);
+      }
+    },
     'field.remoteConf.api': {
       handler(api) {
         if(api) {
@@ -59,7 +66,7 @@ export default {
                   label: item[this.field.remoteConf.labelKey || 'name'],
                   value: item[this.field.remoteConf.valueKey || 'id'],
                 }));
-                this.options = options;
+                this.optionList = options;
               } else {
                 throw new Error(message)
               }
