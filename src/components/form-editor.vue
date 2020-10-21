@@ -196,7 +196,7 @@
   color: #ccc;
 }
 .form-editor .example-form-item .draggable-list-item {
-  padding-left: 50px;
+  padding-left: 40px;
   padding-right: 30px;
 }
 .form-editor .example-form-item .draggable-list-item .el-form-item {
