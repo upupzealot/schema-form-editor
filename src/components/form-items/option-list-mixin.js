@@ -19,6 +19,7 @@ export default {
       if(this.field.isRemote) {
         this.$delete(this.field, 'options');
       } else {
+        this.options = newValue;
         this.$set(this.field, 'options', newValue);
       }
     },
