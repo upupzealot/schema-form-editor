@@ -47,7 +47,20 @@ export default {
       }, {
         key: 'watch',
         value: (path, func, opt) => {
-          this.$watch(`data.${path}`, func, { immediate: true, ...opt });
+          let depth = 0;
+          let prop = path.replace(/..\//g, '');
+          if(path.startsWith('../')) {
+            const matches = path.match(/..\//g);
+            if(matches) {
+              depth = matches.length;
+            }
+          }
+          
+          let $vm = this;
+          if(depth && depth < this.supNodes.length) {
+            $vm = this.supNodes[this.supNodes.length - 1 - depth];
+          }
+          $vm.$watch(`data.${prop}`, func, { immediate: true, ...opt });
         }
       }, {
         key: 'set',
