@@ -257,6 +257,12 @@ export default {
     // FormRender,
   },
   props: {
+    initSchema: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     supNodes: {
       type: Array,
       default() {
@@ -373,7 +379,17 @@ export default {
         if(newKey) {
           this.$store.registerModule(newKey, FormStoreModule);
           this.$store.commit(`${newKey}/setFormKey`, this.storeKey);
-          this.activeForm = this.form;
+
+          if(this.initSchema.formConf) {
+            this.$store.commit(`${newKey}/setFormConf`, this.initSchema.formConf);
+          }
+          if(this.initSchema.fieldList) {
+            this.$store.commit(`${newKey}/setFieldList`, this.initSchema.fieldList);
+          }
+          if(this.initSchema.validRules) {
+            this.$store.commit(`${newKey}/setValidRules`, this.initSchema.validRules);
+          }
+          // this.activeForm = this.form;
           if(oldKey) {
             // TODO
             // store 属性迁移
@@ -414,6 +430,7 @@ export default {
     },
     previewForm() {
       this.previewSchema = _.cloneDeep(this.schema);
+      this.previewData = {};
       this.previewDialogVisible = true;
     },
     async validateForm() {

@@ -11,6 +11,7 @@
     </el-tag>
     <FormEditor
       :form-key="field.name"
+      :init-schema="field"
       :data="data[field.name]"
       :sup-nodes="supNodes"
     />
