@@ -24,6 +24,7 @@
     <FormEditor
       ref="schemaEditor"
       :form-key="field.name"
+      :init-schema="field"
       :data="{}"
     />
   </div>
