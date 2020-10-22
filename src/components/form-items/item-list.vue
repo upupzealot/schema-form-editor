@@ -9,8 +9,8 @@
       :key="i"
       class="list-item"
     >
-      <FormRender
-        :schema="schema"
+      <Subform
+        :schema="subformSchema"
         :data="item"
       />
     </div>
@@ -43,16 +43,16 @@
 <script>
 import standardMixin from './standard-mixin'
 
-// import FormRender from '@/components/form-render'
+import Subform from './subform'
 
 export default {
   name: 'ItemList',
   components: {
-    // FormRender
+    Subform
   },
   mixins: [standardMixin],
   computed: {
-    schema() {
+    subformSchema() {
       return {
         ...this.field,
         type: 'subform',
