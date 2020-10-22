@@ -14,7 +14,7 @@ export default {
       },
       set(list) {
         const ruleList = list.length ? list : undefined;
-        this.$store.commit(`${this.form.formKey}/setValidRule`, {
+        this.$store.commit(`${this.form.formKey}/setValidRules`, {
           name: this.field.name,
           rules: ruleList,
         });

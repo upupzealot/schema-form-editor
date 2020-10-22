@@ -19,7 +19,7 @@ export default {
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },
-    setValidRule(state, {name, rules}) {
+    setValidRules(state, {name, rules}) {
       const diff = {};
       diff[name] = rules;
 
