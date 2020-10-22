@@ -12,7 +12,8 @@
     <ItemList
       :form-key="field.name"
       :data="data"
-      :field="field"
+      :field="schema"
+      :sup-nodes="supNodes"
     />
     <el-tag
       size="mini"
@@ -21,6 +22,7 @@
       列表项表单
     </el-tag>
     <FormEditor
+      ref="schemaEditor"
       :form-key="field.name"
       :data="{}"
     />
@@ -54,5 +56,13 @@ export default {
     ItemList,
   },
   mixins: [standardMixin],
+  computed: {
+    schema() {
+      return {
+        ...this.field,
+        ...this.$store.state[this.field.name],
+      };
+    }
+  }
 }
 </script>

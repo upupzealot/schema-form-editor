@@ -1,5 +1,11 @@
 export default {
   props: {
+    supNodes: {
+      type: Array,
+      default() {
+        return null;
+      }
+    },
     data: {
       type: Object,
       default() {

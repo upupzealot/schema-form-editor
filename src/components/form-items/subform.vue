@@ -2,6 +2,7 @@
   <FormRender
     :schema="schema"
     :data="data"
+    :sup-nodes="supNodes"
   />
 </template>
 
