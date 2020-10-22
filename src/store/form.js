@@ -16,6 +16,9 @@ export default {
     setFormKey(state, formKey) {
       state.formKey = formKey;
     },
+    setFormConf(state, formConf) {
+      state.formConf = formConf;
+    },
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },
