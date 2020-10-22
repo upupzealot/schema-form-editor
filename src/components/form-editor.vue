@@ -33,36 +33,42 @@
                     v-if="field.type === 'input'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <Select
                     v-if="field.type === 'select'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <Radio
                     v-if="field.type === 'radio'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <Checkbox
                     v-if="field.type === 'checkbox'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <SSwitch
                     v-if="field.type === 'switch'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <DatePicker
                     v-if="field.type === 'date-picker'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <!-- 工具项 -->
@@ -70,18 +76,21 @@
                     v-if="field.type === 'blank'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <Subform
                     v-if="field.type === 'subform'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                   <IItemList
                     v-if="field.type === 'item-list'"
                     :field="field"
                     :data="data"
+                    :sup-nodes="supNodeList"
                     class="slot-content"
                   />
                 </DraggableListItem>
@@ -248,6 +257,12 @@ export default {
     // FormRender,
   },
   props: {
+    supNodes: {
+      type: Array,
+      default() {
+        return null;
+      }
+    },
     formKey: {
       type: String,
       default() {
@@ -273,6 +288,13 @@ export default {
     };
   },
   computed: {
+    supNodeList() {
+      if(this.supNodes) {
+        return [...this.supNodes, this];
+      } else {
+        return [this];
+      }
+    },
     // 当前正在编辑的表单和字段
     activeForm: {
       get() {

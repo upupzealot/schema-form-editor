@@ -16,46 +16,55 @@
           v-if="field.type === 'input'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <Select
           v-if="field.type === 'select'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <Radio
           v-if="field.type === 'radio'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <Checkbox
           v-if="field.type === 'checkbox'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <SSwitch
           v-if="field.type === 'switch'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <DatePicker
           v-if="field.type === 'date-picker'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <Blank
           v-if="field.type === 'blank'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
         <Subform
           v-if="field.type === 'subform'"
           :schema="field"
           :data="data[field.name]"
+          :sup-nodes="supNodeList"
         />
         <ItemList
           v-if="field.type === 'item-list'"
           :field="field"
           :data="data"
+          :sup-nodes="supNodeList"
         />
       </el-col>
     </el-row>
@@ -90,6 +99,12 @@ export default {
     ItemList,
   },
   props: {
+    supNodes: {
+      type: Array,
+      default() {
+        return null;
+      }
+    },
     schema: {
       type: Object,
       default() {
@@ -104,6 +119,13 @@ export default {
     }
   },
   computed: {
+    supNodeList() {
+      if(this.supNodes) {
+        return [...this.supNodes, this];
+      } else {
+        return [this];
+      }
+    },
     formConf() {
       return this.schema.formConf;
     },

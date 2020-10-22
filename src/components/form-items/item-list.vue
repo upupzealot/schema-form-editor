@@ -12,6 +12,7 @@
       <Subform
         :schema="subformSchema"
         :data="item"
+        :sup-nodes="supNodes"
       />
     </div>
     <el-button

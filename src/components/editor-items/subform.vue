@@ -12,6 +12,7 @@
     <FormEditor
       :form-key="field.name"
       :data="data[field.name]"
+      :sup-nodes="supNodes"
     />
   </div>
 </template>
