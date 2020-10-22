@@ -47,7 +47,7 @@
           :field="field"
           :data="data"
         />
-        <FormRender
+        <Subform
           v-if="field.type === 'subform'"
           :schema="field"
           :data="data[field.name]"
@@ -73,6 +73,7 @@ import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
+import Subform from '@/components/form-items/subform';
 import ItemList from '@/components/form-items/item-list';
 
 export default {
@@ -85,6 +86,7 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    Subform,
     ItemList,
   },
   props: {
