@@ -21,22 +21,18 @@ export default {
   components: {
     AceEditor,
   },
-  data() {
-    return {
-      funcStr: '',
-    }
-  },
   computed: {
     field() {
       return this.$store.state.activeField;
     },
     effect: {
       get() {
-        return this.funcStr || tempStr;
+        return this.field.effect || tempStr;
       },
       set(funcStr) {
-        this.funcStr = funcStr === tempStr ? '' : funcStr;
-        this.$set(this.field, 'effect', this.funcStr || undefined);
+        let effect = funcStr;
+        effect = effect === tempStr ? '' : effect;
+        this.$set(this.field, 'effect', effect || undefined);
       }
     }
   },
