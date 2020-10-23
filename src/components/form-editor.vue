@@ -217,6 +217,9 @@
 .draggable-list-item .el-form-item {
   width: 100%;
 }
+.v-not-enabled {
+  opacity: .4;
+}
 </style>
 
 <script>
@@ -226,7 +229,7 @@ import omitDeep from 'omit-deep-lodash';
 import DraggableList from '@/components/common/draggable-list';
 import DraggableListItem from '@/components/common/draggable-list-item';
 
-import Input from '@/components/form-items/input';
+import Input from '@/components/editor-items/input';
 import Select from '@/components/form-items/select';
 import Radio from '@/components/form-items/radio';
 import Checkbox from '@/components/form-items/checkbox';
