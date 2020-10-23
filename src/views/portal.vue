@@ -76,11 +76,11 @@ export default {
     if(schemaStr && schemaStr !== 'undefined') {
       const schema = JSON.parse(schemaStr);
 
-      let count = Date.now();
+      let count = 0;
       function addId(form) {
         if(form.fieldList) {
           form.fieldList.forEach(field => {
-            field.id = md5(count).substr(0, 7);
+            field.id = md5(`${Date.now()}${count}`).substr(0, 7);
             count++;
             addId(field);
           })
