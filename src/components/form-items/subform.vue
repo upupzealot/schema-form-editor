@@ -1,6 +1,7 @@
 <template>
   <FormRender
     v-if="enabled"
+    ref="formRender"
     :schema="schema"
     :data="data"
     :sup-nodes="supNodes"
@@ -24,6 +25,13 @@ export default {
       default() {
         return {};
       }
+    }
+  },
+  methods: {
+    async validate() {
+      return new Promise(async resolve => {
+        await this.$refs['formRender'].validate(resolve);
+      })
     }
   }
 }
