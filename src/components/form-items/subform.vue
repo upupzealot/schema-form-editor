@@ -1,5 +1,6 @@
 <template>
   <FormRender
+    v-if="enabled"
     :schema="schema"
     :data="data"
     :sup-nodes="supNodes"
