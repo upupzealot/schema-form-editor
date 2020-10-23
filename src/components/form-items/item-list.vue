@@ -10,6 +10,7 @@
       class="list-item"
     >
       <Subform
+        ref="subformItem"
         :schema="subformSchema"
         :data="item"
         :sup-nodes="supNodes"
@@ -76,6 +77,13 @@ export default {
   methods: {
     addItem() {
       this.items = [...this.items, {}];
+    },
+    async validate() {
+      return new Promise(async resolve => {
+        await this.$refs['subformItem'].map(async subform => {
+          await subform.validate(resolve);
+        });
+      })
     }
   }
 }

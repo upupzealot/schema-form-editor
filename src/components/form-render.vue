@@ -56,12 +56,14 @@
         />
         <Subform
           v-if="field.type === 'subform'"
+          ref="subformItems"
           :schema="field"
           :data="data[field.name]"
           :sup-nodes="supNodeList"
         />
         <ItemList
           v-if="field.type === 'item-list'"
+          ref="subformItems"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -182,8 +184,20 @@ export default {
   },
   methods: {
     async validate() {
-      return new Promise(resolve => {
-        this.$refs['form'].validate(resolve);
+      return new Promise(async resolve => {
+        const valiResult = {};
+        const aaa = await this.$refs['form'].validate();
+
+        let subformItems = this.$refs['subformItems'] || [];
+        if(!_.isArray(subformItems)) {
+          subformItems = [subformItems];
+        }
+
+        await subformItems.map(async subform => {
+          await subform.validate();
+        });
+
+        resolve(valiResult);
       });
     }
   }
