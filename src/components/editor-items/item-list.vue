@@ -25,7 +25,7 @@
       ref="schemaEditor"
       :form-key="field.name"
       :init-schema="field"
-      :data="{}"
+      :data="schemaData"
     />
   </div>
 </template>
@@ -57,6 +57,11 @@ export default {
     ItemList,
   },
   mixins: [standardMixin],
+  data() {
+    return {
+      schemaData: {},
+    };
+  },
   computed: {
     schema() {
       return {
