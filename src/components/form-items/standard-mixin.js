@@ -18,14 +18,20 @@ export default {
         return {}
       },
     },
+    status: {
+      type: Object,
+      default() {
+        return {}
+      },
+    }
   },
   computed: {
     enabled: {
       get() {
-        return this.field.enabled !== false;
+        return this.status.enabled !== false;
       },
       set(val) {
-        this.$set(this.field, 'enabled', val);
+        this.$set(this.status, 'enabled', val);
       }
     },
     effect() {
@@ -60,12 +66,13 @@ export default {
           if(depth && depth < this.supNodes.length) {
             $vm = this.supNodes[this.supNodes.length - 1 - depth];
           }
+
           $vm.$watch(`data.${prop}`, func, { immediate: true, ...opt });
         }
       }, {
         key: 'set',
         value: (key, val) => {
-          this[key] = val;
+          this.$set(this, key, val);
         },
       }]
     }
