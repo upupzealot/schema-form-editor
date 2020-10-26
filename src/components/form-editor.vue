@@ -433,7 +433,7 @@ export default {
     },
     previewForm() {
       this.previewSchema = _.cloneDeep(this.schema);
-      this.previewData = {};
+      this.previewData = _.cloneDeep(this.data);
       this.previewDialogVisible = true;
     },
     async validateForm() {
