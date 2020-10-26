@@ -11,7 +11,7 @@
             handle=".item-bar .example-form-item"
             :group="{ pull: 'clone', put: false }"
             :clone="onClone"
-            :sort="false"
+            :sortable="false"
           >
             <el-col
               v-for="item in itemList"
@@ -114,7 +114,7 @@
             handle=".item-bar .example-form-item"
             :group="{ pull: 'clone', put: false }"
             :clone="onClone"
-            :sort="false"
+            :sortable="false"
           >
             <el-col
               v-for="util in utilList"
