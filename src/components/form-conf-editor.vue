@@ -4,7 +4,7 @@
       <el-input v-model="formConf.labelWidth" />
     </el-form-item>
     <el-form-item label="列间距">
-      <el-input v-model="formConf.gutter" />
+      <el-input v-model.number="formConf.gutter" />
     </el-form-item>
     <el-form-item
       label="对齐方式"
