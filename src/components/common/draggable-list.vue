@@ -4,7 +4,7 @@
     :handle="handle"
     :group="group"
     :clone="clone"
-    :sort="sort"
+    :sort="sortable"
     v-bind="options"
     class="draggable-list"
     @add="selectItem"
@@ -53,6 +53,12 @@ export default {
         return false;
       }
     },
+    sortable: {
+      type: Boolean,
+      default() {
+        return true;
+      }
+    },
     handle: {
       type: String,
       default() {
@@ -80,12 +86,6 @@ export default {
       type: Function,
       default() {},
     },
-    sort: {
-      type: Boolean,
-      default() {
-        return true;
-      }
-    }
   },
   data() {
     return {
