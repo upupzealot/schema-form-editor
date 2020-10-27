@@ -35,6 +35,7 @@
 .subform-wrap .list-item .form-item {
   margin-bottom: 15px;
 }
+/* fix: list-tem 子表单 form-item margin-bottom 消失 */
 .subform-wrap.form-item .form-item {
   margin-bottom: 15px;
 }

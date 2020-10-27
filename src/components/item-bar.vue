@@ -1,5 +1,14 @@
+<style scoped>
+.item-bar-position .example-form-item-list .example-form-item {
+  width: 300px;
+}
+.item-bar-position .el-divider {
+  display: none;
+}
+</style>
+
 <template>
-  <el-row>
+  <el-row class="item-bar-position">
     <el-col class="item-bar">
       <el-form label-width="80px">
         <el-divider content-position="left">
@@ -12,6 +21,7 @@
             :group="{ pull: 'clone', put: false }"
             :clone="onClone"
             :sortable="false"
+            class="example-form-item-list"
           >
             <el-col
               v-for="item in itemList"
@@ -114,7 +124,8 @@
             handle=".item-bar .example-form-item"
             :group="{ pull: 'clone', put: false }"
             :clone="onClone"
-            :sortable="false"
+            :sort="false"
+            class="example-form-item-list"
           >
             <el-col
               v-for="util in utilList"

@@ -3,15 +3,15 @@
     <el-header>
       <ProjectSelect />
     </el-header>
-    <el-main>
-      <el-row :gutter="20">
-        <el-col :span="6">
+    <el-main :class="{ 'layout-container': true, bottom: isBottom, left: !isBottom }">
+      <div>
+        <div class="item-bar-container">
           <el-card shadow="never">
             <ItemBar />
           </el-card>
-        </el-col>
+        </div>
 
-        <el-col :span="9">
+        <div class="form-editor-container">
           <el-card
             shadow="never"
             class="form-editor"
@@ -21,17 +21,87 @@
             </el-divider>
             <FormEditor ref="rootEditor" />
           </el-card>
-        </el-col>
+        </div>
 
-        <el-col :span="9">
+        <div class="item-editor-container">
           <el-card shadow="never">
             <ItemEditor />
           </el-card>
-        </el-col>
-      </el-row>
+        </div>
+      </div>
     </el-main>
   </el-container>
 </template>
+
+<style scoped>
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #efefef;
+}
+
+.layout-container {
+  position: absolute;
+  top: 80px;
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+  display: flex;
+}
+/* item-bar 样式 */
+.layout-container .item-bar-container {
+  position: absolute;
+  overflow-y: overlay;
+  padding-right: 10px;
+}
+.layout-container.left .item-bar-container {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+}
+.layout-container.bottom .item-bar-container {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 210px;
+}
+/* form-editor 样式 */
+.layout-container .form-editor-container {
+  position: absolute;
+  top: 0;
+  left: 315px;
+  right: 415px;
+  overflow-y: overlay;
+  padding-right: 10px;
+}
+.layout-container.left .form-editor-container {
+  bottom: 20px;
+}
+.layout-container.bottom .form-editor-container {
+  bottom: 220px;
+}
+/* item-editor 样式 */
+.layout-container .item-editor-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  overflow-y: overlay;
+}
+.layout-container.left .item-editor-container {
+  bottom: 20px;
+}
+.layout-container.bottom .item-editor-container {
+  bottom: 220px;
+}
+</style>
 
 <script>
 import md5 from 'md5';
@@ -60,6 +130,11 @@ export default {
     return {
       schema,
     };
+  },
+  computed: {
+    isBottom() {
+      return this.$store.state.itemBarPosition === 'bottom';
+    }
   },
   mounted() {
     const self = this;

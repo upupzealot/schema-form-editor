@@ -10,12 +10,16 @@ const store = new Vuex.Store({
     $root: FormModule,
   },
   state: {
+    itemBarPosition: 'left',
     // 当前字段
     activeField: {},
     // 当前（子）表单
     activeForm: null, // 后续初始化为 $root
   },
   mutations: {
+    setItemBarPosition(state, position) {
+      state.itemBarPosition = position;
+    },
     setActiveField(state, field) {
       state.activeField = field;
     },
