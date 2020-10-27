@@ -1,14 +1,14 @@
 <style scoped>
-.item-bar-position .example-form-item-list .example-form-item {
+.layout-container.bottom .example-form-item-list .example-form-item {
   width: 300px;
 }
-.item-bar-position .el-divider {
+.layout-container.bottom .el-divider {
   display: none;
 }
 </style>
 
 <template>
-  <el-row class="item-bar-position">
+  <el-row>
     <el-col class="item-bar">
       <el-form label-width="80px">
         <el-divider content-position="left">
