@@ -64,7 +64,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: 340px;
 }
 .layout-container.bottom .item-bar-container {
   left: 0;
@@ -76,7 +76,7 @@
 .layout-container .form-editor-container {
   position: absolute;
   top: 0;
-  left: 315px;
+  left: 355px;
   right: 415px;
   overflow-y: overlay;
   padding-right: 10px;
