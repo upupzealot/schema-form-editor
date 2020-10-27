@@ -16,11 +16,20 @@
       </el-menu-item>
     </el-submenu>
     <el-button
+      v-if="projectId !== 'default'"
+      type="text"
       style="margin-top: 10px;"
+      @click="deleteProject"
+    >
+      删除
+    </el-button>
+    <el-button
+      style="margin-top: 10px; float:right;"
       @click="showDialog"
     >
       新建项目
     </el-button>
+
     <el-dialog
       title="新建项目"
       :visible.sync="dialogVisible"
@@ -107,7 +116,11 @@ export default {
           }
           addId(schema);
 
-          this.$store.commit('$root/setFormConf', schema.formConf || {});
+          this.$store.commit('$root/setFormConf', schema.formConf || {
+            labelWidth: '80px',
+            labelPosition: 'right',
+            gutter: 20,
+          });
           this.$store.commit('$root/setFieldList', schema.fieldList || []);
           this.$store.commit('$root/setValidRules', schema.validRules || {});
         }
@@ -116,9 +129,6 @@ export default {
     }
   },
   methods: {
-    selectProject(projectId) {
-      this.projectId = projectId;
-    },
     showDialog() {
       this.form = {};
       this.dialogVisible = true;
@@ -131,6 +141,28 @@ export default {
       });
       localStorage.setItem('projects', JSON.stringify(this.projects));
       this.dialogVisible = false;
+    },
+    selectProject(projectId) {
+      this.projectId = projectId;
+    },
+    deleteProject(project) {
+      this.$confirm('确认删除?', null, {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'danger',
+      }).then(() => {
+        const deleteId = this.projectId;
+        this.projectId = 'default';
+
+        localStorage.removeItem(this.projectId);
+        this.projects = this.projects.filter(p => p.id !== deleteId);
+        localStorage.setItem('projects', projects);
+
+        this.$message({
+          type: 'success',
+          message: '已删除',
+        });
+      }).catch(() => {});
     }
   }
 }
