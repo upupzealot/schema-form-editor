@@ -35,6 +35,9 @@
 .subform-wrap .list-item .form-item {
   margin-bottom: 15px;
 }
+.subform-wrap.form-item .form-item {
+  margin-bottom: 15px;
+}
 </style>
 
 <style scoped>
