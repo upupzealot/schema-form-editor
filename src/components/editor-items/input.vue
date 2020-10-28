@@ -4,7 +4,7 @@
     :data="data"
     :status="vStatus"
     :sup-nodes="supNodes"
-    :class="{'v-not-enabled': !vStatus.vEnabled}"
+    :class="{'v-not-activated': !vStatus.vActivated}"
   />
 </template>
 

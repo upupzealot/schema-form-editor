@@ -13,7 +13,7 @@
 import AceEditor from 'vue2-ace-editor';
 
 const tempStr = `// watch('someField', val => {
-//   set('enabled', val !== 'someValue');
+//   set('activated', val !== 'someValue');
 // });
 `
 
