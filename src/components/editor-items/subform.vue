@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="enabled"
+    v-if="activated"
     class="subform-wrap"
   >
     <el-tag

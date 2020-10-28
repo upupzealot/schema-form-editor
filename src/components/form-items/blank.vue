@@ -1,6 +1,6 @@
 <template>
   <el-form-item
-    v-if="enabled"
+    v-if="activated"
     label="　"
     class="blank-wrap"
   >

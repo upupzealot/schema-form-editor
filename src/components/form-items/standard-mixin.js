@@ -26,12 +26,12 @@ export default {
     }
   },
   computed: {
-    enabled: {
+    activated: {
       get() {
-        return this.status.enabled !== false;
+        return this.status.activated !== false;
       },
       set(val) {
-        this.$set(this.status, 'enabled', val);
+        this.$set(this.status, 'activated', val);
       }
     },
     effect() {

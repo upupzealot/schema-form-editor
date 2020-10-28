@@ -1,6 +1,6 @@
 <template>
   <FormRender
-    v-if="enabled"
+    v-if="activated"
     ref="formRender"
     :schema="schema"
     :data="data"

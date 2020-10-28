@@ -1,6 +1,6 @@
 <template>
   <el-form-item
-    v-if="enabled"
+    v-if="activated"
     :label="field.label"
     :prop="field.name"
     class="form-item"

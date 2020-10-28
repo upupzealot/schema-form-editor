@@ -1,6 +1,6 @@
 <template>
   <el-form-item
-    v-if="enabled"
+    v-if="activated"
     :label="field.label"
     class="subform-wrap form-item"
   >

@@ -24,20 +24,20 @@ export default {
   data() {
     return {
       vStatus: {
-        enabled: true,
-        vEnabled: true,
+        activated: true,
+        vActivated: true,
       },
     }
   },
   watch: {
-    'vStatus.enabled': {
-      handler(enabled) {
-        if(enabled === isTriggerSelf) { // 用 1 来标识是不是 watcher 自身触发的赋值
+    'vStatus.activated': {
+      handler(activated) {
+        if(activated === isTriggerSelf) { // 用 Symbol(true) 来标识是不是 watcher 自身触发的赋值
           return;
         }
 
-        this.$set(this.vStatus, 'vEnabled', enabled);
-        this.$set(this.vStatus, 'enabled', isTriggerSelf);
+        this.$set(this.vStatus, 'vActivated', activated);
+        this.$set(this.vStatus, 'activated', isTriggerSelf);
       }
     }
   }

@@ -217,7 +217,7 @@
 .draggable-list-item .el-form-item {
   width: 100%;
 }
-.v-not-enabled {
+.v-not-activated {
   opacity: .4;
 }
 </style>
