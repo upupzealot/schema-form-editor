@@ -50,6 +50,28 @@
           <el-form-item label="标签">
             <el-input v-model="field.label" />
           </el-form-item>
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="是否激活">
+                <el-checkbox v-model="activated" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="是否显示">
+                <el-checkbox v-model="visible" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="是否只读">
+                <el-checkbox v-model="readonly" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="是否禁用">
+                <el-checkbox v-model="disabled" />
+              </el-form-item>
+            </el-col>
+          </el-row>
           <slot name="basic" />
         </div>
       </el-collapse-transition>
@@ -145,6 +167,38 @@ export default {
       set(n) {
         const value = Number(n);
         this.$set(this.field, 'span', spanValues.includes(value) ? value : undefined);
+      }
+    },
+    activated: {
+      get() {
+        return this.field.activated !== false;
+      },
+      set(val) {
+        this.$set(this.field, 'activated', val && undefined);
+      }
+    },
+    visible: {
+      get() {
+        return this.field.visible !== false;
+      },
+      set(val) {
+        this.$set(this.field, 'visible', val && undefined);
+      }
+    },
+    readonly: {
+      get() {
+        return !!this.field.readonly;
+      },
+      set(val) {
+        this.$set(this.field, 'readonly', val || undefined);
+      }
+    },
+    disabled: {
+      get() {
+        return !!this.field.disabled;
+      },
+      set(val) {
+        this.$set(this.field, 'disabled', val || undefined);
       }
     },
   },

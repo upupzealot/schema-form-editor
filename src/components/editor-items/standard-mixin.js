@@ -1,5 +1,3 @@
-const isTriggerSelf = Symbol(true);
-
 export default {
   props: {
     supNodes: {
@@ -21,23 +19,13 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      vStatus: {
-        activated: true,
-        vActivated: true,
-      },
-    }
-  },
-  watch: {
-    'vStatus.activated': {
-      handler(activated) {
-        if(activated === isTriggerSelf) { // 用 Symbol(true) 来标识是不是 watcher 自身触发的赋值
-          return;
-        }
-
-        this.$set(this.vStatus, 'vActivated', activated);
-        this.$set(this.vStatus, 'activated', isTriggerSelf);
+  computed: {
+    status() {
+      return {
+        activated: this.field.activated !== false,
+        visible: this.field.visible !== false,
+        readonly: this.field.readonly,
+        disabled: this.field.disabled,
       }
     }
   }
