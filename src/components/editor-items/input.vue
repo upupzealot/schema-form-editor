@@ -2,13 +2,9 @@
   <Input
     :field="field"
     :data="data"
-    :v-status="{}"
+    :v-status="vStatus"
     :sup-nodes="supNodes"
-    :class="{
-      'v-not-activated': !status.activated || !status.visible,
-      'v-disbaled': status.disabled,
-      'v-readonly': status.readonly,
-    }"
+    :class="statusClasses"
   />
 </template>
 
