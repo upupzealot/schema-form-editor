@@ -211,6 +211,19 @@
 .form-editor .example-form-item .draggable-list-item .el-form-item {
   width: 100%;
 }
+.v-readonly .el-form-item__content {
+  opacity: .6;
+}
+.v-readonly .el-form-item__label {
+  background: linear-gradient(45deg, #f9f9f9 25%, transparent 0, transparent 50%, #f9f9f9 0, #f9f9f9 75%, transparent 0);
+  background-size: 20px 20px;
+}
+.v-disbaled .el-form-item__content {
+  opacity: .6;
+}
+.v-disbaled .el-form-item__label {
+  background-color: #f9f9f9;
+}
 </style>
 
 <style scoped>
@@ -219,6 +232,13 @@
 }
 .v-not-activated {
   opacity: .4;
+}
+.v-readonly {
+  background: linear-gradient(45deg, #efefef 25%, transparent 0, transparent 50%, #efefef 0, #efefef 75%, transparent 0);
+  background-size:20px 20px;
+}
+.v-disbaled {
+  background-color: #efefef;
 }
 </style>
 

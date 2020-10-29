@@ -18,11 +18,23 @@ export default {
         return {}
       },
     },
-    status: {
+    vStatus: {
       type: Object,
       default() {
-        return {}
+        return null
       },
+    }
+  },
+  data() {
+    const status = this.vStatus ? {} : {
+      activated: this.field.activated !== false,
+      visible: this.field.visible !== false,
+      readonly: !!this.field.readonly,
+      disabled: !!this.field.disabled,
+    }
+
+    return {
+      status,
     }
   },
   computed: {
@@ -31,7 +43,31 @@ export default {
         return this.status.activated !== false;
       },
       set(val) {
-        this.$set(this.status, 'activated', val);
+        this.$set(this.vStatus || this.status, 'activated', val);
+      }
+    },
+    visible: {
+      get() {
+        return this.status.visible !== false;
+      },
+      set(val) {
+        this.$set(this.vStatus || this.status, 'visible', val);
+      }
+    },
+    readonly: {
+      get() {
+        return !!this.status.readonly;
+      },
+      set(val) {
+        this.$set(this.vStatus || this.status, 'readonly', val);
+      }
+    },
+    disabled: {
+      get() {
+        return !!this.status.disabled;
+      },
+      set(val) {
+        this.$set(this.vStatus || this.status, 'disabled', val);
       }
     },
     effect() {
