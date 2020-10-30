@@ -17,6 +17,7 @@
           :schema="subformSchema"
           :data="item"
           :sup-nodes="supNodes"
+          :scenario="scenario"
           style="width: 100%;"
         />
       </DraggableListItem>

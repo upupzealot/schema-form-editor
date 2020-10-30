@@ -1,5 +1,11 @@
 export default {
   props: {
+    scenario: {
+      type: String,
+      default() {
+        return 'edit'; // create || edit || preview
+      }
+    },
     supNodes: {
       type: Array,
       default() {
@@ -97,13 +103,16 @@ export default {
               depth = matches.length;
             }
           }
-          
           let $vm = this;
           if(depth && depth < this.supNodes.length) {
             $vm = this.supNodes[this.supNodes.length - 1 - depth];
           }
-
-          $vm.$watch(`data.${prop}`, func, { immediate: true, ...opt });
+          if(prop.startsWith('this.')) {
+            prop = prop.replace('this.', '');
+            this.$watch(prop, func, { immediate: true, ...opt });
+          } else {
+            $vm.$watch(`data.${prop}`, func, { immediate: true, ...opt });
+          }
         }
       }, {
         key: 'set',
