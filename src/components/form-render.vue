@@ -82,6 +82,12 @@
   </el-form>
 </template>
 
+<style>
+.form-item.readonly {
+  pointer-events: none;
+}
+</style>
+
 <script>
 import _ from 'lodash';
 

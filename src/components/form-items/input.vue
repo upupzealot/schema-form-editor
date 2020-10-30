@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    class="form-item"
+    :class="{'form-item': true, 'readonly': readonly}"
   >
     <el-input
       v-model="data[field.name]"
