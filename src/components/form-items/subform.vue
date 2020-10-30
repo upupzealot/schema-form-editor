@@ -4,6 +4,7 @@
     ref="formRender"
     :schema="schema"
     :data="data"
+    :scenario="scenario"
     :sup-nodes="supNodes"
   />
 </template>

@@ -14,42 +14,49 @@
       >
         <Input
           v-if="field.type === 'input'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <Select
           v-if="field.type === 'select'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <Radio
           v-if="field.type === 'radio'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <Checkbox
           v-if="field.type === 'checkbox'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <SSwitch
           v-if="field.type === 'switch'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <DatePicker
           v-if="field.type === 'date-picker'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
         <Blank
           v-if="field.type === 'blank'"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -57,6 +64,7 @@
         <Subform
           v-if="field.type === 'subform'"
           ref="subformItems"
+          :scenario="scenario"
           :schema="field"
           :data="data[field.name]"
           :sup-nodes="supNodeList"
@@ -64,6 +72,7 @@
         <ItemList
           v-if="field.type === 'item-list'"
           ref="subformItems"
+          :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -101,6 +110,12 @@ export default {
     ItemList,
   },
   props: {
+    scenario: {
+      type: String,
+      default() {
+        return 'edit'; // create || edit || preview
+      }
+    },
     supNodes: {
       type: Array,
       default() {
