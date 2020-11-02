@@ -11,6 +11,7 @@
       :key="option.value"
       v-model="data[field.name]"
       :label="option.value"
+      :disabled="disabled"
     >
       <!-- 这里的 label 是值 -->
       {{ option.label }}
