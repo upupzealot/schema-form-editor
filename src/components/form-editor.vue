@@ -239,7 +239,7 @@ import DraggableListItem from '@/components/common/draggable-list-item';
 import Input from '@/components/editor-items/input';
 import Select from '@/components/editor-items/select';
 import Radio from '@/components/editor-items/radio';
-import Checkbox from '@/components/form-items/checkbox';
+import Checkbox from '@/components/editor-items/checkbox';
 import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 

@@ -6,6 +6,7 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
+    <!-- 这里的 label 是值 -->
     <el-radio
       v-for="option in optionList"
       :key="option.value"
@@ -13,7 +14,6 @@
       :label="option.value"
       :disabled="disabled"
     >
-      <!-- 这里的 label 是值 -->
       {{ option.label }}
     </el-radio>
   </el-form-item>

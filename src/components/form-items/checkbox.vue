@@ -1,14 +1,18 @@
 <template>
   <el-form-item
     v-if="activated"
+    v-show="visible"
     :label="field.label"
-    class="form-item"
+    :prop="field.name"
+    :class="{'form-item': true, 'readonly': readonly}"
   >
     <el-checkbox-group v-model="data[field.name]">
+      <!-- 这里的 label 是值 -->
       <el-checkbox
         v-for="option in optionList"
         :key="option.value"
         :label="option.value"
+        :disabled="disabled"
       >
         {{ option.label }}
       </el-checkbox>
