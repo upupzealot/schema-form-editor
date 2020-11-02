@@ -1,11 +1,14 @@
 <template>
   <el-form-item
     v-if="activated"
+    v-show="visible"
     :label="field.label"
-    class="form-item"
+    :prop="field.name"
+    :class="{'form-item': true, 'readonly': readonly}"
   >
     <el-switch
       v-model="data[field.name]"
+      :disabled="disabled"
       :active-text="field.activeText"
       :inactive-text="field.inactiveText"
     />
