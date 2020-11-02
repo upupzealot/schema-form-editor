@@ -41,7 +41,7 @@ export default {
         this.$set(this.statusClasses, 'v-not-activated',
           !this.previewStatus.activated || !this.previewStatus.visible);
         this.$set(this.statusClasses, 'v-readonly', this.previewStatus.readonly);
-        this.$set(this.statusClasses, 'v-disbaled', this.previewStatus.disabled);
+        this.$set(this.statusClasses, 'v-disabled', this.previewStatus.disabled);
       },
       immediate: true,
       deep: true,
