@@ -211,19 +211,6 @@
 .form-editor .example-form-item .draggable-list-item .el-form-item {
   width: 100%;
 }
-.v-readonly .el-form-item__content {
-  opacity: .6;
-}
-.v-readonly .el-form-item__label {
-  background: linear-gradient(45deg, #f9f9f9 25%, transparent 0, transparent 50%, #f9f9f9 0, #f9f9f9 75%, transparent 0);
-  background-size: 20px 20px;
-}
-.v-disbaled .el-form-item__content {
-  opacity: .6;
-}
-.v-disbaled .el-form-item__label {
-  background-color: #f9f9f9;
-}
 </style>
 
 <style scoped>
@@ -234,11 +221,11 @@
   opacity: .4;
 }
 .v-readonly {
-  background: linear-gradient(45deg, #efefef 25%, transparent 0, transparent 50%, #efefef 0, #efefef 75%, transparent 0);
+  background: linear-gradient(45deg, #f7f7f7 25%, transparent 0, transparent 50%, #f7f7f7 0, #f7f7f7 75%, transparent 0);
   background-size:20px 20px;
 }
-.v-disbaled {
-  background-color: #efefef;
+.v-disabled {
+  background-color: #f7f7f7;
 }
 </style>
 
@@ -250,8 +237,8 @@ import DraggableList from '@/components/common/draggable-list';
 import DraggableListItem from '@/components/common/draggable-list-item';
 
 import Input from '@/components/editor-items/input';
-import Select from '@/components/form-items/select';
-import Radio from '@/components/form-items/radio';
+import Select from '@/components/editor-items/select';
+import Radio from '@/components/editor-items/radio';
 import Checkbox from '@/components/form-items/checkbox';
 import SSwitch from '@/components/form-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
@@ -390,7 +377,7 @@ export default {
         formConf: this.formConf,
         fieldList: mapFields(this.fieldList),
         validRules: this.validRules,
-      }, 'id');
+      }, ['id']);
     },
     previewDataStr() {
       return JSON.stringify(this.previewData, null, 2);

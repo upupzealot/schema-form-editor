@@ -1,8 +1,10 @@
 <template>
   <el-form-item
     v-if="activated"
+    v-show="visible"
     :label="field.label"
-    class="form-item"
+    :prop="field.name"
+    :class="{'form-item': true, 'readonly': readonly}"
   >
     <el-radio
       v-for="option in optionList"
