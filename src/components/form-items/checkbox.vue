@@ -27,7 +27,9 @@ import optionListMixin from './option-list-mixin'
 export default {
   mixins: [standardMixin, optionListMixin],
   created() {
-    this.$set(this.data, this.field.name, []);
+    if(!this.data[this.field.name]) {
+      this.$set(this.data, this.field.name, []);
+    }    
   },
   defaultSchema: {
     options: [{
