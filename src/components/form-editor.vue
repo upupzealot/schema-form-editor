@@ -240,7 +240,7 @@ import Input from '@/components/editor-items/input';
 import Select from '@/components/editor-items/select';
 import Radio from '@/components/editor-items/radio';
 import Checkbox from '@/components/editor-items/checkbox';
-import SSwitch from '@/components/form-items/switch';
+import SSwitch from '@/components/editor-items/switch';
 import DatePicker from '@/components/form-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
