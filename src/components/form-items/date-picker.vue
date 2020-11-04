@@ -1,15 +1,18 @@
 <template>
   <el-form-item
     v-if="activated"
+    v-show="visible"
     :label="field.label"
-    class="form-item"
+    :prop="field.name"
+    :class="{'form-item': true, 'readonly': readonly}"
   >
     <el-date-picker
       :key="calendarId"
       v-model="data[field.name]"
-      style="width: 100%;"
       :type="field.mode"
+      :disabled="disabled"
       value-format="timestamp"
+      style="width: 100%;"
     />
   </el-form-item>
 </template>
