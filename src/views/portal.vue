@@ -58,7 +58,6 @@
 .layout-container .item-bar-container {
   position: absolute;
   overflow-y: overlay;
-  padding-right: 10px;
 }
 .layout-container.left .item-bar-container {
   top: 0;
@@ -77,9 +76,8 @@
   position: absolute;
   top: 0;
   left: 355px;
-  right: 415px;
+  right: 515px;
   overflow-y: overlay;
-  padding-right: 10px;
 }
 .layout-container.left .form-editor-container {
   bottom: 20px;
@@ -92,7 +90,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;
+  width: 500px;
   overflow-y: overlay;
 }
 .layout-container.left .item-editor-container {
