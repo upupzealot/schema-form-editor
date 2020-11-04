@@ -241,12 +241,12 @@ import Select from '@/components/editor-items/select';
 import Radio from '@/components/editor-items/radio';
 import Checkbox from '@/components/editor-items/checkbox';
 import SSwitch from '@/components/editor-items/switch';
-import DatePicker from '@/components/form-items/date-picker';
+import DatePicker from '@/components/editor-items/date-picker';
 
 import Blank from '@/components/form-items/blank';
 import Subform from '@/components/editor-items/subform';
-import FormStoreModule from '@/store/form.js';
 import IItemList from '@/components/editor-items/item-list';
+import FormStoreModule from '@/store/form.js';
 
 // import FormRender from '@/components/form-render';
 
