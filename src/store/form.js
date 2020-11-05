@@ -22,7 +22,10 @@ export default {
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
     },
-    setValidRules(state, {name, rules}) {
+    setValidRules(state, rules) {
+      state.validRules = rules;
+    },
+    updateValidRules(state, {name, rules}) {
       const diff = {};
       diff[name] = rules;
 
@@ -30,6 +33,6 @@ export default {
         ...state.validRules,
         ...diff,
       };
-    }
+    },
   },
 }
