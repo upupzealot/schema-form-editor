@@ -176,7 +176,7 @@ export default {
                   if(pass) {
                     callback();
                   } else {
-                    callback(rule.note);
+                    callback(new Error(rule.note));
                   }
                 },
                 trigger: rule.trigger || 'blur',
