@@ -445,6 +445,17 @@ export default {
     },
     async validateForm() {
       const isValid = await this.$refs['previewForm'].validate();
+      if(isValid) {
+        this.$message({
+          message: '校验通过',
+          type: 'success',
+        });
+      } else {
+        this.$message({
+          message: '校验未通过',
+          type: 'error',
+        });
+      }
     }
   },
 };
