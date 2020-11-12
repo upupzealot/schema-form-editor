@@ -205,20 +205,30 @@ export default {
   },
   methods: {
     async validate() {
-      return new Promise(async resolve => {
-        const valiResult = {};
-        const aaa = await this.$refs['form'].validate();
+      return new Promise(async (resolve, reject) => {
+        let valiResult = true;
+        
+        this.$refs['form'].validate(isValid => {
+          valiResult = valiResult && isValid;
 
-        let subformItems = this.$refs['subformItems'] || [];
-        if(!_.isArray(subformItems)) {
-          subformItems = [subformItems];
-        }
+          let subformItems = this.$refs['subformItems'] || [];
+          if(!_.isArray(subformItems)) {
+            subformItems = [subformItems];
+          }
 
-        await subformItems.map(async subform => {
-          await subform.validate();
+          Promise.all(subformItems.map(subform => {
+            return new Promise(reso => {
+              (async ()=> {
+                await subform.validate(isVali => reso)
+              })();
+            })
+          })).then(valids => {
+            valids.forEach(valid => {
+              valiResult = valiResult && valid;
+            })
+          });
+          resolve(valiResult);
         });
-
-        resolve(valiResult);
       });
     }
   }
