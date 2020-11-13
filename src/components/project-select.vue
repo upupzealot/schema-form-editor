@@ -66,6 +66,26 @@
         <el-form-item label="项目名称">
           <el-input v-model="form.name" />
         </el-form-item>
+        <el-form-item label="初始结构">
+          <el-input
+            v-model="form.schemaStr"
+            :rows="5"
+            type="textarea"
+          />
+          <input
+            ref="schemaFile"
+            hidden
+            type="file"
+            accept="application/json"
+            @change="fileSelected"
+          >
+          <el-button
+            style="position: absolute; right: 0; top: 0;"
+            @click="selectSchemaFile"
+          >
+            上传
+          </el-button>
+        </el-form-item>
       </el-form>
       <span
         slot="footer"
@@ -164,8 +184,19 @@ export default {
       this.form = {};
       this.dialogVisible = true;
     },
+    selectSchemaFile() {
+      this.$refs['schemaFile'].click();
+    },
+    fileSelected(file) {
+      const selectedFile = this.$refs['schemaFile'].files[0];
+      const reader = new FileReader();
+      reader.readAsText(selectedFile);
+      reader.onload = () => {
+        this.$set(this.form, 'schemaStr', reader.result);
+      }
+    },
     submitDialog() {
-      localStorage.setItem(this.form.key, '{}');
+      localStorage.setItem(this.form.key, JSON.stringify(this.form.schema || {}));
       this.projects.push({
         id: this.form.key,
         name: this.form.name,
