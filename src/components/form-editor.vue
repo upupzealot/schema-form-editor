@@ -440,12 +440,12 @@ export default {
       this.schemaDialogVisible = true;
     },
     copySchema() {
-      this.$copyText(this.schemaStr).then(() => {
+      this.$clipboard.write(this.schemaStr).then(() => {
         this.$message({
           message: '复制成功',
           type: 'success',
         });
-      }, function (e) {
+      }, e => {
         this.$message({
           message: '复制失败',
           type: 'error',
