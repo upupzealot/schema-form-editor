@@ -130,6 +130,11 @@
       title="Schema"
       :visible.sync="schemaDialogVisible"
     >
+      <el-button
+        icon="el-icon-copy-document"
+        style="float: right;"
+        @click="copySchema"
+      />
       <pre>{{ schemaStr }}</pre>
       <template slot="footer">
         <el-button
@@ -433,6 +438,19 @@ export default {
     printSchema() {
       this.schemaStr = JSON.stringify(this.schema, null, 2);
       this.schemaDialogVisible = true;
+    },
+    copySchema() {
+      this.$copyText(this.schemaStr).then(() => {
+        this.$message({
+          message: '复制成功',
+          type: 'success',
+        });
+      }, function (e) {
+        this.$message({
+          message: '复制失败',
+          type: 'error',
+        });
+      })
     },
     printData() {
       this.dataStr = JSON.stringify(this.data, null, 2);
