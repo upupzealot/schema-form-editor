@@ -11,6 +11,7 @@
       :type="field.mode"
       :disabled="disabled"
       :readonly="readonly"
+      :show-password="field.isPassword"
     />
   </el-form-item>
 </template>
