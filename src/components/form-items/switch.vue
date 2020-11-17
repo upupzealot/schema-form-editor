@@ -10,7 +10,9 @@
       v-model="data[field.name]"
       :disabled="disabled"
       :active-text="field.activeText"
+      :active-value="field.activeValue || true"
       :inactive-text="field.inactiveText"
+      :inactive-value="field.inactiveValue || false"
     />
   </el-form-item>
 </template>
