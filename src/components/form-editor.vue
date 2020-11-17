@@ -125,14 +125,27 @@
       </el-button>
     </el-col>
 
+    <a
+      ref="downloadLink"
+      hidden
+      :href="downloadStr"
+      :download="downloadFilename"
+    />
     <!-- 结构预览对话框 -->
     <el-dialog
       title="Schema"
       :visible.sync="schemaDialogVisible"
     >
       <el-button
-        icon="el-icon-copy-document"
+        style="float: right; margin-left: 10px;"
+        icon="el-icon-download"
+        circle
+        @click="downloadSchema"
+      />
+      <el-button
         style="float: right;"
+        icon="el-icon-copy-document"
+        circle
         @click="copySchema"
       />
       <pre>{{ schemaStr }}</pre>
@@ -151,6 +164,18 @@
       title="Data"
       :visible.sync="dataDialogVisible"
     >
+      <el-button
+        style="float: right; margin-left: 10px;"
+        icon="el-icon-download"
+        circle
+        @click="downloadData"
+      />
+      <el-button
+        style="float: right;"
+        icon="el-icon-copy-document"
+        circle
+        @click="copyData"
+      />
       <pre>{{ dataStr }}</pre>
       <template slot="footer">
         <el-button
@@ -300,6 +325,8 @@ export default {
   data() {
     return {
       schemaStr: '',
+      downloadStr: '',
+      downloadFilename: '',
       schemaDialogVisible: false,
       dataStr: '',
       dataDialogVisible: false,
@@ -435,12 +462,8 @@ export default {
         });
       }).catch(() => {});
     },
-    printSchema() {
-      this.schemaStr = JSON.stringify(this.schema, null, 2);
-      this.schemaDialogVisible = true;
-    },
-    copySchema() {
-      this.$clipboard.write(this.schemaStr).then(() => {
+    copyStr(str) {
+      this.$clipboard.write(str).then(() => {
         this.$message({
           message: '复制成功',
           type: 'success',
@@ -452,9 +475,34 @@ export default {
         });
       })
     },
+    downloadJson(jsonStr) {
+      this.downloadStr = `data:text/json;charset=utf-8,${encodeURIComponent(jsonStr)}`;
+      const projectId = localStorage.getItem('projectId') || 'default';
+      this.downloadFilename = `${projectId}.schema.json`;
+
+      this.$nextTick(()=>{
+        this.$refs['downloadLink'].click();
+      });
+    },
+    printSchema() {
+      this.schemaStr = JSON.stringify(this.schema, null, 2);
+      this.schemaDialogVisible = true;
+    },
+    copySchema() {
+      this.copyStr(this.schemaStr);
+    },
+    downloadSchema() {
+      this.downloadJson(this.schemaStr);
+    },
     printData() {
       this.dataStr = JSON.stringify(this.data, null, 2);
       this.dataDialogVisible = true;
+    },
+    copyData() {
+      this.copyStr(this.dataStr);
+    },
+    downloadData() {
+      this.downloadJson(this.dataStr);
     },
     previewForm() {
       this.previewSchema = _.cloneDeep(this.schema);

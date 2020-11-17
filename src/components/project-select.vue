@@ -81,10 +81,10 @@
           >
           <el-button
             style="position: absolute; right: 0; top: 0;"
+            icon="el-icon-upload2"
+            circle
             @click="selectSchemaFile"
-          >
-            上传
-          </el-button>
+          />
         </el-form-item>
       </el-form>
       <span
