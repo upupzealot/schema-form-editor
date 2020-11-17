@@ -87,6 +87,12 @@ export default {
     },
     effectParams() {
       return [{
+        key: 'scenario',
+        value: this.scenario,
+      }, {
+        key: 'props',
+        value: this.supNodes[0].$props,
+      }, {
         key: 'data',
         value: this.data,
       }, {
