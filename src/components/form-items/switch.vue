@@ -10,9 +10,9 @@
       v-model="data[field.name]"
       :disabled="disabled"
       :active-text="field.activeText"
-      :active-value="field.activeValue || true"
+      :active-value="activeValue"
       :inactive-text="field.inactiveText"
-      :inactive-value="field.inactiveValue || false"
+      :inactive-value="inactiveValue"
     />
   </el-form-item>
 </template>
@@ -22,6 +22,35 @@ import standardMixin from './standard-mixin'
 
 export default {
   mixins: [standardMixin],
+  computed: {
+    activeValue() {
+      return this.parse(this.field.activeValue, true);
+    },
+    inactiveValue() {
+      return this.parse(this.field.inactiveValue, false);
+    }
+  },
+  methods: {
+    parse(str, defaultVal) {
+      if(!str) {
+        return defaultVal;
+      }
+
+      if(str === 'true') {
+        return true;
+      }
+      if(str === 'false') {
+        return false;
+      }
+
+      const num = Number(str);
+      if(!isNaN(num)) {
+        return num;
+      }
+
+      return str;
+    }
+  },
   defaultSchema: {}
 };
 </script>
