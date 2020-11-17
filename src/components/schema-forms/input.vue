@@ -5,7 +5,6 @@
         label="组件模式"
         prop="schema-form"
       >
-        <!-- <el-select v-model="mode"> -->
         <el-radio
           v-model="mode"
           label="text"
@@ -14,11 +13,16 @@
         </el-radio>
         <el-radio
           v-model="mode"
+          label="password"
+        >
+          密码框
+        </el-radio>
+        <el-radio
+          v-model="mode"
           label="textarea"
         >
           多行文本
         </el-radio>
-        <!-- </el-select> -->
       </el-form-item>
     </template>
 
@@ -42,10 +46,11 @@ export default {
   computed: {
     mode: {
       get() {
-        return this.field.mode || 'text';
+        return this.field.isPassword ? 'password' : (this.field.mode || 'text');
       },
       set(mode) {
         this.$set(this.field, 'mode', mode === 'textarea' ? 'textarea' : undefined);
+        this.$set(this.field, 'isPassword', mode === 'password' ? true : undefined);
       }
     },
     rules: {
