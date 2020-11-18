@@ -24,6 +24,14 @@
           多行文本
         </el-radio>
       </el-form-item>
+      <el-form-item
+        label="占位符"
+        prop="placeholder"
+      >
+        <el-input
+          v-model="field.placeholder"
+        />
+      </el-form-item>
     </template>
 
     <!-- 校验 -->
