@@ -9,6 +9,7 @@
     <el-input
       v-model="data[field.name]"
       :type="field.mode"
+      :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
       :show-password="field.isPassword"
