@@ -124,68 +124,18 @@
         预览
       </el-button>
     </el-col>
-
-    <a
-      ref="downloadLink"
-      hidden
-      :href="downloadStr"
-      :download="downloadFilename"
-    />
     <!-- 结构预览对话框 -->
-    <el-dialog
-      title="Schema"
+    <JsonDialog
       :visible.sync="schemaDialogVisible"
-    >
-      <el-button
-        style="float: right; margin-left: 10px;"
-        icon="el-icon-download"
-        circle
-        @click="downloadSchema"
-      />
-      <el-button
-        style="float: right;"
-        icon="el-icon-copy-document"
-        circle
-        @click="copySchema"
-      />
-      <pre>{{ schemaStr }}</pre>
-      <template slot="footer">
-        <el-button
-          type="primary"
-          @click="schemaDialogVisible = false"
-        >
-          确 定
-        </el-button>
-      </template>
-    </el-dialog>
-
+      :content="schema"
+      :download-filename="`${projectId}.schema.json`"
+    />
     <!-- 数据预览对话框 -->
-    <el-dialog
-      title="Data"
+    <JsonDialog
       :visible.sync="dataDialogVisible"
-    >
-      <el-button
-        style="float: right; margin-left: 10px;"
-        icon="el-icon-download"
-        circle
-        @click="downloadData"
-      />
-      <el-button
-        style="float: right;"
-        icon="el-icon-copy-document"
-        circle
-        @click="copyData"
-      />
-      <pre>{{ dataStr }}</pre>
-      <template slot="footer">
-        <el-button
-          type="primary"
-          @click="dataDialogVisible = false"
-        >
-          确 定
-        </el-button>
-      </template>
-    </el-dialog>
+      :content="data"
+      :download-filename="`${projectId}.default.json`"
+    />
 
     <!-- 表单预览对话框 -->
     <el-dialog
@@ -265,6 +215,7 @@ import omitDeep from 'omit-deep-lodash';
 
 import DraggableList from '@/components/common/draggable-list';
 import DraggableListItem from '@/components/common/draggable-list-item';
+import JsonDialog from './json-dialog';
 
 import Input from '@/components/editor-items/input';
 import Select from '@/components/editor-items/select';
@@ -285,6 +236,7 @@ export default {
   components: {
     DraggableList,
     DraggableListItem,
+    JsonDialog,
     Input,
     Select,
     Radio,
@@ -325,8 +277,6 @@ export default {
   data() {
     return {
       schemaStr: '',
-      downloadStr: '',
-      downloadFilename: '',
       schemaDialogVisible: false,
       dataStr: '',
       dataDialogVisible: false,
@@ -336,6 +286,9 @@ export default {
     };
   },
   computed: {
+    projectId() {
+      return this.$store.state.projectId;
+    },
     supNodeList() {
       if(this.supNodes) {
         return [...this.supNodes, this];
@@ -390,14 +343,15 @@ export default {
     },
     schema() {
       const state = this.$store.state;
+      
       function mapFields(fields) {
-        const fieldList = _.cloneDeep(fields);
-        return fields.map(field => {
+        const fieldList = _.cloneDeep(fields || []);
+        return fieldList.map(field => {
           if(field.type === 'subform' || field.type === 'item-list') {
             return {
               ...field,
               ...state[field.name],
-              fieldList: mapFields(state[field.name].fieldList),
+              fieldList: mapFields(state[field.name]?.fieldList),
             };
           } else {
             return field;
@@ -462,47 +416,13 @@ export default {
         });
       }).catch(() => {});
     },
-    copyStr(str) {
-      this.$clipboard.write(str).then(() => {
-        this.$message({
-          message: '复制成功',
-          type: 'success',
-        });
-      }, e => {
-        this.$message({
-          message: '复制失败',
-          type: 'error',
-        });
-      })
-    },
-    downloadJson(jsonStr) {
-      this.downloadStr = `data:text/json;charset=utf-8,${encodeURIComponent(jsonStr)}`;
-      const projectId = localStorage.getItem('projectId') || 'default';
-      this.downloadFilename = `${projectId}.schema.json`;
-
-      this.$nextTick(()=>{
-        this.$refs['downloadLink'].click();
-      });
-    },
     printSchema() {
       this.schemaStr = JSON.stringify(this.schema, null, 2);
       this.schemaDialogVisible = true;
     },
-    copySchema() {
-      this.copyStr(this.schemaStr);
-    },
-    downloadSchema() {
-      this.downloadJson(this.schemaStr);
-    },
     printData() {
       this.dataStr = JSON.stringify(this.data, null, 2);
       this.dataDialogVisible = true;
-    },
-    copyData() {
-      this.copyStr(this.dataStr);
-    },
-    downloadData() {
-      this.downloadJson(this.dataStr);
     },
     previewForm() {
       this.previewSchema = _.cloneDeep(this.schema);

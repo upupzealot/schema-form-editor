@@ -118,7 +118,6 @@ export default {
     const position = localStorage.getItem('item-bar-position') || 'left';
     this.$store.commit('setItemBarPosition', position);
     return {
-      id: localStorage.getItem('projectId') || 'default',
       projects: projects,
       form: {},
       dialogVisible: false,
@@ -127,16 +126,16 @@ export default {
   computed: {
     projectId: {
       get() {
-        return this.id;
+        return this.$store.state.projectId;
       },
       set(id) {
-        this.id = id;
+        this.$store.commit('setProjectId', id);
         localStorage.setItem('projectId', id);
       }
     },
     project() {
       const projectMap = _.keyBy(this.projects, 'id');
-      return projectMap[this.id];
+      return projectMap[this.projectId];
     },
     itemBarPosition: {
       get() {

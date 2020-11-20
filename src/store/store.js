@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     $root: FormModule,
   },
   state: {
+    projectId: localStorage.getItem('projectId') || 'default',
     itemBarPosition: 'left',
     // 当前字段
     activeField: {},
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     activeForm: null, // 后续初始化为 $root
   },
   mutations: {
+    setProjectId(state, projectId) {
+      state.projectId = projectId;
+    },
     setItemBarPosition(state, position) {
       state.itemBarPosition = position;
     },

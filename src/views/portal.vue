@@ -144,7 +144,7 @@ export default {
         e.stopPropagation();
 
         const schema = self.$refs['rootEditor'].schema;
-        const projectId = localStorage.getItem('projectId') || 'default';
+        const projectId = self.$store.state.projectId;
         localStorage.setItem(projectId, JSON.stringify(schema));
         self.$message({
           message: '保存成功',
