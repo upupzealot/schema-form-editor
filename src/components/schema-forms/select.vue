@@ -1,6 +1,14 @@
 <template>
   <StandardForm>
     <template slot="basic">
+      <el-form-item
+        label="占位符"
+        prop="placeholder"
+      >
+        <el-input
+          v-model="field.placeholder"
+        />
+      </el-form-item>
       <OptionList
         :field="field"
         class="schema-form"
