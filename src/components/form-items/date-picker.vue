@@ -11,6 +11,7 @@
       v-model="data[field.name]"
       :type="field.mode"
       :disabled="disabled"
+      :placeholder="field.placeholder"
       value-format="timestamp"
       style="width: 100%;"
     />
