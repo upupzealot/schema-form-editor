@@ -1,7 +1,7 @@
 <template>
   <div
-    v-if="activated"
     class="subform-wrap"
+    :class="statusClasses"
   >
     <el-tag
       size="mini"
@@ -25,13 +25,12 @@
 </style>
 
 <script>
-import standardMixin from '../form-items/standard-mixin'
+import standardMixin from './standard-mixin'
 
 // 全局引入，避免循环引用
 // import FormEditor from '@/components/form-editor'
 
 export default {
-  name: 'Subform',
   components: {
     // FormEditor,
   },

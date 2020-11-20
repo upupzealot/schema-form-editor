@@ -1,11 +1,14 @@
 <template>
   <FormRender
     v-if="activated"
+    v-show="visible"
     ref="formRender"
+    :field="field"
     :schema="schema"
     :data="data"
     :scenario="scenario"
     :sup-nodes="supNodes"
+    :class="{subform: true, 'readonly': readonly}"
   />
 </template>
 
