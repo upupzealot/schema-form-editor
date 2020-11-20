@@ -10,10 +10,12 @@
       <DraggableListItem
         v-for="(item, i) in items"
         :key="i"
+        :has-control="editable"
         @delete="deleteItem(item)"
       >
         <Subform
           ref="subformItem"
+          :field="field"
           :schema="subformSchema"
           :data="item"
           :sup-nodes="supNodes"
@@ -24,6 +26,7 @@
     </DraggableList>
 
     <el-button
+      v-if="editable"
       style="display: block;"
       @click.stop="addItem"
     >
@@ -69,6 +72,9 @@ export default {
   },
   mixins: [standardMixin],
   computed: {
+    editable() {
+      return !this.readonly && !this.disabled;
+    },
     subformSchema() {
       return {
         ...this.field,

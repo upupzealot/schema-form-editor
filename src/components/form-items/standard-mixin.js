@@ -44,6 +44,15 @@ export default {
     }
   },
   computed: {
+    parent() {
+      if(!this.supNodes || !this.supNodes.length) {
+        return null;
+      }
+      return this.supNodes[this.supNodes.length - 1];
+    },
+    parentStatus() {
+      return this.parent?.$parent?.status;
+    },
     activated: {
       get() {
         return this.status.activated !== false;
@@ -62,7 +71,8 @@ export default {
     },
     readonly: {
       get() {
-        return !!this.status.readonly;
+        return !!this.parentStatus?.readonly
+          || !!this.status.readonly;
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'readonly', val);
@@ -70,7 +80,8 @@ export default {
     },
     disabled: {
       get() {
-        return !!this.status.disabled;
+        return !!this.parentStatus?.disabled
+          || !!this.status.disabled;
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'disabled', val);

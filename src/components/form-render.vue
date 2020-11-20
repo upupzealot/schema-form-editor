@@ -65,6 +65,7 @@
           v-if="field.type === 'subform'"
           ref="subformItems"
           :scenario="scenario"
+          :field="field"
           :schema="field"
           :data="data[field.name]"
           :sup-nodes="supNodeList"
