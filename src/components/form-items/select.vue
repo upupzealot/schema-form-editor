@@ -9,7 +9,7 @@
     <el-select
       v-model="data[field.name]"
       :disabled="disabled"
-      placeholder="下拉选项"
+      :placeholder="field.placeholder"
       style="width: 100%"
     >
       <el-option
