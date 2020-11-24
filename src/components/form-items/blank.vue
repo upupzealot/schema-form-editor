@@ -19,3 +19,11 @@
   height: 40px;
 }
 </style>
+
+<script>
+import standardMixin from './standard-mixin'
+
+export default {
+  mixins: [standardMixin],
+};
+</script>
