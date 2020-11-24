@@ -105,13 +105,13 @@
     <el-col>
       <el-button
         :size="btnSize"
-        @click="printSchema"
+        @click="showSchemaDialog"
       >
         结构
       </el-button>
       <el-button
         :size="btnSize"
-        @click="printData"
+        @click="showDataDialog"
       >
         数据
       </el-button>
@@ -119,24 +119,41 @@
       <el-button
         :size="btnSize"
         style="float: right;"
-        @click="previewForm"
+        @click="showPreviewDialog"
       >
         预览
+      </el-button>
+      <el-button
+        v-if="isRoot"
+        :size="btnSize"
+        style="float: right;"
+        @click="showPropDialog"
+      >
+        配置
       </el-button>
     </el-col>
     <!-- 结构预览对话框 -->
     <JsonDialog
+      title="Schema"
       :visible.sync="schemaDialogVisible"
       :content="schema"
       :download-filename="`${projectId}.schema.json`"
     />
     <!-- 数据预览对话框 -->
     <JsonDialog
+      title="Data"
       :visible.sync="dataDialogVisible"
       :content="data"
       :download-filename="`${projectId}.default.json`"
     />
-
+    <!-- Config 对话框 -->
+    <JsonDialog
+      title="Config"
+      :visible.sync="propDialogVisible"
+      :content.sync="config"
+      :download-filename="`${projectId}.config.json`"
+      :editable="true"
+    />
     <!-- 表单预览对话框 -->
     <el-dialog
       v-if="previewDialogVisible"
@@ -151,6 +168,7 @@
               ref="previewForm"
               :schema="previewSchema"
               :data="previewData"
+              :config="config"
             />
           </el-card>
         </el-col>
@@ -276,10 +294,10 @@ export default {
   },
   data() {
     return {
-      schemaStr: '',
       schemaDialogVisible: false,
-      dataStr: '',
       dataDialogVisible: false,
+      config: {},
+      propDialogVisible: false,
       previewSchema: {},
       previewData: {},
       previewDialogVisible: false,
@@ -288,6 +306,9 @@ export default {
   computed: {
     projectId() {
       return this.$store.state.projectId;
+    },
+    isRoot() {
+      return !this.supNodes;
     },
     supNodeList() {
       if(this.supNodes) {
@@ -416,15 +437,16 @@ export default {
         });
       }).catch(() => {});
     },
-    printSchema() {
-      this.schemaStr = JSON.stringify(this.schema, null, 2);
+    showSchemaDialog() {
       this.schemaDialogVisible = true;
     },
-    printData() {
-      this.dataStr = JSON.stringify(this.data, null, 2);
+    showDataDialog() {
       this.dataDialogVisible = true;
     },
-    previewForm() {
+    showPropDialog() {
+      this.propDialogVisible = true;
+    },
+    showPreviewDialog() {
       this.previewSchema = _.cloneDeep(this.schema);
       this.previewData = _.cloneDeep(this.data);
       this.previewDialogVisible = true;

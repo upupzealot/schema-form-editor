@@ -101,8 +101,8 @@ export default {
         key: 'scenario',
         value: this.scenario,
       }, {
-        key: 'props',
-        value: this.supNodes[0].$props,
+        key: 'config',
+        value: this.supNodes[0].config,
       }, {
         key: 'data',
         value: this.data,
