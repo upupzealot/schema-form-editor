@@ -24,8 +24,23 @@
       circle
       @click="onCopy"
     />
+    
     <!-- JSON 展示 -->
     <pre v-if="!editable">{{ contentStr }}</pre>
+    <div
+      class="editor-wrapper"
+      :class="{'has-error': hasError}"
+    >
+      <AceEditor
+        v-if="editable"
+        v-model="contentStr"
+        lang="javascript"
+        theme="github"
+        width="100%"
+        height="160px"
+        @init="initEditor"
+      />
+    </div>
 
     <template slot="footer">
       <!-- 关闭按钮 -->
@@ -39,8 +54,23 @@
   </el-dialog>
 </template>
 
+<style scoped>
+.editor-wrapper {
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.editor-wrapper.has-error {
+  border: 1px solid #F56C6C;
+}
+</style>
+
 <script>
+import AceEditor from 'vue2-ace-editor';
+
 export default {
+  components: {
+    AceEditor
+  },
   props: {
     title: {
       type: String,
@@ -74,8 +104,12 @@ export default {
     },
   },
   data() {
+    const editorStr = JSON.stringify(this.content, null, 2);
+
     return {
+      editorStr,
       downloadStr: '',
+      hasError: false,
     }
   },
   computed: {
@@ -87,11 +121,35 @@ export default {
         this.$emit('update:visible', false);
       }
     },
-    contentStr() {
-      return JSON.stringify(this.content, null, 2);
+    contentStr: {
+      get() {
+        return this.editorStr;
+      },
+      set(str) {
+        this.editorStr = str;
+        try {
+          const editorJson = JSON.parse(str);
+          this.hasError = false;
+          this.$emit('update:content', editorJson);
+        } catch (err) {
+          this.hasError = true;
+        }
+      }
     },
   },
   methods: {
+    initEditor(editor) {
+      if(!this.editable) {
+        return;
+      }
+
+      require('brace/ext/language_tools');  // language extension prerequsite...
+      require('brace/mode/javascript');     // language
+      require('brace/theme/github');        // theme
+      require('brace/snippets/javascript'); // snippet
+
+      editor.session.setTabSize(2);
+    },
     onCopy() {
       this.$clipboard
         .write(this.contentStr)

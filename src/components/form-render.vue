@@ -140,6 +140,12 @@ export default {
       default() {
         return {};
       },
+    },
+    config: {
+      type: Object,
+      default() {
+        return {};
+      },
     }
   },
   computed: {
