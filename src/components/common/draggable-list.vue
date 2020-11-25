@@ -1,5 +1,6 @@
 <template>
   <Draggable
+    ref="draggable"
     :list="list"
     :handle="handle"
     :group="componentGroup"
@@ -7,7 +8,7 @@
     :sort="sortable"
     v-bind="options"
     class="draggable-list"
-    @add="selectItem"
+    @add="addItem"
     @end="selectItem"
   >
     <slot />
@@ -103,14 +104,20 @@ export default {
     }
   },
   methods: {
-    selectItem({ newIndex }) {
+    addItem({ item, newIndex }) {
+      const newItem = item.querySelector('.draggable-list-item').$vm.item;
+      this.$emit('add', { item: newItem, index: newIndex });
+    },
+    selectItem({ from, to, newIndex }) {
       if(!this.selectable) {
         return false;
       }
 
-      const item = this.list[newIndex];
-      this.current = item;
-      this.$emit('select', item);
+      if(to === this.$el) {
+        const item = this.list[newIndex];
+        this.current = item;
+        this.$emit('select', item);
+      }
     }
   }
 }
