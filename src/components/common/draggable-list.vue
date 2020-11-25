@@ -2,7 +2,7 @@
   <Draggable
     :list="list"
     :handle="handle"
-    :group="group"
+    :group="componentGroup"
     :clone="clone"
     :sort="sortable"
     v-bind="options"
@@ -34,6 +34,7 @@
 </style>
 
 <script>
+import _ from 'lodash';
 import Draggable from 'vuedraggable';
 
 export default {
@@ -79,6 +80,7 @@ export default {
       default() {
         return {
           put: false,
+          push: false,
         }
       }
     },
@@ -90,6 +92,14 @@ export default {
   data() {
     return {
       current: null,
+    }
+  },
+  computed: {
+    componentGroup() {
+      return _.merge({
+        put: false,
+        pull: false,
+      }, this.group);
     }
   },
   methods: {
