@@ -82,6 +82,9 @@ export default {
       },
     }
   },
+  mounted() {
+    this.$el.$vm = this;
+  },
   methods: {
     onSelect() {
       this.$emit('select', this.item);

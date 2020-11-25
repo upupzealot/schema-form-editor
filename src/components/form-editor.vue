@@ -13,6 +13,7 @@
             :group="{ put: true, pull: true }"
             :selectable="true"
             style="padding-bottom: 50px;"
+            @add="onAdd"
             @select="onSelect"
           >
             <template
@@ -418,6 +419,13 @@ export default {
     }
   },
   methods: {
+    onAdd({ item, index }) {
+      // 有 item.id：说明新增项是表单编辑器内拖拽而来
+      // 无 item.id：说明新增项是外部拖拽而来
+      if(item && item.id) {
+        this.fieldList.splice(index, 0, item);
+      }
+    },
     onSelect(field, $event) {
       this.activeField = field;
       this.activeForm = this.form;
