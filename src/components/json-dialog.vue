@@ -104,10 +104,8 @@ export default {
     },
   },
   data() {
-    const editorStr = JSON.stringify(this.content, null, 2);
-
     return {
-      editorStr,
+      editorStr: '',
       downloadStr: '',
       hasError: false,
     }
@@ -118,7 +116,7 @@ export default {
         return this.visible;
       },
       set(visible) {
-        this.$emit('update:visible', false);
+        this.$emit('update:visible', visible);
       }
     },
     contentStr: {
@@ -136,6 +134,14 @@ export default {
         }
       }
     },
+  },
+  watch: {
+    visible: {
+      handler(v) {
+        this.editorStr = JSON.stringify(this.content, null, 2);
+      },
+      immediate: true,
+    }
   },
   methods: {
     initEditor(editor) {
