@@ -43,6 +43,7 @@
     >
       <DraggableList
         :list="options"
+        :group="{ put: false, pull: false }"
       >
         <DraggableListItem
           v-for="option in options"

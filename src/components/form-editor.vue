@@ -10,7 +10,7 @@
         <el-row :gutter="formConf.gutter">
           <DraggableList
             :list="fieldList"
-            :group="{put: true}"
+            :group="{ put: true, pull: true }"
             :selectable="true"
             style="padding-bottom: 50px;"
             @select="onSelect"

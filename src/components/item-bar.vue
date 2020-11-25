@@ -122,7 +122,7 @@
           <DraggableList
             :list="utilList"
             handle=".item-bar .example-form-item"
-            :group="{ pull: 'clone', put: false }"
+            :group="{ pull: 'clone' }"
             :clone="onClone"
             :sort="false"
             class="example-form-item-list"
