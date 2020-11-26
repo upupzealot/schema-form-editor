@@ -92,16 +92,16 @@
 <script>
 import _ from 'lodash';
 
-import Input from '@/components/form-items/input';
-import Select from '@/components/form-items/select';
-import Radio from '@/components/form-items/radio';
-import Checkbox from '@/components/form-items/checkbox';
-import SSwitch from '@/components/form-items/switch';
-import DatePicker from '@/components/form-items/date-picker';
+import Input from './form-items/input';
+import Select from './form-items/select';
+import Radio from './form-items/radio';
+import Checkbox from './form-items/checkbox';
+import SSwitch from './form-items/switch';
+import DatePicker from './form-items/date-picker';
 
-import Blank from '@/components/form-items/blank';
-import Subform from '@/components/form-items/subform';
-import ItemList from '@/components/form-items/item-list';
+import Blank from './form-items/blank';
+import Subform from './form-items/subform';
+import ItemList from './form-items/item-list';
 
 export default {
   name: 'FormRender',

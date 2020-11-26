@@ -15,12 +15,12 @@
 <script>
 import standardMixin from './standard-mixin'
 
-// import FormRender from '@/components/form-render'
+import FormRender from '../form-render'
 
 export default {
   name: 'Subform',
   components: {
-    // FormRender
+    FormRender: () => import('../form-render'),
   },
   mixins: [standardMixin],
   props: {

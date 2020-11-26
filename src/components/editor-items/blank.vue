@@ -1,5 +1,5 @@
 <template>
-  <SSwitch
+  <Blank
     :field="field"
     :data="data"
     :v-status="vStatus"
@@ -11,11 +11,11 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { Switch as SSwitch } from 'schema-form-render'
+import { Blank } from 'schema-form-render'
 
 export default {
   components: {
-    SSwitch,
+    Blank,
   },
   mixins: [standardMixin],
 }

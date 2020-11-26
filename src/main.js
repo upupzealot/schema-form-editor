@@ -5,7 +5,7 @@ const clipboardy = require('clipboardy');
 
 import App from './app.vue';
 import FormEditor from '@/components/form-editor.vue'
-import FormRender from '@/components/form-render.vue'
+import FormRender from './form-render'
 import router from './router';
 import store from './store/store';
 

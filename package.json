@@ -14,6 +14,7 @@
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
     "omit-deep-lodash": "^1.1.4",
+    "schema-form-render": "*",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue2-ace-editor": "^0.0.15",
