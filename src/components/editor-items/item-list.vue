@@ -44,10 +44,9 @@
 </style>
 
 <script>
-import standardMixin from '../form-items/standard-mixin'
+import { standardMixin, ItemList } from 'schema-form-render'
 
 // 全局引入，避免循环引用
-import ItemList from '../form-items/item-list'
 // import FormEditor from '@/components/form-editor'
 
 export default {

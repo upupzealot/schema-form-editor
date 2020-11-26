@@ -51,7 +51,9 @@ export default {
       return this.supNodes[this.supNodes.length - 1];
     },
     parentStatus() {
-      return this.parent?.$parent?.status;
+      return this.parent
+        && this.parent.$parent
+        && this.parent.$parent.status;
     },
     activated: {
       get() {
@@ -71,7 +73,7 @@ export default {
     },
     readonly: {
       get() {
-        return !!this.parentStatus?.readonly
+        return !!(this.parentStatus && this.parentStatus.readonly)
           || !!this.status.readonly;
       },
       set(val) {
@@ -80,7 +82,7 @@ export default {
     },
     disabled: {
       get() {
-        return !!this.parentStatus?.disabled
+        return !!(this.parentStatus && this.parentStatus.disabled)
           || !!this.status.disabled;
       },
       set(val) {

@@ -243,12 +243,12 @@ import Checkbox from '@/components/editor-items/checkbox';
 import SSwitch from '@/components/editor-items/switch';
 import DatePicker from '@/components/editor-items/date-picker';
 
-import Blank from '@/components/form-items/blank';
+import Blank from '@/components/editor-items/blank';
 import Subform from '@/components/editor-items/subform';
 import IItemList from '@/components/editor-items/item-list';
 import FormStoreModule from '@/store/form.js';
 
-// import FormRender from '@/components/form-render';
+import FormRender from 'schema-form-render';
 
 export default {
   name: 'FormEditor',
@@ -265,7 +265,7 @@ export default {
     Blank,
     Subform,
     IItemList,
-    // FormRender,
+    FormRender,
   },
   props: {
     initSchema: {

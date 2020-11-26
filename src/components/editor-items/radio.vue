@@ -11,7 +11,7 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import Radio from '../form-items/radio'
+import { Radio } from 'schema-form-render'
 
 export default {
   components: {
