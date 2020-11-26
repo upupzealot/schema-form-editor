@@ -207,7 +207,8 @@ import _ from 'lodash';
 import DraggableList from '@/components/common/draggable-list';
 import DraggableListItem from '@/components/common/draggable-list-item';
 
-import { defaults as itemDefaults } from 'schema-form-render';
+// import { defaults as itemDefaults } from 'schema-form-render';
+import { defaults as itemDefaults } from '../form-render';
 
 export default {
   components: {
