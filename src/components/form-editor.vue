@@ -80,6 +80,13 @@
                     :sup-nodes="supNodeList"
                     class="slot-content"
                   />
+                  <Wrapper
+                    v-if="field.type === 'wrapper'"
+                    :field="field"
+                    :data="data"
+                    :sup-nodes="supNodeList"
+                    class="slot-content"
+                  />
                   <Subform
                     v-if="field.type === 'subform'"
                     :field="field"
@@ -244,6 +251,7 @@ import SSwitch from '@/components/editor-items/switch';
 import DatePicker from '@/components/editor-items/date-picker';
 
 import Blank from '@/components/editor-items/blank';
+import Wrapper from '@/components/editor-items/wrapper';
 import Subform from '@/components/editor-items/subform';
 import IItemList from '@/components/editor-items/item-list';
 import FormStoreModule from '@/store/form.js';
@@ -264,6 +272,7 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    Wrapper,
     Subform,
     IItemList,
     FormRender,
@@ -344,7 +353,7 @@ export default {
       return this.$store.state[this.storeKey];
     },
     formConf() {
-      return this.form.formConf;
+      return this.form.formConf || {};
     },
     fieldList: {
       get() {
@@ -370,7 +379,9 @@ export default {
       function mapFields(fields) {
         const fieldList = _.cloneDeep(fields || []);
         return fieldList.map(field => {
-          if(field.type === 'subform' || field.type === 'item-list') {
+          if(field.type === 'subform'
+            || field.type === 'wrapper'
+            || field.type === 'item-list') {
             return {
               ...field,
               ...state[field.name],
@@ -408,7 +419,8 @@ export default {
           if(this.initSchema.validRules) {
             this.$store.commit(`${newKey}/setValidRules`, this.initSchema.validRules);
           }
-          // this.activeForm = this.form;
+
+          // formKey 变换
           if(oldKey) {
             // TODO
             // store 属性迁移

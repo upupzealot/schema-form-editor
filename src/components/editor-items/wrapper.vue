@@ -1,0 +1,39 @@
+<template>
+  <div
+    class="subform-wrap"
+    :class="statusClasses"
+  >
+    <el-tag
+      size="mini"
+      style="margin-bottom: 10px;"
+    >
+      容器 {{ field.name }}
+    </el-tag>
+    <FormEditor
+      :form-key="field.name"
+      :init-schema="field"
+      :data="data"
+      :sup-nodes="supNodes"
+    />
+  </div>
+</template>
+
+<style scoped>
+.subform-wrap {
+  width: 100%;
+}
+</style>
+
+<script>
+import standardMixin from './standard-mixin'
+
+// 全局引入，避免循环引用
+// import FormEditor from '@/components/form-editor'
+
+export default {
+  components: {
+    // FormEditor,
+  },
+  mixins: [standardMixin],
+}
+</script>

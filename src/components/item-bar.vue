@@ -147,6 +147,21 @@
                     />
                   </template>
 
+                  <template v-if="util.type === 'wrapper'">
+                    <div
+                      class="example-component"
+                      :style="{
+                        border: '1px dashed #eee',
+                        lineHeight: 0,
+                        height: '40px',
+                      }"
+                    >
+                      <el-tag size="mini">
+                        容器
+                      </el-tag>
+                    </div>
+                  </template>
+
                   <template v-if="util.type === 'subform'">
                     <div
                       class="example-component"
@@ -254,12 +269,16 @@ export default {
         label: '空白占位',
         ...itemDefaults['blank']
       }, {
+        type: 'wrapper',
+        label: '空白容器',
+        ...itemDefaults['blank']
+      }, {
         type: 'subform',
         label: '子表单',
         ...itemDefaults['subform']
       }, {
         type: 'item-list',
-        label: ' 列表',
+        label: '列表',
         ...itemDefaults['itemList']
       }],
     };

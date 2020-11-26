@@ -61,6 +61,15 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <Wrapper
+          v-if="field.type === 'wrapper'"
+          ref="subformItems"
+          :scenario="scenario"
+          :field="field"
+          :schema="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Subform
           v-if="field.type === 'subform'"
           ref="subformItems"
@@ -100,6 +109,7 @@ import SSwitch from './form-items/switch';
 import DatePicker from './form-items/date-picker';
 
 import Blank from './form-items/blank';
+import Wrapper from './form-items/wrapper';
 import Subform from './form-items/subform';
 import ItemList from './form-items/item-list';
 
@@ -113,6 +123,7 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    Wrapper,
     Subform,
     ItemList,
   },
