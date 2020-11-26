@@ -11,7 +11,8 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { Blank } from 'schema-form-render'
+// import { Blank } from 'schema-form-render'
+import { Blank } from '../../form-render'
 
 export default {
   components: {

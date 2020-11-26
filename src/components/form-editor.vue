@@ -248,7 +248,8 @@ import Subform from '@/components/editor-items/subform';
 import IItemList from '@/components/editor-items/item-list';
 import FormStoreModule from '@/store/form.js';
 
-import FormRender from 'schema-form-render';
+// import FormRender from 'schema-form-render';
+import FormRender from '../form-render';
 
 export default {
   name: 'FormEditor',

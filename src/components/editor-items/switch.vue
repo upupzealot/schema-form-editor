@@ -11,7 +11,8 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { Switch as SSwitch } from 'schema-form-render'
+// import { Switch as SSwitch } from 'schema-form-render'
+import { Switch as SSwitch } from '../../form-render'
 
 export default {
   components: {
