@@ -26,7 +26,8 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { DatePicker } from 'schema-form-render'
+// import { DatePicker } from 'schema-form-render'
+import { DatePicker } from '../../form-render'
 
 export default {
   components: {

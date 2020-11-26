@@ -27,7 +27,8 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { Select } from 'schema-form-render'
+// import { Select } from 'schema-form-render'
+import { Select } from '../../form-render'
 
 export default {
   components: {

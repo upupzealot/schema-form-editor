@@ -11,7 +11,8 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import { Checkbox } from 'schema-form-render'
+// import { Checkbox } from 'schema-form-render'
+import { Checkbox } from '../../form-render'
 
 export default {
   components: {
