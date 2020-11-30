@@ -1,12 +1,12 @@
 <template>
   <el-form
     ref="form"
-    :label-width="formConf.labelWidth"
-    :label-position="formConf.labelPosition"
+    :label-width="labelWidth"
+    :label-position="labelPosition"
     :model="data"
     :rules="validRules"
   >
-    <el-row :gutter="formConf.gutter">
+    <el-row :gutter="gutter">
       <el-col
         v-for="field in fieldList"
         :key="field.name"
@@ -169,6 +169,15 @@ export default {
     },
     formConf() {
       return this.schema.formConf;
+    },
+    labelWidth() {
+      return this.formConf.labelWidth || '80px';
+    },
+    gutter() {
+      return this.formConf.gutter || 20;
+    },
+    labelPosition() {
+      return this.formConf.labelPosition || 'right';
     },
     fieldList() {
       return this.schema.fieldList;

@@ -3,11 +3,7 @@ export default {
   state() {
     return {
       formKey: '$root',
-      formConf: {
-        labelWidth: '80px',
-        labelPosition: 'right',
-        gutter: 20,
-      },
+      formConf: {},
       fieldList: [],
       validRules: {},
     }
