@@ -220,7 +220,7 @@ export default {
 
         this.projectId = 'default';
         this.projects = this.projects.filter(p => p.id !== deleteId);
-        localStorage.setItem('projects', projects);
+        localStorage.setItem('projects', JSON.stringify(this.projects));
 
         this.$message({
           type: 'success',
