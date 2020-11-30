@@ -14,7 +14,7 @@
         <el-divider content-position="left">
           表单项
         </el-divider>
-        <el-row :gutter="formConf.gutter">
+        <el-row :gutter="gutter">
           <DraggableList
             :list="itemList"
             handle=".item-bar .example-form-item"
@@ -118,7 +118,7 @@
         <el-divider content-position="left">
           工具项
         </el-divider>
-        <el-row :gutter="formConf.gutter">
+        <el-row :gutter="gutter">
           <DraggableList
             :list="utilList"
             handle=".item-bar .example-form-item"
@@ -286,6 +286,9 @@ export default {
   computed: {
     formConf() {
       return this.$store.state.$root.formConf;
+    },
+    gutter() {
+      return this.formConf.gutter || 20;
     },
   },
   methods: {

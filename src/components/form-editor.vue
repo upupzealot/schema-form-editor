@@ -3,11 +3,11 @@
     <!-- 表单项 -->
     <el-col class="form-editor">
       <el-form
-        :label-position="formConf.labelPosition"
-        :label-width="formConf.labelWidth"
-        :gutter="formConf.gutter"
+        :label-position="labelPosition"
+        :label-width="labelWidth"
+        :gutter="gutter"
       >
-        <el-row :gutter="formConf.gutter">
+        <el-row :gutter="gutter">
           <DraggableList
             :list="fieldList"
             :group="{ put: true, pull: true }"
@@ -354,6 +354,15 @@ export default {
     },
     formConf() {
       return this.form.formConf || {};
+    },
+    labelWidth() {
+      return this.formConf.labelWidth || '80px';
+    },
+    gutter() {
+      return this.formConf.gutter || 20;
+    },
+    labelPosition() {
+      return this.formConf.labelPosition || 'right';
     },
     fieldList: {
       get() {
