@@ -198,13 +198,15 @@ export default {
       }
     },
     submitDialog() {
-      localStorage.setItem(this.form.key, JSON.stringify(this.form.schema || {}));
+      const schema = JSON.parse(this.form.schemaStr);
+      localStorage.setItem(this.form.key, JSON.stringify(schema || {}));
       this.projects.push({
         id: this.form.key,
         name: this.form.name,
       });
       localStorage.setItem('projects', JSON.stringify(this.projects));
-      this.dialogVisible = false;
+      localStorage.setItem('projectId' ,this.form.key);
+      window.location.reload();
     },
     selectProject(projectId) {
       this.projectId = projectId;
