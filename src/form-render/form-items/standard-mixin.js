@@ -128,9 +128,9 @@ export default {
           }
           if(prop.startsWith('this.')) {
             prop = prop.replace('this.', '');
-            this.$watch(prop, func, { immediate: true, ...opt });
+            this.$watch(prop, func, Object.assign({ immediate: true }, opt));
           } else {
-            $vm.$watch(`data.${prop}`, func, { immediate: true, ...opt });
+            $vm.$watch(`data.${prop}`, func, Object.assign({ immediate: true }, opt));
           }
         }
       }, {
