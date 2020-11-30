@@ -118,7 +118,7 @@ export default {
     const position = localStorage.getItem('item-bar-position') || 'left';
     this.$store.commit('setItemBarPosition', position);
     return {
-      projects: projects,
+      projects,
       form: {},
       dialogVisible: false,
     }
@@ -129,8 +129,11 @@ export default {
         return this.$store.state.projectId;
       },
       set(id) {
-        this.$store.commit('setProjectId', id);
-        localStorage.setItem('projectId', id);
+        if(id !== this.projectId) {
+          this.$store.commit('setProjectId', id);
+          localStorage.setItem('projectId', id);
+          window.location.reload();
+        }
       }
     },
     project() {
@@ -213,9 +216,9 @@ export default {
         type: 'danger',
       }).then(() => {
         const deleteId = this.projectId;
-        this.projectId = 'default';
+        localStorage.removeItem(deleteId);
 
-        localStorage.removeItem(this.projectId);
+        this.projectId = 'default';
         this.projects = this.projects.filter(p => p.id !== deleteId);
         localStorage.setItem('projects', projects);
 
