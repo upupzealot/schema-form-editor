@@ -183,15 +183,16 @@ export default {
       return this.schema.fieldList;
     },
     validRules() {
-      _.filter
+      const fieldMap =  _.keyBy(this.fieldList, 'name');
       return _(this.schema.validRules)
         .pickBy(rules => rules && rules.length)
-        .mapValues(rules => {
+        .mapValues((rules, key) => {
+          const filed = fieldMap[key];
           return rules.map(rule => {
             if(rule.type === 'required') {
               return {
                 required: true,
-                message: rule.note,
+                message: rule.note || `请输入${filed.label}`,
                 trigger: rule.trigger || 'blur',
               };
             } else if (rule.type === 'regexp') {
