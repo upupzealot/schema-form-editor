@@ -26,6 +26,7 @@
       <SSwitchForm v-if="field.type === 'switch'" />
       <DatePickerForm v-if="field.type === 'date-picker'" />
       <BlankForm v-if="field.type === 'blank'" />
+      <WrapperForm v-if="field.type === 'wrapper'" />
       <SubformForm v-if="field.type === 'subform'" />
       <ItemList v-if="field.type === 'item-list'" />
     </el-col>
@@ -59,6 +60,7 @@ import SSwitchForm from '@/components/schema-forms/switch';
 import DatePickerForm from '@/components/schema-forms/date-picker';
 
 import BlankForm from '@/components/schema-forms/blank';
+import WrapperForm from '@/components/schema-forms/wrapper'
 import SubformForm from '@/components/schema-forms/subform';
 import ItemList from '@/components/schema-forms/item-list';
 
@@ -74,6 +76,7 @@ export default {
     SSwitchForm,
     DatePickerForm,
     BlankForm,
+    WrapperForm,
     SubformForm,
     ItemList,
   },
