@@ -24,6 +24,28 @@
           多行文本
         </el-radio>
       </el-form-item>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item
+            label="前复合"
+            prop="prepend"
+          >
+            <el-input
+              v-model="prepend"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            label="后复合"
+            prop="append"
+          >
+            <el-input
+              v-model="append"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item
         label="占位符"
         prop="placeholder"
@@ -59,6 +81,22 @@ export default {
       set(mode) {
         this.$set(this.field, 'mode', mode === 'textarea' ? 'textarea' : undefined);
         this.$set(this.field, 'isPassword', mode === 'password' ? true : undefined);
+      }
+    },
+    prepend: {
+      get() {
+        return this.field.prepend || '';
+      },
+      set(val) {
+        this.$set(this.field, 'prepend', val || undefined);
+      }
+    },
+    append: {
+      get() {
+        return this.field.append || '';
+      },
+      set(val) {
+        this.$set(this.field, 'append', val || undefined);
       }
     },
     rules: {

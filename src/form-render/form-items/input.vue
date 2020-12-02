@@ -13,7 +13,20 @@
       :disabled="disabled"
       :readonly="readonly"
       :show-password="field.isPassword"
-    />
+    >
+      <template
+        v-if="field.prepend"
+        slot="prepend"
+      >
+        {{ field.prepend }}
+      </template>
+      <template
+        v-if="field.append"
+        slot="append"
+      >
+        {{ field.append }}
+      </template>
+    </el-input>
   </el-form-item>
 </template>
 
