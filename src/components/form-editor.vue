@@ -37,6 +37,13 @@
                     :sup-nodes="supNodeList"
                     class="slot-content"
                   />
+                  <InputNumber
+                    v-if="field.type === 'input-number'"
+                    :field="field"
+                    :data="data"
+                    :sup-nodes="supNodeList"
+                    class="slot-content"
+                  />
                   <Select
                     v-if="field.type === 'select'"
                     :field="field"
@@ -244,6 +251,7 @@ import DraggableListItem from '@/components/common/draggable-list-item';
 import JsonDialog from './json-dialog';
 
 import Input from '@/components/editor-items/input';
+import InputNumber from '@/components/editor-items/input-number';
 import Select from '@/components/editor-items/select';
 import Radio from '@/components/editor-items/radio';
 import Checkbox from '@/components/editor-items/checkbox';
@@ -266,6 +274,7 @@ export default {
     DraggableListItem,
     JsonDialog,
     Input,
+    InputNumber,
     Select,
     Radio,
     Checkbox,

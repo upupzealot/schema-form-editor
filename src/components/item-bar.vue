@@ -40,6 +40,13 @@
                     />
                   </template>
 
+                  <template v-if="item.type === 'input-number'">
+                    <el-input-number
+                      v-model="form.inputNumber"
+                      class="example-component"
+                    />
+                  </template>
+
                   <template v-if="item.type === 'select'">
                     <el-select
                       v-model="form.select"
@@ -234,6 +241,7 @@ export default {
     return {
       // 示例表单项默认值
       form: {
+        inputNumber: 3,
         radio: 'option1',
         checkbox: ['option1'],
       },
@@ -242,6 +250,10 @@ export default {
         type: 'input',
         label: '文本框',
         ...itemDefaults['input']
+      }, {
+        type: 'input-number',
+        label: '数字框',
+        ...itemDefaults['input-number']
       }, {
         type: 'select',
         label: '下拉选项',

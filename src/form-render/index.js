@@ -4,6 +4,7 @@ import Blank from './form-items/blank.vue';
 import Checkbox from './form-items/checkbox.vue';
 import DatePicker from './form-items/date-picker.vue';
 import Input from './form-items/input.vue';
+import InputNumber from './form-items/input-number.vue';
 import ItemList from './form-items/item-list.vue';
 import Radio from './form-items/radio.vue';
 import Select from './form-items/select.vue';
@@ -18,6 +19,7 @@ export {
   Checkbox,
   DatePicker,
   Input,
+  InputNumber,
   ItemList,
   Radio,
   Select,

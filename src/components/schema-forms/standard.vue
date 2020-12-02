@@ -50,7 +50,7 @@
           <el-form-item label="标签">
             <el-input v-model="field.label" />
           </el-form-item>
-          <el-row>
+          <el-row style="margin-top: -15px; margin-bottom: 10px;">
             <el-col :span="12">
               <el-form-item label="是否激活">
                 <el-checkbox v-model="activated" />
