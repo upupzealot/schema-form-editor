@@ -19,6 +19,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputNumber
+          v-if="field.type === 'input-number'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
@@ -102,6 +109,7 @@
 import _ from 'lodash';
 
 import Input from './form-items/input';
+import InputNumber from './form-items/input-number';
 import Select from './form-items/select';
 import Radio from './form-items/radio';
 import Checkbox from './form-items/checkbox';
@@ -117,6 +125,7 @@ export default {
   name: 'FormRender',
   components: {
     Input,
+    InputNumber,
     Select,
     Radio,
     Checkbox,
