@@ -198,7 +198,7 @@ export default {
       }
     },
     submitDialog() {
-      const schema = JSON.parse(this.form.schemaStr);
+      const schema = JSON.parse(this.form.schemaStr || '{}');
       localStorage.setItem(this.form.key, JSON.stringify(schema || {}));
       this.projects.push({
         id: this.form.key,
