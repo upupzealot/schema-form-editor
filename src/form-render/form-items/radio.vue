@@ -6,6 +6,10 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
+    <template slot="label">
+      <Tooltip :field="field" />
+    </template>
+    
     <!-- 这里的 label 是值 -->
     <el-radio
       v-for="option in optionList"
