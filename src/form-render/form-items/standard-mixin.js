@@ -1,4 +1,7 @@
+import Tooltip from '../common/form-item-tooltip'
+
 export default {
+  components: { Tooltip },
   props: {
     scenario: {
       type: String,
