@@ -54,15 +54,6 @@
           v-model="field.placeholder"
         />
       </el-form-item>
-      <el-form-item
-        label="字段描述"
-        prop="desc"
-      >
-        <el-input
-          v-model="desc"
-          type="textarea"
-        />
-      </el-form-item>
     </template>
 
     <!-- 校验 -->
@@ -83,14 +74,6 @@ export default {
   },
   mixins: [standard],
   computed: {
-    desc: {
-      get() {
-        return this.field.desc || '';
-      },
-      set(val) {
-        this.$set(this.field, 'desc', val || undefined);
-      }
-    },
     mode: {
       get() {
         return this.field.isPassword ? 'password' : (this.field.mode || 'text');

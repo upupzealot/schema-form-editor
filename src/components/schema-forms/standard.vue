@@ -50,6 +50,16 @@
           <el-form-item label="标签">
             <el-input v-model="field.label" />
           </el-form-item>
+          <el-form-item
+            v-if="config.hasDesc !== false"
+            label="字段描述"
+            prop="desc"
+          >
+            <el-input
+              v-model="desc"
+              type="textarea"
+            />
+          </el-form-item>
           <el-row style="margin-top: -15px; margin-bottom: 10px;">
             <el-col :span="12">
               <el-form-item label="是否激活">
@@ -167,6 +177,14 @@ export default {
       set(n) {
         const value = Number(n);
         this.$set(this.field, 'span', spanValues.includes(value) ? value : undefined);
+      }
+    },
+    desc: {
+      get() {
+        return this.field.desc || '';
+      },
+      set(val) {
+        this.$set(this.field, 'desc', val || undefined);
       }
     },
     activated: {
