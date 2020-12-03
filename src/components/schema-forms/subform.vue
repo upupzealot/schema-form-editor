@@ -1,5 +1,5 @@
 <template>
-  <StandardForm :config="{ hasValid: false }" />
+  <StandardForm :config="{ hasDesc: false, hasValid: false }" />
 </template>
 
 <script>

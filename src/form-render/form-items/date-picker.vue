@@ -6,6 +6,9 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
+    <template slot="label">
+      <Tooltip :field="field" />
+    </template>
     <el-date-picker
       :key="calendarId"
       v-model="data[field.name]"

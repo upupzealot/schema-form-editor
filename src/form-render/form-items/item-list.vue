@@ -4,6 +4,10 @@
     :label="field.label"
     class="subform-wrap form-item"
   >
+    <template slot="label">
+      <Tooltip :field="field" />
+    </template>
+    
     <DraggableList
       :list="items"
     >
