@@ -6,6 +6,9 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
+    <template slot="label">
+      <Tooltip :field="field" />
+    </template>
     <el-input
       v-model="data[field.name]"
       :type="field.mode"
@@ -34,6 +37,6 @@
 import standardMixin from './standard-mixin'
 
 export default {
-  mixins: [standardMixin],
+  mixins: [standardMixin]
 };
 </script>
