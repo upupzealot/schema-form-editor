@@ -21,6 +21,7 @@
       :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      style="width: 100%;"
     />
   </el-form-item>
 </template>
