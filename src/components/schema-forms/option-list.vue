@@ -96,15 +96,31 @@ export default {
   },
   data() {
     return {
-      count: this.field.options.length,
+      count: this.field.options ? this.field.options.length : 0,
       dragOptions: {
         animation: 200,
         disabled: false,
       },
-      isRemote: false,
-      options: this.field.options ? [...this.field.options] : [],
       remoteConf: {},
     };
+  },
+  computed: {
+    isRemote: {
+      get() {
+        return this.field.isRemote === true;
+      },
+      set(val) {
+        this.$set(this.field, 'isRemote', !!val ? true : undefined);
+      }
+    },
+    options: {
+      get() {
+        return this.field.options ? [...this.field.options] : [];
+      },
+      set(val) {
+        this.$set(this.field, 'options', val);
+      }
+    } 
   },
   watch: {
     isRemote(newValue) {
@@ -118,12 +134,6 @@ export default {
         this.$delete(this.field, 'isRemote');
       }
     },
-    options: {
-      handler(newValue) {
-        this.$set(this.field, 'options', this.options);
-      },
-      deep: true,
-    },
     remoteConf: {
       handler(newValue) {
         this.$set(this.field, 'remoteConf', this.remoteConf);
@@ -136,11 +146,11 @@ export default {
       this.count++;
       const id = this.count;
 
-      this.options.push({
+      this.options = [...this.options, {
         id,
         label: `选项${id}`,
         value: `option${id}`,
-      });
+      }];
     },
     deleteOption(option) {
       this.$confirm('确认删除?', null, {

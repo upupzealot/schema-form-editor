@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     {{ field.label }}
     <el-tooltip
       v-if="hasTooltip"
@@ -9,12 +9,12 @@
         v-if="hasTooltip"
         class="el-icon-info"
       />
-      <div
+      <template
         slot="content"
         v-html="content"
       />
     </el-tooltip>
-  </div>
+  </span>
 </template>
 
 <script>
