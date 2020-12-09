@@ -38,7 +38,11 @@ export default {
     'field.remoteConf.api': {
       handler(api) {
         if(api) {
-          fetch(api)
+          fetch(api, {
+            headers:{
+              'content-type': 'application/json'
+            }
+          })
             .then(res => {
               if(res.ok) {
                 return res.json();
