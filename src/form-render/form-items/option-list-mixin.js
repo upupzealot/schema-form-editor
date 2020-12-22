@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -38,14 +40,15 @@ export default {
     'field.remoteConf.api': {
       handler(api) {
         if(api) {
-          fetch(api, {
+          axios.get(api, {
             headers:{
               'content-type': 'application/json'
             }
           })
             .then(res => {
-              if(res.ok) {
-                return res.json();
+              if(res.status === 200) {
+                const { data } = res;
+                return data;
               } else {
                 throw new Error(res.statusText)
               }
@@ -69,7 +72,4 @@ export default {
       immediate: true,
     }
   },
-  method: {
-    
-  }
 };
