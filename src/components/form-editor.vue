@@ -468,6 +468,7 @@ export default {
         type: 'error',
       }).then(() => {
         this.fieldList = this.fieldList.filter(field => field.id !== this.activeField.id);
+        this.validRules[this.activeField.name] = undefined;
         this.activeField = {};
 
         this.$message({
