@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="activated"
-    class="subform-wrap"
-  >
+  <div class="subform-wrap">
     <el-tag
       size="mini"
       class="form-tag"
@@ -44,8 +41,9 @@
 </style>
 
 <script>
-// import { standardMixin, ItemList } from 'schema-form-render'
-import { standardMixin, ItemList } from '../../form-render'
+// import { ItemList } from 'schema-form-render'
+import { ItemList } from '../../form-render'
+import standardMixin from './standard-mixin'
 
 // 全局引入，避免循环引用
 // import FormEditor from '@/components/form-editor'

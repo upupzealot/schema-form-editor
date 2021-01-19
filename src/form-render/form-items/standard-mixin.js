@@ -35,15 +35,8 @@ export default {
     }
   },
   data() {
-    const status = this.vStatus ? {} : {
-      activated: this.field.activated !== false,
-      visible: this.field.visible !== false,
-      readonly: !!this.field.readonly,
-      disabled: !!this.field.disabled,
-    }
-
     return {
-      status,
+      status: {},
     }
   },
   computed: {
@@ -60,7 +53,15 @@ export default {
     },
     activated: {
       get() {
-        return this.status.activated !== false;
+        if(this.vStatus) {
+          return true;
+        }
+        if(_.isNil(this.status.activated)) {
+          // undefined，未在联动中指定
+          return this.field.activated !== false;
+        } else {
+          return this.status.activated;
+        }
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'activated', val);
@@ -68,7 +69,15 @@ export default {
     },
     visible: {
       get() {
-        return this.status.visible !== false;
+        if(this.vStatus) {
+          return true;
+        }
+        if(_.isNil(this.status.visible)) {
+          // undefined，未在联动中指定
+          return this.field.visible !== false;
+        } else {
+          return this.status.visible;
+        }
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'visible', val);
@@ -76,8 +85,17 @@ export default {
     },
     readonly: {
       get() {
-        return !!(this.parentStatus && this.parentStatus.readonly)
-          || !!this.status.readonly;
+        if(this.vStatus) {
+          return false;
+        }
+        if(_.isNil(this.status.readonly)) {
+          // undefined，未在联动中指定
+          return !!(this.parentStatus && this.parentStatus.readonly) ||
+            !!this.field.readonly;
+        } else {
+          return !!(this.parentStatus && this.parentStatus.readonly) ||
+            this.status.readonly;
+        }
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'readonly', val);
@@ -85,8 +103,17 @@ export default {
     },
     disabled: {
       get() {
-        return !!(this.parentStatus && this.parentStatus.disabled)
-          || !!this.status.disabled;
+        if(this.vStatus) {
+          return false;
+        }
+        if(_.isNil(this.status.disabled)) {
+          // undefined，未在联动中指定
+          return !!(this.parentStatus && this.parentStatus.disabled) ||
+            !!this.field.disabled;
+        } else {
+          return !!(this.parentStatus && this.parentStatus.disabled) ||
+            this.status.disabled;
+        }
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'disabled', val);
