@@ -1,6 +1,7 @@
 <template>
   <el-form-item
     v-if="activated"
+    v-show="visible"
     :label="field.label"
     class="subform-wrap form-item"
   >
