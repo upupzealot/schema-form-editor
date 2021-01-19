@@ -1,55 +1,58 @@
 <template>
-  <el-menu
-    mode="horizontal"
-    @select="selectProject"
-  >
-    <el-submenu index="">
-      <template slot="title">
-        项目：{{ project.name }}
-      </template>
-      <el-menu-item
-        v-for="projectItem in projects"
-        :key="projectItem.id"
-        :index="projectItem.id"
-      >
-        {{ projectItem.name }}
-      </el-menu-item>
-    </el-submenu>
-    <el-button
-      v-if="projectId !== 'default'"
-      type="text"
-      style="margin-top: 10px;"
-      @click="deleteProject"
+  <div>
+    <!-- 这里 dialog 不能放在 el-menu 里面
+    否则按空格会触发 el-menu-item 的模拟 click 事件，导致弹框被关闭 -->
+    <el-menu
+      mode="horizontal"
+      @select="selectProject"
     >
-      删除
-    </el-button>
-
-    <el-button
-      style="margin-top: 10px; float:right;"
-      @click="showDialog"
-    >
-      新建项目
-    </el-button>
-    
-    <div style="margin-top: 18px; float: right; margin-right: 20px;">
-      <span style="color: #ccc; margin-right: 10px;">
-        工具条位置
-      </span>
-      <el-radio
-        v-model="itemBarPosition"
-        label="left"
-        style="margin-right: 10px;"
+      <el-submenu index="">
+        <template slot="title">
+          项目：{{ project.name }}
+        </template>
+        <el-menu-item
+          v-for="projectItem in projects"
+          :key="projectItem.id"
+          :index="projectItem.id"
+        >
+          {{ projectItem.name }}
+        </el-menu-item>
+      </el-submenu>
+      <el-button
+        v-if="projectId !== 'default'"
+        type="text"
+        style="margin-top: 10px;"
+        @click="deleteProject"
       >
-        左侧
-      </el-radio>
-      <el-radio
-        v-model="itemBarPosition"
-        label="bottom"
-      >
-        底部
-      </el-radio>
-    </div>
+        删除
+      </el-button>
 
+      <el-button
+        style="margin-top: 10px; float:right;"
+        @click="showDialog"
+      >
+        新建项目
+      </el-button>
+      
+      <div style="margin-top: 18px; float: right; margin-right: 20px;">
+        <span style="color: #ccc; margin-right: 10px;">
+          工具条位置
+        </span>
+        <el-radio
+          v-model="itemBarPosition"
+          label="left"
+          style="margin-right: 10px;"
+        >
+          左侧
+        </el-radio>
+        <el-radio
+          v-model="itemBarPosition"
+          label="bottom"
+        >
+          底部
+        </el-radio>
+      </div>
+    </el-menu>
     <el-dialog
       title="新建项目"
       :visible.sync="dialogVisible"
@@ -98,7 +101,7 @@
         >确 定</el-button>
       </span>
     </el-dialog>
-  </el-menu>
+  </div>
 </template>
 
 <script>
