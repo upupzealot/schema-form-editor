@@ -9,10 +9,9 @@
         v-if="hasTooltip"
         class="el-icon-info"
       />
-      <template
-        slot="content"
-        v-html="content"
-      />
+      <template slot="content">
+        <span v-html="content" />
+      </template>
     </el-tooltip>
   </span>
 </template>
