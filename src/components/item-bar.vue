@@ -47,6 +47,31 @@
                     />
                   </template>
 
+                  <template v-if="item.type === 'input-ip'">
+                    <div style="display: flex;">
+                      <el-input
+                        v-model="form.input"
+                        placeholder="192"
+                        class="example-component ip-input"
+                      />.
+                      <el-input
+                        v-model="form.input"
+                        placeholder="168"
+                        class="example-component ip-input"
+                      />.
+                      <el-input
+                        v-model="form.input"
+                        placeholder="0"
+                        class="example-component ip-input"
+                      />.
+                      <el-input
+                        v-model="form.input"
+                        placeholder="1"
+                        class="example-component ip-input"
+                      />
+                    </div>
+                  </template>
+
                   <template v-if="item.type === 'select'">
                     <el-select
                       v-model="form.select"
@@ -222,6 +247,23 @@
 .item-bar .example-component {
   pointer-events: none;
 }
+.item-bar .example-component.ip-input {
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  text-align: center;
+}
+.item-bar .example-component.ip-input:first-of-type {
+  margin-left: 0;
+}
+.item-bar .example-component.ip-input:last-of-type {
+  margin-right: 0;
+}
+</style>
+<style>
+.item-bar .example-component.ip-input .el-input__inner {
+  padding: 0 5px;
+  text-align: center;
+}
 </style>
 
 <script>
@@ -250,6 +292,10 @@ export default {
         type: 'input',
         label: '文本框',
         ...itemDefaults['input']
+      }, {
+        type: 'input-ip',
+        label: 'IP 框',
+        ...itemDefaults['input-ip']
       }, {
         type: 'input-number',
         label: '数字框',
