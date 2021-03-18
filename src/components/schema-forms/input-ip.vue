@@ -3,6 +3,7 @@
     <!-- 校验 -->
     <template slot="valid">
       <RegexpValidate />
+      <FuncValidate />
     </template>
   </StandardForm>
 </template>
@@ -11,10 +12,12 @@
 import standard from './standard-mixin';
 
 import RegexpValidate from '@/components/schema-forms/validate-rules/regexp'
+import FuncValidate from '@/components/schema-forms/validate-rules/func'
 
 export default {
   components: {
     RegexpValidate,
+    FuncValidate,
   },
   mixins: [standard],
   computed: {

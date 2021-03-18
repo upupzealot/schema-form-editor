@@ -3,7 +3,10 @@
     :label-width="labelWidth"
     class="rule-item-form"
   >
-    <el-form-item label="提示">
+    <el-form-item
+      v-if="hasNote"
+      label="提示"
+    >
       <el-input
         v-model="note"
         :placeholder="notePlaceholder"
@@ -56,6 +59,12 @@ export default {
       type: Object,
       default() {
         return {};
+      }
+    },
+    hasNote: {
+      type: Boolean,
+      default() {
+        return true;
       }
     }
   },
