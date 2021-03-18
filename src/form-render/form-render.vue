@@ -26,6 +26,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputIp
+          v-if="field.type === 'input-ip'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
@@ -110,6 +117,7 @@ import _ from 'lodash';
 
 import Input from './form-items/input';
 import InputNumber from './form-items/input-number';
+import InputIp from './form-items/input-ip';
 import Select from './form-items/select';
 import Radio from './form-items/radio';
 import Checkbox from './form-items/checkbox';
@@ -126,6 +134,7 @@ export default {
   components: {
     Input,
     InputNumber,
+    InputIp,
     Select,
     Radio,
     Checkbox,

@@ -44,6 +44,13 @@
                     :sup-nodes="supNodeList"
                     class="slot-content"
                   />
+                  <InputIp
+                    v-if="field.type === 'input-ip'"
+                    :field="field"
+                    :data="data"
+                    :sup-nodes="supNodeList"
+                    class="slot-content"
+                  />
                   <Select
                     v-if="field.type === 'select'"
                     :field="field"
@@ -252,6 +259,7 @@ import JsonDialog from './json-dialog';
 
 import Input from '@/components/editor-items/input';
 import InputNumber from '@/components/editor-items/input-number';
+import InputIp from '@/components/editor-items/input-ip';
 import Select from '@/components/editor-items/select';
 import Radio from '@/components/editor-items/radio';
 import Checkbox from '@/components/editor-items/checkbox';
@@ -275,6 +283,7 @@ export default {
     JsonDialog,
     Input,
     InputNumber,
+    InputIp,
     Select,
     Radio,
     Checkbox,

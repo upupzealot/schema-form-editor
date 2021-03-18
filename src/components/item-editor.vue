@@ -21,6 +21,7 @@
       <!-- 表单项编辑器 -->
       <InputForm v-if="field.type === 'input'" />
       <InputNumberForm v-if="field.type === 'input-number'" />
+      <InputIpForm v-if="field.type === 'input-ip'" />
       <SelectForm v-if="field.type === 'select'" />
       <RadioForm v-if="field.type === 'radio'" />
       <CheckboxForm v-if="field.type === 'checkbox'" />
@@ -55,6 +56,7 @@ import FormConfEditor from '@/components/form-conf-editor';
 
 import InputForm from '@/components/schema-forms/input';
 import InputNumberForm from '@/components/schema-forms/input-number';
+import InputIpForm from '@/components/schema-forms/input-ip';
 import SelectForm from '@/components/schema-forms/select';
 import RadioForm from '@/components/schema-forms/radio';
 import CheckboxForm from '@/components/schema-forms/checkbox';
@@ -72,6 +74,7 @@ export default {
   components: {
     InputForm,
     InputNumberForm,
+    InputIpForm,
     FormConfEditor,
     SelectForm,
     RadioForm,
