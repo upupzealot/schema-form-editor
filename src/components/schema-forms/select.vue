@@ -13,6 +13,16 @@
         :field="field"
         class="schema-form"
       />
+      <el-form-item
+        label="可清空"
+        prop="clearable"
+        active-text="是"
+        inactive-text="否"
+      >
+        <el-switch
+          v-model="field.clearable"
+        />
+      </el-form-item>
     </template>
   </StandardForm>
 </template>
