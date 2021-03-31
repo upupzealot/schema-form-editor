@@ -84,9 +84,6 @@ export default {
     }
   },
   computed: {
-    type() {
-      return this.rule.type || 'func';
-    },
     isPreset: {
       get() {
         return this.rule.isPreset !== false;
