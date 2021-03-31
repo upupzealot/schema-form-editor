@@ -13,6 +13,7 @@
       v-model="data[field.name]"
       :disabled="disabled"
       :placeholder="field.placeholder"
+      :clearable="field.clearable"
       style="width: 100%"
     >
       <el-option
