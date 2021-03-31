@@ -5,6 +5,7 @@ export default {
       formKey: '$root',
       formConf: {},
       fieldList: [],
+      validFuncs: [],
       validRules: {},
     }
   },
@@ -17,6 +18,9 @@ export default {
     },
     setFieldList(state, fieldList) {
       state.fieldList = fieldList;
+    },
+    setValidFuncs(state, funcs) {
+      state.validFuncs = funcs;
     },
     setValidRules(state, rules) {
       state.validRules = rules;

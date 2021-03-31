@@ -178,6 +178,7 @@ export default {
             gutter: 20,
           });
           this.$store.commit('$root/setFieldList', schema.fieldList || []);
+          this.$store.commit('$root/setValidFuncs', schema.validFuncs || []);
           this.$store.commit('$root/setValidRules', schema.validRules || {});
         }
       },

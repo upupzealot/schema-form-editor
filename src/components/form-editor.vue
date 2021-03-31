@@ -394,6 +394,9 @@ export default {
         }
       },
     },
+    validFuncs() {
+      return this.form.validFuncs;
+    },
     validRules() {
       return this.form.validRules;
     },
@@ -423,6 +426,7 @@ export default {
       return omitDeep({
         formConf: this.formConf,
         fieldList: mapFields(this.fieldList),
+        validFuncs: this.validFuncs,
         validRules: this.validRules,
       }, ['id']);
     },
@@ -442,6 +446,9 @@ export default {
           }
           if(this.initSchema.fieldList) {
             this.$store.commit(`${newKey}/setFieldList`, this.initSchema.fieldList);
+          }
+          if(this.initSchema.validFuncs) {
+            this.$store.commit(`${newKey}/setValidFuncs`, this.initSchema.validFuncs);
           }
           if(this.initSchema.validRules) {
             this.$store.commit(`${newKey}/setValidRules`, this.initSchema.validRules);
