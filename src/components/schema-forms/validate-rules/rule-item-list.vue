@@ -16,10 +16,7 @@
           :item="rule"
           @delete="deleteItem"
         >
-          <slot
-            :field="field"
-            :rule="rule"
-          />
+          <slot :rule="rule" />
         </DraggableListItem>
       </DraggableList>
     </el-form-item>

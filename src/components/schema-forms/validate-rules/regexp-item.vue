@@ -14,19 +14,16 @@
 </template>
 
 <script>
+import ruleMixin from './rule-mixin';
+
 import RuleItem from './rule-item';
 
 export default {
   components: {
     RuleItem,
   },
+  mixins: [ruleMixin],
   props: {
-    field: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
     rule: {
       type: Object,
       default() {
@@ -35,14 +32,6 @@ export default {
     }
   },
   computed: {
-    type: {
-      get() {
-        return this.rule.type || 'regexp';
-      },
-      set(type) {
-        this.rule.type = type;
-      }
-    },
     regexp: {
       get() {
         return this.rule.regexp;
@@ -58,6 +47,9 @@ export default {
         }
       }
     }
-  }
+  },
+  created() {
+    this.$set(this.rule, 'type', 'regexp');
+  },
 }
 </script>

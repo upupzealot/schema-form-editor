@@ -17,6 +17,7 @@
 
 <script>
 import ruleMinxin from './rule-mixin'
+
 import RuleItem from './rule-item'
 
 export default {
