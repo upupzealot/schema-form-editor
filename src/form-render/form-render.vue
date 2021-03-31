@@ -227,7 +227,14 @@ export default {
                 },
                 trigger: rule.trigger || 'blur',
               }
-              return rule;
+            } else if(rule.type === 'func') {
+              let validateFunc = new Function('rule', 'value', 'callback', rule.func);
+              validateFunc = validateFunc.bind(this);
+
+              return {
+                validator: validateFunc,
+                trigger: rule.trigger || 'blur',
+              }
             }
           })
         })

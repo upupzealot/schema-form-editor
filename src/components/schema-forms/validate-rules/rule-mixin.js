@@ -4,8 +4,19 @@ export default {
     form() {
       return this.$store.state.activeForm;
     },
+    // 当前字段
     field() {
       return this.$store.state.activeField;
+    },
+    // 预设校验函数
+    validFuncs: {
+      get() {
+        return this.form.validFuncs || [];
+      },
+      set(list) {
+        const funcList = list.length ? list : undefined;
+        this.$store.commit(`${this.form.formKey}/setValidFuncs`, funcList);
+      }
     },
     // 当前字段的所有校验规则
     rules: {
