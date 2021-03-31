@@ -87,6 +87,14 @@ export default {
   computed: {
     validFuncs() {
       return this.form.validFuncs || [];
+    },
+    funcStr: {
+      get() {
+        return this.funcForm.func || '';
+      },
+      set(funcStr) {
+        this.$set(this.funcForm, 'func', funcStr);
+      }
     }
   },
   methods: {
