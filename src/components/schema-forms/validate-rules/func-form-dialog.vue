@@ -33,10 +33,10 @@
         <el-col :span="24">
           <el-form-item
             label="函数"
-            prop="funcStr"
+            prop="func"
           >
             <AceEditor
-              v-model="funcForm.funcStr"
+              v-model="funcForm.func"
               lang="javascript"
               theme="github"
               width="100%"

@@ -200,8 +200,12 @@ export default {
     fieldList() {
       return this.schema.fieldList;
     },
+    validFuncs() {
+      return this.schema.validFuncs;
+    },
     validRules() {
       const fieldMap =  _.keyBy(this.fieldList, 'name');
+      const validFuncMap = _.keyBy(this.validFuncs, 'key');
       return _(this.schema.validRules)
         .pickBy(rules => rules && rules.length)
         .mapValues((rules, key) => {
@@ -228,11 +232,18 @@ export default {
                 trigger: rule.trigger || 'blur',
               }
             } else if(rule.type === 'func') {
-              let validateFunc = new Function('rule', 'value', 'callback', rule.func);
-              validateFunc = validateFunc.bind(this);
+              let funcStr = '';
+              if (rule.isPreset !== false) {
+                funcStr = validFuncMap[rule.preset].func;
+              } else {
+                funcStr = rule.func;
+              }
+
+              let validator = new Function('rule', 'value', 'callback', funcStr);
+              validator = validator.bind(this);
 
               return {
-                validator: validateFunc,
+                validator,
                 trigger: rule.trigger || 'blur',
               }
             }
