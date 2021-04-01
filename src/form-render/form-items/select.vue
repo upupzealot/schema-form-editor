@@ -14,6 +14,7 @@
       :disabled="disabled"
       :placeholder="field.placeholder"
       :clearable="field.clearable"
+      :multiple="field.multiple"
       style="width: 100%"
     >
       <el-option
