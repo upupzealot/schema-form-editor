@@ -20,7 +20,7 @@
     >
       <el-select v-model="preset">
         <el-option
-          v-for="validFunc in validFuncs"
+          v-for="validFunc in validFuncList"
           :key="validFunc.key"
           :label="validFunc.name"
           :value="validFunc.key"
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 import ruleMixin from './rule-mixin';
 
 import AceEditor from 'vue2-ace-editor';
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      componentValidators: [],
       tempPreset: undefined,
       tempFunc: undefined,
     }
@@ -89,7 +92,15 @@ export default {
         return this.rule.isPreset !== false;
       },
       set(preset) {
-        this.$set(this.rule, 'isPreset', preset);
+        this.$set(this.rule, 'isPreset', preset === false ? false : undefined);
+      }
+    },
+    isComponent: {
+      get() {
+        return this.rule.isComponent || undefined;
+      },
+      set(isComponent) {
+        this.$set(this.rule, 'isComponent', !!isComponent);
       }
     },
     preset: {
@@ -99,6 +110,9 @@ export default {
       set(preset) {
         this.$set(this.rule, 'preset', preset || undefined);
       }
+    },
+    validFuncList() {
+      return this.componentValidators.concat(this.validFuncs);
     },
     func: {
       get() {
@@ -124,7 +138,19 @@ export default {
         this.preset = undefined;
         this.func = this.tempFunc;
       }
-    }
+    },
+  },
+  mounted() {
+    const { type } = this.field;
+    const className = _.upperFirst(_.camelCase(type));
+    const fieldComponent = require('@/form-render')[className];
+    this.componentValidators = fieldComponent.validators.map(v => {
+      return {
+        ...v,
+        key: `[component]${v.key}`,
+        name: `[组件] ${v.name}`,
+      };
+    }) || [];
   },
   created() {
     this.$set(this.rule, 'type', 'func');

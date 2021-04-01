@@ -209,12 +209,16 @@ export default {
       return _(this.schema.validRules)
         .pickBy(rules => rules && rules.length)
         .mapValues((rules, key) => {
-          const filed = fieldMap[key];
+          const field = fieldMap[key];
+
+          const className = _.upperFirst(_.camelCase(field.type)); // 未考虑 SSwitch
+          const fieldComponent = this.$options.components[className];
+          const componentValidatorMap = _.keyBy(fieldComponent.validators, 'key');
           return rules.map(rule => {
             if(rule.type === 'required') {
               return {
                 required: true,
-                message: rule.note || `请输入${filed.label}`,
+                message: rule.note || `请输入${field.label}`,
                 trigger: rule.trigger || 'blur',
               };
             } else if (rule.type === 'regexp') {
@@ -232,18 +236,25 @@ export default {
                 trigger: rule.trigger || 'blur',
               }
             } else if(rule.type === 'func') {
-              let funcStr = '';
+              let validFunc = null;
               if (rule.isPreset !== false) {
-                funcStr = validFuncMap[rule.preset].func;
+                if (_.startsWith(rule.preset, '[component]')) {
+                  const key = rule.preset.replace('[component]', '');
+                  const validator = componentValidatorMap[key];
+                  validFunc = validator.func;
+                } else {
+                  const funcStr = validFuncMap[rule.preset].func;
+                  validFunc = new Function('rule', 'value', 'callback', funcStr);
+                }
               } else {
-                funcStr = rule.func;
+                const funcStr = rule.func;
+                validFunc = new Function('rule', 'value', 'callback', funcStr);
               }
 
-              let validator = new Function('rule', 'value', 'callback', funcStr);
-              validator = validator.bind(this);
+              validFunc = validFunc.bind(this);
 
               return {
-                validator,
+                validator: validFunc,
                 trigger: rule.trigger || 'blur',
               }
             }
