@@ -23,6 +23,16 @@
           v-model="field.clearable"
         />
       </el-form-item>
+      <el-form-item
+        label="可多选"
+        prop="multiple"
+        active-text="是"
+        inactive-text="否"
+      >
+        <el-switch
+          v-model="field.multiple"
+        />
+      </el-form-item>
     </template>
   </StandardForm>
 </template>
