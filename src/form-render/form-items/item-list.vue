@@ -120,7 +120,8 @@ export default {
     },
     async validate() {
       return new Promise(async resolve => {
-        await this.$refs['subformItem'].map(async subform => {
+        const subformItems = this.$refs['subformItem'] || [];
+        await subformItems.map(async subform => {
           await subform.validate(resolve);
         });
       })
