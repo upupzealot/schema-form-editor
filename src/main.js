@@ -3,10 +3,9 @@ import ElementUI from 'element-ui';
 import md5 from 'md5'
 const clipboardy = require('clipboardy');
 
-import App from './app.vue';
+import App from './portal.vue';
 import FormEditor from '@/components/form-editor.vue'
 import FormRender from './form-render'
-import router from './router';
 import store from './store/store';
 
 import 'element-ui/lib/theme-chalk/index.css';
@@ -23,7 +22,6 @@ Vue.component('FormEditor', FormEditor);
 Vue.component('FormRender', FormRender);
 
 new Vue({
-  router,
   store,
   render: h => h(App),
 }).$mount('#app');
