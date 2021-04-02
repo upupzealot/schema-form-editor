@@ -102,8 +102,6 @@
 </style>
 
 <script>
-import md5 from 'md5';
-
 import ProjectSelect from '@/components/project-select'
 
 import ItemBar from '@/components/item-bar';
