@@ -31,14 +31,9 @@
       class="editor-wrapper"
       :class="{'has-error': hasError}"
     >
-      <AceEditor
+      <CodeEditor
         v-if="editable"
         v-model="contentStr"
-        lang="javascript"
-        theme="github"
-        width="100%"
-        height="160px"
-        @init="initEditor"
       />
     </div>
 
@@ -65,11 +60,11 @@
 </style>
 
 <script>
-import AceEditor from 'vue2-ace-editor';
+import CodeEditor from '@/components/common/code-editor'
 
 export default {
   components: {
-    AceEditor
+    CodeEditor
   },
   props: {
     title: {
@@ -144,18 +139,6 @@ export default {
     }
   },
   methods: {
-    initEditor(editor) {
-      if(!this.editable) {
-        return;
-      }
-
-      require('brace/ext/language_tools');  // language extension prerequsite...
-      require('brace/mode/javascript');     // language
-      require('brace/theme/github');        // theme
-      require('brace/snippets/javascript'); // snippet
-
-      editor.session.setTabSize(2);
-    },
     onCopy() {
       this.$clipboard
         .write(this.contentStr)
