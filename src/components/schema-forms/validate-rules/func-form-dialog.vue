@@ -35,13 +35,9 @@
             label="函数"
             prop="func"
           >
-            <AceEditor
+            <CodeEditor
               v-model="funcForm.func"
-              lang="javascript"
-              theme="github"
-              width="100%"
-              height="200px"
-              @init="initEditor"
+              height="240px"
             />
           </el-form-item>
         </el-col>
@@ -62,11 +58,12 @@
 
 <script>
 import _ from 'lodash';
-import AceEditor from 'vue2-ace-editor';
+
+import CodeEditor from '@/components/common/code-editor';
 
 export default {
   components: {
-    AceEditor,
+    CodeEditor,
   },
   data() {
     return {
@@ -98,14 +95,6 @@ export default {
     }
   },
   methods: {
-    initEditor(editor) {
-      require('brace/ext/language_tools');  // language extension prerequsite...
-      require('brace/mode/javascript');     // language
-      require('brace/theme/github');        // theme
-      require('brace/snippets/javascript'); // snippet
-
-      editor.session.setTabSize(2);
-    },
     show(funcForm) {
       this.mode = funcForm ? 'edit' : 'create';
       this.editKey = funcForm && funcForm.key;

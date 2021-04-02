@@ -1,16 +1,12 @@
 <template>
-  <AceEditor
+  <CodeEditor
     v-model="effect"
-    lang="javascript"
-    theme="github"
-    width="100%"
-    height="160px"
-    @init="initEditor"
+    :temp="tempStr"
   />
 </template>
 
 <script>
-import AceEditor from 'vue2-ace-editor';
+import CodeEditor from '@/components/common/code-editor'
 
 const tempStr = `// watch('someField', val => {
 //   set('activated', val !== 'someValue');
@@ -19,7 +15,12 @@ const tempStr = `// watch('someField', val => {
 
 export default {
   components: {
-    AceEditor,
+    CodeEditor,
+  },
+  data() {
+    return {
+      tempStr,
+    }
   },
   computed: {
     field() {
@@ -30,21 +31,9 @@ export default {
         return this.field.effect || tempStr;
       },
       set(funcStr) {
-        let effect = funcStr;
-        effect = effect === tempStr ? '' : effect;
-        this.$set(this.field, 'effect', effect || undefined);
+        this.$set(this.field, 'effect', funcStr || undefined);
       }
     }
   },
-  methods: {
-    initEditor(editor) {
-      require('brace/ext/language_tools');  // language extension prerequsite...
-      require('brace/mode/javascript');     // language
-      require('brace/theme/github');        // theme
-      require('brace/snippets/javascript'); // snippet
-
-      editor.session.setTabSize(2);
-    }
-  }
 }
 </script>

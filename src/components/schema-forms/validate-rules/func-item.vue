@@ -38,14 +38,7 @@
       label="规则"
       style="margin-bottom: 15px;"
     >
-      <AceEditor
-        v-model="func"
-        lang="javascript"
-        theme="github"
-        width="100%"
-        height="160px"
-        @init="initEditor"
-      />
+      <CodeEditor v-model="func" />
     </el-form-item>
     <RuleItem
       :rule="rule"
@@ -59,14 +52,13 @@ import _ from 'lodash';
 
 import ruleMixin from './rule-mixin';
 
-import AceEditor from 'vue2-ace-editor';
-
+import CodeEditor from '@/components/common/code-editor';
 import RuleItem from './rule-item';
 import FuncPresetDialog from './func-preset-dialog'
 
 export default {
   components: {
-    AceEditor,
+    CodeEditor,
     RuleItem,
     FuncPresetDialog,
   },
@@ -155,15 +147,5 @@ export default {
   created() {
     this.$set(this.rule, 'type', 'func');
   },
-  methods: {
-    initEditor(editor) {
-      require('brace/ext/language_tools');  // language extension prerequsite...
-      require('brace/mode/javascript');     // language
-      require('brace/theme/github');        // theme
-      require('brace/snippets/javascript'); // snippet
-
-      editor.session.setTabSize(2);
-    }
-  }
 }
 </script>
