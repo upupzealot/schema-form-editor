@@ -16,108 +16,105 @@
             @add="onAdd"
             @select="onSelect"
           >
-            <template
+            <el-col
               v-for="field in fieldList"
+              :key="field.id"
+              :span="Number(field.span) || 24"
             >
-              <el-col
-                :key="field.id"
-                :span="Number(field.span) || 24"
+              <DraggableListItem
+                :item="field"
+                :active="field === activeField"
+                @select="onSelect(field)"
+                @delete="onDelete(field)"
               >
-                <DraggableListItem
-                  :item="field"
-                  :active="field === activeField"
-                  @select="onSelect(field)"
-                  @delete="onDelete(field)"
-                >
-                  <!-- 表单项 -->
-                  <Input
-                    v-if="field.type === 'input'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <InputNumber
-                    v-if="field.type === 'input-number'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <InputIp
-                    v-if="field.type === 'input-ip'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <Select
-                    v-if="field.type === 'select'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <Radio
-                    v-if="field.type === 'radio'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <Checkbox
-                    v-if="field.type === 'checkbox'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <SSwitch
-                    v-if="field.type === 'switch'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <DatePicker
-                    v-if="field.type === 'date-picker'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <!-- 工具项 -->
-                  <Blank
-                    v-if="field.type === 'blank'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <Wrapper
-                    v-if="field.type === 'wrapper'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <Subform
-                    v-if="field.type === 'subform'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                  <IItemList
-                    v-if="field.type === 'item-list'"
-                    :field="field"
-                    :data="data"
-                    :sup-nodes="supNodeList"
-                    class="slot-content"
-                  />
-                </DraggableListItem>
-              </el-col>
-            </template>
+                <!-- 表单项 -->
+                <Input
+                  v-if="field.type === 'input'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <InputNumber
+                  v-if="field.type === 'input-number'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <InputIp
+                  v-if="field.type === 'input-ip'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <Select
+                  v-if="field.type === 'select'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <Radio
+                  v-if="field.type === 'radio'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <Checkbox
+                  v-if="field.type === 'checkbox'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <SSwitch
+                  v-if="field.type === 'switch'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <DatePicker
+                  v-if="field.type === 'date-picker'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <!-- 工具项 -->
+                <Blank
+                  v-if="field.type === 'blank'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <Wrapper
+                  v-if="field.type === 'wrapper'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <Subform
+                  v-if="field.type === 'subform'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+                <IItemList
+                  v-if="field.type === 'item-list'"
+                  :field="field"
+                  :data="data"
+                  :sup-nodes="supNodeList"
+                  class="slot-content"
+                />
+              </DraggableListItem>
+            </el-col>
           </DraggableList>
         </el-row>
       </el-form>
