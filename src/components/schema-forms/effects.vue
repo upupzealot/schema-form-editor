@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CodeEditor from '@/components/common/code-editor'
+// import CodeEditor from '@/components/common/code-editor'
 
 const tempStr = `// watch('someField', val => {
 //   set('activated', val !== 'someValue');
@@ -15,7 +15,7 @@ const tempStr = `// watch('someField', val => {
 
 export default {
   components: {
-    CodeEditor,
+    // CodeEditor,
   },
   data() {
     return {

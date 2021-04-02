@@ -60,11 +60,11 @@
 </style>
 
 <script>
-import CodeEditor from '@/components/common/code-editor'
+// import CodeEditor from '@/components/common/code-editor'
 
 export default {
   components: {
-    CodeEditor
+    // CodeEditor
   },
   props: {
     title: {

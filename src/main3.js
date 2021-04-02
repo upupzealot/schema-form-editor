@@ -6,6 +6,7 @@ const clipboardy = require('clipboardy');
 import App from './portal.vue';
 import FormEditor from '@/components/form-editor.vue'
 import FormRender from './form-render'
+import CodeEditor from '@/components/common/code-editor3.vue'
 import store from './store/index3';
 
 import 'element-plus/lib/theme-chalk/index.css';
@@ -23,6 +24,7 @@ app.config.globalProperties.$set = (obj, key, val) => {
 app.use(ElementPlus);
 app.component('FormEditor', FormEditor);
 app.component('FormRender', FormRender);
+app.component('CodeEditor', CodeEditor);
 
 app.use(store);
 app.mount('#app');
