@@ -1,11 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
 import FormModule from './form'
 
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
+export default {
   modules: {
     $root: FormModule,
   },
@@ -31,7 +26,4 @@ const store = new Vuex.Store({
       state.activeForm = form;
     },
   },
-});
-store.commit('setActiveForm', store.state.$root);
-
-export default store;
+}
