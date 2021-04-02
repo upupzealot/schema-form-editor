@@ -6,7 +6,7 @@ const clipboardy = require('clipboardy');
 import App from './portal.vue';
 import FormEditor from '@/components/form-editor.vue'
 import FormRender from './form-render'
-import store from './store/store';
+import store from './store';
 
 import 'element-ui/lib/theme-chalk/index.css';
 
