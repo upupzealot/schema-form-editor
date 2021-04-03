@@ -250,6 +250,7 @@
 </style>
 
 <script>
+import { reactive } from 'vue';
 import _ from 'lodash';
 import omitDeep from 'omit-deep-lodash';
 
@@ -317,7 +318,7 @@ export default {
     data: {
       type: Object,
       default() {
-        return {};
+        return reactive ? reactive({}) : {};
       }
     }
   },
