@@ -8,31 +8,32 @@
     <el-form-item>
       <DraggableList
         style="margin-left: -40px;"
-        :list="rules"
+        :list="ruleItems"
+        item-key="id"
       >
-        <DraggableListItem
-          v-for="rule in ruleItems"
-          :key="rule.id"
-          :item="rule"
-          @delete="deleteItem"
-        >
-          <slot :rule="rule" />
-        </DraggableListItem>
+        <template #item="{ item: rule }">
+          <DraggableListItem
+            :item="rule"
+            @delete="deleteItem"
+          >
+            <slot :rule="rule" />
+          </DraggableListItem>
+        </template>
       </DraggableList>
     </el-form-item>
   </div>
 </template>
 
 <script>
-import DraggableList  from '@/components/common/draggable-list'
-import DraggableListItem  from '@/components/common/draggable-list-item'
+// import DraggableList  from '@/components/common/draggable-list'
+// import DraggableListItem  from '@/components/common/draggable-list-item'
 
 import ruleMinxin from './rule-mixin'
 
 export default {
   components: {
-    DraggableList,
-    DraggableListItem,
+    // DraggableList,
+    // DraggableListItem,
   },
   mixins: [ruleMinxin],
   props: {
@@ -59,6 +60,13 @@ export default {
       }
     }
   },
+  created() {
+    this.rules.forEach(rule => {
+      if(!rule.id) {
+        this.$set(rule, 'id', this.$id());
+      }
+    });
+  },
   methods: {
     createItem() {
       const id = this.$id();
@@ -82,6 +90,6 @@ export default {
         });
       }).catch(() => {});
     },
-  }
+  },
 }
 </script>

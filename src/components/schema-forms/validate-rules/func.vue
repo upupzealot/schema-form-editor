@@ -3,9 +3,8 @@
     label="函数"
     type="func"
   >
-    <template v-slot:default="{ field, rule }">
+    <template #default="{ rule }">
       <FuncItem
-        :field="field"
         :rule="rule"
       />
     </template>

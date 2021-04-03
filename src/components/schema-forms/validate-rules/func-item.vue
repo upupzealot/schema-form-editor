@@ -132,6 +132,9 @@ export default {
       }
     },
   },
+  created() {
+    this.$set(this.rule, 'type', 'func');
+  },
   mounted() {
     const { type } = this.field;
     const className = _.upperFirst(_.camelCase(type));
@@ -143,9 +146,6 @@ export default {
         name: `[组件] ${v.name}`,
       };
     }) || [];
-  },
-  created() {
-    this.$set(this.rule, 'type', 'func');
   },
 }
 </script>
