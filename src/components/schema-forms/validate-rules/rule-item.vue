@@ -101,15 +101,5 @@ export default {
       }
     },
   },
-  watch: {
-    rule: {
-      handler() {
-        if(!this.rule.id) {
-          this.$set(this.rule, 'id', this.$id());
-        }
-      },
-      immediate: true,
-    }
-  }
 }
 </script>

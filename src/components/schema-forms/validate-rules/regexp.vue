@@ -3,9 +3,8 @@
     label="正则"
     type="regexp"
   >
-    <template v-slot:default="{ field, rule }">
+    <template #default="{ rule }">
       <RegexpItem
-        :field="field"
         :rule="rule"
       />
     </template>

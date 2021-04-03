@@ -38,7 +38,7 @@ export default {
       const reqRules = this.rules.filter(r => r.type === 'required');
       // 每次生成一个新的对象，避免多个字段的 required rule 冲突
       const reqRule = reqRules.length ? reqRules[0] : {
-        id: this.$id,
+        id: this.$id(),
         type: 'required',
       };
       return reqRule;
