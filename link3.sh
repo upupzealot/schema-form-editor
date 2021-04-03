@@ -9,3 +9,9 @@ cd ./node_modules/vuex4
 npm link --production
 cd ../../
 npm link vuex
+
+# link vuedraggable
+cd ./node_modules/vuedraggable4
+npm link --production
+cd ../../
+npm link vuedraggable

@@ -43,48 +43,51 @@
     >
       <DraggableList
         :list="options"
+        item-key="id"
         :group="{ put: false, pull: false }"
       >
-        <DraggableListItem
-          v-for="option in options"
-          :key="option.id"
-          :item="option"
-          @delete="deleteOption"
-        >
-          <el-form label-width="40px">
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="键">
-                  <el-input v-model="option.label" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item
-                  label="值"
-                  label-width="40px"
-                >
-                  <el-input v-model="option.value" />
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-form>
-        </DraggableListItem>
-        <el-button @click="createOption">
-          新增选项
-        </el-button>
+        <template #item="{ item: option }">
+          <DraggableListItem
+            :item="option"
+            @delete="deleteOption"
+          >
+            <el-form label-width="40px">
+              <el-row>
+                <el-col :span="12">
+                  <el-form-item label="键">
+                    <el-input v-model="option.label" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item
+                    label="值"
+                    label-width="40px"
+                  >
+                    <el-input v-model="option.value" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
+          </DraggableListItem>
+        </template>
+        <template v-slot:footer>
+          <el-button @click="createOption">
+            新增选项
+          </el-button>
+        </template>
       </DraggableList>
     </el-form-item>
   </div>
 </template>
 
 <script>
-import DraggableList  from '@/components/common/draggable-list'
-import DraggableListItem  from '@/components/common/draggable-list-item'
+// import DraggableList  from '@/components/common/draggable-list'
+// import DraggableListItem  from '@/components/common/draggable-list-item'
 
 export default {
   components: {
-    DraggableList,
-    DraggableListItem,
+    // DraggableList,
+    // DraggableListItem,
   },
   props: {
     field: {
@@ -115,7 +118,8 @@ export default {
     },
     options: {
       get() {
-        return this.field.options ? [...this.field.options] : [];
+        // return this.field.options ? [...this.field.options] : [];
+        return this.field.options || [];
       },
       set(val) {
         this.$set(this.field, 'options', val);

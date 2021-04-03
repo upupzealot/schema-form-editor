@@ -5,118 +5,120 @@
       <el-form
         :label-position="labelPosition"
         :label-width="labelWidth"
-        :gutter="gutter"
       >
-        <el-row :gutter="gutter">
-          <DraggableList
-            :list="fieldList"
-            :group="{ put: true, pull: true }"
-            :selectable="true"
-            style="padding-bottom: 50px;"
-            @add="onAdd"
-            @select="onSelect"
-          >
-            <el-col
-              v-for="field in fieldList"
-              :key="field.id"
-              :span="Number(field.span) || 24"
+        <DraggableList
+          :list="fieldList"
+          :group="{ put: true, pull: true }"
+          :selectable="true"
+          style="padding-bottom: 50px;"
+          list-tag="el-row"
+          :list-data="{ gutter }"
+
+          item-tag="el-col"
+          :item-data="field => {
+            return {
+              span: Number(field.span) || 24
+            }
+          }"
+          @add="onAdd"
+          @select="onSelect"
+        >
+          <template #item="{ item: field }">
+            <DraggableListItem
+              :item="field"
+              :active="field === activeField"
+              @select="onSelect(field)"
+              @delete="onDelete(field)"
             >
-              <DraggableListItem
-                :item="field"
-                :active="field === activeField"
-                @select="onSelect(field)"
-                @delete="onDelete(field)"
-              >
-                <!-- 表单项 -->
-                <Input
-                  v-if="field.type === 'input'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <InputNumber
-                  v-if="field.type === 'input-number'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <InputIp
-                  v-if="field.type === 'input-ip'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <Select
-                  v-if="field.type === 'select'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <Radio
-                  v-if="field.type === 'radio'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <Checkbox
-                  v-if="field.type === 'checkbox'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <SSwitch
-                  v-if="field.type === 'switch'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <DatePicker
-                  v-if="field.type === 'date-picker'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <!-- 工具项 -->
-                <Blank
-                  v-if="field.type === 'blank'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <Wrapper
-                  v-if="field.type === 'wrapper'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <Subform
-                  v-if="field.type === 'subform'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-                <IItemList
-                  v-if="field.type === 'item-list'"
-                  :field="field"
-                  :data="data"
-                  :sup-nodes="supNodeList"
-                  class="slot-content"
-                />
-              </DraggableListItem>
-            </el-col>
-          </DraggableList>
-        </el-row>
+              <!-- 表单项 -->
+              <Input
+                v-if="field.type === 'input'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <InputNumber
+                v-if="field.type === 'input-number'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <InputIp
+                v-if="field.type === 'input-ip'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <Select
+                v-if="field.type === 'select'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <Radio
+                v-if="field.type === 'radio'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <Checkbox
+                v-if="field.type === 'checkbox'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <SSwitch
+                v-if="field.type === 'switch'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <DatePicker
+                v-if="field.type === 'date-picker'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <!-- 工具项 -->
+              <Blank
+                v-if="field.type === 'blank'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <Wrapper
+                v-if="field.type === 'wrapper'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <Subform
+                v-if="field.type === 'subform'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+              <IItemList
+                v-if="field.type === 'item-list'"
+                :field="field"
+                :data="data"
+                :sup-nodes="supNodeList"
+                class="slot-content"
+              />
+            </DraggableListItem>
+          </template>
+        </DraggableList>
       </el-form>
     </el-col>
 
@@ -176,6 +178,7 @@
     <!-- 表单预览对话框 -->
     <el-dialog
       v-if="previewDialogVisible"
+      v-model="previewDialogVisible"
       title="表单预览"
       width="70%"
       :visible.sync="previewDialogVisible"
@@ -250,8 +253,8 @@
 import _ from 'lodash';
 import omitDeep from 'omit-deep-lodash';
 
-import DraggableList from '@/components/common/draggable-list';
-import DraggableListItem from '@/components/common/draggable-list-item';
+// import DraggableList from '@/components/common/draggable-list';
+// import DraggableListItem from '@/components/common/draggable-list-item';
 import JsonDialog from './json-dialog';
 
 import Input from '@/components/editor-items/input';
@@ -275,8 +278,8 @@ import FormRender from '../form-render';
 export default {
   name: 'FormEditor',
   components: {
-    DraggableList,
-    DraggableListItem,
+    // DraggableList,
+    // DraggableListItem,
     JsonDialog,
     Input,
     InputNumber,

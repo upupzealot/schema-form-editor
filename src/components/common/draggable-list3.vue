@@ -2,6 +2,7 @@
   <Draggable
     ref="draggable"
     :list="list"
+    :item-key="itemKey"
     :handle="handle"
     :group="componentGroup"
     :clone="clone"
@@ -13,15 +14,14 @@
     @add="addItem"
     @end="selectItem"
   >
-    <template v-for="item in list">
+    <template #item="{ element }">
       <component
         :is="itemTag"
-        :key="item[itemKey]"
-        v-bind="getItemData(itemData, item)"
+        v-bind="getItemData(itemData, element)"
       >
         <slot
           name="item"
-          v-bind="{ item }"
+          v-bind="{ item: element }"
         />
       </component>
     </template>

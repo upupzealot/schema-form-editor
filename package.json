@@ -20,9 +20,10 @@
     "schema-form-render": "*",
     "vue2": "npm:vue@2",
     "vue2-ace-editor": "^0.0.15",
-    "vuedraggable": "^2.24.1",
     "vue3": "npm:vue@3",
     "vue3-ace-editor": "^2.0.2",
+    "vuedraggable2": "npm:vuedraggable@2",
+    "vuedraggable4": "npm:vuedraggable@4",
     "vuex3": "npm:vuex@3",
     "vuex4": "npm:vuex@4"
   },
