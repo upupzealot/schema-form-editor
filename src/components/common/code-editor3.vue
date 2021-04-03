@@ -5,6 +5,7 @@
     theme="github"
     width="100%"
     :height="height"
+    :style="`height: ${height}`"
     @init="initEditor"
   />
 </template>
