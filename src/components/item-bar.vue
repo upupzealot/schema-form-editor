@@ -1,12 +1,3 @@
-<style scoped>
-.layout-container.bottom .example-form-item-list .example-form-item {
-  width: 300px;
-}
-.layout-container.bottom .el-divider {
-  display: none;
-}
-</style>
-
 <template>
   <el-row>
     <el-col class="item-bar">
@@ -14,20 +5,24 @@
         <el-divider content-position="left">
           表单项
         </el-divider>
-        <el-row :gutter="gutter">
+        <el-row
+          :gutter="gutter"
+          style="margin: 0;"
+        >
           <DraggableList
             :list="itemList"
+            item-key="type"
             handle=".item-bar .example-form-item"
             :group="{ pull: 'clone', put: false }"
             :clone="onClone"
             :sortable="false"
-            class="example-form-item-list"
+
+            list-tag="el-row"
+            :list-data="{ class: ['draggable-list', 'example-form-item-list'] }"
+            item-tag="el-col"
+            :item-data="{ class: 'example-form-item' }"
           >
-            <el-col
-              v-for="item in itemList"
-              :key="item.type"
-              class="example-form-item"
-            >
+            <template #item="{ item }">
               <DraggableListItem :has-control="false">
                 <el-form-item
                   :label="item.label"
@@ -144,26 +139,27 @@
                   </template>
                 </el-form-item>
               </DraggableListItem>
-            </el-col>
+            </template>
           </DraggableList>
         </el-row>
         <el-divider content-position="left">
           工具项
         </el-divider>
-        <el-row :gutter="gutter">
+        <el-row>
           <DraggableList
             :list="utilList"
+            item-key="type"
             handle=".item-bar .example-form-item"
             :group="{ pull: 'clone' }"
             :clone="onClone"
             :sort="false"
-            class="example-form-item-list"
+            
+            list-tag="el-row"
+            :list-data="{ class: ['draggable-list', 'example-form-item-list'] }"
+            item-tag="el-col"
+            :item-data="{ class: 'example-form-item' }"
           >
-            <el-col
-              v-for="util in utilList"
-              :key="util.type"
-              class="example-form-item"
-            >
+            <template #item="{ item: util }">
               <DraggableListItem :has-control="false">
                 <el-form-item
                   :label="util.label"
@@ -225,7 +221,7 @@
                   </template>
                 </el-form-item>
               </DraggableListItem>
-            </el-col>
+            </template>
           </DraggableList>
         </el-row>
       </el-form>
@@ -240,6 +236,16 @@
 .item-bar .draggable-list-item,
 .item-bar .draggable-list-item .el-form-item__label {
   cursor: move;
+}
+
+.example-form-item-list .example-form-item {
+  width: 100%;
+}
+.bottom .example-form-item-list .example-form-item {
+  width: 300px;
+}
+.bottom .el-divider {
+  display: none;
 }
 </style>
 
@@ -268,16 +274,16 @@
 
 <script>
 import _ from 'lodash';
-import DraggableList from '@/components/common/draggable-list';
-import DraggableListItem from '@/components/common/draggable-list-item';
+// import DraggableList from '@/components/common/draggable-list';
+// import DraggableListItem from '@/components/common/draggable-list-item';
 
 // import { defaults as itemDefaults } from 'schema-form-render';
 import { defaults as itemDefaults } from '../form-render';
 
 export default {
   components: {
-    DraggableList,
-    DraggableListItem,
+    // DraggableList,
+    // DraggableListItem,
   },
   data() {
     return {
