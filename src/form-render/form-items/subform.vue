@@ -16,11 +16,12 @@
 import standardMixin from './standard-mixin'
 
 import FormRender from '../form-render'
+import isVue2 from 'vue';
 
 export default {
   name: 'Subform',
   components: {
-    FormRender: () => import('../form-render'),
+    FormRender: isVue2 ? () => import('../form-render') : FormRender,
   },
   mixins: [standardMixin],
   props: {
