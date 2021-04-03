@@ -12,22 +12,22 @@
     <DraggableList
       :list="items"
     >
-      <DraggableListItem
-        v-for="(item, i) in items"
-        :key="i"
-        :has-control="editable"
-        @delete="deleteItem(item)"
-      >
-        <Subform
-          ref="subformItem"
-          :field="field"
-          :schema="subformSchema"
-          :data="item"
-          :sup-nodes="supNodes"
-          :scenario="scenario"
-          style="width: 100%;"
-        />
-      </DraggableListItem>
+      <template #item="{ item }">
+        <DraggableListItem
+          :has-control="editable"
+          @delete="deleteItem(item)"
+        >
+          <Subform
+            ref="subformItem"
+            :field="field"
+            :schema="subformSchema"
+            :data="item"
+            :sup-nodes="supNodes"
+            :scenario="scenario"
+            style="width: 100%;"
+          />
+        </DraggableListItem>
+      </template>
     </DraggableList>
 
     <el-button
@@ -64,15 +64,15 @@
 <script>
 import standardMixin from './standard-mixin'
 
-import DraggableList from '../common/draggable-list'
-import DraggableListItem from '../common/draggable-list-item'
+// import DraggableList from '../common/draggable-list'
+// import DraggableListItem from '../common/draggable-list-item'
 import Subform from './subform'
 
 export default {
   name: 'ItemList',
   components: {
-    DraggableList,
-    DraggableListItem,
+    // DraggableList,
+    // DraggableListItem,
     Subform
   },
   mixins: [standardMixin],
