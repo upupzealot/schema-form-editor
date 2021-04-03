@@ -5,6 +5,7 @@
     :label-position="labelPosition"
     :model="data"
     :rules="validRules"
+    style="margin-bottom: -15px;"
   >
     <el-row :gutter="gutter">
       <el-col
