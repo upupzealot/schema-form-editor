@@ -62,17 +62,19 @@
 </style>
 
 <script>
+import isVue2 from 'vue';
+
 import standardMixin from './standard-mixin'
 
-// import DraggableList from '../common/draggable-list'
-// import DraggableListItem from '../common/draggable-list-item'
+import DraggableList3 from '../common/draggable-list3'
+import DraggableListItem from '../common/draggable-list-item'
 import Subform from './subform'
 
 export default {
   name: 'ItemList',
   components: {
-    // DraggableList,
-    // DraggableListItem,
+    DraggableList: isVue2 ? () => import('../common/draggable-list3') : DraggableList3,
+    DraggableListItem,
     Subform
   },
   mixins: [standardMixin],
