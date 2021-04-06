@@ -155,6 +155,7 @@
     </el-col>
     <!-- 结构预览对话框 -->
     <JsonDialog
+      v-model:visible="schemaDialogVisible"
       title="Schema"
       :visible.sync="schemaDialogVisible"
       :content="schema"
@@ -162,6 +163,7 @@
     />
     <!-- 数据预览对话框 -->
     <JsonDialog
+      v-model:visible="dataDialogVisible"
       title="Data"
       :visible.sync="dataDialogVisible"
       :content="data"
@@ -169,6 +171,7 @@
     />
     <!-- Config 对话框 -->
     <JsonDialog
+      v-model:visible="propDialogVisible"
       title="Config"
       :visible.sync="propDialogVisible"
       :content.sync="config"
