@@ -111,5 +111,17 @@ export default {
       }
     }
   },
+  watch: {
+    'field.name': {
+      handler(newName, oldName) {
+        if(newName && oldName) {
+          this.$store.commit(`${this.form.formKey}/updateFieldName`, {
+            newName,
+            oldName,
+          });
+        }
+      }
+    }
+  }
 };
 </script>
