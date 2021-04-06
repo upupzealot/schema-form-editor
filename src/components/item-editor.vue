@@ -109,12 +109,21 @@ export default {
         const value = Number(n);
         this.$set(this.field, 'span', spanValues.includes(value) ? value : undefined);
       }
+    },
+    fieldName() {
+      // 用这个 computed 给 watch 使用，同时监控 id 和 name
+      return {
+        id: this.field.id,
+        name: this.field.name,
+      }
     }
   },
   watch: {
-    'field.name': {
-      handler(newName, oldName) {
-        if(newName && oldName) {
+    fieldName: {
+      handler({ id: newId, name: newName}, { id: oldId, name: oldName}) {
+        // id 的改变是切换字段触发的
+        // 只有当 id 不变时，name 的变化才触发 updateFieldName
+        if(newId === oldId && newName && oldName) {
           this.$store.commit(`${this.form.formKey}/updateFieldName`, {
             newName,
             oldName,
