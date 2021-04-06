@@ -208,7 +208,7 @@ export default {
       const fieldMap =  _.keyBy(this.fieldList, 'name');
       const validFuncMap = _.keyBy(this.validFuncs, 'key');
       return _(this.schema.validRules)
-        .pickBy(rules => rules && rules.length)
+        .pickBy((rules, key) => fieldMap[key] && rules && rules.length)
         .mapValues((rules, key) => {
           const field = fieldMap[key];
 
