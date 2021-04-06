@@ -8,7 +8,7 @@ import FormEditor from '@/components/form-editor.vue'
 import FormRender from './form-render'
 import CodeEditor from '@/components/common/code-editor3.vue'
 import DraggableList from '@/components/common/draggable-list3';
-import DraggableListItem from '@/components/common/draggable-list-item3';
+import DraggableListItem from '@/components/common/draggable-list-item';
 import store from './store/index3';
 
 import 'element-plus/lib/theme-chalk/index.css';
