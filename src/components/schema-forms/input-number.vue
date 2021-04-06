@@ -1,6 +1,6 @@
 <template>
   <StandardForm>
-    <template slot="basic">
+    <template v-slot:basic>
       <el-row>
         <el-col :span="12">
           <el-form-item

@@ -6,7 +6,7 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
-    <template slot="label">
+    <template v-slot:label>
       <Tooltip :field="field" />
     </template>
     <el-input
@@ -19,13 +19,13 @@
     >
       <template
         v-if="field.prepend"
-        slot="prepend"
+        v-slot:prepend
       >
         {{ field.prepend }}
       </template>
       <template
         v-if="field.append"
-        slot="append"
+        v-slot:append
       >
         {{ field.append }}
       </template>

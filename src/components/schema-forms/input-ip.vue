@@ -1,7 +1,7 @@
 <template>
   <StandardForm>
     <!-- 校验 -->
-    <template slot="valid">
+    <template v-slot:valid>
       <RegexpValidate />
       <FuncValidate />
     </template>

@@ -200,7 +200,7 @@
           </el-card>
         </el-col>
       </el-row>
-      <template slot="footer">
+      <template v-slot:footer>
         <el-button
           type="default"
           style="float: left;"

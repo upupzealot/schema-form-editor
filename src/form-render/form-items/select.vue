@@ -6,7 +6,7 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
   >
-    <template slot="label">
+    <template v-slot:label>
       <Tooltip :field="field" />
     </template>
     <el-select

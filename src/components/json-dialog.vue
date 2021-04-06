@@ -37,7 +37,7 @@
       />
     </div>
 
-    <template slot="footer">
+    <template v-slot:footer>
       <!-- 关闭按钮 -->
       <el-button
         type="primary"

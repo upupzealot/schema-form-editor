@@ -1,6 +1,6 @@
 <template>
   <StandardForm>
-    <template slot="basic">
+    <template v-slot:basic>
       <el-form-item
         label="组件模式"
         class="schema-form"
