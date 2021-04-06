@@ -34,5 +34,12 @@ export default {
         ...diff,
       };
     },
+    updateFieldName(state, {newName, oldName}) {
+      const oldRules = state.validRules[oldName];
+      if(oldRules) {
+        state.validRules[newName] = oldRules;
+        state.validRules[oldName] = undefined;
+      }
+    }
   },
 }
