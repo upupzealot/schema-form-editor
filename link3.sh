@@ -1,17 +1,21 @@
-# link vue
-cd ./node_modules/vue3
-npm link --production
-cd ../../
-npm link vue
+isVue3=`cat ./node_modules/vue/package.json | grep "\"version\": \"3"`
 
-# link vuex
-cd ./node_modules/vuex4
-npm link --production
-cd ../../
-npm link vuex
+if [ -z "$isVue3" ]; then
+  # link vue
+  cd ./node_modules/vue3
+  npm link --production
+  cd ../../
+  npm link vue
 
-# link vuedraggable
-cd ./node_modules/vuedraggable4
-npm link --production
-cd ../../
-npm link vuedraggable
+  # link vuex
+  cd ./node_modules/vuex4
+  npm link --production
+  cd ../../
+  npm link vuex
+
+  # link vuedraggable
+  cd ./node_modules/vuedraggable4
+  npm link --production
+  cd ../../
+  npm link vuedraggable
+fi
