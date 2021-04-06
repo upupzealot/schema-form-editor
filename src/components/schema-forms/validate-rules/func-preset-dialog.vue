@@ -54,8 +54,8 @@
         </el-table-column>
       </el-table>
     </div>
-    <span
-      slot="footer"
+    <template
+      v-slot:footer
       class="dialog-footer"
     >
       <el-button @click="hide">取 消</el-button>
@@ -63,7 +63,7 @@
         type="primary"
         @click="hide"
       >确 定</el-button>
-    </span>
+    </template>
   </el-dialog>
 </template>
 

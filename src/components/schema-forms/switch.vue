@@ -1,6 +1,6 @@
 <template>
   <StandardForm>
-    <template slot="basic">
+    <template v-slot:basic>
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="开-键">

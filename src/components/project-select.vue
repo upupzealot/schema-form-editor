@@ -7,7 +7,7 @@
       @select="selectProject"
     >
       <el-submenu index="">
-        <template slot="title">
+        <template v-slot:title>
           项目：{{ project.name }}
         </template>
         <el-menu-item
@@ -90,8 +90,8 @@
           />
         </el-form-item>
       </el-form>
-      <span
-        slot="footer"
+      <template
+        v-slot:footer
         class="dialog-footer"
       >
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -99,7 +99,7 @@
           type="primary"
           @click="submitDialog"
         >确 定</el-button>
-      </span>
+      </template>
     </el-dialog>
   </div>
 </template>

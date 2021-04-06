@@ -1,6 +1,6 @@
 <template>
   <StandardForm>
-    <template slot="basic">
+    <template v-slot:basic>
       <el-form-item
         label="组件模式"
         prop="schema-form"
@@ -57,7 +57,7 @@
     </template>
 
     <!-- 校验 -->
-    <template slot="valid">
+    <template v-slot:valid>
       <RegexpValidate />
     </template>
   </StandardForm>
