@@ -1,5 +1,6 @@
 <template>
   <el-dialog
+    v-model="dialogVisible"
     title="预设函数"
     :visible.sync="dialogVisible"
     :append-to-body="true"
@@ -58,11 +59,15 @@
       v-slot:footer
       class="dialog-footer"
     >
-      <el-button @click="hide">取 消</el-button>
+      <el-button @click="hide">
+        取 消
+      </el-button>
       <el-button
         type="primary"
         @click="hide"
-      >确 定</el-button>
+      >
+        确 定
+      </el-button>
     </template>
   </el-dialog>
 </template>

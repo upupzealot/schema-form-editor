@@ -1,5 +1,6 @@
 <template>
   <el-dialog
+    v-model="dialogVisible"
     :title="title"
     :visible.sync="dialogVisible"
   >

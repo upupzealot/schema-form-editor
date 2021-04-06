@@ -54,6 +54,7 @@
       </div>
     </el-menu>
     <el-dialog
+      v-model="dialogVisible"
       title="新建项目"
       :visible.sync="dialogVisible"
       width="30%"
@@ -94,11 +95,15 @@
         v-slot:footer
         class="dialog-footer"
       >
-        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button @click="dialogVisible = false">
+          取 消
+        </el-button>
         <el-button
           type="primary"
           @click="submitDialog"
-        >确 定</el-button>
+        >
+          确 定
+        </el-button>
       </template>
     </el-dialog>
   </div>
