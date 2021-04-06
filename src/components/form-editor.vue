@@ -12,7 +12,7 @@
           :selectable="true"
           style="padding-bottom: 50px;"
           list-tag="el-row"
-          :list-data="{ gutter }"
+          :list-data="{ props: { gutter }, gutter }"
 
           item-tag="el-col"
           :item-data="field => {
