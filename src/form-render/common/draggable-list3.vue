@@ -52,7 +52,7 @@
 
 <script>
 import _ from 'lodash';
-import Draggable from 'vuedraggable';
+import Draggable from 'vuedraggable4';
 
 export default {
   components: {

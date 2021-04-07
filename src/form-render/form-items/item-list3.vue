@@ -64,13 +64,14 @@
 <script>
 import standardMixin from './standard-mixin'
 
+import DraggableList3 from '../common/draggable-list3'
 import DraggableListItem from '../common/draggable-list-item'
 import Subform from './subform'
 
 export default {
   name: 'ItemList',
   components: {
-    DraggableList: () => import('../common/draggable-list'),
+    DraggableList: DraggableList3,
     DraggableListItem,
     Subform
   },
