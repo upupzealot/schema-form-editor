@@ -22,6 +22,7 @@ app.config.globalProperties.$clipboard = clipboardy;
 app.config.globalProperties.$set = (obj, key, val) => {
   obj[key] = val;
 };
+app.config.globalProperties.$delete = (obj, key) => { delete obj[key] };
 
 app.use(ElementPlus);
 app.component('FormEditor', FormEditor);
