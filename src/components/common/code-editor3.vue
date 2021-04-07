@@ -1,6 +1,6 @@
 <template>
   <AceEditor
-    v-model="codeStr"
+    v-model:value="codeStr"
     lang="javascript"
     theme="github"
     width="100%"
@@ -23,11 +23,11 @@ export default {
     AceEditor: VAceEditor,
   },
   model: {
-    prop: 'code',
-    event: 'change',
+    prop: 'modelValue',
+    event: 'update:modelValue',
   },
   props: {
-    code: {
+    modelValue: {
       type: String,
       default() {
         return '';
@@ -49,11 +49,11 @@ export default {
   computed: {
     codeStr: {
       get() {
-        return this.code || this.temp;
+        return this.modelValue || this.temp;
       },
-      set(code) {
-        const content = code === this.temp ? '' : code;
-        this.$emit('change', content);
+      set(val) {
+        const content = val === this.temp ? '' : val;
+        this.$emit('update:modelValue', content);
       }
     }
   },
