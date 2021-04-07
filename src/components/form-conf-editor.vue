@@ -9,7 +9,7 @@
     <el-form-item label="列间距">
       <el-input
         v-model.number="gutter"
-        :placeholder="defaults.gutter"
+        :placeholder="`${defaults.gutter}`"
       />
     </el-form-item>
     <el-form-item
