@@ -70,6 +70,16 @@ export default {
         }
       },
       immediate: true,
+    },
+    'field.remoteConf.func': {
+      handler(func) {
+        let fetchFunc = new Function(func);
+        fetchFunc = fetchFunc.bind(this);
+        try {
+          this.optionList = fetchFunc() || [];
+        } catch (err) {}
+      },
+      immediate: true,
     }
   },
 };
