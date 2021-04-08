@@ -128,7 +128,10 @@ import DatePicker from './form-items/date-picker';
 import Blank from './form-items/blank';
 import Wrapper from './form-items/wrapper';
 import Subform from './form-items/subform';
-import ItemList from './form-items/item-list';
+// import ItemList from './form-items/item-list';
+import isVue2 from 'vue';
+const IL = isVue2 ? require('./form-items/item-list.vue') : require('./form-items/item-list3.vue');
+const ItemList = IL.default;
 
 export default {
   name: 'FormRender',
