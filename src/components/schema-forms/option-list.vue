@@ -1,39 +1,62 @@
 <template>
   <div>
-    <el-form-item label="远程选项">
-      <el-switch v-model="isRemote" />
-    </el-form-item>
-    
     <el-row>
+      <el-col :span="12">
+        <el-form-item label="远程选项">
+          <el-switch v-model="isRemote" />
+        </el-form-item>
+      </el-col>
+      <el-col
+        v-if="isRemote"
+        :span="12"
+      >
+        <el-form-item label="类型">
+          <el-switch
+            v-model="remoteConf.type"
+            inactive-value="api"
+            inactive-text="API"
+            active-value="func"
+            active-text="函数"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
+    
+    <el-row v-if="isRemote && remoteConf.type === 'api'">
       <el-col :span="24">
         <el-form-item
-          v-if="isRemote"
           label="选项 API"
         >
-          <el-input v-model="remoteConf.api" />
+          <el-input v-model="api" />
         </el-form-item>
       </el-col>
       <el-col :span="12">
         <el-form-item
-          v-if="isRemote"
           label="标签字段"
         >
           <el-input
-            v-model="remoteConf.labelKey"
+            v-model="labelKey"
             placeholder="name"
           />
         </el-form-item>
       </el-col>
       <el-col :span="12">
         <el-form-item
-          v-if="isRemote"
           label="值字段"
         >
           <el-input
-            v-model="remoteConf.valueKey"
+            v-model="valueKey"
             placeholder="id"
           />
         </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row v-if="isRemote && remoteConf.type === 'func'">
+      <el-col :span="24">
+        <CodeEditor
+          v-model="func"
+        />
       </el-col>
     </el-row>
     
@@ -104,6 +127,11 @@ export default {
         animation: 200,
         disabled: false,
       },
+      tempOptions: this.field.options || [],
+      tempFunc: this.field.remoteConf && this.field.remoteConf.func || '',
+      tempApi: this.field.remoteConf && this.field.remoteConf.api || '',
+      tempValueKey: this.field.remoteConf && this.field.remoteConf.valueKey || '',
+      tempLabelKey: this.field.remoteConf && this.field.remoteConf.labelKey || '',
       remoteConf: {},
     };
   },
@@ -116,33 +144,114 @@ export default {
         this.$set(this.field, 'isRemote', !!val ? true : undefined);
       }
     },
-    options: {
+    isFunc() {
+      return this.isRemote && this.remoteConf.type === 'func';
+    },
+    isApi() {
+      return this.isRemote && this.remoteConf.type === 'api';
+    },
+    func: {
       get() {
-        // return this.field.options ? [...this.field.options] : [];
-        return this.field.options || [];
+        return this.isFunc ? this.tempFunc : '';
       },
       set(val) {
-        this.$set(this.field, 'options', val);
+        if(val || val === '') {
+          this.tempFunc = val;
+        }
+        if(this.isFunc) {
+          this.$set(this.remoteConf, 'func', val);
+        }
+      }
+    },
+    api: {
+      get() {
+        return this.isApi ? this.tempApi : '';
+      },
+      set(val) {
+        if(val || val === '') {
+          this.tempApi = val;
+        }
+        if(this.isApi) {
+          this.$set(this.remoteConf, 'api', val);
+        }
+      }
+    },
+    valueKey: {
+      get() {
+        return this.isApi ? this.tempValueKey : '';
+      },
+      set(val) {
+        if(val || val === '') {
+          this.tempValueKey = val;
+        }
+        if(this.isApi) {
+          this.$set(this.remoteConf, 'valueKey', val);
+        }
+      }
+    },
+    labelKey: {
+      get() {
+        return this.isApi ? this.tempLabelKey : '';
+      },
+      set(val) {
+        if(val || val === '') {
+          this.tempLabelKey = val;
+        }
+        if(this.isApi) {
+          this.$set(this.remoteConf, 'labelKey', val);
+        }
+      }
+    },
+    options: {
+      get() {
+        return this.isRemote ? [] : this.tempOptions;
+      },
+      set(val) {
+        this.tempOptions = val;
+        this.$set(this.field, 'options', this.options);
       }
     } 
   },
   watch: {
-    isRemote(newValue) {
-      if(newValue) {
-        this.$delete(this.field, 'options');
-        this.$set(this.field, 'remoteConf', this.remoteConf);
-        this.$set(this.field, 'isRemote', true);
-      } else {
-        this.$set(this.field, 'options', this.options);
-        this.$delete(this.field, 'remoteConf');
-        this.$delete(this.field, 'isRemote');
-      }
+    isRemote: {
+      handler(newValue) {
+        if(newValue) {
+          this.$delete(this.field, 'options');
+          this.$set(this.field, 'remoteConf', this.remoteConf);
+          this.$set(this.field, 'isRemote', true);
+        } else {
+          this.$set(this.field, 'options', this.options);
+          this.$delete(this.field, 'remoteConf');
+          this.$delete(this.field, 'isRemote');
+        }
+      },
+      immediate: true,
     },
     remoteConf: {
       handler(newValue) {
         this.$set(this.field, 'remoteConf', this.remoteConf);
       },
       deep: true,
+    },
+    'remoteConf.type': {
+      handler(type) {
+        if(type === 'api') {
+          if(this.field.remoteConf) {
+            this.$delete(this.remoteConf, 'func');
+            this.$set(this.remoteConf, 'api', this.tempApi);
+            this.$set(this.remoteConf, 'valueKey', this.tempValueKey);
+            this.$set(this.remoteConf, 'labelKey', this.tempLabelKey);
+          }
+        } else if(type === 'func') {
+          if(this.field.remoteConf) {
+            this.$delete(this.remoteConf, 'api');
+            this.$delete(this.remoteConf, 'valueKey');
+            this.$delete(this.remoteConf, 'labelKey');
+            this.$set(this.remoteConf, 'func', this.tempFunc);
+          }
+        }
+      },
+      immediate: true,
     }
   },
   methods: {
