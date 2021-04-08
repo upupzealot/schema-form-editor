@@ -132,7 +132,7 @@ export default {
       tempApi: this.field.remoteConf && this.field.remoteConf.api || '',
       tempValueKey: this.field.remoteConf && this.field.remoteConf.valueKey || '',
       tempLabelKey: this.field.remoteConf && this.field.remoteConf.labelKey || '',
-      remoteConf: {},
+      remoteConf: this.field.remoteConf || {},
     };
   },
   computed: {
