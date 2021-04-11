@@ -28,7 +28,7 @@
 import editorItemMixin from '@/framework/common/editor-item/mixin'
 
 // 全局引入，避免循环引用
-// import FormEditor from '@/components/form-editor'
+// import FormEditor from '@/framework/form-editor'
 
 export default {
   type: 'subform',

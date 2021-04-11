@@ -91,8 +91,8 @@
 
 <script>
 import _ from 'lodash';
-// import DraggableList from '@/components/common/draggable-list';
-// import DraggableListItem from '@/components/common/draggable-list-item';
+// import DraggableList from '@/framework/common/draggable-list';
+// import DraggableListItem from '@/framework/common/draggable-list-item';
 
 import { ToolbarItems, ToolbarUtils } from '../ui-kit/element-ui/index'
 

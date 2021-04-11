@@ -181,8 +181,8 @@ import { reactive } from 'vue';
 import _ from 'lodash';
 import omitDeep from 'omit-deep-lodash';
 
-// import DraggableList from '@/components/common/draggable-list';
-// import DraggableListItem from '@/components/common/draggable-list-item';
+// import DraggableList from '@/framework/common/draggable-list';
+// import DraggableListItem from '@/framework/common/draggable-list-item';
 import JsonDialog from './common/json-dialog';
 
 import { EditorItems } from '@/ui-kit/element-ui/index'

@@ -52,7 +52,7 @@ import _ from 'lodash';
 
 import ruleMixin from './rule-mixin';
 
-// import CodeEditor from '@/components/common/code-editor';
+// import CodeEditor from '@/framework/common/code-editor';
 import RuleItem from './rule-item';
 import FuncPresetDialog from './func-preset-dialog'
 

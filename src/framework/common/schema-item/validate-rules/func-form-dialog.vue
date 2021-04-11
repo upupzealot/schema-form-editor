@@ -64,7 +64,7 @@
 <script>
 import _ from 'lodash';
 
-// import CodeEditor from '@/components/common/code-editor';
+// import CodeEditor from '@/componframeworkents/common/code-editor';
 
 export default {
   components: {

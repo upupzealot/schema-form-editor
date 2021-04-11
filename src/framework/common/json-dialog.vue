@@ -61,7 +61,7 @@
 </style>
 
 <script>
-// import CodeEditor from '@/components/common/code-editor'
+// import CodeEditor from '@/framework/common/code-editor'
 
 export default {
   components: {

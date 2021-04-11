@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import CodeEditor from '@/components/common/code-editor'
+// import CodeEditor from '@/framework/common/code-editor'
 
 const tempStr = `// watch('someField', val => {
 //   set('activated', val !== 'someValue');
