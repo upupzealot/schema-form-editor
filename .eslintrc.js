@@ -17,5 +17,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'vue/valid-v-model': 'off',
+    'vue/no-deprecated-v-bind-sync': 'off',
   },
 };

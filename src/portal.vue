@@ -7,7 +7,7 @@
       <div>
         <div class="item-bar-container">
           <el-card shadow="never">
-            <ItemBar />
+            <ToolBar />
           </el-card>
         </div>
 
@@ -102,17 +102,17 @@
 </style>
 
 <script>
-import ProjectSelect from '@/components/project-select'
+import ProjectSelect from '@/framework/project-select'
 
-import ItemBar from '@/components/item-bar';
+import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
-// import FormEditor from '@/components/form-editor';
-import ItemEditor from '@/components/item-editor';
+// import FormEditor from '@/framework/form-editor';
+import ItemEditor from '@/framework/item-editor';
 
 export default {
   components: {
     ProjectSelect,
-    ItemBar,
+    ToolBar,
     // FormEditor,
     ItemEditor,
   },

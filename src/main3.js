@@ -4,12 +4,12 @@ import md5 from 'md5'
 const clipboardy = require('clipboardy');
 
 import App from './portal.vue';
-import FormEditor from '@/components/form-editor.vue'
-import FormRender from './form-render'
-import CodeEditor from '@/components/common/code-editor3.vue'
-import DraggableList from '@/components/common/draggable-list3';
-import DraggableListItem from '@/components/common/draggable-list-item';
-import store from './store/index3';
+import FormEditor from '@/framework/form-editor.vue'
+import FormRender from '@/ui-kit/element-ui/form-render.vue'
+import CodeEditor from '@/framework/common/code-editor3.vue'
+import DraggableList from '@/framework/common/draggable-list3';
+import DraggableListItem from '@/framework/common/draggable-list-item';
+import store from '@/framework/store/index3';
 
 import 'element-plus/lib/theme-chalk/index.css';
 
@@ -25,11 +25,12 @@ app.config.globalProperties.$set = (obj, key, val) => {
 app.config.globalProperties.$delete = (obj, key) => { delete obj[key] };
 
 app.use(ElementPlus);
-app.component('FormEditor', FormEditor);
-app.component('FormRender', FormRender);
+
 app.component('CodeEditor', CodeEditor);
 app.component('DraggableList', DraggableList);
 app.component('DraggableListItem', DraggableListItem);
+app.component('FormRender', FormRender);
+app.component('FormEditor', FormEditor);
 
 app.use(store);
 app.mount('#app');

@@ -4,13 +4,13 @@ import md5 from 'md5'
 const clipboardy = require('clipboardy');
 
 import App from './portal.vue';
-import FormEditor from '@/components/form-editor.vue'
-import FormRender from './form-render'
-import CodeEditor from '@/components/common/code-editor.vue'
-import DraggableList from '@/components/common/draggable-list';
-import DraggableListItem from '@/components/common/draggable-list-item';
+import FormEditor from '@/framework/form-editor.vue'
+import FormRender from '@/ui-kit/element-ui/form-render.vue'
+import CodeEditor from '@/framework/common/code-editor.vue'
+import DraggableList from '@/framework/common/draggable-list';
+import DraggableListItem from '@/framework/common/draggable-list-item';
 
-import store from './store';
+import store from '@/framework/store';
 
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -22,11 +22,12 @@ Vue.prototype.$id = function () {
 Vue.prototype.$clipboard = clipboardy;
 
 Vue.use(ElementUI);
-Vue.component('FormEditor', FormEditor);
-Vue.component('FormRender', FormRender);
+
 Vue.component('CodeEditor', CodeEditor);
 Vue.component('DraggableList', DraggableList);
 Vue.component('DraggableListItem', DraggableListItem);
+Vue.component('FormRender', FormRender);
+Vue.component('FormEditor', FormEditor);
 
 new Vue({
   store,
