@@ -273,7 +273,7 @@ export default {
             }
           })
         })
-        .filter()
+        .pickBy()
         .value();
     }
   },
