@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
-import md5 from 'md5'
+import { $id } from '@/framework/common/util-funcs'
 const clipboardy = require('clipboardy');
 
 import App from './portal.vue';
@@ -15,9 +15,7 @@ import 'element-plus/lib/theme-chalk/index.css';
 
 const app = createApp(App);
 
-app.config.globalProperties.$id = function () {
-  return md5(Date.now()).substr(0, 7);
-}
+app.config.globalProperties.$id = $id;
 app.config.globalProperties.$clipboard = clipboardy;
 app.config.globalProperties.$set = (obj, key, val) => {
   obj[key] = val;

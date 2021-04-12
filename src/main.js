@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
-import md5 from 'md5'
+import { $id } from '@/framework/common/util-funcs'
 const clipboardy = require('clipboardy');
 
 import App from './portal.vue';
@@ -16,9 +16,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$id = function () {
-  return md5(Date.now()).substr(0, 7);
-}
+Vue.prototype.$id = $id;
 Vue.prototype.$clipboard = clipboardy;
 
 Vue.use(ElementUI);

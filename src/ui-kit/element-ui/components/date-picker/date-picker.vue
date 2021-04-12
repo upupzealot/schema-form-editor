@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { $id } from '@/framework/common/util-funcs.js'
 import formItemMixin from '@/framework/common/form-item/mixin'
 
 export default {
@@ -40,6 +41,7 @@ export default {
       }
     }
   },
+  methods: { $id },
   defaultSchema: {},
 };
 </script>

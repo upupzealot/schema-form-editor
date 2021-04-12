@@ -95,3 +95,6 @@ export {
   Radio,
   Checkbox
 }
+
+import FormRender from './form-render.vue'
+export default FormRender;
