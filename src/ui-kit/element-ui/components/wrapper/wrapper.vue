@@ -15,13 +15,12 @@
 <script>
 import formItemMixin from '@/framework/common/form-item/mixin'
 
-import FormRender from '../../form-render'
-import isVue2 from 'vue';
+import isVue2, { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'Wrapper',
   components: {
-    FormRender: isVue2 ? () => import('../../form-render') : FormRender,
+    FormRender: isVue2 ? () => import('../../form-render') : defineAsyncComponent(() => import('../../form-render')),
   },
   mixins: [formItemMixin],
   props: {
