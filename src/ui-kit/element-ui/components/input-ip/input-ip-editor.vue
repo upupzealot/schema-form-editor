@@ -24,7 +24,7 @@
 </style>
 
 <script>
-import editorItemMixin from '@/framework/common/editor-item/mixin'
+import editorItemMixin from '@/ui-kit/common/editor-item/mixin'
 
 import InputIp from './input-ip'
 

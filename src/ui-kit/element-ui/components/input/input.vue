@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import formItemMixin from '@/framework/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin]

@@ -41,12 +41,12 @@
 </style>
 
 <script>
-import editorItemMixin from '@/framework/common/editor-item/mixin'
+import editorItemMixin from '@/ui-kit/common/editor-item/mixin'
 
 import isVue2 from 'vue';
 
 // 全局引入，避免循环引用
-// import FormEditor from '@/framework/form-editor'
+// import FormEditor from '@/ui-kit/form-editor'
 
 export default {
   type: 'item-list',

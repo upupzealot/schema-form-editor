@@ -34,8 +34,8 @@
 </style>
 
 <script>
-import formItemMixin from '@/framework/common/form-item/mixin'
-import optionListMixin from '@/framework/common/form-item/option-list-mixin.js'
+import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],

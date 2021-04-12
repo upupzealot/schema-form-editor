@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import editorItemMixin from '@/framework/common/editor-item/mixin'
+import editorItemMixin from '@/ui-kit/common/editor-item/mixin'
 
 import Radio from './radio'
 

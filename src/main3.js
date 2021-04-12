@@ -1,14 +1,14 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
-import { $id } from '@/framework/common/util-funcs'
+import { $id } from '@/ui-kit/common/util-funcs'
 const clipboardy = require('clipboardy');
 
 import App from './portal.vue';
 import FormEditor from '@/framework/form-editor.vue'
 import FormRender from '@/ui-kit/element-ui/form-render.vue'
 import CodeEditor from '@/framework/common/code-editor3.vue'
-import DraggableList from '@/framework/common/draggable-list3';
-import DraggableListItem from '@/framework/common/draggable-list-item';
+import DraggableList from '@/ui-kit/common/draggable-list3';
+import DraggableListItem from '@/ui-kit/common/draggable-list-item';
 import store from '@/framework/store/index3';
 
 import 'element-plus/lib/theme-chalk/index.css';

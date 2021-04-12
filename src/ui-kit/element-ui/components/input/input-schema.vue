@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import schemaItemMixin from '@/framework/common/schema-item/mixin';
+import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
 
-import RegexpValidate from '@/framework/common/schema-item/validate-rules/regexp'
+import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
 
 export default {
   type: 'input',

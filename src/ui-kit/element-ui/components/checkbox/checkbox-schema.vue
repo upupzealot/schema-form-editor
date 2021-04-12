@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import schemaItemMixin from '@/framework/common/schema-item/mixin';
-import OptionList from '@/framework/common/schema-item/option-list';
+import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
+import OptionList from '@/ui-kit/common/schema-item/option-list';
 
 export default {
   type: 'checkbox',
