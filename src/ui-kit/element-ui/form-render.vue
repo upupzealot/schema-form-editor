@@ -217,7 +217,11 @@ export default {
 
           const className = _.upperFirst(_.camelCase(field.type)); // 未考虑 SSwitch
           const fieldComponent = this.$options.components[className];
-          const componentValidatorMap = _.keyBy(fieldComponent.validators, 'key');
+          let componentValidatorMap = {};
+          if(fieldComponent && fieldComponent.validators) {
+            componentValidatorMap = _.keyBy(fieldComponent.validators, 'key');
+          }
+
           return rules.map(rule => {
             if(rule.type === 'required') {
               return {
@@ -245,7 +249,12 @@ export default {
                 if (_.startsWith(rule.preset, '[component]')) {
                   const key = rule.preset.replace('[component]', '');
                   const validator = componentValidatorMap[key];
-                  validFunc = validator.func;
+                  if(validator) {
+                    validFunc = validator.func;
+                  } else {
+                    // console.warn(`validator not found: ${key} in component ${className}`)
+                    return null;
+                  }
                 } else {
                   const funcStr = validFuncMap[rule.preset].func;
                   validFunc = new Function('rule', 'value', 'callback', funcStr);
@@ -264,6 +273,7 @@ export default {
             }
           })
         })
+        .filter()
         .value();
     }
   },
