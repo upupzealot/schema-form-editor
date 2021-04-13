@@ -23,7 +23,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <!-- <el-row>
         <el-col :span="12">
           <el-form-item
             label="控制按钮"
@@ -53,7 +53,7 @@
             </el-radio>
           </el-form-item>
         </el-col>
-      </el-row>
+      </el-row> -->
       <el-row>
         <el-col :span="12">
           <el-form-item
@@ -65,7 +65,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <!-- <el-col :span="12">
           <el-form-item
             label="严格步进"
             prop="step-only"
@@ -74,7 +74,7 @@
               v-model="stepOnly"
             />
           </el-form-item>
-        </el-col>
+        </el-col> -->
         <el-col :span="12">
           <el-form-item
             label="精度"
