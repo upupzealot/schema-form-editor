@@ -50,14 +50,14 @@ import { SchemaItems as ElementItems } from '@/ui-kit/element-ui/index'
 import { SchemaItems as AntDesignItems } from '@/ui-kit/ant-design/index'
 const uiKit = localStorage.getItem('ui-kit');
 let SchemaItems = [];
-let formIs = 'div';
+let schemaIs = 'div';
 if(uiKit === 'element-ui') {
   SchemaItems = ElementItems;
-  formIs = 'el-form';
+  schemaIs = 'el-form';
 }
 if(uiKit === 'ant-design') {
   SchemaItems = AntDesignItems;
-  formIs = 'a-form';
+  schemaIs = 'a-form';
 }
 const ItemMap = _(SchemaItems)
   .keyBy('type')
@@ -75,7 +75,7 @@ export default {
   },
   data() {
     return {
-      formIs,
+      schemaIs,
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,

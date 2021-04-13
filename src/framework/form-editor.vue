@@ -3,7 +3,7 @@
     <!-- 表单项 -->
     <el-col class="form-editor">
       <component
-        :is="formIs"
+        :is="editorIs"
         :layout="layout"
         :label-position="labelPosition"
         :labelAlign="labelAlign"
@@ -194,14 +194,14 @@ import { EditorItems as ElementItems } from '@/ui-kit/element-ui/index'
 import { EditorItems as AntDesignItems } from '@/ui-kit/ant-design/index'
 const uiKit = localStorage.getItem('ui-kit');
 let EditorItems = [];
-let formIs = 'div';
+let editorIs = 'div';
 if(uiKit === 'element-ui') {
   EditorItems = ElementItems;
-  formIs = 'el-form';
+  editorIs = 'el-form';
 }
 if(uiKit === 'ant-design') {
   EditorItems = AntDesignItems;
-  formIs = 'a-form';
+  editorIs = 'a-form';
 }
 const ItemMap = _(EditorItems)
   .keyBy('type')
@@ -251,7 +251,7 @@ export default {
   },
   data() {
     return {
-      formIs,
+      editorIs,
       schemaDialogVisible: false,
       dataDialogVisible: false,
       config: {},
