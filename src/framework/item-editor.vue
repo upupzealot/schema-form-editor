@@ -20,7 +20,7 @@
 
       <!-- 表单项编辑器 -->
       <component
-        :is="`schema-${field.type}`"
+        :is="fallbackComponent(`schema-${field.type}`)"
         v-if="field.type"
       />
     </el-col>
@@ -46,22 +46,36 @@
 <script>
 import FormConfEditor from '@/ui-kit/element-ui/components/form-conf-editor';
 
-import { SchemaItems } from '@/ui-kit/element-ui/index'
+import { SchemaItems as ElementItems } from '@/ui-kit/element-ui/index'
+import { SchemaItems as AntDesignItems } from '@/ui-kit/ant-design/index'
+const uiKit = localStorage.getItem('ui-kit');
+let SchemaItems = [];
+let formIs = 'div';
+if(uiKit === 'element-ui') {
+  SchemaItems = ElementItems;
+  formIs = 'el-form';
+}
+if(uiKit === 'ant-design') {
+  SchemaItems = AntDesignItems;
+  formIs = 'a-form';
+}
+const ItemMap = _(SchemaItems)
+  .keyBy('type')
+  .mapKeys((v, k) => {
+    return `schema-${k}`
+  })
+  .value();
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 
 export default {
   components: {
     FormConfEditor,
-    ..._(SchemaItems)
-      .keyBy('type')
-      .mapKeys((v, k) => {
-        return `schema-${k}`
-      })
-      .value(),
+    ...ItemMap,
   },
   data() {
     return {
+      formIs,
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,
@@ -105,6 +119,11 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    fallbackComponent(type) {
+      return !!ItemMap[type] ? type : 'div';
+    },
   }
 };
 </script>
