@@ -32,7 +32,7 @@
             >
               <!-- 表单项 -->
               <component
-                :is="`editor-${field.type}`"
+                :is="fallbackComponent(`editor-${field.type}`)"
                 v-bind="{
                   field,
                   data,
@@ -376,6 +376,9 @@ export default {
     }
   },
   methods: {
+    fallbackComponent(type) {
+      return !!ItemMap[type] ? type : 'div';
+    },
     onAdd({ item, index }) {
       // 有 item.id：说明新增项是表单编辑器内拖拽而来
       // 无 item.id：说明新增项是外部拖拽而来
