@@ -2,9 +2,14 @@
   <el-row>
     <!-- 表单项 -->
     <el-col class="form-editor">
-      <el-form
+      <component
+        :is="formIs"
+        :layout="layout"
         :label-position="labelPosition"
-        :label-width="labelWidth"
+        :labelAlign="labelAlign"
+        :labelWidth="labelWidth"
+        :labelCol="{ span: labelCol }"
+        :wrapperCol="{ span: 24 - labelCol }"
       >
         <DraggableList
           :list="fieldList"
@@ -43,7 +48,7 @@
             </DraggableListItem>
           </template>
         </DraggableList>
-      </el-form>
+      </component>
     </el-col>
 
     <!-- 控制按钮 -->
@@ -185,10 +190,28 @@ import omitDeep from 'omit-deep-lodash';
 // import DraggableListItem from '@/framework/common/draggable-list-item';
 import JsonDialog from './common/json-dialog';
 
-import { EditorItems } from '@/ui-kit/element-ui/index'
+import { EditorItems as ElementItems } from '@/ui-kit/element-ui/index'
+import { EditorItems as AntDesignItems } from '@/ui-kit/ant-design/index'
+const uiKit = localStorage.getItem('ui-kit');
+let EditorItems = [];
+let formIs = 'div';
+if(uiKit === 'element-ui') {
+  EditorItems = ElementItems;
+  formIs = 'el-form';
+}
+if(uiKit === 'ant-design') {
+  EditorItems = AntDesignItems;
+  formIs = 'a-form';
+}
+const ItemMap = _(EditorItems)
+  .keyBy('type')
+  .mapKeys((v, k) => {
+    return `editor-${k}`
+  })
+  .value();
+
 import FormStoreModule from '@/framework/store/form.js';
 
-// import FormRender from 'schema-form-render';
 // import FormRender from '@/ui-kit/element-ui/form-render.vue';
 
 export default {
@@ -198,12 +221,7 @@ export default {
     // DraggableListItem,
     JsonDialog,
     // FormRender,
-    ..._(EditorItems)
-      .keyBy('type')
-      .mapKeys((v, k) => {
-        return `editor-${k}`
-      })
-      .value(),
+    ...ItemMap,
   },
   props: {
     initSchema: {
@@ -233,6 +251,7 @@ export default {
   },
   data() {
     return {
+      formIs,
       schemaDialogVisible: false,
       dataDialogVisible: false,
       config: {},
@@ -286,11 +305,22 @@ export default {
     labelWidth() {
       return this.formConf.labelWidth || '80px';
     },
+    labelCol() {
+      return this.formConf.labelCol || 3;
+    },
     gutter() {
       return this.formConf.gutter || 20;
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';
+    },
+    layout() {
+      return this.labelPosition === 'right'
+        || this.labelPosition === 'left'
+        ? 'horizontal' : 'vertical';
+    },
+    labelAlign() {
+      return this.layout === 'horizontal' ? this.labelPosition : 'right';
     },
     fieldList: {
       get() {

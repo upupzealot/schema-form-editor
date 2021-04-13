@@ -1,18 +1,15 @@
 <template>
   <span>
     {{ field.label }}
-    <el-tooltip
+    <a-tooltip
       v-if="hasTooltip"
       placement="top-start"
     >
-      <i
-        v-if="hasTooltip"
-        class="el-icon-warning-outline"
-      />
-      <template v-slot:content>
+      <a-icon type="exclamation-circle" />
+      <template v-slot:title>
         <span v-html="content" />
       </template>
-    </el-tooltip>
+    </a-tooltip>
   </span>
 </template>
 

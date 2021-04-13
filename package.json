@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "ace-builds": "^1.4.12",
+    "ant-design-vue1": "npm:ant-design-vue@1",
+    "ant-design-vue2": "npm:ant-design-vue@2",
     "axios": "^0.21.1",
     "clipboardy": "^2.3.0",
     "core-js": "^3.6.5",

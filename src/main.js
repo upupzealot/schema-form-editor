@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
+import AntDesignVue from 'ant-design-vue';
 import { $id } from '@/ui-kit/common/util-funcs'
 const clipboardy = require('clipboardy');
 
@@ -13,6 +14,7 @@ import DraggableListItem from '@/ui-kit/common/draggable-list-item';
 import store from '@/framework/store';
 
 import 'element-ui/lib/theme-chalk/index.css';
+import 'ant-design-vue/dist/antd.css';
 
 Vue.config.productionTip = false;
 
@@ -20,6 +22,7 @@ Vue.prototype.$id = $id;
 Vue.prototype.$clipboard = clipboardy;
 
 Vue.use(ElementUI);
+Vue.use(AntDesignVue);
 
 Vue.component('CodeEditor', CodeEditor);
 Vue.component('DraggableList', DraggableList);

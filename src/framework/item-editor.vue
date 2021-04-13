@@ -44,7 +44,7 @@
 </style>
 
 <script>
-import FormConfEditor from '@/ui-kit/element-ui/form-conf-editor';
+import FormConfEditor from '@/ui-kit/element-ui/components/form-conf-editor';
 
 import { SchemaItems } from '@/ui-kit/element-ui/index'
 

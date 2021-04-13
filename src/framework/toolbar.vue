@@ -94,7 +94,26 @@ import _ from 'lodash';
 // import DraggableList from '@/framework/common/draggable-list';
 // import DraggableListItem from '@/framework/common/draggable-list-item';
 
-import { ToolbarItems, ToolbarUtils } from '../ui-kit/element-ui/index'
+import {
+  ToolbarItems as ElementItems,
+  ToolbarUtils as ElementUtils
+} from '../ui-kit/element-ui/index'
+import {
+  ToolbarItems as AntDesignItems,
+  ToolbarUtils as AntDesignUtils
+} from '../ui-kit/ant-design/index'
+
+const uiKit = localStorage.getItem('ui-kit');
+let ToolbarItems = [];
+let ToolbarUtils = [];
+if(uiKit === 'element-ui') {
+  ToolbarItems = ElementItems;
+  ToolbarUtils = ElementUtils;
+}
+if(uiKit === 'ant-design') {
+  ToolbarItems = AntDesignItems;
+  ToolbarUtils = AntDesignUtils;
+}
 
 export default {
   components: {
