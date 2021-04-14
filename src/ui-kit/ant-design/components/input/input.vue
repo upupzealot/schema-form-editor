@@ -12,13 +12,13 @@
       <Tooltip :field="field" />
     </template>
     <component
+      :is="field.isPassword ? 'a-input-password' : 'a-input'"
       v-model="data[field.name]"
       v-model:value="data[field.name]"
       :type="field.mode"
       :placeholder="field.placeholder"
       :disabled="disabled"
-      :readOnly="readonly"
-      :is="field.isPassword ? 'a-input-password' : 'a-input'"
+      :read-only="readonly"
     >
       <template
         v-if="field.prepend"

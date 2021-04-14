@@ -2,9 +2,9 @@
   <a-form-model
     ref="form"
     :layout="layout"
-    :labelAlign="labelAlign"
-    :labelCol="{ span: labelCol }"
-    :wrapperCol="{ span: 24 - labelCol }"
+    :label-align="labelAlign"
+    :label-col="{ span: labelCol }"
+    :wrapper-col="{ span: 24 - labelCol }"
     :model="data"
     :rules="validRules"
     style="margin-bottom: -15px;"
@@ -108,7 +108,6 @@ export default {
       return this.formConf.labelPosition || 'right';
     },
     layout() {
-      console.log(this.labelPosition)
       return this.labelPosition === 'right'
         || this.labelPosition === 'left'
         ? 'horizontal' : 'vertical';

@@ -6,10 +6,10 @@
         :is="editorIs"
         :layout="layout"
         :label-position="labelPosition"
-        :labelAlign="labelAlign"
-        :labelWidth="labelWidth"
-        :labelCol="{ span: labelCol }"
-        :wrapperCol="{ span: 24 - labelCol }"
+        :label-align="labelAlign"
+        :label-width="labelWidth"
+        :label-col="{ span: labelCol }"
+        :wrapper-col="{ span: 24 - labelCol }"
       >
         <DraggableList
           :list="fieldList"
