@@ -1,5 +1,5 @@
 <template>
-  <a-form-model-item
+  <a-form-item
     v-if="activated"
     v-show="visible"
     :prop="field.name"
@@ -13,6 +13,7 @@
     </template>
     <component
       v-model="data[field.name]"
+      v-model:value="data[field.name]"
       :type="field.mode"
       :placeholder="field.placeholder"
       :disabled="disabled"
@@ -32,13 +33,19 @@
         {{ field.append }}
       </template>
     </component>
-  </a-form-model-item>
+  </a-form-item>
 </template>
 
 <script>
+import isVue2 from 'vue';
 import formItemMixin from '@/ui-kit/common/form-item/mixin'
 
 export default {
-  mixins: [formItemMixin]
+  mixins: [formItemMixin],
+  computed: {
+    formItemIs() {
+      return isVue2 ? 'a-form-model-item' : 'a-form-item';
+    }
+  }
 };
 </script>

@@ -37,11 +37,11 @@
             >
               <!-- 表单项 -->
               <component
-                :is="fallbackComponent(`editor-${field.type}`)"
+                :is="fallback(`editor-${field.type}`) ? `editor-${field.type}` : 'div'"
                 v-bind="{
                   field,
                   data,
-                  supNodes: supNodeList,
+                  supNodes: fallback(`editor-${field.type}`) ? supNodeList : [],
                   class: 'slot-content'
                 }"
               />
@@ -166,7 +166,8 @@
 </style>
 
 <style scoped>
-.draggable-list-item .el-form-item {
+.draggable-list-item .el-form-item,
+.draggable-list-item .ant-form-item {
   width: 100%;
 }
 .v-not-activated {
@@ -182,7 +183,7 @@
 </style>
 
 <script>
-import { reactive } from 'vue';
+import isVue2, { reactive } from 'vue';
 import _ from 'lodash';
 import omitDeep from 'omit-deep-lodash';
 
@@ -201,7 +202,7 @@ if(uiKit === 'element-ui') {
 }
 if(uiKit === 'ant-design') {
   EditorItems = AntDesignItems;
-  editorIs = 'a-form';
+  editorIs = isVue2 ? 'a-form-model' : 'a-form';
 }
 const ItemMap = _(EditorItems)
   .keyBy('type')
@@ -306,7 +307,10 @@ export default {
       return this.formConf.labelWidth || '80px';
     },
     labelCol() {
-      return this.formConf.labelCol || 3;
+      return this.labelPosition === 'right'
+        || this.labelPosition === 'left'
+        ? this.formConf.labelCol || 3
+        : 0;
     },
     gutter() {
       return this.formConf.gutter || 20;
@@ -406,8 +410,8 @@ export default {
     }
   },
   methods: {
-    fallbackComponent(type) {
-      return !!ItemMap[type] ? type : 'div';
+    fallback(type) {
+      return !!ItemMap[type];
     },
     onAdd({ item, index }) {
       // 有 item.id：说明新增项是表单编辑器内拖拽而来

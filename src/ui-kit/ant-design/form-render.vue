@@ -1,9 +1,10 @@
 <template>
   <a-form-model
     ref="form"
-    :label-width="labelWidth"
     :layout="layout"
     :labelAlign="labelAlign"
+    :labelCol="{ span: labelCol }"
+    :wrapperCol="{ span: 24 - labelCol }"
     :model="data"
     :rules="validRules"
     style="margin-bottom: -15px;"
@@ -85,8 +86,11 @@ export default {
     formConf() {
       return this.schema.formConf;
     },
-    labelWidth() {
-      return this.formConf.labelWidth || '80px';
+    labelCol() {
+      return this.labelPosition === 'right'
+        || this.labelPosition === 'left'
+        ? this.formConf.labelCol || 3
+        : 0;
     },
     gutter() {
       return this.formConf.gutter || 20;
