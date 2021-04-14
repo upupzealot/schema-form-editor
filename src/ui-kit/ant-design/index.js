@@ -21,8 +21,10 @@ export const SchemaItems = [
 ]
 
 import Input from './components/input/input.vue'
+import InputNumber from './components/input-number/input-number.vue'
 export {
   Input,
+  InputNumber,
 }
 
 import FormRender from './form-render.vue'

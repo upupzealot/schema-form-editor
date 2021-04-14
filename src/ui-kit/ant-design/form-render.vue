@@ -22,6 +22,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputNumber
+          v-if="field.type === 'input-number'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
       </a-col>
     </a-row>
   </a-form-model>
@@ -37,11 +44,13 @@
 import _ from 'lodash';
 
 import Input from './components/input/input';
+import InputNumber from './components/input-number/input-number';
 
 export default {
   name: 'FormRender',
   components: {
     Input,
+    InputNumber,
   },
   props: {
     scenario: {
