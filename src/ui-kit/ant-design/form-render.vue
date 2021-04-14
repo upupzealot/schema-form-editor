@@ -14,7 +14,7 @@
       <a-col
         v-for="field in fieldList"
         :key="field.name"
-        :span="field.span"
+        :span="field.span || 24"
       >
         <Input
           v-if="field.type === 'input'"
