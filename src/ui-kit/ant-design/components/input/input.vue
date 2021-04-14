@@ -1,5 +1,6 @@
 <template>
-  <a-form-item
+  <component
+    :is="formItemIs"
     v-if="activated"
     v-show="visible"
     :prop="field.name"
@@ -33,7 +34,7 @@
         {{ field.append }}
       </template>
     </component>
-  </a-form-item>
+  </component>
 </template>
 
 <script>

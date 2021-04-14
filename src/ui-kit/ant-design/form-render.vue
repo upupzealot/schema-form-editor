@@ -1,5 +1,6 @@
 <template>
-  <a-form-model
+  <component
+    :is="formIs"
     ref="form"
     :layout="layout"
     :label-align="labelAlign"
@@ -38,7 +39,7 @@
         />
       </a-col>
     </a-row>
-  </a-form-model>
+  </component>
 </template>
 
 <style>
@@ -48,6 +49,7 @@
 </style>
 
 <script>
+import isVue2 from 'vue';
 import _ from 'lodash';
 
 import Input from './components/input/input';
@@ -94,6 +96,9 @@ export default {
     }
   },
   computed: {
+    formIs() {
+      return isVue2 ? 'a-form-model' : 'a-form';
+    },
     supNodeList() {
       if(this.supNodes) {
         return [...this.supNodes, this];
