@@ -29,6 +29,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputIp
+          v-if="field.type === 'input-ip'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
       </a-col>
     </a-row>
   </a-form-model>
@@ -45,12 +52,14 @@ import _ from 'lodash';
 
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
+import InputIp from './components/input-ip/input-ip';
 
 export default {
   name: 'FormRender',
   components: {
     Input,
     InputNumber,
+    InputIp,
   },
   props: {
     scenario: {

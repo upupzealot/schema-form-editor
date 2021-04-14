@@ -1,52 +1,59 @@
 <template>
-  <el-form-item
+  <component
+    :is="formItemIs"
     v-if="activated"
     v-show="visible"
-    :label="field.label"
     :prop="field.name"
+    :name="field.name /* antd 2.x prop 属性改为 name */"
+    :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
+    style="margin-bottom: 0;"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
     <div style="display: flex; align-items: center;">
-      <el-input
+      <a-input
         v-model="ip0"
+        v-model:value="ip0"
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
         class="ip-snippet"
       />.
-      <el-input
+      <a-input
         v-model="ip1"
+        v-model:value="ip1"
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
         class="ip-snippet"
       />.
-      <el-input
+      <a-input
         v-model="ip2"
+        v-model:value="ip2"
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
         class="ip-snippet"
       />.
-      <el-input
+      <a-input
         v-model="ip3"
+        v-model:value="ip3"
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
         class="ip-snippet"
       />
     </div>
-  </el-form-item>
+  </component>
 </template>
 
 <style scoped>
-.form-item .ip-snippet.el-input {
+.form-item .ip-snippet.a-input {
   margin: 0 5px;
 }
-.form-item .ip-snippet.el-input:first-of-type {
+.form-item .ip-snippet.a-input:first-of-type {
   margin-left: 0;
 }
 .form-item .ip-snippet.el-input:last-of-type {
@@ -55,6 +62,7 @@
 </style>
 
 <script>
+import isVue2 from 'vue';
 import formItemMixin from '@/ui-kit/common/form-item/mixin'
 
 export default {
@@ -91,6 +99,9 @@ export default {
     }
   }],
   computed: {
+    formItemIs() {
+      return isVue2 ? 'a-form-model-item' : 'a-form-item';
+    },
     ip0: {
       get() { return this.getSnippet(0) },
       set(val) { this.setSnippet(0, val) },
