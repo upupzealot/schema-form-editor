@@ -6,10 +6,14 @@
   >
     <a-select-option
       value="option1"
-    >选项一</a-select-option>
+    >
+      选项一
+    </a-select-option>
     <a-select-option
       value="option2"
-    >选项二</a-select-option>
+    >
+      选项二
+    </a-select-option>
   </a-select>
 </template>
 
