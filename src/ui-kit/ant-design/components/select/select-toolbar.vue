@@ -1,17 +1,15 @@
 <template>
   <a-select
     v-model="value"
-    placeholder="下拉选项"
+    placeholder="请选择"
     class="example-component"
   >
     <a-select-option
-      label="选项一"
       value="option1"
-    />
+    >选项一</a-select-option>
     <a-select-option
-      label="选项二"
       value="option2"
-    />
+    >选项二</a-select-option>
   </a-select>
 </template>
 
@@ -26,7 +24,7 @@ export default {
   type: 'select',
   label: '下拉选项',
   data() {
-    return { value: '' };
+    return { value: 'option1' };
   },
   defaultSchema: {
     options: [{
