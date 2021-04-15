@@ -51,14 +51,14 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-        <!-- <Checkbox
+        <Checkbox
           v-if="field.type === 'checkbox'"
           :scenario="scenario"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
-        <SSwitch
+        <!-- <SSwitch
           v-if="field.type === 'switch'"
           :scenario="scenario"
           :field="field"
@@ -125,7 +125,7 @@ import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
 import Select from './components/select/select';
 import Radio from './components/radio/radio';
-// import Checkbox from './components/checkbox/checkbox';
+import Checkbox from './components/checkbox/checkbox';
 // import SSwitch from './components/switch/switch';
 // import DatePicker from './components/date-picker/date-picker';
 
@@ -145,7 +145,7 @@ export default {
     InputIp,
     Select,
     Radio,
-    // Checkbox,
+    Checkbox,
     // SSwitch,
     // DatePicker,
     // Blank,
