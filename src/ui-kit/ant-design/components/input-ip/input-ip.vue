@@ -50,13 +50,13 @@
 </template>
 
 <style scoped>
-.form-item .ip-snippet.a-input {
-  margin: 0 5px;
+.form-item .ip-snippet.ant-input {
+  margin: 0 4px;
 }
-.form-item .ip-snippet.a-input:first-of-type {
+.form-item .ip-snippet.ant-input:first-of-type {
   margin-left: 0;
 }
-.form-item .ip-snippet.el-input:last-of-type {
+.form-item .ip-snippet.ant-input:last-of-type {
   margin-right: 0;
 }
 </style>

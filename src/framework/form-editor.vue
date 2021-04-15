@@ -160,7 +160,9 @@
   padding-left: 40px;
   padding-right: 30px;
 }
-.form-editor .example-form-item .draggable-list-item .el-form-item {
+.form-editor .example-form-item .draggable-list-item .el-form-item,
+.form-editor .example-form-item .draggable-list-item .a-form-item,
+.form-editor .example-form-item .draggable-list-item .a-form-model-item {
   width: 100%;
 }
 </style>
