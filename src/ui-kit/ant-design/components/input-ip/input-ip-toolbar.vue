@@ -2,18 +2,22 @@
   <div style="display: flex;">
     <a-input
       v-model="value[0]"
+      v-model:value="value[0]"
       class="example-component ip-input"
     />.
     <a-input
       v-model="value[1]"
+      v-model:value="value[1]"
       class="example-component ip-input"
     />.
     <a-input
       v-model="value[2]"
+      v-model:value="value[2]"
       class="example-component ip-input"
     />.
     <a-input
       v-model="value[3]"
+      v-model:value="value[3]"
       class="example-component ip-input"
     />
   </div>
