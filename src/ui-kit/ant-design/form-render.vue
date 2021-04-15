@@ -37,6 +37,74 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <Select
+          v-if="field.type === 'select'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <!-- <Radio
+          v-if="field.type === 'radio'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <Checkbox
+          v-if="field.type === 'checkbox'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <SSwitch
+          v-if="field.type === 'switch'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <DatePicker
+          v-if="field.type === 'date-picker'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <Blank
+          v-if="field.type === 'blank'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <Wrapper
+          v-if="field.type === 'wrapper'"
+          ref="subformItems"
+          :scenario="scenario"
+          :field="field"
+          :schema="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
+        <Subform
+          v-if="field.type === 'subform'"
+          ref="subformItems"
+          :scenario="scenario"
+          :field="field"
+          :schema="field"
+          :data="data[field.name]"
+          :sup-nodes="supNodeList"
+        />
+        <ItemList
+          v-if="field.type === 'item-list'"
+          ref="subformItems"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        /> -->
       </a-col>
     </a-row>
   </component>
@@ -55,6 +123,19 @@ import _ from 'lodash';
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
+import Select from './components/select/select';
+// import Radio from './components/radio/radio';
+// import Checkbox from './components/checkbox/checkbox';
+// import SSwitch from './components/switch/switch';
+// import DatePicker from './components/date-picker/date-picker';
+
+// import Blank from './components/blank/blank';
+// import Wrapper from './components/wrapper/wrapper';
+// import Subform from './components/subform/subform';
+// // import ItemList from './components/item-list/item-list';
+// import isVue2 from 'vue';
+// const IL = isVue2 ? require('./components/item-list/item-list.vue') : require('./components/item-list/item-list3.vue');
+// const ItemList = IL.default;
 
 export default {
   name: 'FormRender',
@@ -62,6 +143,15 @@ export default {
     Input,
     InputNumber,
     InputIp,
+    Select,
+    // Radio,
+    // Checkbox,
+    // SSwitch,
+    // DatePicker,
+    // Blank,
+    // Wrapper,
+    // Subform,
+    // ItemList,
   },
   props: {
     scenario: {
