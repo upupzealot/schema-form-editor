@@ -16,7 +16,16 @@ export const ToolbarItems = [
   SwitchToolbar,
   DatePickerToolbar,
 ];
-export const ToolbarUtils = [];
+import BlankToolbar from './components/blank/blank-toolbar.vue'
+import WrapperToolbar from './components/wrapper/wrapper-toolbar.vue'
+import SubformToolbar from './components/subform/subform-toolbar.vue'
+import ItemListToolbar from './components/item-list/item-list-toolbar.vue'
+export const ToolbarUtils = [
+  BlankToolbar,
+  WrapperToolbar,
+  SubformToolbar,
+  ItemListToolbar,
+];
 
 import InputEditor from './components/input/input-editor.vue'
 import InputNumberEditor from './components/input-number/input-number-editor.vue'
@@ -26,6 +35,10 @@ import RadioEditor from './components/radio/radio-editor.vue'
 import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
 import SwitchEditor from './components/switch/switch-editor.vue'
 import DatePickerEditor from './components/date-picker/date-picker-editor.vue'
+import BlankEditor from './components/blank/blank-editor.vue'
+import WrapperEditor from './components/wrapper/wrapper-editor.vue'
+import SubformEditor from './components/subform/subform-editor.vue'
+import ItemListEditor from './components/item-list/item-list-editor.vue'
 export const EditorItems = [
   InputEditor,
   InputNumberEditor,
@@ -35,6 +48,10 @@ export const EditorItems = [
   CheckboxEditor,
   SwitchEditor,
   DatePickerEditor,
+  BlankEditor,
+  WrapperEditor,
+  SubformEditor,
+  ItemListEditor,
 ]
 
 import InputSchema from './components/input/input-schema.vue'
@@ -45,6 +62,10 @@ import RadioSchema from './components/radio/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
 import DatePickerSchema from './components/date-picker/date-picker-schema.vue'
+import BlankSchema from './components/blank/blank-schema.vue'
+import WrapperSchema from './components/wrapper/wrapper-schema.vue'
+import SubformSchema from './components/subform/subform-schema.vue'
+import ItemListSchema from './components/item-list/item-list-schema.vue'
 export const SchemaItems = [
   InputSchema,
   InputNumberSchema,
@@ -54,6 +75,10 @@ export const SchemaItems = [
   CheckboxSchema,
   SwitchSchema,
   DatePickerSchema,
+  BlankSchema,
+  WrapperSchema,
+  SubformSchema,
+  ItemListSchema,
 ]
 
 import Input from './components/input/input.vue'
@@ -62,6 +87,12 @@ import InputIp from './components/input-ip/input-ip.vue'
 import Select from './components/select/select.vue'
 import Radio from './components/radio/radio.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
+import Switch from './components/switch/switch.vue'
+import DatePicker from './components/date-picker/date-picker.vue'
+import Blank from './components/blank/blank.vue'
+import Wrapper from './components/wrapper/wrapper.vue'
+import Subform from './components/subform/subform.vue'
+import ItemList from './components/item-list/item-list.vue'
 export {
   Input,
   InputNumber,
@@ -69,6 +100,12 @@ export {
   Select,
   Radio,
   Checkbox,
+  Switch,
+  DatePicker,
+  Blank,
+  Wrapper,
+  Subform,
+  ItemList
 }
 
 import FormRender from './form-render.vue'

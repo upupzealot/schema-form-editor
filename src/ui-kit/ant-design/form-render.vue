@@ -72,7 +72,7 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-        <!-- <Blank
+        <Blank
           v-if="field.type === 'blank'"
           :scenario="scenario"
           :field="field"
@@ -104,7 +104,7 @@
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
-        /> -->
+        />
       </a-col>
     </a-row>
   </component>
@@ -117,7 +117,6 @@
 </style>
 
 <script>
-import isVue2 from 'vue';
 import _ from 'lodash';
 
 import Input from './components/input/input';
@@ -129,13 +128,13 @@ import Checkbox from './components/checkbox/checkbox';
 import SSwitch from './components/switch/switch';
 import DatePicker from './components/date-picker/date-picker';
 
-// import Blank from './components/blank/blank';
-// import Wrapper from './components/wrapper/wrapper';
-// import Subform from './components/subform/subform';
-// // import ItemList from './components/item-list/item-list';
-// import isVue2 from 'vue';
-// const IL = isVue2 ? require('./components/item-list/item-list.vue') : require('./components/item-list/item-list3.vue');
-// const ItemList = IL.default;
+import Blank from './components/blank/blank';
+import Wrapper from './components/wrapper/wrapper';
+import Subform from './components/subform/subform';
+// import ItemList from './components/item-list/item-list';
+import isVue2 from 'vue';
+const IL = isVue2 ? require('./components/item-list/item-list.vue') : require('./components/item-list/item-list3.vue');
+const ItemList = IL.default;
 
 export default {
   name: 'FormRender',
@@ -148,10 +147,10 @@ export default {
     Checkbox,
     SSwitch,
     DatePicker,
-    // Blank,
-    // Wrapper,
-    // Subform,
-    // ItemList,
+    Blank,
+    Wrapper,
+    Subform,
+    ItemList,
   },
   props: {
     scenario: {

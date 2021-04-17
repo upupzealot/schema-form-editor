@@ -1,12 +1,15 @@
 <template>
-  <el-form-item
+  <component
+    :is="formItemIs"
     v-if="activated"
     v-show="visible"
     label="　"
+    :colon="false"
     class="blank-wrap"
+    style="margin-bottom: 0;"
   >
     <div class="blank" />
-  </el-form-item>
+  </component>
 </template>
 
 <style>
@@ -23,9 +26,15 @@
 </style>
 
 <script>
+import isVue2 from 'vue';
 import formItemMixin from '@/ui-kit/common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],
+  computed: {
+    formItemIs() {
+      return isVue2 ? 'a-form-model-item' : 'a-form-item';
+    },
+  },
 };
 </script>
