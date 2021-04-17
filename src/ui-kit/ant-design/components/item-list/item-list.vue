@@ -63,7 +63,7 @@
 </style>
 
 <script>
-import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 
 import DraggableListItem from '@/ui-kit/common/draggable-list-item'
 import Subform from '../subform/subform'

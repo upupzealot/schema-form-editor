@@ -41,16 +41,10 @@
 </style>
 
 <script>
-import isVue2 from 'vue';
-import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
-  computed: {
-    formItemIs() {
-      return isVue2 ? 'a-form-model-item' : 'a-form-item';
-    }
-  }
 };
 </script>

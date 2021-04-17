@@ -62,7 +62,7 @@
 </style>
 
 <script>
-import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
 
 import DraggableList from '@/ui-kit/common/draggable-list3'
 import DraggableListItem from '@/ui-kit/common/draggable-list-item'

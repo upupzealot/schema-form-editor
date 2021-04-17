@@ -26,15 +26,9 @@
 </style>
 
 <script>
-import isVue2 from 'vue';
-import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],
-  computed: {
-    formItemIs() {
-      return isVue2 ? 'a-form-model-item' : 'a-form-item';
-    },
-  },
 };
 </script>

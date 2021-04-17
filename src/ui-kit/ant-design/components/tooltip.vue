@@ -3,7 +3,7 @@
     {{ field.label }}
     <a-tooltip
       v-if="hasTooltip"
-      placement="top-start"
+      placement="topLeft"
     >
       <a-icon type="exclamation-circle" />
       <template v-slot:title>

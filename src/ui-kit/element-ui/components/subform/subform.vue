@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import formItemMixin from '@/ui-kit/common/form-item/mixin'
+import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
 
 import isVue2, { defineAsyncComponent } from 'vue'
 
