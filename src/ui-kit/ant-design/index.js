@@ -4,6 +4,7 @@ import InputIpToolbar from './components/input-ip/input-ip-toolbar.vue'
 import SelectToolbar from './components/select/select-toolbar.vue'
 import RadioToolbar from './components/radio/radio-toolbar.vue'
 import CheckboxToolbar from './components/checkbox/checkbox-toolbar.vue'
+import DatePickerToolbar from './components/date-picker/date-picker-toolbar.vue'
 export const ToolbarItems = [
   InputToolbar,
   InputNumberToolbar,
@@ -11,6 +12,7 @@ export const ToolbarItems = [
   SelectToolbar,
   RadioToolbar,
   CheckboxToolbar,
+  DatePickerToolbar,
 ];
 export const ToolbarUtils = [];
 
@@ -20,6 +22,7 @@ import InputIpEditor from './components/input-ip/input-ip-editor.vue'
 import SelectEditor from './components/select/select-editor.vue'
 import RadioEditor from './components/radio/radio-editor.vue'
 import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
+import DatePickerEditor from './components/date-picker/date-picker-editor.vue'
 export const EditorItems = [
   InputEditor,
   InputNumberEditor,
@@ -27,6 +30,7 @@ export const EditorItems = [
   SelectEditor,
   RadioEditor,
   CheckboxEditor,
+  DatePickerEditor,
 ]
 
 import InputSchema from './components/input/input-schema.vue'
@@ -35,6 +39,7 @@ import InputIpSchema from './components/input-ip/input-ip-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
 import RadioSchema from './components/radio/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
+import DatePickerSchema from './components/date-picker/date-picker-schema.vue'
 export const SchemaItems = [
   InputSchema,
   InputNumberSchema,
@@ -42,6 +47,7 @@ export const SchemaItems = [
   SelectSchema,
   RadioSchema,
   CheckboxSchema,
+  DatePickerSchema,
 ]
 
 import Input from './components/input/input.vue'

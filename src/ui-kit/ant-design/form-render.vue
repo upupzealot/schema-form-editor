@@ -64,7 +64,7 @@
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
-        />
+        /> -->
         <DatePicker
           v-if="field.type === 'date-picker'"
           :scenario="scenario"
@@ -72,7 +72,7 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-        <Blank
+        <!-- <Blank
           v-if="field.type === 'blank'"
           :scenario="scenario"
           :field="field"
@@ -127,7 +127,7 @@ import Select from './components/select/select';
 import Radio from './components/radio/radio';
 import Checkbox from './components/checkbox/checkbox';
 // import SSwitch from './components/switch/switch';
-// import DatePicker from './components/date-picker/date-picker';
+import DatePicker from './components/date-picker/date-picker';
 
 // import Blank from './components/blank/blank';
 // import Wrapper from './components/wrapper/wrapper';
@@ -147,7 +147,7 @@ export default {
     Radio,
     Checkbox,
     // SSwitch,
-    // DatePicker,
+    DatePicker,
     // Blank,
     // Wrapper,
     // Subform,
