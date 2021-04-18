@@ -4,6 +4,7 @@
     v-show="visible"
     label="　"
     class="blank-wrap"
+    style="margin-bottom: 0"
   >
     <div class="blank" />
   </el-form-item>

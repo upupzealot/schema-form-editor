@@ -31,6 +31,11 @@ export default {
       }
     }
   },
+  computed: {
+    marginY() {
+      return this.schema.formConf.marginY || 15;
+    }
+  },
   methods: {
     async validate() {
       return new Promise(async resolve => {

@@ -4,6 +4,7 @@
     v-show="visible"
     :label="field.label"
     class="subform-wrap form-item"
+    style="margin-bottom: 0"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
@@ -16,6 +17,7 @@
         <DraggableListItem
           :has-control="editable"
           @delete="deleteItem(item)"
+          :style="{ marginBottom: `${marginY}px` }"
         >
           <Subform
             ref="subformItem"
@@ -24,7 +26,7 @@
             :data="item"
             :sup-nodes="supNodes"
             :scenario="scenario"
-            style="width: 100%;"
+            :style="{ width: '100%', marginBottom: `-${marginY}px` }"
           />
         </DraggableListItem>
       </template>
@@ -39,16 +41,6 @@
     </el-button>
   </el-form-item>
 </template>
-
-<style>
-.subform-wrap .list-item .form-item {
-  margin-bottom: 15px;
-}
-/* fix: list-tem 子表单 form-item margin-bottom 消失 */
-.subform-wrap.form-item .form-item {
-  margin-bottom: 15px;
-}
-</style>
 
 <style scoped>
 .subform-wrap {
@@ -75,7 +67,18 @@ export default {
     Subform
   },
   mixins: [formItemMixin],
+  props: {
+    schema: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
+  },
   computed: {
+    marginY() {
+      return this.schema.formConf.marginY || 15;
+    },
     editable() {
       return !this.readonly && !this.disabled;
     },

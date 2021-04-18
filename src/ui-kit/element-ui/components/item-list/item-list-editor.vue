@@ -10,6 +10,7 @@
       :form-key="field.name"
       :data="data"
       :field="schema"
+      :schema="schema"
       :sup-nodes="supNodes"
     />
     <el-tag

@@ -86,7 +86,7 @@ export default {
     },
     marginY: {
       get() {
-        return this.formConf.marginY || this.defaults.marginY;
+        return this.formConf.marginY;
       },
       set(marginY) {
         if(marginY && marginY !== this.defaults.marginY) {

@@ -5,13 +5,13 @@
     :label-position="labelPosition"
     :model="data"
     :rules="validRules"
-    style="margin-bottom: -15px;"
   >
     <el-row :gutter="marginX">
       <el-col
         v-for="field in fieldList"
         :key="field.name"
         :span="field.span"
+        :style="{ marginBottom: colMarginY(field) }"
       >
         <Input
           v-if="field.type === 'input'"
@@ -99,6 +99,7 @@
           ref="subformItems"
           :scenario="scenario"
           :field="field"
+          :schema="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
@@ -198,6 +199,9 @@ export default {
     marginX() {
       return this.formConf.marginX || 20;
     },
+    marginY() {
+      return this.formConf.marginY || 15;
+    },
     labelPosition() {
       return this.formConf.labelPosition || 'right';
     },
@@ -293,6 +297,13 @@ export default {
     }
   },
   methods: {
+    colMarginY(field) {
+      if(field.type === 'wrapper' || field.type === 'subform' ) {
+        return `${this.marginY - (field.formConf.marginY || 15)}px`;
+      } else {
+        return `${this.marginY}px`;
+      }
+    },
     async validate() {
       return new Promise(async (resolve, reject) => {
         let valiResult = true;

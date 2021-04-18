@@ -34,6 +34,7 @@
               :active="field === activeField"
               @select="onSelect(field)"
               @delete="onDelete(field)"
+              :style="{ marginBottom: `${marginY}px` }"
             >
               <!-- 表单项 -->
               <component
@@ -316,6 +317,9 @@ export default {
     },
     marginX() {
       return this.formConf.marginX || 20;
+    },
+    marginY() {
+      return this.formConf.marginY || 15;
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';
