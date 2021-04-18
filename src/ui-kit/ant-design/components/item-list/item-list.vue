@@ -16,6 +16,7 @@
       <template #item="{ item }">
         <DraggableListItem
           :has-control="editable"
+          :style="{ marginBottom: `${marginY}px` }"
           @delete="deleteItem(item)"
         >
           <Subform
@@ -25,7 +26,7 @@
             :data="item"
             :sup-nodes="supNodes"
             :scenario="scenario"
-            style="width: 100%;"
+            :style="{ width: '100%', marginBottom: `-${marginY}px` }"
           />
         </DraggableListItem>
       </template>
@@ -76,7 +77,18 @@ export default {
     Subform
   },
   mixins: [formItemMixin],
+  props: {
+    schema: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
+  },
   computed: {
+    marginY() {
+      return this.schema.formConf.marginY || 15;
+    },
     editable() {
       return !this.readonly && !this.disabled;
     },
