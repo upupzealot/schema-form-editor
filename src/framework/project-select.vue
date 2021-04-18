@@ -147,11 +147,7 @@ export default {
           }
           addId(schema);
 
-          this.$store.commit('$root/setFormConf', schema.formConf || {
-            labelWidth: '80px',
-            labelPosition: 'right',
-            gutter: 20,
-          });
+          this.$store.commit('$root/setFormConf', schema.formConf || {});
           this.$store.commit('$root/setFieldList', schema.fieldList || []);
           this.$store.commit('$root/setValidFuncs', schema.validFuncs || []);
           this.$store.commit('$root/setValidRules', schema.validRules || {});

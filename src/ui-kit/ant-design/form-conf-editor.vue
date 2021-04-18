@@ -1,15 +1,21 @@
 <template>
   <el-form label-width="80px">
-    <el-form-item label="标签列宽">
+    <el-form-item label="标签宽度">
       <el-input
-        v-model.number="labelCol"
-        :placeholder="defaults.labelCol"
+        v-model="labelWidth"
+        :placeholder="defaults.labelWidth"
+      />
+    </el-form-item>
+    <el-form-item label="行间距">
+      <el-input
+        v-model.number="marginY"
+        :placeholder="`${defaults.marginY}`"
       />
     </el-form-item>
     <el-form-item label="列间距">
       <el-input
-        v-model.number="gutter"
-        :placeholder="`${defaults.gutter}`"
+        v-model.number="marginX"
+        :placeholder="`${defaults.marginX}`"
       />
     </el-form-item>
     <el-form-item
@@ -43,8 +49,9 @@ export default {
   data() {
     return {
       defaults: {
-        labelCol: 3,
-        gutter: 20,
+        labelWidth: '80px',
+        marginX: 20,
+        marginY: 15,
         labelPosition: 'right',
       }
     }
@@ -53,27 +60,39 @@ export default {
     formConf() {
       return this.$store.state.activeForm.formConf;
     },
-    labelCol: {
+    labelWidth: {
       get() {
-        return this.formConf.labelCol;
+        return this.formConf.labelWidth;
       },
-      set(col) {
-        if(col && col !== this.defaults.labelCol) {
-          this.$set(this.formConf, 'labelCol', col);
+      set(width) {
+        if(width && width !== this.defaults.labelWidth) {
+          this.$set(this.formConf, 'labelWidth', width);
         } else {
-          this.$set(this.formConf, 'labelCol', undefined);
+          this.$set(this.formConf, 'labelWidth', undefined);
         }
       }
     },
-    gutter: {
+    marginX: {
       get() {
-        return this.formConf.gutter;
+        return this.formConf.marginX || this.defaults.marginX;
       },
-      set(gutter) {
-        if(gutter && gutter !== this.defaults.gutter) {
-          this.$set(this.formConf, 'gutter', gutter);
+      set(marginX) {
+        if(marginX && marginX !== this.defaults.marginX) {
+          this.$set(this.formConf, 'marginX', marginX);
         } else {
-          this.$set(this.formConf, 'gutter', undefined);
+          this.$set(this.formConf, 'marginX', undefined);
+        }
+      }
+    },
+    marginY: {
+      get() {
+        return this.formConf.marginY || this.defaults.marginY;
+      },
+      set(marginY) {
+        if(marginY && marginY !== this.defaults.marginY) {
+          this.$set(this.formConf, 'marginY', marginY);
+        } else {
+          this.$set(this.formConf, 'marginY', undefined);
         }
       }
     },

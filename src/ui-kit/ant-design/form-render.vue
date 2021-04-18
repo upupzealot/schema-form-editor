@@ -10,7 +10,7 @@
     :rules="validRules"
     style="margin-bottom: -15px;"
   >
-    <a-row :gutter="gutter">
+    <a-row :gutter="marginX">
       <a-col
         v-for="field in fieldList"
         :key="field.name"
@@ -204,8 +204,8 @@ export default {
         ? this.formConf.labelCol || 3
         : 0;
     },
-    gutter() {
-      return this.formConf.gutter || 20;
+    marginX() {
+      return this.formConf.marginX || 20;
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';

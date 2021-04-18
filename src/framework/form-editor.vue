@@ -17,7 +17,7 @@
           :selectable="true"
           style="padding-bottom: 50px;"
           list-tag="el-row"
-          :list-data="{ props: { gutter }, gutter }"
+          :list-data="{ props: { gutter: marginX }, gutter: marginX }"
 
           item-tag="el-col"
           :item-data="field => {
@@ -314,8 +314,8 @@ export default {
         ? this.formConf.labelCol || 3
         : 0;
     },
-    gutter() {
-      return this.formConf.gutter || 20;
+    marginX() {
+      return this.formConf.marginX || 20;
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';

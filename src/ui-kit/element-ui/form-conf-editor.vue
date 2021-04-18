@@ -6,10 +6,16 @@
         :placeholder="defaults.labelWidth"
       />
     </el-form-item>
+    <el-form-item label="行间距">
+      <el-input
+        v-model.number="marginY"
+        :placeholder="`${defaults.marginY}`"
+      />
+    </el-form-item>
     <el-form-item label="列间距">
       <el-input
-        v-model.number="gutter"
-        :placeholder="`${defaults.gutter}`"
+        v-model.number="marginX"
+        :placeholder="`${defaults.marginX}`"
       />
     </el-form-item>
     <el-form-item
@@ -44,7 +50,8 @@ export default {
     return {
       defaults: {
         labelWidth: '80px',
-        gutter: 20,
+        marginX: 20,
+        marginY: 15,
         labelPosition: 'right',
       }
     }
@@ -65,15 +72,27 @@ export default {
         }
       }
     },
-    gutter: {
+    marginX: {
       get() {
-        return this.formConf.gutter;
+        return this.formConf.marginX;
       },
-      set(gutter) {
-        if(gutter && gutter !== this.defaults.gutter) {
-          this.$set(this.formConf, 'gutter', gutter);
+      set(marginX) {
+        if(marginX && marginX !== this.defaults.marginX) {
+          this.$set(this.formConf, 'marginX', marginX);
         } else {
-          this.$set(this.formConf, 'gutter', undefined);
+          this.$set(this.formConf, 'marginX', undefined);
+        }
+      }
+    },
+    marginY: {
+      get() {
+        return this.formConf.marginY || this.defaults.marginY;
+      },
+      set(marginY) {
+        if(marginY && marginY !== this.defaults.marginY) {
+          this.$set(this.formConf, 'marginY', marginY);
+        } else {
+          this.$set(this.formConf, 'marginY', undefined);
         }
       }
     },

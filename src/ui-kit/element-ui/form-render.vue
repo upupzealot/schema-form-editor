@@ -7,7 +7,7 @@
     :rules="validRules"
     style="margin-bottom: -15px;"
   >
-    <el-row :gutter="gutter">
+    <el-row :gutter="marginX">
       <el-col
         v-for="field in fieldList"
         :key="field.name"
@@ -195,8 +195,8 @@ export default {
     labelWidth() {
       return this.formConf.labelWidth || '80px';
     },
-    gutter() {
-      return this.formConf.gutter || 20;
+    marginX() {
+      return this.formConf.marginX || 20;
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';

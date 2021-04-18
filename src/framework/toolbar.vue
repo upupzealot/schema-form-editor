@@ -16,7 +16,7 @@
           list-tag="el-row"
           :list-data="{
             class: ['draggable-list', 'example-form-item-list'],
-            props: { gutter }, gutter,
+            props: { gutter: marginX }, gutter: marginX,
           }"
           item-tag="el-col"
           :item-data="{ class: 'example-form-item' }"
@@ -46,7 +46,7 @@
           list-tag="el-row"
           :list-data="{
             class: ['draggable-list', 'example-form-item-list'],
-            props: { gutter }, gutter,
+            props: { gutter: marginX }, gutter: marginX,
           }"
           item-tag="el-col"
           :item-data="{ class: 'example-form-item' }"
@@ -140,8 +140,8 @@ export default {
     formConf() {
       return this.$store.state.$root.formConf;
     },
-    gutter() {
-      return this.formConf.gutter || 20;
+    marginX() {
+      return this.formConf.marginX || 20;
     },
   },
   methods: {
