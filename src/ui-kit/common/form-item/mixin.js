@@ -1,7 +1,4 @@
-import Tooltip from '@/ui-kit/element-ui/components/tooltip.vue'
-
 export default {
-  components: { Tooltip },
   props: {
     scenario: {
       type: String,
