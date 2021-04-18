@@ -25,8 +25,8 @@
       :placeholder="field.placeholder"
       :value-format="valueFormat"
       style="width: 100%;"
+      :get-calendar-container="() => $refs.formItem.$el"
       @openChange="onOpenChange"
-      :getCalendarContainer="() => $refs.formItem.$el"
       @panelChange="onPanelChange"
     />
   </component>

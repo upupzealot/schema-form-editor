@@ -32,9 +32,9 @@
             <DraggableListItem
               :item="field"
               :active="field === activeField"
+              :style="{ marginBottom: `${marginY}px` }"
               @select="onSelect(field)"
               @delete="onDelete(field)"
-              :style="{ marginBottom: `${marginY}px` }"
             >
               <!-- 表单项 -->
               <component

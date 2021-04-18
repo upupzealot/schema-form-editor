@@ -16,8 +16,8 @@
       <template #item="{ item }">
         <DraggableListItem
           :has-control="editable"
-          @delete="deleteItem(item)"
           :style="{ marginBottom: `${marginY}px` }"
+          @delete="deleteItem(item)"
         >
           <Subform
             ref="subformItem"
