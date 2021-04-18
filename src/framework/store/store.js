@@ -6,7 +6,6 @@ export default {
   },
   state: {
     projectId: localStorage.getItem('projectId') || 'default',
-    itemBarPosition: 'left',
     // 当前字段
     activeField: {},
     // 当前（子）表单
@@ -15,9 +14,6 @@ export default {
   mutations: {
     setProjectId(state, projectId) {
       state.projectId = projectId;
-    },
-    setItemBarPosition(state, position) {
-      state.itemBarPosition = position;
     },
     setActiveField(state, field) {
       state.activeField = field;

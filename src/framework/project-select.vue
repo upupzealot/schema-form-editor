@@ -33,25 +33,6 @@
       >
         新建项目
       </el-button>
-      
-      <div style="margin-top: 18px; float: right; margin-right: 20px;">
-        <span style="color: #ccc; margin-right: 10px;">
-          工具条位置
-        </span>
-        <el-radio
-          v-model="itemBarPosition"
-          label="left"
-          style="margin-right: 10px;"
-        >
-          左侧
-        </el-radio>
-        <el-radio
-          v-model="itemBarPosition"
-          label="bottom"
-        >
-          底部
-        </el-radio>
-      </div>
     </el-menu>
     <el-dialog
       v-model="dialogVisible"
@@ -123,8 +104,6 @@ export default {
         name: '默认',
       }];
     }
-    const position = localStorage.getItem('item-bar-position') || 'left';
-    this.$store.commit('setItemBarPosition', position);
     return {
       projects,
       form: {},
@@ -147,15 +126,6 @@ export default {
     project() {
       const projectMap = _.keyBy(this.projects, 'id');
       return projectMap[this.projectId];
-    },
-    itemBarPosition: {
-      get() {
-        return this.$store.state.itemBarPosition;
-      },
-      set(position) {
-        this.$store.commit('setItemBarPosition', position);
-        localStorage.setItem('item-bar-position', position);
-      }
     },
   },
   watch: {

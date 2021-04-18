@@ -3,7 +3,7 @@
     <el-header>
       <ProjectSelect />
     </el-header>
-    <el-main :class="{ 'layout-container': true, bottom: isBottom, left: !isBottom }">
+    <el-main class="layout-container">
       <div>
         <div class="item-bar-container">
           <el-card shadow="never">
@@ -58,46 +58,28 @@
 .layout-container .item-bar-container {
   position: absolute;
   overflow-y: overlay;
-}
-.layout-container.left .item-bar-container {
   top: 0;
   left: 0;
   bottom: 0;
   width: 340px;
 }
-.layout-container.bottom .item-bar-container {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 210px;
-}
 /* form-editor 样式 */
 .layout-container .form-editor-container {
   position: absolute;
   top: 0;
+  bottom: 20px;
   left: 355px;
   right: 515px;
   overflow-y: overlay;
-}
-.layout-container.left .form-editor-container {
-  bottom: 20px;
-}
-.layout-container.bottom .form-editor-container {
-  bottom: 220px;
 }
 /* item-editor 样式 */
 .layout-container .item-editor-container {
   position: absolute;
   top: 0;
+  bottom: 20px;
   right: 0;
   width: 500px;
   overflow-y: overlay;
-}
-.layout-container.left .item-editor-container {
-  bottom: 20px;
-}
-.layout-container.bottom .item-editor-container {
-  bottom: 220px;
 }
 </style>
 
@@ -126,11 +108,6 @@ export default {
     return {
       schema,
     };
-  },
-  computed: {
-    isBottom() {
-      return this.$store.state.itemBarPosition === 'bottom';
-    }
   },
   mounted() {
     const self = this;
