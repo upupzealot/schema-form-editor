@@ -4,9 +4,11 @@
     v-if="activated"
     v-show="visible"
     label="　"
+    :labelCol="labelCol"
+    :wrapperCol="wrapperCol"
     :colon="false"
     class="blank-wrap"
-    style="margin-bottom: 0;"
+    style="margin-bottom: 0; display: flex;"
   >
     <div class="blank" />
   </component>

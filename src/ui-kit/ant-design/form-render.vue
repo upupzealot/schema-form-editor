@@ -4,8 +4,6 @@
     ref="form"
     :layout="layout"
     :label-align="labelAlign"
-    :label-col="{ span: labelCol }"
-    :wrapper-col="{ span: 24 - labelCol }"
     :model="data"
     :rules="validRules"
   >
@@ -19,6 +17,7 @@
         <Input
           v-if="field.type === 'input'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -26,6 +25,7 @@
         <InputNumber
           v-if="field.type === 'input-number'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -33,6 +33,7 @@
         <InputIp
           v-if="field.type === 'input-ip'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -40,6 +41,7 @@
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -47,6 +49,7 @@
         <Radio
           v-if="field.type === 'radio'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -54,6 +57,7 @@
         <Checkbox
           v-if="field.type === 'checkbox'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -61,6 +65,7 @@
         <SSwitch
           v-if="field.type === 'switch'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -68,6 +73,7 @@
         <DatePicker
           v-if="field.type === 'date-picker'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -75,6 +81,7 @@
         <Blank
           v-if="field.type === 'blank'"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -83,6 +90,7 @@
           v-if="field.type === 'wrapper'"
           ref="subformItems"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :schema="field"
           :data="data"
@@ -92,6 +100,7 @@
           v-if="field.type === 'subform'"
           ref="subformItems"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :schema="field"
           :data="data[field.name]"
@@ -101,6 +110,7 @@
           v-if="field.type === 'item-list'"
           ref="subformItems"
           :scenario="scenario"
+          :formConf="formConf"
           :field="field"
           :schema="field"
           :data="data"
@@ -196,20 +206,17 @@ export default {
         return [this];
       }
     },
-    formConf() {
-      return this.schema.formConf;
-    },
-    labelCol() {
-      return this.labelPosition === 'right'
-        || this.labelPosition === 'left'
-        ? this.formConf.labelCol || 3
-        : 0;
-    },
     marginX() {
       return this.formConf.marginX || 20;
     },
     marginY() {
       return this.formConf.marginY || 15;
+    },
+    formConf() {
+      return this.schema.formConf;
+    },
+    labelWidth() {
+      return this.formConf.labelWidth || '80px';
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';

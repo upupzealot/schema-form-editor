@@ -40,6 +40,7 @@
               <component
                 :is="fallback(`editor-${field.type}`) ? `editor-${field.type}` : 'div'"
                 v-bind="{
+                  formConf,
                   field,
                   data,
                   supNodes: fallback(`editor-${field.type}`) ? supNodeList : [],

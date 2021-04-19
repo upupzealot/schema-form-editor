@@ -1,10 +1,16 @@
 export default {
   props: {
-    supNodes: {
-      type: Array,
+    formConf: {
+      type: Object,
       default() {
-        return null;
+        return {};
       }
+    },
+    field: {
+      type: Object,
+      default() {
+        return {}
+      },
     },
     data: {
       type: Object,
@@ -12,11 +18,11 @@ export default {
         return {}
       },
     },
-    field: {
-      type: Object,
+    supNodes: {
+      type: Array,
       default() {
-        return {}
-      },
+        return null;
+      }
     },
   },
   data() {

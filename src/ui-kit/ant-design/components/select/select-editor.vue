@@ -1,5 +1,6 @@
 <template>
   <Select
+    :formConf="formConf"
     :field="field"
     :data="data"
     :v-status="vStatus"

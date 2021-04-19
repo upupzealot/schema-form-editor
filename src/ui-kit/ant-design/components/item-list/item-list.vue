@@ -2,9 +2,11 @@
   <a-form-model-item
     v-if="activated"
     v-show="visible"
+    :labelCol="labelCol"
+    :wrapperCol="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
-    style="margin-bottom: 0;"
+    style="margin-bottom: 0; display: flex;"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

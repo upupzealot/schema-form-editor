@@ -190,17 +190,17 @@ export default {
         return [this];
       }
     },
-    formConf() {
-      return this.schema.formConf;
-    },
-    labelWidth() {
-      return this.formConf.labelWidth || '80px';
-    },
     marginX() {
       return this.formConf.marginX || 20;
     },
     marginY() {
       return this.formConf.marginY || 15;
+    },
+    formConf() {
+      return this.schema.formConf;
+    },
+    labelWidth() {
+      return this.formConf.labelWidth || '80px';
     },
     labelPosition() {
       return this.formConf.labelPosition || 'right';

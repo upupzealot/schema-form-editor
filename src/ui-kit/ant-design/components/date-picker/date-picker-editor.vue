@@ -1,5 +1,6 @@
 <template>
   <DatePicker
+    :formConf="formConf"
     :field="field"
     :data="data"
     :v-status="vStatus"

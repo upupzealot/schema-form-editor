@@ -6,9 +6,11 @@
     ref="formItem"
     :prop="field.name"
     :name="field.name /* antd 2.x prop 属性改为 name */"
+    :labelCol="labelCol"
+    :wrapperCol="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
-    style="margin-bottom: 0;"
+    style="margin-bottom: 0; display: flex;"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

@@ -8,9 +8,9 @@
     </el-tag>
     <ItemList
       :form-key="field.name"
-      :data="data"
-      :field="schema"
       :schema="schema"
+      :field="schema"
+      :data="data"
       :sup-nodes="supNodes"
     />
     <el-tag

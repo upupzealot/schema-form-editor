@@ -1,5 +1,6 @@
 <template>
   <Input
+    :formConf="formConf"
     :field="field"
     :data="data"
     :v-status="vStatus"
