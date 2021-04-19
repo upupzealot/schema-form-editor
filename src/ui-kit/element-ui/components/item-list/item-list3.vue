@@ -54,10 +54,10 @@
 </style>
 
 <script>
-import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
+import formItemMixin from '../../common/form-item/mixin'
 
-import DraggableList from '@/ui-kit/common/draggable-list3'
-import DraggableListItem from '@/ui-kit/common/draggable-list-item'
+import DraggableList from '../../../common/draggable-list3'
+import DraggableListItem from '../../../common/draggable-list-item'
 import Subform from '../subform/subform'
 
 export default {

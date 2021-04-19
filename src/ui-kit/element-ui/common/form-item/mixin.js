@@ -1,5 +1,5 @@
-import commonMixin from '@/ui-kit/common/form-item/mixin'
-import Tooltip from '@/ui-kit/element-ui/components/tooltip.vue'
+import commonMixin from '../../../common/form-item/mixin'
+import Tooltip from '../../components/tooltip.vue'
 
 export default {
   ...commonMixin,

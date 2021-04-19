@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { $id } from '@/ui-kit/common/util-funcs.js'
-import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
+import { $id } from '../../../common/util-funcs.js'
+import formItemMixin from '../../common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],

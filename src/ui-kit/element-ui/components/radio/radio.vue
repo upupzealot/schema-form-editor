@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
-import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
+import formItemMixin from '../../common/form-item/mixin'
+import optionListMixin from '../../../common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],

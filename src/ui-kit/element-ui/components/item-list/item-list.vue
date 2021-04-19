@@ -54,15 +54,15 @@
 </style>
 
 <script>
-import formItemMixin from '@/ui-kit/element-ui/common/form-item/mixin'
+import formItemMixin from '../../common/form-item/mixin'
 
-import DraggableListItem from '@/ui-kit/common/draggable-list-item'
+import DraggableListItem from '../../../common/draggable-list-item'
 import Subform from '../subform/subform'
 
 export default {
   name: 'ItemList',
   components: {
-    DraggableList: () => import('@/ui-kit/common/draggable-list'),
+    DraggableList: () => import('../../../common/draggable-list'),
     DraggableListItem,
     Subform
   },
