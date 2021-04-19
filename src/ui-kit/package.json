@@ -1,6 +1,6 @@
 {
   "name": "schema-form-render",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
+    "md5": "^2.3.0",
     "vuedraggable": "^2.24.3"
   }
 }
