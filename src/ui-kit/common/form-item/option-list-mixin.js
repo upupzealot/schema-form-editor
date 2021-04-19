@@ -54,9 +54,14 @@ export default {
               }
             })
             .then(resData => {
-              const { success, message, data } = resData;
-              if(success) {
-                const { list } = data;
+              const { success, code, message, data } = resData;
+              if(success || code === 0 || code === 200) {
+                let list = [];
+                if(data.list) {
+                  list = data.list;
+                } else {
+                  list = data;
+                }
                 const options = list.map(item => ({
                   label: item[this.field.remoteConf.labelKey || 'name'],
                   value: item[this.field.remoteConf.valueKey || 'id'],
