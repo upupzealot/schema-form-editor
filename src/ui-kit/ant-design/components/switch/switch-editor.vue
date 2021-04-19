@@ -1,6 +1,6 @@
 <template>
   <SSwitch
-    :formConf="formConf"
+    :form-conf="formConf"
     :field="field"
     :data="data"
     :v-status="vStatus"

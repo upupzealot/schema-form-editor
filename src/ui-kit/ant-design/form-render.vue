@@ -17,7 +17,7 @@
         <Input
           v-if="field.type === 'input'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -25,7 +25,7 @@
         <InputNumber
           v-if="field.type === 'input-number'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -33,7 +33,7 @@
         <InputIp
           v-if="field.type === 'input-ip'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -41,7 +41,7 @@
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -49,7 +49,7 @@
         <Radio
           v-if="field.type === 'radio'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -57,7 +57,7 @@
         <Checkbox
           v-if="field.type === 'checkbox'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -65,7 +65,7 @@
         <SSwitch
           v-if="field.type === 'switch'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -73,7 +73,7 @@
         <DatePicker
           v-if="field.type === 'date-picker'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -81,7 +81,7 @@
         <Blank
           v-if="field.type === 'blank'"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :data="data"
           :sup-nodes="supNodeList"
@@ -90,7 +90,7 @@
           v-if="field.type === 'wrapper'"
           ref="subformItems"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :schema="field"
           :data="data"
@@ -100,7 +100,7 @@
           v-if="field.type === 'subform'"
           ref="subformItems"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :schema="field"
           :data="data[field.name]"
@@ -110,7 +110,7 @@
           v-if="field.type === 'item-list'"
           ref="subformItems"
           :scenario="scenario"
-          :formConf="formConf"
+          :form-conf="formConf"
           :field="field"
           :schema="field"
           :data="data"

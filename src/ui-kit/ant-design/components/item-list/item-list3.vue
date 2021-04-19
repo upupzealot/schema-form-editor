@@ -2,8 +2,8 @@
   <a-form-item
     v-if="activated"
     v-show="visible"
-    :labelCol="labelCol"
-    :wrapperCol="wrapperCol"
+    :label-col="labelCol"
+    :wrapper-col="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
     style="margin-bottom: 0; display: flex;"
