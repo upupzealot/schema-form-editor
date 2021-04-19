@@ -9,7 +9,7 @@
     :wrapper-col="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
-    style="margin-bottom: 0; display: flex;"
+    style="margin-bottom: 0; display: flex; flex-wrap: nowrap;"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
