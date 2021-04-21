@@ -145,12 +145,57 @@ export default {
   created() {
     if(this.mapLevels) {
       const selected = [];
-      selected.push(this.data[this.provinceKey]);
-      selected.push(this.data[this.cityKey]);
-      if(this.mode === 'province-city-district') {
-        selected.push(this.data[this.districtKey]);
+
+      let province = this.data[this.provinceKey];
+      if(province) {
+        if(this.valueFormat === 'name') {
+          selected.push(TextToCode[province].code);
+        } else {
+          selected.push(province);
+        }
+      } else {
+        this.selected = undefined;
+        return;
       }
+
+      let city = this.data[this.cityKey];
+      if(city) {
+        if(this.valueFormat === 'name') {
+          selected.push(TextToCode[province][city].code);
+        } else {
+          selected.push(city);
+        }
+      } else {
+        this.selected = undefined;
+        return;
+      }
+
+      if(this.mode === 'province-city-district') {
+        let district = this.data[this.districtKey];
+        if(district) {
+          if(this.valueFormat === 'name') {
+            selected.push(TextToCode[province][city][district].code);
+          } else {
+            selected.push(district);
+          }
+        } else {
+          this.selected = undefined;
+          return;
+        }
+      }
+
       this.selected = selected;
+    } else {
+      let selected = this.data[this.field.name];
+      if(this.valueFormat === 'name') {
+        let data = TextToCode;
+        this.selected = selected.map(v => {
+          data = data[v];
+          return data.code;
+        });
+      } else {
+        this.selected = selected;
+      }
     }
   }
 };
