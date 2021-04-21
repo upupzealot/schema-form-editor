@@ -14,8 +14,18 @@
         label="层级"
         prop="level"
       >
-        <el-radio v-model="mode" label="province-city">省市</el-radio>
-        <el-radio v-model="mode" label="province-city-district">省市区</el-radio>
+        <el-radio
+          v-model="mode"
+          label="province-city"
+        >
+          省市
+        </el-radio>
+        <el-radio
+          v-model="mode"
+          label="province-city-district"
+        >
+          省市区
+        </el-radio>
       </el-form-item>
 
       <el-form-item
@@ -35,27 +45,39 @@
         label="字段映射"
         prop="mapLevels"
       >
-        <el-switch v-model="mapLevels" active-text="所选值映射到独立的字段" />
+        <el-switch
+          v-model="mapLevels"
+          active-text="所选值映射到独立的字段"
+        />
       </el-form-item>
       <template v-if="mapLevels">
         <el-form-item
           label="省级字段"
           prop="provinceKey"
         >
-          <el-input v-model="provinceKey" placeholder="province" />
+          <el-input
+            v-model="provinceKey"
+            placeholder="province"
+          />
         </el-form-item>
         <el-form-item
           label="市级字段"
           prop="cityKey"
         >
-          <el-input v-model="cityKey" placeholder="city" />
+          <el-input
+            v-model="cityKey"
+            placeholder="city"
+          />
         </el-form-item>
         <el-form-item
+          v-if="mode === 'province-city-district'"
           label="区级字段"
           prop="districtKey"
-          v-if="mode === 'province-city-district'"
         >
-          <el-input v-model="districtKey" placeholder="district" />
+          <el-input
+            v-model="districtKey"
+            placeholder="district"
+          />
         </el-form-item>
       </template>
 

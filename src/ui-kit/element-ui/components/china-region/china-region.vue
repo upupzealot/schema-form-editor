@@ -11,14 +11,13 @@
       <Tooltip :field="field" />
     </template>
     <el-cascader
+      v-model="selected"
       size="large"
       :options="options"
-      v-model="selected"
       :clearable="field.clearable !== false"
       :filterable="field.filterable"
       style="width: 100%"
-    >
-    </el-cascader>
+    />
   </el-form-item>
 </template>
 
@@ -38,17 +37,6 @@ export default {
   data() {
     return {
       selected: this.data[this.field.name] || [],
-    }
-  },
-  created() {
-    if(this.mapLevels) {
-      const selected = [];
-      selected.push(this.data[this.provinceKey]);
-      selected.push(this.data[this.cityKey]);
-      if(this.mode === 'province-city-district') {
-        selected.push(this.data[this.districtKey]);
-      }
-      this.selected = selected;
     }
   },
   computed: {
@@ -138,6 +126,17 @@ export default {
       if(this.mapLevels) {
         this.$set(this.data, val, this.selected[2]);
       }
+    }
+  },
+  created() {
+    if(this.mapLevels) {
+      const selected = [];
+      selected.push(this.data[this.provinceKey]);
+      selected.push(this.data[this.cityKey]);
+      if(this.mode === 'province-city-district') {
+        selected.push(this.data[this.districtKey]);
+      }
+      this.selected = selected;
     }
   }
 };

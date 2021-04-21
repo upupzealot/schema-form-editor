@@ -9,7 +9,8 @@
   >
     <component
       :is="inline ? 'span' : 'a-row'"
-      :gutter="marginX">
+      :gutter="marginX"
+    >
       <component
         :is="inline ? 'span' : 'a-col'"
         v-for="field in fieldList"

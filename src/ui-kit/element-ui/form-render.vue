@@ -7,7 +7,10 @@
     :model="data"
     :rules="validRules"
   >
-    <component :is="inline ? 'span' : 'el-row'" :gutter="marginX">
+    <component
+      :is="inline ? 'span' : 'el-row'"
+      :gutter="marginX"
+    >
       <component
         :is="inline ? 'span' : 'el-col'"
         v-for="field in fieldList"
