@@ -28,7 +28,7 @@
 </style>
 
 <script>
-import { provinceAndCityData, regionData } from 'element-china-area-data'
+import { provinceAndCityData, regionData, CodeToText, TextToCode } from 'element-china-area-data'
 
 import formItemMixin from '../../common/form-item/mixin'
 
@@ -47,6 +47,9 @@ export default {
     mode() {
       return this.field.mode || 'province-city-district';
     },
+    valueFormat() {
+      return this.field.valueFormat || 'code';
+    },
     mapLevels() {
       return !!this.field.mapLevels;
     },
@@ -59,49 +62,60 @@ export default {
     districtKey() {
       return this.field.districtKey || 'district';
     },
-  },
-  watch: {
-    selected(val) {
-      if(val && val.length) {
-        if(this.mapLevels) {
-          this.$set(this.data, this.provinceKey, val[0]);
-          this.$set(this.data, this.cityKey, val[1]);
-          if(this.mode === 'province-city-district') {
-            this.$set(this.data, this.districtKey, val[2]);
-          }
+    provinceVal() { // 省级字段值
+      if(this.selected && this.selected.length) {
+        if(this.valueFormat === 'code') {
+          return this.selected[0];
         } else {
-          this.$set(this.data, this.field.name, val);
+          return CodeToText[this.selected[0]];
         }
       } else {
-        if(this.mapLevels) {
-          this.$set(this.data, this.provinceKey, undefined);
-          this.$set(this.data, this.cityKey, undefined);
-          if(this.mode === 'province-city-district') {
-            this.$set(this.data, this.districtKey, undefined);
-          }
-        } else {
-          this.$set(this.data, this.field.name, undefined);
-        }
+        return undefined;
       }
     },
-    mapLevels(val) {
-      if(val) {
-        this.$set(this.data, this.field.name, undefined);
-
-        this.$set(this.data, this.provinceKey, this.selected[0]);
-        this.$set(this.data, this.cityKey, this.selected[1]);
-        if(this.mode === 'province-city-district') {
-          this.$set(this.data, this.districtKey, this.selected[2]);
+    cityVal() { // 市级字段值
+      if(this.selected && this.selected.length) {
+        if(this.valueFormat === 'code') {
+          return this.selected[1];
+        } else {
+          return CodeToText[this.selected[1]];
         }
       } else {
-        this.$set(this.data, this.field.name, this.selected);
-
-        this.$set(this.data, this.provinceKey, undefined);
-        this.$set(this.data, this.cityKey, undefined);
-        if(this.mode === 'province-city-district') {
-          this.$set(this.data, this.districtKey, undefined);
-        }
+        return undefined;
       }
+    },
+    districtVal() { // 区级字段值
+      if(this.selected && this.selected.length && this.mode === 'province-city-district') {
+        if(this.valueFormat === 'code') {
+          return this.selected[2];
+        } else {
+          return CodeToText[this.selected[2]];
+        }
+      } else {
+        return undefined;
+      }
+    },
+    arrayVal() {
+      if(this.selected && this.selected.length && !this.mapLevels) {
+        if(this.mode === 'province-city-district') {
+          return [this.provinceVal, this.cityVal, this.districtVal];
+        } else {
+          return [this.provinceVal, this.cityVal];
+        }
+      } else {
+        return undefined;
+      }
+    },
+    updater() {
+      return `${this.selected.join(',')}|${this.mode}|${this.mapLevels}|${this.valueFormat}`;
+    }
+  },
+  watch: {
+    updater() {
+      this.$set(this.data, this.provinceKey, this.provinceVal);
+      this.$set(this.data, this.cityKey, this.cityVal);
+      this.$set(this.data, this.districtKey, this.districtVal);
+      this.$set(this.data, this.field.name, this.arrayVal);
     },
     provinceKey(val, oldVal) {
       if(oldVal) {
