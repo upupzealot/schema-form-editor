@@ -7,10 +7,8 @@
     :model="data"
     :rules="validRules"
   >
-    <el-row
-      :is="inline ? 'span' : 'el-row'"
-      :gutter="marginX">
-      <el-col
+    <component :is="inline ? 'span' : 'el-row'" :gutter="marginX">
+      <component
         :is="inline ? 'span' : 'el-col'"
         v-for="field in fieldList"
         :key="field.name"
@@ -107,8 +105,8 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-      </el-col>
-    </el-row>
+      </component>
+    </component>
   </el-form>
 </template>
 
@@ -207,7 +205,7 @@ export default {
       return this.formConf.marginY || 15;
     },
     formConf() {
-      return this.schema.formConf;
+      return this.schema.formConf || {};
     },
     labelWidth() {
       return this.formConf.labelWidth || '80px';
@@ -308,7 +306,9 @@ export default {
   },
   methods: {
     colMarginY(field) {
-      if(field.type === 'wrapper' || field.type === 'subform' ) {
+      if(!field.activated || !field.visible) {
+        return '0';
+      } else if(field.type === 'wrapper' || field.type === 'subform' ) {
         return `${this.marginY - (field.formConf.marginY || 15)}px`;
       } else {
         return `${this.marginY}px`;

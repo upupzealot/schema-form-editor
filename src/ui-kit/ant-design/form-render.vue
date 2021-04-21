@@ -332,7 +332,9 @@ export default {
   },
   methods: {
     colMarginY(field) {
-      if(field.type === 'wrapper' || field.type === 'subform' ) {
+      if(!field.activated || !field.visible) {
+        return '0';
+      } else if(field.type === 'wrapper' || field.type === 'subform' ) {
         return `${this.marginY - (field.formConf.marginY || 15)}px`;
       } else {
         return `${this.marginY}px`;
