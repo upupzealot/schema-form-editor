@@ -2,6 +2,7 @@ import InputToolbar from './components/input/input-toolbar.vue'
 import InputNumberToolbar from './components/input-number/input-number-toolbar.vue'
 import InputIpToolbar from './components/input-ip/input-ip-toolbar.vue'
 import SelectToolbar from './components/select/select-toolbar.vue'
+import ChinaRegionToolbar from './components/china-region/china-region-toolbar.vue'
 import RadioToolbar from './components/radio/radio-toolbar.vue'
 import CheckboxToolbar from './components/checkbox/checkbox-toolbar.vue'
 import SwitchToolbar from './components/switch/switch-toolbar.vue'
@@ -11,6 +12,7 @@ export const ToolbarItems = [
   InputNumberToolbar,
   InputIpToolbar,
   SelectToolbar,
+  ChinaRegionToolbar,
   RadioToolbar,
   CheckboxToolbar,
   SwitchToolbar,
@@ -31,6 +33,7 @@ import InputEditor from './components/input/input-editor.vue'
 import InputNumberEditor from './components/input-number/input-number-editor.vue'
 import InputIpEditor from './components/input-ip/input-ip-editor.vue'
 import SelectEditor from './components/select/select-editor.vue'
+import ChinaRegionEditor from './components/china-region/china-region-editor.vue'
 import RadioEditor from './components/radio/radio-editor.vue'
 import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
 import SwitchEditor from './components/switch/switch-editor.vue'
@@ -44,6 +47,7 @@ export const EditorItems = [
   InputNumberEditor,
   InputIpEditor,
   SelectEditor,
+  ChinaRegionEditor,
   RadioEditor,
   CheckboxEditor,
   SwitchEditor,
@@ -58,6 +62,7 @@ import InputSchema from './components/input/input-schema.vue'
 import InputNumberSchema from './components/input-number/input-number-schema.vue'
 import InputIpSchema from './components/input-ip/input-ip-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
+import ChinaRegionSchema from './components/china-region/china-region-schema.vue'
 import RadioSchema from './components/radio/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
@@ -71,6 +76,7 @@ export const SchemaItems = [
   InputNumberSchema,
   InputIpSchema,
   SelectSchema,
+  ChinaRegionSchema,
   RadioSchema,
   CheckboxSchema,
   SwitchSchema,

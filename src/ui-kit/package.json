@@ -1,6 +1,6 @@
 {
   "name": "schema-form-render",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0",
+    "element-china-area-data": "^5.0.2",
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
     "vuedraggable": "^2.24.3"

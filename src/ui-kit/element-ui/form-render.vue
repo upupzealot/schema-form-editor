@@ -43,6 +43,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <ChinaRegion
+          v-if="field.type === 'china-region'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Radio
           v-if="field.type === 'radio'"
           :scenario="scenario"
@@ -123,6 +130,7 @@ import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
 import Select from './components/select/select';
+import ChinaRegion from './components/china-region/china-region';
 import Radio from './components/radio/radio';
 import Checkbox from './components/checkbox/checkbox';
 import SSwitch from './components/switch/switch';
@@ -143,6 +151,7 @@ export default {
     InputNumber,
     InputIp,
     Select,
+    ChinaRegion,
     Radio,
     Checkbox,
     SSwitch,
