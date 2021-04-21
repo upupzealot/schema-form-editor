@@ -81,6 +81,11 @@
                 <el-checkbox v-model="disabled" />
               </el-form-item>
             </el-col>
+            <el-col :span="12">
+              <el-form-item label="在表格中">
+                <el-checkbox v-model="inTable" />
+              </el-form-item>
+            </el-col>
           </el-row>
           <slot name="basic" />
         </div>
@@ -217,6 +222,14 @@ export default {
       },
       set(val) {
         this.$set(this.field, 'disabled', val || undefined);
+      }
+    },
+    inTable: {
+      get() {
+        return this.field.inTable !== false;
+      },
+      set(val) {
+        this.$set(this.field, 'inTable', val && undefined);
       }
     },
   },

@@ -1,13 +1,17 @@
 <template>
   <el-form
     ref="form"
+    :inline="inline"
     :label-width="labelWidth"
     :label-position="labelPosition"
     :model="data"
     :rules="validRules"
   >
-    <el-row :gutter="marginX">
+    <el-row
+      :is="inline ? 'span' : 'el-row'"
+      :gutter="marginX">
       <el-col
+        :is="inline ? 'span' : 'el-col'"
         v-for="field in fieldList"
         :key="field.name"
         :span="field.span"
@@ -151,6 +155,12 @@ export default {
     ItemList,
   },
   props: {
+    inline: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
     scenario: {
       type: String,
       default() {

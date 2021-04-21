@@ -7,8 +7,11 @@
     :model="data"
     :rules="validRules"
   >
-    <a-row :gutter="marginX">
-      <a-col
+    <component
+      :is="inline ? 'span' : 'a-row'"
+      :gutter="marginX">
+      <component
+        :is="inline ? 'span' : 'a-col'"
         v-for="field in fieldList"
         :key="field.name"
         :span="field.span || 24"
@@ -116,8 +119,8 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-      </a-col>
-    </a-row>
+      </component>
+    </component>
   </component>
 </template>
 
@@ -164,6 +167,12 @@ export default {
     ItemList,
   },
   props: {
+    inline: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
     scenario: {
       type: String,
       default() {
@@ -222,9 +231,10 @@ export default {
       return this.formConf.labelPosition || 'right';
     },
     layout() {
-      return this.labelPosition === 'right'
+      return this.inline ? 'inline' :
+      (this.labelPosition === 'right'
         || this.labelPosition === 'left'
-        ? 'horizontal' : 'vertical';
+        ? 'horizontal' : 'vertical');
     },
     labelAlign() {
       return this.layout === 'horizontal' ? this.labelPosition : 'right';
