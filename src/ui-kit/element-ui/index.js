@@ -1,6 +1,7 @@
 import InputToolbar from './components/input/input-toolbar.vue'
 import InputNumberToolbar from './components/input-number/input-number-toolbar.vue'
 import InputIpToolbar from './components/input-ip/input-ip-toolbar.vue'
+import InputFileToolbar from './components/input-file/input-file-toolbar.vue'
 import SelectToolbar from './components/select/select-toolbar.vue'
 import ChinaRegionToolbar from './components/china-region/china-region-toolbar.vue'
 import RadioToolbar from './components/radio/radio-toolbar.vue'
@@ -11,6 +12,7 @@ export const ToolbarItems = [
   InputToolbar,
   InputNumberToolbar,
   InputIpToolbar,
+  InputFileToolbar,
   SelectToolbar,
   ChinaRegionToolbar,
   RadioToolbar,
@@ -32,6 +34,7 @@ export const ToolbarUtils = [
 import InputEditor from './components/input/input-editor.vue'
 import InputNumberEditor from './components/input-number/input-number-editor.vue'
 import InputIpEditor from './components/input-ip/input-ip-editor.vue'
+import InputFileEditor from './components/input-file/input-file-editor.vue'
 import SelectEditor from './components/select/select-editor.vue'
 import ChinaRegionEditor from './components/china-region/china-region-editor.vue'
 import RadioEditor from './components/radio/radio-editor.vue'
@@ -46,6 +49,7 @@ export const EditorItems = [
   InputEditor,
   InputNumberEditor,
   InputIpEditor,
+  InputFileEditor,
   SelectEditor,
   ChinaRegionEditor,
   RadioEditor,
@@ -61,6 +65,7 @@ export const EditorItems = [
 import InputSchema from './components/input/input-schema.vue'
 import InputNumberSchema from './components/input-number/input-number-schema.vue'
 import InputIpSchema from './components/input-ip/input-ip-schema.vue'
+import InputFileSchema from './components/input-file/input-file-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
 import ChinaRegionSchema from './components/china-region/china-region-schema.vue'
 import RadioSchema from './components/radio/radio-schema.vue'
@@ -75,6 +80,7 @@ export const SchemaItems = [
   InputSchema,
   InputNumberSchema,
   InputIpSchema,
+  InputFileSchema,
   SelectSchema,
   ChinaRegionSchema,
   RadioSchema,

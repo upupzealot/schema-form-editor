@@ -39,6 +39,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputFile
+          v-if="field.type === 'input-file'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
@@ -132,6 +139,7 @@ import _ from 'lodash';
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
+import InputFile from './components/input-file/input-file';
 import Select from './components/select/select';
 import ChinaRegion from './components/china-region/china-region';
 import Radio from './components/radio/radio';
@@ -153,6 +161,7 @@ export default {
     Input,
     InputNumber,
     InputIp,
+    InputFile,
     Select,
     ChinaRegion,
     Radio,
