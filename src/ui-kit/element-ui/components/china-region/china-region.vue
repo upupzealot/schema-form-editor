@@ -107,7 +107,20 @@ export default {
       }
     },
     updater() {
-      return `${this.selected.join(',')}|${this.mode}|${this.mapLevels}|${this.valueFormat}`;
+      return this.selected && `${this.selected.join(',')}|${this.mode}|${this.mapLevels}|${this.valueFormat}`;
+    },
+    dataUpdater() {
+      if(this.mapLevels) {
+        const data = this.data;
+        if(this.mode === 'province-city-district') {
+          return `${data[this.provinceKey]}|${data[this.cityKey]}|${data[this.districtKey]}`;
+        } else {
+          return `${data[this.provinceKey]}|${data[this.cityKey]}`;
+        }
+      } else {
+        const data = this.data[this.field.name];
+        return data && data.join('|');
+      }
     }
   },
   watch: {
@@ -140,62 +153,65 @@ export default {
       if(this.mapLevels) {
         this.$set(this.data, val, this.selected[2]);
       }
-    }
-  },
-  created() {
-    if(this.mapLevels) {
-      const selected = [];
+    },
+    dataUpdater: {
+      handler() {
+        if(this.mapLevels) {
+          const selected = [];
 
-      let province = this.data[this.provinceKey];
-      if(province) {
-        if(this.valueFormat === 'name') {
-          selected.push(TextToCode[province].code);
-        } else {
-          selected.push(province);
-        }
-      } else {
-        this.selected = undefined;
-        return;
-      }
-
-      let city = this.data[this.cityKey];
-      if(city) {
-        if(this.valueFormat === 'name') {
-          selected.push(TextToCode[province][city].code);
-        } else {
-          selected.push(city);
-        }
-      } else {
-        this.selected = undefined;
-        return;
-      }
-
-      if(this.mode === 'province-city-district') {
-        let district = this.data[this.districtKey];
-        if(district) {
-          if(this.valueFormat === 'name') {
-            selected.push(TextToCode[province][city][district].code);
+          let province = this.data[this.provinceKey];
+          if(province) {
+            if(this.valueFormat === 'name') {
+              selected.push(TextToCode[province].code);
+            } else {
+              selected.push(province);
+            }
           } else {
-            selected.push(district);
+            this.selected = undefined;
+            return;
           }
-        } else {
-          this.selected = undefined;
-          return;
-        }
-      }
 
-      this.selected = selected;
-    } else {
-      let selected = this.data[this.field.name];
-      if(this.valueFormat === 'name') {
-        let data = TextToCode;
-        this.selected = selected.map(v => {
-          data = data[v];
-          return data.code;
-        });
-      } else {
-        this.selected = selected;
-      }
+          let city = this.data[this.cityKey];
+          if(city) {
+            if(this.valueFormat === 'name') {
+              selected.push(TextToCode[province][city].code);
+            } else {
+              selected.push(city);
+            }
+          } else {
+            this.selected = undefined;
+            return;
+          }
+
+          if(this.mode === 'province-city-district') {
+            let district = this.data[this.districtKey];
+            if(district) {
+              if(this.valueFormat === 'name') {
+                selected.push(TextToCode[province][city][district].code);
+              } else {
+                selected.push(district);
+              }
+            } else {
+              this.selected = undefined;
+              return;
+            }
+          }
+
+          this.selected = selected;
+        } else {
+          let selected = this.data[this.field.name];
+          if(this.valueFormat === 'name') {
+            let data = TextToCode;
+            this.selected = selected.map(v => {
+              data = data[v];
+              return data.code;
+            });
+          } else {
+            this.selected = selected;
+          }
+        }
+      },
+      immediate: true,
     }
   }
 };
