@@ -53,6 +53,13 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <Cascader
+          v-if="field.type === 'cascader'"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <ChinaRegion
           v-if="field.type === 'china-region'"
           :scenario="scenario"
@@ -141,6 +148,7 @@ import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
 import InputFile from './components/input-file/input-file';
 import Select from './components/select/select';
+import Cascader from './components/cascader/cascader';
 import ChinaRegion from './components/china-region/china-region';
 import Radio from './components/radio/radio';
 import Checkbox from './components/checkbox/checkbox';
@@ -163,6 +171,7 @@ export default {
     InputIp,
     InputFile,
     Select,
+    Cascader,
     ChinaRegion,
     Radio,
     Checkbox,

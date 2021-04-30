@@ -119,6 +119,12 @@ export default {
         return {};
       },
     },
+    forceRemote: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    }
   },
   data() {
     return {
@@ -138,10 +144,10 @@ export default {
   computed: {
     isRemote: {
       get() {
-        return this.field.isRemote === true;
+        return this.forceRemote === true || this.field.isRemote === true;
       },
       set(val) {
-        this.$set(this.field, 'isRemote', !!val ? true : undefined);
+        this.$set(this.field, 'isRemote', !!(this.forceRemote || val) ? true : undefined);
       }
     },
     isFunc() {

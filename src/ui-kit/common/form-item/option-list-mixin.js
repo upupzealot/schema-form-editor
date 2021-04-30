@@ -19,7 +19,7 @@ export default {
   watch: {
     optionList: {
       handler(newValue) {
-        if(this.field.isRemote) {
+        if(this.isRemote) {
           this.$delete(this.field, 'options');
         } else {
           this.options = newValue;
@@ -29,7 +29,7 @@ export default {
     },
     'field.options': {
       handler(newValue) {
-        if(this.field.isRemote) {
+        if(this.isRemote) {
           this.$delete(this.field, 'options');
         } else {
           this.options = newValue;
@@ -62,10 +62,7 @@ export default {
                 } else {
                   list = data;
                 }
-                const options = list.map(item => ({
-                  label: item[this.field.remoteConf.labelKey || 'name'],
-                  value: item[this.field.remoteConf.valueKey || 'id'],
-                }));
+                const options = this.parseOptions(list);
                 this.optionList = options;
               } else {
                 throw new Error(message)
@@ -82,11 +79,21 @@ export default {
           let fetchFunc = new Function(func);
           fetchFunc = fetchFunc.bind(this);
           try {
-            this.optionList = fetchFunc() || [];
+            const list = fetchFunc() || [];
+            const options = this.parseOptions(list);
+            this.optionList = options;
           } catch (err) {}
         }
       },
       immediate: true,
     }
   },
+  methods: {
+    parseOptions(options) {
+      return options.map(option => ({
+        label: option[this.field.remoteConf.labelKey || 'name'],
+        value: option[this.field.remoteConf.valueKey || 'id'],
+      }));
+    },
+  }
 };
