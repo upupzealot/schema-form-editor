@@ -17,23 +17,11 @@ export default {
     },
   },
   watch: {
-    optionList: {
-      handler(newValue) {
-        if(this.isRemote) {
-          this.$delete(this.field, 'options');
-        } else {
-          this.options = newValue;
-          this.$set(this.field, 'options', newValue);
-        }
-      }
-    },
     'field.options': {
-      handler(newValue) {
+      handler(options) {
+        this.options = options;
         if(this.isRemote) {
           this.$delete(this.field, 'options');
-        } else {
-          this.options = newValue;
-          this.$set(this.field, 'options', newValue);
         }
       }
     },
