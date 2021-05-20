@@ -57,7 +57,7 @@ export default {
     },
     onExceed([elFile]) {
       this.text = elFile.name;
-      this.$set(this.data, this.field.name, elFile.raw);
+      this.$set(this.data, this.field.name, elFile);
     },
     onClear() {
       this.text = '';
