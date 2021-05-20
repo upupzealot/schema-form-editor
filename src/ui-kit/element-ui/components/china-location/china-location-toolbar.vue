@@ -1,0 +1,20 @@
+<template>
+  <el-input
+    v-model="value"
+    type="textarea"
+    :rows="2"
+    :autosize="{ minRows: 2, maxRows: 2}"
+    placeholder="请输入"
+    class="example-component"
+  />
+</template>
+
+<script>
+export default {
+  type: 'china-location',
+  label: '地理坐标',
+  data() {
+    return { value: '杭州市民中心\r\n解放东路18号' };
+  }
+}
+</script>
