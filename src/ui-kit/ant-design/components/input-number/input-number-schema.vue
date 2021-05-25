@@ -113,7 +113,8 @@ export default {
   computed: {
     min: {
       get() {
-        return this.field.min || undefined;
+        const min = Number(this.field.min);
+        return isNaN(min) ? undefined : min;
       },
       set(val) {
         const number = Number(val);
