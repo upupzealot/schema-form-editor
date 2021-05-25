@@ -365,7 +365,6 @@ export default {
             subformItems = [subformItems];
           }
 
-          console.log(valiResult)
           Promise.all(subformItems.map(subform => {
             return new Promise(reso => {
               (async ()=> {
