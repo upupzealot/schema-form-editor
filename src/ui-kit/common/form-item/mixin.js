@@ -153,8 +153,13 @@ export default {
             }
           }
           let $vm = this;
-          if(depth && depth < this.supNodes.length) {
-            $vm = this.supNodes[this.supNodes.length - 1 - depth];
+          if(depth && depth <= this.supNodes.length) {
+            if(this.field.type === 'subform') {
+              $vm = this.supNodes[this.supNodes.length - depth];
+            } else if (depth < this.supNodes.length) {
+              $vm = this.supNodes[this.supNodes.length - 1 - depth];
+            }
+            // $vm = this.supNodes[this.supNodes.length - 1 - depth];
           }
           if(prop.startsWith('this.')) {
             prop = prop.replace('this.', '');
