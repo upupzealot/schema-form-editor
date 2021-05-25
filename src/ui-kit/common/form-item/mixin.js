@@ -37,6 +37,9 @@ export default {
     }
   },
   computed: {
+    config() {
+      return this.supNodes[0].config;
+    },
     parent() {
       if(!this.supNodes || !this.supNodes.length) {
         return null;
@@ -131,7 +134,7 @@ export default {
         value: this.scenario,
       }, {
         key: 'config',
-        value: this.supNodes[0].config,
+        value: this.config,
       }, {
         key: 'data',
         value: this.data,
