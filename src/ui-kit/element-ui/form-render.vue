@@ -365,18 +365,24 @@ export default {
             subformItems = [subformItems];
           }
 
+          console.log(valiResult)
           Promise.all(subformItems.map(subform => {
             return new Promise(reso => {
               (async ()=> {
-                await subform.validate(isVali => reso)
+                try {
+                  const valid = await subform.validate();
+                  return reso(valid)
+                } catch (err) {
+                  reject(err);
+                }
               })();
             })
           })).then(valids => {
             valids.forEach(valid => {
               valiResult = valiResult && valid;
             })
+            resolve(valiResult);
           });
-          resolve(valiResult);
         });
       });
     }

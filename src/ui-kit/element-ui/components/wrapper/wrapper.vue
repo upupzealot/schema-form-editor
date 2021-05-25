@@ -34,7 +34,12 @@ export default {
   methods: {
     async validate() {
       return new Promise(async resolve => {
-        await this.$refs['formRender'].validate(resolve);
+        if(this.$refs['formRender']) { // incase not activated
+          const valid = await this.$refs['formRender'].validate();
+          resolve(valid);
+        } else {
+          resolve(true);
+        }
       })
     }
   }
