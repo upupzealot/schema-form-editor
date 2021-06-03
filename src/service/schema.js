@@ -27,11 +27,11 @@ function list() {
 }
 
 function select(id) {
-  localStorage.setItem('projectId', id);
+  localStorage.setItem('schemaId', id);
 }
 
-function current(id) {
-  localStorage.getItem('projectId');
+function currentId() {
+  return localStorage.getItem('schemaId') || 'default';
 }
 
 function get(id) {
@@ -58,7 +58,7 @@ export default {
   create,
   list,
   select,
-  current,
+  currentId,
   get,
   update,
   delet,

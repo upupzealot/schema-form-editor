@@ -90,7 +90,7 @@
       title="Schema"
       :visible.sync="schemaDialogVisible"
       :content="schema"
-      :download-filename="`${projectId}.schema.json`"
+      :download-filename="`${schemaId}.schema.json`"
     />
     <!-- 数据预览对话框 -->
     <JsonDialog
@@ -98,7 +98,7 @@
       title="Data"
       :visible.sync="dataDialogVisible"
       :content="data"
-      :download-filename="`${projectId}.default.json`"
+      :download-filename="`${schemaId}.default.json`"
     />
     <!-- Config 对话框 -->
     <JsonDialog
@@ -106,7 +106,7 @@
       title="Config"
       :visible.sync="propDialogVisible"
       :content.sync="config"
-      :download-filename="`${projectId}.config.json`"
+      :download-filename="`${schemaId}.config.json`"
       :editable="true"
     />
     <!-- 表单预览对话框 -->
@@ -267,8 +267,8 @@ export default {
     };
   },
   computed: {
-    projectId() {
-      return this.$store.state.projectId;
+    schemaId() {
+      return this.$store.state.schemaId;
     },
     isRoot() {
       return !this.supNodes;

@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-      <ProjectSelect />
+      <SchemaSelect />
     </el-header>
     <el-main class="layout-container">
       <div>
@@ -86,7 +86,7 @@
 <script>
 import getService from '@/service'
 
-import ProjectSelect from '@/framework/project-select'
+import SchemaSelect from '@/framework/schema-select'
 import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
 // import FormEditor from '@/framework/form-editor';
@@ -94,7 +94,7 @@ import ItemEditor from '@/framework/item-editor';
 
 export default {
   components: {
-    ProjectSelect,
+    SchemaSelect,
     ToolBar,
     // FormEditor,
     ItemEditor,
@@ -109,8 +109,8 @@ export default {
         e.stopPropagation();
 
         const schema = self.$refs['rootEditor'].schema;
-        const projectId = self.$store.state.projectId;
-        getService('schema').update(projectId, schema);
+        const schemaId = self.$store.state.schemaId;
+        getService('schema').update(schemaId, schema);
 
         self.$message({
           message: '保存成功',
