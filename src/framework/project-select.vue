@@ -92,23 +92,19 @@
 
 <script>
 import md5 from 'md5';
+import getService from '../service'
 
 export default {
   data() {
-    let projects = localStorage.getItem('projects');
-    if(projects) {
-      projects = JSON.parse(projects);
-    } else {
-      projects = [{
-        id: 'default',
-        name: '默认',
-      }];
-    }
     return {
-      projects,
+      projects: [],
       form: {},
       dialogVisible: false,
     }
+  },
+  async created() {
+    const schemaSrv = getService('schema');
+    this.projects = await schemaSrv.list();
   },
   computed: {
     projectId: {
@@ -118,23 +114,21 @@ export default {
       set(id) {
         if(id !== this.projectId) {
           this.$store.commit('setProjectId', id);
-          localStorage.setItem('projectId', id);
+          getService('schema').select(id);
           window.location.reload();
         }
       }
     },
     project() {
       const projectMap = _.keyBy(this.projects, 'id');
-      return projectMap[this.projectId];
+      return projectMap[this.projectId] || {};
     },
   },
   watch: {
     projectId: {
       handler(id) {
-        const schemaStr = localStorage.getItem(id);
-        if(schemaStr && schemaStr !== 'undefined') {
-          const schema = JSON.parse(schemaStr);
-
+        const schema = getService('schema').get(id);
+        if(schema) {
           let count = 0;
           function addId(form) {
             if(form.fieldList) {
@@ -164,7 +158,7 @@ export default {
     selectSchemaFile() {
       this.$refs['schemaFile'].click();
     },
-    fileSelected(file) {
+    fileSelected() {
       const selectedFile = this.$refs['schemaFile'].files[0];
       const reader = new FileReader();
       reader.readAsText(selectedFile);
@@ -173,31 +167,27 @@ export default {
       }
     },
     submitDialog() {
-      const schema = JSON.parse(this.form.schemaStr || '{}');
-      localStorage.setItem(this.form.key, JSON.stringify(schema || {}));
-      this.projects.push({
+      getService('schema').create({
         id: this.form.key,
         name: this.form.name,
+        schemaStr: this.form.schemaStr,
       });
-      localStorage.setItem('projects', JSON.stringify(this.projects));
-      localStorage.setItem('projectId' ,this.form.key);
       window.location.reload();
     },
     selectProject(projectId) {
       this.projectId = projectId;
     },
-    deleteProject(project) {
+    deleteProject() {
       this.$confirm('确认删除?', null, {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'danger',
       }).then(() => {
-        const deleteId = this.projectId;
-        localStorage.removeItem(deleteId);
-
+        const schemaSrv = getService('schema');
+        schemaSrv.delet(this.projectId);
+        
         this.projectId = 'default';
-        this.projects = this.projects.filter(p => p.id !== deleteId);
-        localStorage.setItem('projects', JSON.stringify(this.projects));
+        this.projects = schemaSrv.list();
 
         this.$message({
           type: 'success',

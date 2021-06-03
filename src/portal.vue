@@ -84,8 +84,9 @@
 </style>
 
 <script>
-import ProjectSelect from '@/framework/project-select'
+import getService from '@/service'
 
+import ProjectSelect from '@/framework/project-select'
 import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
 // import FormEditor from '@/framework/form-editor';
@@ -98,17 +99,6 @@ export default {
     // FormEditor,
     ItemEditor,
   },
-  data() {
-    const schemaStr = localStorage.getItem('schema');
-    let schema = {};
-    if(schemaStr && schemaStr !== 'undefined') {
-      schema = JSON.parse(schemaStr);
-    }
-
-    return {
-      schema,
-    };
-  },
   mounted() {
     const self = this;
 
@@ -120,7 +110,8 @@ export default {
 
         const schema = self.$refs['rootEditor'].schema;
         const projectId = self.$store.state.projectId;
-        localStorage.setItem(projectId, JSON.stringify(schema));
+        getService('schema').update(projectId, schema);
+
         self.$message({
           message: '保存成功',
           type: 'success'
