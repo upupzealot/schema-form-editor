@@ -1,7 +1,25 @@
 <template>
   <el-container>
     <el-header>
-      <SchemaSelect />
+      <component
+        :is="connected ? 'ProjectSelect' : 'SchemaSelect'"
+      >
+        <el-tag
+          :type="connected ? 'primary' : 'info'"
+          style="float: left; margin-top: 15px; cursor: pointer;"
+          @click="onSwitchConnect"
+        >
+          <!-- <i
+            v-if="!connected"
+            class="el-icon-warning-outline"
+          />
+          <i
+            v-if="connected"
+            class="el-icon-circle-check"
+          /> -->
+          <i class="el-icon-connection" />
+        </el-tag>
+      </component>
     </el-header>
     <el-main class="layout-container">
       <div>
@@ -87,6 +105,7 @@
 import getService from '@/service'
 
 import SchemaSelect from '@/framework/schema-select'
+import ProjectSelect from '@/framework/project-select'
 import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
 // import FormEditor from '@/framework/form-editor';
@@ -95,9 +114,15 @@ import ItemEditor from '@/framework/item-editor';
 export default {
   components: {
     SchemaSelect,
+    ProjectSelect,
     ToolBar,
     // FormEditor,
     ItemEditor,
+  },
+  data() {
+    return {
+      connected: getService('server').status(),
+    }
   },
   mounted() {
     const self = this;
@@ -119,5 +144,22 @@ export default {
       }
     };
   },
+  methods: {
+    async onSwitchConnect() {
+      if(!this.connected) {
+        await this.connect();
+      } else {
+        getService('server').disconnect()
+      }
+      window.location.reload();
+    },
+    async connect() {
+      const { connected } = await getService('server').connect();
+      this.connected = connected;
+      if(!connected) {
+        this.$message.error('服务连接失败')
+      }
+    }
+  }
 };
 </script>

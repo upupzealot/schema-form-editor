@@ -6,6 +6,7 @@
       mode="horizontal"
       @select="selectSchema"
     >
+      <slot />
       <el-submenu index="">
         <template v-slot:title>
           {{ schema.name }}
@@ -24,15 +25,23 @@
         style="margin-top: 10px;"
         @click="deleteSchema"
       >
-        删除
+        <i class="el-icon-delete" />
+      </el-button>
+      <el-button
+        v-if="schemaId !== 'default'"
+        type="text"
+        style="margin-top: 10px; margin-left: 10px;"
+        @click="showDialog"
+      >
+        <i class="el-icon-plus" />
       </el-button>
 
-      <el-button
+      <!-- <el-button
         style="margin-top: 10px; float:right;"
         @click="showDialog"
       >
         新建项目
-      </el-button>
+      </el-button> -->
     </el-menu>
     <el-dialog
       v-model="dialogVisible"
@@ -192,7 +201,7 @@ export default {
           type: 'success',
           message: '已删除',
         });
-      }).catch(() => {});
+      }).catch(console.error);
     }
   }
 }

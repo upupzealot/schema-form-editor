@@ -6,6 +6,7 @@ export default {
     $root: FormModule,
   },
   state: {
+    projectId: getService('project').currentId(),
     schemaId: getService('schema').currentId(),
     // 当前字段
     activeField: {},
@@ -13,6 +14,9 @@ export default {
     activeForm: null, // 后续初始化为 $root
   },
   mutations: {
+    setProjectId(state, projectId) {
+      state.projectId = projectId;
+    },
     setSchemaId(state, schemaId) {
       state.schemaId = schemaId;
     },

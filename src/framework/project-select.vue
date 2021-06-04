@@ -6,6 +6,7 @@
       mode="horizontal"
       @select="selectProject"
     >
+      <slot />
       <el-submenu index="">
         <template v-slot:title>
           项目：{{ project.name }}
@@ -19,19 +20,18 @@
         </el-menu-item>
       </el-submenu>
       <el-button
-        v-if="projectId !== 'default'"
         type="text"
         style="margin-top: 10px;"
         @click="deleteProject"
       >
-        删除
+        <i class="el-icon-delete" />
       </el-button>
-
       <el-button
-        style="margin-top: 10px; float:right;"
+        type="text"
+        style="margin-top: 10px; margin-left: 10px;"
         @click="showDialog"
       >
-        新建项目
+        <i class="el-icon-plus" />
       </el-button>
     </el-menu>
     <el-dialog
@@ -51,25 +51,8 @@
         <el-form-item label="项目名称">
           <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item label="初始结构">
-          <el-input
-            v-model="form.schemaStr"
-            :rows="5"
-            type="textarea"
-          />
-          <input
-            ref="schemaFile"
-            hidden
-            type="file"
-            accept="application/json"
-            @change="fileSelected"
-          >
-          <el-button
-            style="position: absolute; right: 0; top: 0;"
-            icon="el-icon-upload2"
-            circle
-            @click="selectSchemaFile"
-          />
+        <el-form-item label="项目路径">
+          <el-input v-model="form.cwd" />
         </el-form-item>
       </el-form>
       <template
@@ -91,7 +74,6 @@
 </template>
 
 <script>
-import md5 from 'md5';
 import getService from '../service'
 
 export default {
@@ -103,8 +85,8 @@ export default {
     }
   },
   async created() {
-    const schemaSrv = getService('schema');
-    this.projects = await schemaSrv.list();
+    const projectSrv = getService('project');
+    this.projects = await projectSrv.list();
   },
   computed: {
     projectId: {
@@ -112,10 +94,10 @@ export default {
         return this.$store.state.projectId;
       },
       set(id) {
-        if(id !== this.projectId) {
+        if(id) {
           this.$store.commit('setProjectId', id);
-          getService('schema').select(id);
-          window.location.reload();
+          getService('project').select(id);
+          // window.location.reload();
         }
       }
     },
@@ -124,53 +106,16 @@ export default {
       return projectMap[this.projectId] || {};
     },
   },
-  watch: {
-    projectId: {
-      handler(id) {
-        const schema = getService('schema').get(id);
-        if(schema) {
-          let count = 0;
-          function addId(form) {
-            if(form.fieldList) {
-              form.fieldList.forEach(field => {
-                field.id = md5(`${Date.now()}${count}`).substr(0, 7);
-                count++;
-                addId(field);
-              })
-            }
-          }
-          addId(schema);
-
-          this.$store.commit('$root/setFormConf', schema.formConf || {});
-          this.$store.commit('$root/setFieldList', schema.fieldList || []);
-          this.$store.commit('$root/setValidFuncs', schema.validFuncs || []);
-          this.$store.commit('$root/setValidRules', schema.validRules || {});
-        }
-      },
-      immediate: true,
-    }
-  },
   methods: {
     showDialog() {
       this.form = {};
       this.dialogVisible = true;
     },
-    selectSchemaFile() {
-      this.$refs['schemaFile'].click();
-    },
-    fileSelected() {
-      const selectedFile = this.$refs['schemaFile'].files[0];
-      const reader = new FileReader();
-      reader.readAsText(selectedFile);
-      reader.onload = () => {
-        this.$set(this.form, 'schemaStr', reader.result);
-      }
-    },
     submitDialog() {
-      getService('schema').create({
+      getService('project').create({
         id: this.form.key,
         name: this.form.name,
-        schemaStr: this.form.schemaStr,
+        cwd: this.form.cwd,
       });
       window.location.reload();
     },
@@ -183,17 +128,17 @@ export default {
         cancelButtonText: '取消',
         type: 'danger',
       }).then(() => {
-        const schemaSrv = getService('schema');
-        schemaSrv.delet(this.projectId);
+        const projectSrv = getService('project');
+        projectSrv.delet(this.projectId);
         
-        this.projectId = 'default';
-        this.projects = schemaSrv.list();
+        this.projectId = '';
+        this.projects = projectSrv.list();
 
         this.$message({
           type: 'success',
           message: '已删除',
         });
-      }).catch(() => {});
+      }).catch(console.error);
     }
   }
 }
