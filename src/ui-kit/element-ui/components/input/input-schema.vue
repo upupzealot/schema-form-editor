@@ -59,6 +59,7 @@
     <!-- 校验 -->
     <template v-slot:valid>
       <RegexpValidate />
+      <FuncValidate />
     </template>
   </StandardForm>
 </template>
@@ -67,11 +68,13 @@
 import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
 
 import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
+import FuncValidate from '@/ui-kit/common/schema-item/validate-rules/func'
 
 export default {
   type: 'input',
   components: {
     RegexpValidate,
+    FuncValidate,
   },
   mixins: [schemaItemMixin],
   computed: {

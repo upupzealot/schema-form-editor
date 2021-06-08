@@ -139,13 +139,15 @@ export default {
     const { type } = this.field;
     const className = _.upperFirst(_.camelCase(type));
     const fieldComponent = require('@/ui-kit/element-ui/index.js')[className];
-    this.componentValidators = fieldComponent.validators.map(v => {
-      return {
-        ...v,
-        key: `[component]${v.key}`,
-        name: `[组件] ${v.name}`,
-      };
-    }) || [];
+    if(fieldComponent.validators && fieldComponent.validators.length) {
+      this.componentValidators = fieldComponent.validators.map(v => {
+        return {
+          ...v,
+          key: `[component]${v.key}`,
+          name: `[组件] ${v.name}`,
+        };
+      }) || [];
+    }
   },
 }
 </script>
