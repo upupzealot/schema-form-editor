@@ -11,12 +11,9 @@
       :is="inline ? 'span' : 'el-row'"
       :gutter="marginX"
     >
-      <component
-        :is="inline ? 'span' : 'el-col'"
+      <Col
         v-for="field in fieldList"
         :key="field.name"
-        :span="field.span"
-        :style="{ marginBottom: colMarginY(field) }"
       >
         <Input
           v-if="field.type === 'input'"
@@ -136,7 +133,7 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
-      </component>
+      </Col>
     </component>
   </el-form>
 </template>
@@ -149,6 +146,8 @@
 
 <script>
 import _ from 'lodash';
+
+import Col from './form-render-col'
 
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
@@ -174,6 +173,7 @@ const ItemList = IL.default;
 export default {
   name: 'FormRender',
   components: {
+    Col,
     Input,
     InputNumber,
     InputIp,
@@ -239,9 +239,6 @@ export default {
     },
     marginX() {
       return this.formConf.marginX || 20;
-    },
-    marginY() {
-      return this.formConf.marginY || 15;
     },
     formConf() {
       return this.schema.formConf || {};
@@ -344,15 +341,6 @@ export default {
     }
   },
   methods: {
-    colMarginY(field) {
-      if(field.activated === false || field.visible === false) {
-        return '0';
-      } else if(field.type === 'wrapper' || field.type === 'subform' ) {
-        return `${this.marginY - (field.formConf.marginY || 15)}px`;
-      } else {
-        return `${this.marginY}px`;
-      }
-    },
     async validate() {
       return new Promise(async (resolve, reject) => {
         let valiResult = true;
