@@ -297,7 +297,8 @@ export default {
 
               return {
                 validator(r, value, callback) {
-                  const pass = regExp.test(value);
+                  // value 为空的时候正则校验器不起作用
+                  const pass = !value || regExp.test(value);
                   if(pass) {
                     callback();
                   } else {
