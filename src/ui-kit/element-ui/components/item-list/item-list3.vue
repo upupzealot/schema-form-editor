@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     class="subform-wrap form-item"
-    style="margin-bottom: 0"
+    :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

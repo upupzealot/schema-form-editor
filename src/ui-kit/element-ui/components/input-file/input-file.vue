@@ -5,7 +5,7 @@
     :label="field.label"
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
-    style="margin-bottom: 0"
+    :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

@@ -11,12 +11,15 @@
       :is="inline ? 'span' : 'el-row'"
       :gutter="marginX"
     >
-      <Col
+      <component
         v-for="field in fieldList"
         :key="field.name"
+        :is="inline ? 'span' : 'el-col'"
+        :span="field.span"
       >
         <Input
           v-if="field.type === 'input'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -24,6 +27,7 @@
         />
         <InputNumber
           v-if="field.type === 'input-number'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -31,6 +35,7 @@
         />
         <InputIp
           v-if="field.type === 'input-ip'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -38,6 +43,7 @@
         />
         <InputFile
           v-if="field.type === 'input-file'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -45,6 +51,7 @@
         />
         <Select
           v-if="field.type === 'select'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -52,6 +59,7 @@
         />
         <Cascader
           v-if="field.type === 'cascader'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -59,6 +67,7 @@
         />
         <ChinaRegion
           v-if="field.type === 'china-region'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -66,6 +75,7 @@
         />
         <ChinaLocation
           v-if="field.type === 'china-location'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -73,6 +83,7 @@
         />
         <Radio
           v-if="field.type === 'radio'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -80,6 +91,7 @@
         />
         <Checkbox
           v-if="field.type === 'checkbox'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -87,6 +99,7 @@
         />
         <SSwitch
           v-if="field.type === 'switch'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -94,6 +107,7 @@
         />
         <DatePicker
           v-if="field.type === 'date-picker'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -101,6 +115,7 @@
         />
         <Blank
           v-if="field.type === 'blank'"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :data="data"
@@ -109,6 +124,7 @@
         <Wrapper
           v-if="field.type === 'wrapper'"
           ref="subformItems"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :schema="field"
@@ -118,6 +134,7 @@
         <Subform
           v-if="field.type === 'subform'"
           ref="subformItems"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :schema="field"
@@ -127,13 +144,14 @@
         <ItemList
           v-if="field.type === 'item-list'"
           ref="subformItems"
+          :formConf="formConf"
           :scenario="scenario"
           :field="field"
           :schema="field"
           :data="data"
           :sup-nodes="supNodeList"
         />
-      </Col>
+      </component>
     </component>
   </el-form>
 </template>
@@ -146,8 +164,6 @@
 
 <script>
 import _ from 'lodash';
-
-import Col from './form-render-col'
 
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
@@ -173,7 +189,6 @@ const ItemList = IL.default;
 export default {
   name: 'FormRender',
   components: {
-    Col,
     Input,
     InputNumber,
     InputIp,

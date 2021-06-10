@@ -6,17 +6,17 @@ export default {
         return 'edit'; // create || edit || preview
       }
     },
+    formConf: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
     supNodes: {
       type: Array,
       default() {
         return null;
       }
-    },
-    data: {
-      type: Object,
-      default() {
-        return {}
-      },
     },
     field: {
       type: Object,
@@ -29,7 +29,13 @@ export default {
       default() {
         return null
       },
-    }
+    },
+    data: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
   data() {
     return {
@@ -117,6 +123,18 @@ export default {
       },
       set(val) {
         this.$set(this.vStatus || this.status, 'disabled', val);
+      }
+    },
+    marginY() {
+      return this.formConf.marginY || 15;
+    },
+    colMarginY() {
+      if(this.activated === false || this.visible === false) {
+        return '0';
+      } else if(this.field.type === 'wrapper' || this.field.type === 'subform' ) {
+        return `${this.marginY - (field.formConf.marginY || 15)}px`;
+      } else {
+        return `${this.marginY}px`;
       }
     },
     effect() {

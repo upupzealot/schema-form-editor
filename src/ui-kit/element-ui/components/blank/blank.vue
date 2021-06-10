@@ -4,7 +4,7 @@
     v-show="visible"
     label="　"
     class="blank-wrap"
-    style="margin-bottom: 0"
+    :style="{ marginBottom: colMarginY }"
   >
     <div class="blank" />
   </el-form-item>

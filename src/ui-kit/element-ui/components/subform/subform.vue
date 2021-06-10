@@ -9,6 +9,7 @@
     :scenario="scenario"
     :sup-nodes="supNodes"
     :class="{subform: true, 'readonly': readonly}"
+    :style="{ marginBottom: colMarginY }"
   />
 </template>
 
