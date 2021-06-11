@@ -28,7 +28,6 @@
         <i class="el-icon-delete" />
       </el-button>
       <el-button
-        v-if="schemaId !== 'default'"
         type="text"
         style="margin-top: 10px; margin-left: 10px;"
         @click="showDialog"
