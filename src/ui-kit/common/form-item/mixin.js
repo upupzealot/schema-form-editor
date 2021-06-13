@@ -129,10 +129,10 @@ export default {
       return this.formConf.marginY || 15;
     },
     colMarginY() {
-      if(this.activated === false || this.visible === false) {
+      if(this.vStatus || this.activated === false || this.visible === false) {
         return '0';
       } else if(this.field.type === 'wrapper' || this.field.type === 'subform' ) {
-        return `${this.marginY - (field.formConf.marginY || 15)}px`;
+        return `${this.marginY - (this.field.formConf.marginY || 15)}px`;
       } else {
         return `${this.marginY}px`;
       }
