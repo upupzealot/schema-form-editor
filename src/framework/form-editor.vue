@@ -390,6 +390,7 @@ export default {
       handler(newKey, oldKey) {
         if(newKey) {
           this.$store.registerModule(newKey, FormStoreModule);
+          this.$store.commit('addModule', newKey);
           this.$store.commit(`${newKey}/setFormKey`, this.storeKey);
 
           if(this.initSchema.formConf) {
@@ -410,6 +411,7 @@ export default {
             // TODO
             // store 属性迁移
             this.$store.unregisterModule(oldKey);
+            this.$store.commit('removeModule', oldKey);
           }
         }
       },

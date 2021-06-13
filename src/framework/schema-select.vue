@@ -19,6 +19,8 @@
           {{ schemaItem.name }}
         </el-menu-item>
       </el-submenu>
+
+      <!-- 删除当前 schema -->
       <el-button
         v-if="schemaId !== 'default'"
         type="text"
@@ -27,6 +29,7 @@
       >
         <i class="el-icon-delete" />
       </el-button>
+      <!-- 新增 schema -->
       <el-button
         type="text"
         style="margin-top: 10px; margin-left: 10px;"
@@ -34,13 +37,6 @@
       >
         <i class="el-icon-plus" />
       </el-button>
-
-      <!-- <el-button
-        style="margin-top: 10px; float:right;"
-        @click="showDialog"
-      >
-        新建项目
-      </el-button> -->
     </el-menu>
     <el-dialog
       v-model="dialogVisible"
@@ -121,8 +117,9 @@ export default {
       },
       set(id) {
         if(id !== this.schemaId) {
+          this.$store.commit('setSchemaId', id)
           getService('schema').select(id);
-          window.location.reload();
+          // window.location.reload();
         }
       }
     },
@@ -148,6 +145,7 @@ export default {
           }
           addId(schema);
 
+          this.$store.dispatch('reset');
           this.$store.commit('$root/setFormConf', schema.formConf || {});
           this.$store.commit('$root/setFieldList', schema.fieldList || []);
           this.$store.commit('$root/setValidFuncs', schema.validFuncs || []);
