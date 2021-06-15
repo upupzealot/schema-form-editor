@@ -81,12 +81,6 @@
 .example-form-item-list .example-form-item {
   width: 100%;
 }
-.bottom .example-form-item-list .example-form-item {
-  width: 300px;
-}
-.bottom .el-divider {
-  display: none;
-}
 </style>
 
 <script>
