@@ -27,11 +27,11 @@ function list() {
 }
 
 function select(id) {
-  localStorage.setItem('schemaId', id);
+  localStorage.setItem('$schemaId', id);
 }
 
 function currentId() {
-  return localStorage.getItem('schemaId') || 'default';
+  return localStorage.getItem('$schemaId') || 'default';
 }
 
 function get(id) {

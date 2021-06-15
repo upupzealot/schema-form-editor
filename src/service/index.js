@@ -1,13 +1,18 @@
 import project from './project'
-import schema from './schema'
+import schemaLocal from './schema-local'
+import schemaServer from './schema-server'
 import server from './server'
 
 const services = {
   project,
-  schema,
   server
 };
 
 export default function get(name) {
-  return services[name];
+  if(name === 'schema') {
+    const connected = server.status();
+    return connected ? schemaServer : schemaLocal;
+  } else {
+    return services[name];
+  }
 }
