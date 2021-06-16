@@ -5,7 +5,18 @@
     node-key="id"
     default-expand-all
     @node-click="onSelect"
-  />
+    class="schema-tree"
+  >
+    <template class="aaaaa" #default="{ data }">
+      <div style="height: 26px;">
+        <i :class="{
+          'el-icon-folder': !data.isSchema,
+          'el-icon-document': data.isSchema,
+        }" />
+        {{ data.label }}
+      </div>
+    </template>
+  </el-tree>
 </template>
 
 <script>

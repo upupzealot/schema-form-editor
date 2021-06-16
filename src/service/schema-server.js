@@ -1,18 +1,26 @@
 import axios from 'axios';
-import schemaLocal from './schema-local'
+import schemaLocalSrv from './schema-local'
+import projectSrv from './project'
 
 async function create({ id, name, schemaStr }) {
   // TODO
 }
 
 async function list() {
-  const { data } = await axios.get('http://127.0.0.1:4432/api/schema');
+  const projectId = projectSrv.currentId();
+  const { data } = await axios.get('http://127.0.0.1:4432/api/schema', {
+    params: {
+      projectId,
+    }
+  });
   return data;
 }
 
 async function get(id) {
+  const projectId = projectSrv.currentId();
   const res = await axios.get(`http://127.0.0.1:4432/api/schema/id`, {
     params: {
+      projectId,
       id,
     }
   });
@@ -20,10 +28,12 @@ async function get(id) {
 }
 
 async function update(id, schema) {
+  const projectId = projectSrv.currentId();
   const res = await axios.post(`http://127.0.0.1:4432/api/schema/id`,{
       schema,
     }, {
       params: {
+        projectId,
         id,
       }
     });
@@ -44,7 +54,7 @@ function currentId() {
 }
 
 export default {
-  ...schemaLocal,
+  ...schemaLocalSrv,
   create,
   list,
   get,

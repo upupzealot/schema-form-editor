@@ -10,13 +10,17 @@ router.get('/', ctx => {
   ctx.body = 'Hello World';
 });
 
-const rootDir = '/Users/eric/Git/tianwang_softNC/front/src';
-
 router.get('/api/status', async ctx => {
   ctx.body = {};
 })
 
 router.get('/api/schema', async ctx => {
+  const { projectId: rootDir  } = ctx.query;
+  if(!rootDir || !fs.existsSync(rootDir)) {
+    ctx.body = [];
+    return;
+  }
+
   const listPro = new Promise((resolve, reject) => {
     glob(`${rootDir}/**/*.schema.json`, function (err, files) {
       if(err) {
@@ -48,6 +52,7 @@ router.get('/api/schema', async ctx => {
           const node = {
             id,
             label: schema.name || p.replace('.schema.json', ''),
+            isSchema: true,
           }
           currentNode.data.push(node);
         } else {
@@ -66,7 +71,12 @@ router.get('/api/schema', async ctx => {
 });
 
 router.get('/api/schema/id', async ctx => {
-  const { id } = ctx.query;
+  const { projectId: rootDir, id } = ctx.query;
+  if(!rootDir || !fs.existsSync(rootDir) || !id) {
+    ctx.body = {};
+    return;
+  }
+
   const file = path.resolve(rootDir, id);
   const schema = fs.readJSONSync(file);
   ctx.body = {
@@ -75,13 +85,16 @@ router.get('/api/schema/id', async ctx => {
 });
 
 router.post('/api/schema/id', async ctx => {
-  const { id } = ctx.query;
+  const { projectId: rootDir, id } = ctx.query;
+  if(!rootDir || !fs.existsSync(rootDir) || !id) {
+    ctx.body = {};
+    return;
+  }
+
   const { schema } = ctx.request.body;
   const file = path.resolve(rootDir, id);
   fs.writeJSONSync(file, schema, { spaces: 2 });
-  ctx.body = {
-    schema,
-  };
+  ctx.body = {};
 });
 
 router.get('(.*)', async ctx => {

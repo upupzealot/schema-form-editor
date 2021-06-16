@@ -22,6 +22,13 @@
       <el-button
         type="text"
         style="margin-top: 10px;"
+        @click="showDialog('edit')"
+      >
+        <i class="el-icon-edit" />
+      </el-button>
+      <el-button
+        type="text"
+        style="margin-top: 10px;"
         @click="deleteProject"
       >
         <i class="el-icon-delete" />
@@ -29,7 +36,7 @@
       <el-button
         type="text"
         style="margin-top: 10px; margin-left: 10px;"
-        @click="showDialog"
+        @click="showDialog('create')"
       >
         <i class="el-icon-plus" />
       </el-button>
@@ -45,9 +52,6 @@
         label-position="right"
         label-width="80px"
       >
-        <el-form-item label="项目 Key">
-          <el-input v-model="form.key" />
-        </el-form-item>
         <el-form-item label="项目名称">
           <el-input v-model="form.name" />
         </el-form-item>
@@ -81,6 +85,7 @@ export default {
     return {
       projects: [],
       form: {},
+      formMode: 'create',
       dialogVisible: false,
     }
   },
@@ -94,11 +99,9 @@ export default {
         return this.$store.state.projectId;
       },
       set(id) {
-        if(id) {
-          this.$store.commit('setProjectId', id);
-          getService('project').select(id);
-          // window.location.reload();
-        }
+        this.$store.commit('setProjectId', id);
+        getService('project').select(id);
+        window.location.reload();
       }
     },
     project() {
@@ -107,16 +110,33 @@ export default {
     },
   },
   methods: {
-    showDialog() {
-      this.form = {};
+    showDialog(mode) {
+      if(mode === 'create') {
+        this.form = {};
+      } else { // mode === 'edit'
+        const project = getService('project').current();
+        this.form = {
+          name: project.name,
+          cwd: project.id,
+        };
+      }
+      
+      this.formMode = mode;
       this.dialogVisible = true;
     },
     submitDialog() {
-      getService('project').create({
-        id: this.form.key,
-        name: this.form.name,
-        cwd: this.form.cwd,
-      });
+      if(this.formMode === 'create') {
+        getService('project').create({
+          name: this.form.name,
+          id: this.form.cwd,
+        });
+      } else { // formMode === 'edit'
+        getService('project').update({
+          name: this.form.name,
+          id: this.form.cwd,
+        });
+      }
+      
       window.location.reload();
     },
     selectProject(projectId) {
@@ -130,14 +150,14 @@ export default {
       }).then(() => {
         const projectSrv = getService('project');
         projectSrv.delet(this.projectId);
-        
-        this.projectId = '';
-        this.projects = projectSrv.list();
 
         this.$message({
           type: 'success',
           message: '已删除',
         });
+
+        this.projectId = ''; // trigger reload
+        // this.projects = projectSrv.list();
       }).catch(console.error);
     }
   }
