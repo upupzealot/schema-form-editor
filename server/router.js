@@ -34,7 +34,7 @@ router.get('/api/schema', async ctx => {
   const tree = {};
   list.forEach(file => {
     const relativePath = path.relative(rootDir, file);
-    const treePaths = relativePath.split('/');
+    const treePaths = relativePath.split(path.sep);
 
     let currentNode = tree;
     treePaths.forEach((p, i) => {
@@ -42,7 +42,7 @@ router.get('/api/schema', async ctx => {
         currentNode.data = [];
       }
 
-      const id = treePaths.slice(0, i + 1).join('/');
+      const id = treePaths.slice(0, i + 1).join(path.sep);
       let node = _.find(currentNode.data, { id });
       if(node) {
         currentNode = node;
