@@ -7,6 +7,16 @@
         </el-form-item>
       </el-col>
       <el-col
+        v-if="!isRemote"
+        :span="12"
+      >
+        <el-form-item label="智能类型">
+          <el-switch
+            v-model="typeValue"
+          />
+        </el-form-item>
+      </el-col>
+      <el-col
         v-if="isRemote"
         :span="12"
       >
@@ -74,23 +84,7 @@
             :item="option"
             @delete="deleteOption"
           >
-            <el-form label-width="40px">
-              <el-row>
-                <el-col :span="12">
-                  <el-form-item label="键">
-                    <el-input v-model="option.label" />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item
-                    label="值"
-                    label-width="40px"
-                  >
-                    <el-input v-model="option.value" />
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </el-form>
+            <OptionListItem :option="option" :type-value="typeValue" />
           </DraggableListItem>
         </template>
         <template v-slot:footer>
@@ -106,11 +100,13 @@
 <script>
 // import DraggableList  from '@/framework/common/draggable-list'
 // import DraggableListItem  from '@/framework/common/draggable-list-item'
+import OptionListItem from './option-list-item'
 
 export default {
   components: {
     // DraggableList,
     // DraggableListItem,
+    OptionListItem,
   },
   props: {
     field: {
@@ -148,6 +144,14 @@ export default {
       },
       set(val) {
         this.$set(this.field, 'isRemote', !!(this.forceRemote || val) ? true : undefined);
+      }
+    },
+    typeValue: {
+      get() {
+        return !!this.field.typeValue;
+      },
+      set(val) {
+        this.$set(this.field, 'typeValue', !!val ? true : undefined);
       }
     },
     isFunc() {
@@ -213,7 +217,21 @@ export default {
         return this.isRemote ? [] : this.tempOptions;
       },
       set(val) {
-        this.tempOptions = val;
+        let optionList = val;
+        if(this.typeValue) {
+          optionList = optionList.map(option => {
+            let { value } = option;
+            if(value === 'true' || value === 'false') {
+              option.value = JSON.parse(value);
+            }
+            if(Number(value)) {
+              option.value = Number(value)
+            }
+            return option;
+          });
+        }
+
+        this.tempOptions = optionList;
         this.$set(this.field, 'options', this.options);
       }
     } 
