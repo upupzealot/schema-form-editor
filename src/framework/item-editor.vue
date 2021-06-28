@@ -1,0 +1,129 @@
+<template>
+  <el-row>
+    <el-col class="item-editor">
+      <!-- 表单属性 -->
+      <el-divider content-position="left">
+        <i
+          :class="{ 'el-icon-circle-plus-outline': !formConfOpen, 'el-icon-remove-outline': formConfOpen }"
+          @click="formConfOpen = !formConfOpen"
+        />
+        表单属性
+      </el-divider>
+      <el-collapse-transition>
+        <div
+          v-show="formConfOpen"
+          class="field-group"
+        >
+          <FormConfEditor />
+        </div>
+      </el-collapse-transition>
+
+      <!-- 表单项编辑器 -->
+      <component
+        :is="fallbackComponent(`schema-${field.type}`)"
+        v-if="field.type"
+      />
+    </el-col>
+  </el-row>
+</template>
+
+<style>
+.item-editor .divider-wrap {
+  padding: 1px;
+}
+.item-editor .el-divider__text {
+  color: #ccc;
+}
+.el-divider .el-divider__text i {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.el-divider .el-divider__text i:hover {
+  color: #409EFF;
+}
+</style>
+
+<script>
+import FormConfEditor from '@/ui-kit/element-ui/form-conf-editor';
+
+import { SchemaItems as ElementItems } from '@/ui-kit/element-ui/index'
+import { SchemaItems as AntDesignItems } from '@/ui-kit/ant-design/index'
+const uiKit = localStorage.getItem('ui-kit');
+let SchemaItems = [];
+let schemaIs = 'div';
+if(uiKit === 'element-ui') {
+  SchemaItems = ElementItems;
+  schemaIs = 'el-form';
+}
+if(uiKit === 'ant-design') {
+  SchemaItems = AntDesignItems;
+  schemaIs = 'a-form';
+}
+const ItemMap = _(SchemaItems)
+  .keyBy('type')
+  .mapKeys((v, k) => {
+    return `schema-${k}`
+  })
+  .value();
+
+const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
+
+export default {
+  components: {
+    FormConfEditor,
+    ...ItemMap,
+  },
+  data() {
+    return {
+      schemaIs,
+      formConfOpen: false,
+      layoutOpen: false,
+      basicOpen: true,
+      validOpen: true,
+    }
+  },
+  computed: {
+    field() {
+      return this.$store.state.activeField;
+    },
+    form() {
+      return this.$store.state.$root;
+    },
+    span: {
+      get() {
+        return this.field.span;
+      },
+      set(n) {
+        const value = Number(n);
+        this.$set(this.field, 'span', spanValues.includes(value) ? value : undefined);
+      }
+    },
+    fieldName() {
+      // 用这个 computed 给 watch 使用，同时监控 id 和 name
+      return {
+        id: this.field.id,
+        name: this.field.name,
+      }
+    }
+  },
+  watch: {
+    fieldName: {
+      handler({ id: newId, name: newName}, { id: oldId, name: oldName}) {
+        // id 的改变是切换字段触发的
+        // 只有当 id 不变时，name 的变化才触发 updateFieldName
+        if(newId === oldId && newName && oldName) {
+          this.$store.commit(`${this.form.formKey}/updateFieldName`, {
+            newName,
+            oldName,
+          });
+        }
+      }
+    }
+  },
+  methods: {
+    fallbackComponent(type) {
+      return !!ItemMap[type] ? type : 'div';
+    },
+  }
+};
+</script>

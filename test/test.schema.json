@@ -1,0 +1,153 @@
+{
+  "formConf": {
+    "labelWidth": "80px",
+    "labelPosition": "right",
+    "gutter": 20
+  },
+  "fieldList": [
+    {
+      "type": "item-list",
+      "label": "列表",
+      "name": "item-list-dbbc4bb",
+      "formKey": "item-list-dbbc4bb",
+      "formConf": {},
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-94794f4"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "subform",
+      "label": "子表单",
+      "name": "subform-62afc22",
+      "formKey": "subform-62afc22",
+      "formConf": {},
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-23ef4af"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "wrapper",
+      "label": "容器",
+      "name": "wrapper-fd0a543",
+      "formKey": "wrapper-fd0a543",
+      "formConf": {},
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-ee5f311"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "blank",
+      "label": "空白占位",
+      "name": "blank-b04af3d"
+    },
+    {
+      "type": "date-picker",
+      "label": "日期选择",
+      "name": "date-picker-451a13a"
+    },
+    {
+      "type": "switch",
+      "label": "开关",
+      "name": "switch-bcb108b"
+    },
+    {
+      "type": "checkbox",
+      "label": "复选框",
+      "name": "checkbox-6f0c7f9",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "label": "单选框",
+      "name": "radio-6df64f2",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-e360bc6",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ]
+    },
+    {
+      "type": "input-ip",
+      "label": "IP 框",
+      "name": "input-ip-a4b052e"
+    },
+    {
+      "type": "input-number",
+      "label": "数字框",
+      "name": "input-number-230b22f",
+      "hasControl": false
+    },
+    {
+      "name": "input111",
+      "type": "input",
+      "label": "文本框",
+      "required": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {
+    "input111": [
+      {
+        "type": "required",
+        "note": "aaa"
+      }
+    ],
+    "input-ip-a4b052e": [
+      {
+        "type": "func",
+        "preset": "[component]ip",
+        "trigger": [
+          "change",
+          "blur"
+        ]
+      }
+    ]
+  }
+}

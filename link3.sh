@@ -10,12 +10,21 @@ if [ -z "$isVue3" ]; then
   # link vuex
   cd ./node_modules/vuex4
   npm link --production
+  npm link vue
   cd ../../
   npm link vuex
 
   # link vuedraggable
   cd ./node_modules/vuedraggable4
   npm link --production
+  npm link vue
   cd ../../
   npm link vuedraggable
+
+  # link ant-design
+  cd ./node_modules/ant-design-vue2
+  npm link --production
+  npm link vue
+  cd ../../
+  npm link ant-design-vue
 fi

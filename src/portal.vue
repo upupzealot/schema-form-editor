@@ -1,13 +1,49 @@
 <template>
   <el-container>
     <el-header>
-      <ProjectSelect />
+      <component
+        :is="connected ? 'ProjectSelect' : 'SchemaSelect'"
+      >
+        <el-tag
+          :type="connected ? 'primary' : 'info'"
+          style="float: left; margin-top: 15px; cursor: pointer;"
+          @click="onSwitchConnect"
+        >
+          <!-- <i
+            v-if="!connected"
+            class="el-icon-warning-outline"
+          />
+          <i
+            v-if="connected"
+            class="el-icon-circle-check"
+          /> -->
+          <i class="el-icon-connection" />
+        </el-tag>
+      </component>
     </el-header>
-    <el-main :class="{ 'layout-container': true, bottom: isBottom, left: !isBottom }">
+    <el-main class="layout-container">
       <div>
         <div class="item-bar-container">
-          <el-card shadow="never">
-            <ItemBar />
+          <el-card
+            v-if="connected"
+            shadow="never"
+          >
+            <el-tabs
+              v-model="sidebarTab">
+              <el-tab-pane label="目录" name="schema">
+                <SchemaTree :tree="schemaTree" />
+              </el-tab-pane>
+              <el-tab-pane label="组件" name="components">
+                <ToolBar />
+              </el-tab-pane>
+            </el-tabs>
+          </el-card>
+
+          <el-card
+            v-if="!connected"
+            shadow="never"
+          >
+            <ToolBar />
           </el-card>
         </div>
 
@@ -58,98 +94,110 @@
 .layout-container .item-bar-container {
   position: absolute;
   overflow-y: overlay;
-}
-.layout-container.left .item-bar-container {
   top: 0;
   left: 0;
   bottom: 0;
   width: 340px;
 }
-.layout-container.bottom .item-bar-container {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 210px;
-}
 /* form-editor 样式 */
 .layout-container .form-editor-container {
   position: absolute;
   top: 0;
+  bottom: 20px;
   left: 355px;
   right: 515px;
   overflow-y: overlay;
-}
-.layout-container.left .form-editor-container {
-  bottom: 20px;
-}
-.layout-container.bottom .form-editor-container {
-  bottom: 220px;
 }
 /* item-editor 样式 */
 .layout-container .item-editor-container {
   position: absolute;
   top: 0;
+  bottom: 20px;
   right: 0;
   width: 500px;
   overflow-y: overlay;
 }
-.layout-container.left .item-editor-container {
-  bottom: 20px;
-}
-.layout-container.bottom .item-editor-container {
-  bottom: 220px;
-}
 </style>
 
 <script>
-import ProjectSelect from '@/components/project-select'
+import getService from '@/service'
 
-import ItemBar from '@/components/item-bar';
+import SchemaSelect from '@/framework/schema-select'
+import ProjectSelect from '@/framework/project-select'
+import SchemaTree from '@/framework/schema-tree'
+import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
-// import FormEditor from '@/components/form-editor';
-import ItemEditor from '@/components/item-editor';
+// import FormEditor from '@/framework/form-editor';
+import ItemEditor from '@/framework/item-editor';
 
 export default {
   components: {
+    SchemaSelect,
     ProjectSelect,
-    ItemBar,
+    SchemaTree,
+    ToolBar,
     // FormEditor,
     ItemEditor,
   },
   data() {
-    const schemaStr = localStorage.getItem('schema');
-    let schema = {};
-    if(schemaStr && schemaStr !== 'undefined') {
-      schema = JSON.parse(schemaStr);
-    }
-
     return {
-      schema,
-    };
+      connected: getService('server').status(),
+      sidebarTab: 'components',
+      schemaTree: [],
+    }
   },
-  computed: {
-    isBottom() {
-      return this.$store.state.itemBarPosition === 'bottom';
+  async created() {
+    if(this.connected) {
+      const schemaSrv = getService('schema');
+      this.schemaTree = await schemaSrv.list();
     }
   },
   mounted() {
     const self = this;
 
     // 绑定“保存”键盘事件
-    document.onkeydown = function(e) {
+    document.onkeydown = async function(e) {
       if(e.keyCode === 83 && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         e.stopPropagation();
 
         const schema = self.$refs['rootEditor'].schema;
-        const projectId = self.$store.state.projectId;
-        localStorage.setItem(projectId, JSON.stringify(schema));
-        self.$message({
-          message: '保存成功',
-          type: 'success'
-        });
+        const schemaSrv = getService('schema');
+        const schemaId = schemaSrv.currentId();
+
+        try {
+          await schemaSrv.update(schemaId, schema);
+
+          self.$message({
+            message: '保存成功',
+            type: 'success'
+          });
+        } catch (err) {
+          self.$message({
+            message: err.message,
+            type: 'error'
+          });
+          console.error(err);
+        }
       }
     };
   },
+  methods: {
+    async onSwitchConnect() {
+      if(!this.connected) {
+        await this.connect();
+      } else {
+        getService('server').disconnect()
+      }
+      window.location.reload();
+    },
+    async connect() {
+      const { connected } = await getService('server').connect();
+      this.connected = connected;
+      if(!connected) {
+        this.$message.error('服务连接失败')
+      }
+    }
+  }
 };
 </script>
