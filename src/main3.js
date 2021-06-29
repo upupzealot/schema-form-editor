@@ -1,6 +1,6 @@
-import isVue2, { createApp } from 'vue';
+import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
-import AntDesignVue, { Form, FormItem } from 'ant-design-vue';
+import AntDesignVue from 'ant-design-vue';
 import { $id } from '@/ui-kit/common/util-funcs'
 const clipboardy = require('clipboardy');
 
@@ -31,7 +31,12 @@ app.use(ElementPlus); // ElementUI 放在最后引入，保证类似 $message �
 app.component('CodeEditor', CodeEditor);
 app.component('DraggableList', DraggableList);
 app.component('DraggableListItem', DraggableListItem);
-const uiKit = localStorage.getItem('ui-kit');
+
+let uiKit = localStorage.getItem('ui-kit');
+if(!uikit) {
+  uikit = 'element-ui';
+  localStorage.setItem('ui-kit', uikit);
+}
 if(uiKit === 'element-ui') {
   app.component('FormRender', ElementFormRender);
 }

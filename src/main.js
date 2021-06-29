@@ -29,7 +29,11 @@ Vue.component('CodeEditor', CodeEditor);
 Vue.component('DraggableList', DraggableList);
 Vue.component('DraggableListItem', DraggableListItem);
 
-const uiKit = localStorage.getItem('ui-kit');
+let uiKit = localStorage.getItem('ui-kit');
+if(!uikit) {
+  uikit = 'element-ui';
+  localStorage.setItem('ui-kit', uikit);
+}
 if(uiKit === 'element-ui') {
   Vue.component('FormRender', ElementFormRender);
 }
