@@ -33,9 +33,9 @@ app.component('DraggableList', DraggableList);
 app.component('DraggableListItem', DraggableListItem);
 
 let uiKit = localStorage.getItem('ui-kit');
-if(!uikit) {
-  uikit = 'element-ui';
-  localStorage.setItem('ui-kit', uikit);
+if(!uiKit) {
+  uiKit = 'element-ui';
+  localStorage.setItem('ui-kit', uiKit);
 }
 if(uiKit === 'element-ui') {
   app.component('FormRender', ElementFormRender);
