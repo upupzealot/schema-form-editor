@@ -9,6 +9,15 @@
           v-model="field.placeholder"
         />
       </el-form-item>
+
+      <el-form-item
+        label="文件类型"
+        prop="accept"
+      >
+        <el-input
+          v-model="accept"
+        />
+      </el-form-item>
     </template>
 
     <!-- 校验 -->
@@ -36,6 +45,14 @@ export default {
   },
   mixins: [schemaItemMixin],
   computed: {
+    accept: {
+      get() {
+        return this.field.accept || '';
+      },
+      set(accept) {
+        this.$set(this.field, 'accept', accept || undefined);
+      }
+    },
     rules: {
       get() {
         return this.field.rules || [];

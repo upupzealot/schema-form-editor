@@ -14,6 +14,7 @@
       action=""
       :auto-upload="false" 
 	    :multiple="false" :limit="1"
+      :accept="field.accept"
 	    :on-change="onChange"
 	    :on-exceed="onExceed" 
 	    :show-file-list="false"
