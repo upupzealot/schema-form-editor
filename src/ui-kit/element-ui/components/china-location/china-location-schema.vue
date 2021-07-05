@@ -10,6 +10,23 @@
         />
       </el-form-item>
       <el-form-item
+        label="按钮文本"
+        prop="btnLabel"
+      >
+        <el-input
+          v-model="btnLabel"
+          placeholder="地图选点"
+        />
+      </el-form-item>
+      <el-form-item
+        label="全部宽度"
+        prop="fullWidth"
+      >
+        <el-switch
+          v-model="fullWidth"
+        />
+      </el-form-item>
+      <el-form-item
         label="字段映射"
         prop="mapValue">
         <el-form label-position="right" label-width="60px">
@@ -103,5 +120,23 @@ import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
 export default {
   type: 'china-location',
   mixins: [schemaItemMixin],
+  computed: {
+    btnLabel: {
+      get() {
+        return this.field.btnLabel || '';
+      },
+      set(val) {
+        this.$set(this.field, 'btnLabel', val || undefined);
+      }
+    },
+    fullWidth: {
+      get() {
+        return !!this.field.fullWidth;
+      },
+      set(val) {
+        this.$set(this.field, 'fullWidth', val || undefined);
+      }
+    },
+  }
 };
 </script>

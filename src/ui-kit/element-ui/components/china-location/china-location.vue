@@ -10,7 +10,7 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    <el-input
+    <!-- <el-input
       v-model="valueText"
       type="textarea"
       :rows="2"
@@ -23,14 +23,21 @@
       :placeholder="field.placeholder || '地图选点'"
       :clearable="field.clearable"
       class="example-component"
-    />
+    /> -->
+    <el-button
+      @click="show"
+      :style="{ width: fullWidth ? '100%' : '' }"
+    >
+      <i class="el-icon-map-location" />
+      {{ btnLabel }}
+    </el-button>
     <el-dialog
       :visible.sync="dialogVisible"
       v-model="dialogVisible"
       @opened="onShow"
       @close="popoverVisible = false"
       width="600px"
-      :modal-append-to-body="false"
+      :append-to-body="true"
     >
       <div style="position: relative;">
         <div
@@ -199,8 +206,13 @@ export default {
   },
   computed: {
     ready() {
-      console.log(this.scriptLoaded, this.mounted, this.showed);
       return this.scriptLoaded && this.mounted && this.showed;
+    },
+    btnLabel() {
+      return this.field.btnLabel || '地图选点';
+    },
+    fullWidth() {
+      return !!this.field.fullWidth;
     },
     mapLng() {
       return !!this.field.mapLng;
@@ -353,9 +365,11 @@ export default {
         if(province === city) { // 考虑直辖市情况
           this.city = '市辖区';
           this.address = `${province}${addr}`;
+          this.valueText = `${province}\n${addr}`
         } else {
           this.city = city;
           this.address = `${province}${city}${addr}`;
+          this.valueText = `${province}${city}\n${addr}`;
         }
         this.district = district;
       });
