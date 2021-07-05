@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     marginY() {
-      return this.schema.formConf.marginY || 15;
+      return (this.schema.formConf && this.schema.formConf.marginY) || 15;
     },
     editable() {
       return !this.readonly && !this.disabled;
