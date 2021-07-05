@@ -16,6 +16,7 @@
       :options="options"
       :clearable="field.clearable !== false"
       :filterable="field.filterable"
+      :disabled="disabled"
       style="width: 100%"
     />
   </el-form-item>
