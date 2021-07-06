@@ -124,17 +124,17 @@ export default {
   },
   data() {
     return {
-      count: this.field.options ? this.field.options.length : 0,
+      count: 0,
       dragOptions: {
         animation: 200,
         disabled: false,
       },
-      tempOptions: this.field.options || [],
-      tempFunc: this.field.remoteConf && this.field.remoteConf.func || '',
-      tempApi: this.field.remoteConf && this.field.remoteConf.api || '',
-      tempValueKey: this.field.remoteConf && this.field.remoteConf.valueKey || '',
-      tempLabelKey: this.field.remoteConf && this.field.remoteConf.labelKey || '',
-      remoteConf: this.field.remoteConf || {},
+      tempOptions: [],
+      tempFunc: '',
+      tempApi: '',
+      tempValueKey: '',
+      tempLabelKey: '',
+      remoteConf: {},
     };
   },
   computed: {
@@ -234,9 +234,22 @@ export default {
         this.tempOptions = optionList;
         this.$set(this.field, 'options', this.options);
       }
-    } 
+    }
   },
   watch: {
+    'field.id': {
+      handler() {
+        const field = this.field;
+        this.count = field.options ? field.options.length : 0;
+        this.tempOptions = field.options || [];
+        this.tempFunc = field.remoteConf && field.remoteConf.func || '';
+        this.tempApi = field.remoteConf && field.remoteConf.api || '';
+        this.tempValueKey = field.remoteConf && field.remoteConf.valueKey || '';
+        this.tempLabelKey = field.remoteConf && field.remoteConf.labelKey || '';
+        this.remoteConf = field.remoteConf || { type: 'api' };
+      },
+      immediate: true,
+    },
     isRemote: {
       handler(newValue) {
         if(newValue) {
