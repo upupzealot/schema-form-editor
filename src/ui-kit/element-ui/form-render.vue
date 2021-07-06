@@ -121,6 +121,21 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <SSlot
+          v-if="field.type === 'slot'"
+          :form-conf="formConf"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        >
+          <template
+            v-if="field.slotName"
+            v-slot:[field.slotName]
+          >
+            <slot :name="field.slotName" />
+          </template>
+        </SSlot>
         <Wrapper
           v-if="field.type === 'wrapper'"
           ref="subformItems"
@@ -179,6 +194,7 @@ import SSwitch from './components/switch/switch';
 import DatePicker from './components/date-picker/date-picker';
 
 import Blank from './components/blank/blank';
+import SSlot from './components/slot/slot';
 import Wrapper from './components/wrapper/wrapper';
 import Subform from './components/subform/subform';
 // import ItemList from './components/item-list/item-list';
@@ -202,6 +218,7 @@ export default {
     SSwitch,
     DatePicker,
     Blank,
+    SSlot,
     Wrapper,
     Subform,
     ItemList,
