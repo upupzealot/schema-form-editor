@@ -142,7 +142,7 @@ export default {
             snippets.push('');
           }
           if(next && index !== 3) {
-            this.$refs[`snippet${index + 1}`].focus();
+            this.$refs[`snippet${index + 1}`].select();
           }
         }
       }
