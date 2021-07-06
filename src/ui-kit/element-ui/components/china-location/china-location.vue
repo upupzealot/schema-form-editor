@@ -45,6 +45,39 @@
           style="width: 100%; height: 240px;"
         />
         <el-popover
+          placement="bottom-start"
+          width="340"
+          trigger="manual"
+          :visible.sync="searchPopoverVisible"
+          v-model="searchPopoverVisible">
+          <template v-slot:reference>
+            <el-input
+              ref="searchInput"
+              v-model="search"
+              size="mini"
+              prefix-icon="el-icon-search"
+              clearable
+              style="position: absolute; top: 10px; left: 10px; width: 200px;"
+              @focus="popoverVisible = false"
+            />
+          </template>
+          <div style="height: 120px; overflow-y: overlay;">
+            <div
+              v-for="location in searchLocations"
+              :key="location.uid"
+              class="location-item"
+              @click="pickLocation(location)"
+            >
+              <div class="title">
+                {{ location.title }}
+              </div>
+              <div class="address">
+                {{ location.shortAddress }}
+              </div>
+            </div>
+          </div>
+        </el-popover>
+        <el-popover
           placement="top"
           title="附近地点"
           width="340"
@@ -58,7 +91,7 @@
           </template>
           <div style="height: 120px; overflow-y: overlay;">
             <div
-              v-for="location in popoverlocations"
+              v-for="location in popoverLocations"
               :key="location.uid"
               class="location-item"
               @click="pickLocation(location)"
@@ -79,32 +112,32 @@
         class="china-location-form">
         <el-row :gutter="15">
           <el-col :span="12" v-if="mapLng">
-            <el-form-item label="经度">
+            <el-form-item label="经度" style="margin-bottom: 0;">
               <el-input v-model="lng" style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="12" v-if="mapLat">
-            <el-form-item label="纬度">
+            <el-form-item label="纬度" style="margin-bottom: 0;">
               <el-input v-model="lat" />
             </el-form-item>
           </el-col>
           <el-col :span="8" v-if="mapProvince">
-            <el-form-item label="省">
-              <el-input v-model="province" style="width: 100%" />
+            <el-form-item label="省" style="margin-bottom: 0;">
+              <el-input v-model="province" />
             </el-form-item>
           </el-col>
           <el-col :span="8" v-if="mapCity">
-            <el-form-item label="市">
+            <el-form-item label="市" style="margin-bottom: 0;">
               <el-input v-model="city" />
             </el-form-item>
           </el-col>
           <el-col :span="8" v-if="mapDistrict">
-            <el-form-item label="区">
-              <el-input v-model="district" style="width: 100%" />
+            <el-form-item label="区" style="margin-bottom: 0;">
+              <el-input v-model="district" />
             </el-form-item>
           </el-col>
           <el-col :span="24" v-if="mapAddress">
-            <el-form-item label="地址">
+            <el-form-item label="地址" style="margin-bottom: 0;">
               <el-input v-model="address" />
             </el-form-item>
           </el-col>
@@ -194,7 +227,10 @@ export default {
       showed: false,
       map: null,
       popoverVisible: false,
-      popoverlocations: [],
+      popoverLocations: [],
+      search: '',
+      searchLocations: [],
+      searchPopoverVisible: false,
       lng: '',
       lat: '',
       province: '',
@@ -269,7 +305,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.config)
     this.mounted = true;
   },
   watch: {
@@ -286,6 +321,26 @@ export default {
         const { point } = e;
         this.pickPoint(point);
       });
+    },
+    search(val) {
+      if(val) {
+        const localSearch = new BMap.LocalSearch(this.map, {
+          pageCapacity: 6,
+        });
+        localSearch.setSearchCompleteCallback(res => {
+          const suggestions = [];
+          const { province, city } = res;
+          const num = res.getCurrentNumPois();
+          for(let i = 0; i < num; i++) {
+            const point = res.getPoi(i);
+            suggestions.push(this.makeShortAddress(point, province, city));
+          }
+          
+          this.searchLocations = suggestions;
+          this.searchPopoverVisible = true;
+        });
+        localSearch.search(val);
+      }
     }
   },
   methods: {
@@ -318,7 +373,7 @@ export default {
       this.dialogVisible = false;
     },
     pickPoint(point) {
-      const map = this.map;
+      this.$refs.searchInput.blur();
       this.lng = point.lng;
       this.lat = point.lat;
       // const ak = '*******';
@@ -330,28 +385,34 @@ export default {
         this.province = province;
         this.city = city;
         this.district = district;
-        this.popoverlocations = res.surroundingPois.map(point => {
-          const { address } = point;
-          let shortAddress = address;
-          if(shortAddress.startsWith(province)) {
-            shortAddress = shortAddress.replace(province, '');
-          }
-          if(shortAddress.startsWith(city)) {
-            shortAddress = shortAddress.replace(city, '');
-          }
-          point.shortAddress = shortAddress;
-          return point;
+        this.popoverLocations = res.surroundingPois.map(point => {
+          return this.makeShortAddress(point, province, city);
         });
 
-
-        let center = map.pointToPixel(point);
-        center = map.pixelToPoint({
-          x: center.x,
-          y: center.y - 40,
-        });
-        map.panTo(center);
+        this.centerToPoint(point);
         this.popoverVisible = true;
       });
+    },
+    centerToPoint(point) {
+      const map = this.map;
+      let center = map.pointToPixel(point);
+      center = map.pixelToPoint({
+        x: center.x,
+        y: center.y - 40,
+      });
+      map.panTo(center);
+    },
+    makeShortAddress(point, province, city) {
+      const { address } = point;
+      let shortAddress = address;
+      if(shortAddress.startsWith(province)) {
+        shortAddress = shortAddress.replace(province, '');
+      }
+      if(shortAddress.startsWith(city)) {
+        shortAddress = shortAddress.replace(city, '');
+      }
+      point.shortAddress = shortAddress;
+      return point;
     },
     pickLocation(location) {
       const { point, shortAddress, title } = location;
@@ -373,7 +434,12 @@ export default {
         }
         this.district = district;
       });
+
+      this.centerToPoint(point);
       this.popoverVisible = false;
+      this.searchPopoverVisible = false;
+      this.$refs.searchInput.blur();
+      this.search = '';
     }
   }
 }
