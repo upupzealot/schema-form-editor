@@ -2,12 +2,9 @@
   <div>
     <!-- 这里 dialog 不能放在 el-menu 里面
     否则按空格会触发 el-menu-item 的模拟 click 事件，导致弹框被关闭 -->
-    <el-menu
-      mode="horizontal"
-      @select="selectSchema"
-    >
+    <el-menu mode="horizontal">
       <slot />
-      <el-submenu index="">
+      <el-submenu index="schema">
         <template v-slot:title>
           {{ schema.name }}
         </template>
@@ -15,6 +12,7 @@
           v-for="schemaItem in schemaList"
           :key="schemaItem.id"
           :index="schemaItem.id"
+          @click="selectSchema(schemaItem.id)"
         >
           {{ schemaItem.name }}
         </el-menu-item>
@@ -37,6 +35,8 @@
       >
         <i class="el-icon-plus" />
       </el-button>
+
+      <UiKitSelect />
     </el-menu>
     <el-dialog
       v-model="dialogVisible"
@@ -97,8 +97,12 @@
 <script>
 import md5 from 'md5';
 import getService from '../service'
+import UiKitSelect from './ui-kit-select'
 
 export default {
+  components: {
+    UiKitSelect,
+  },
   data() {
     return {
       schemaList: [],
