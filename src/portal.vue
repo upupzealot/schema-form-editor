@@ -29,11 +29,18 @@
             shadow="never"
           >
             <el-tabs
-              v-model="sidebarTab">
-              <el-tab-pane label="目录" name="schema">
+              v-model="sidebarTab"
+            >
+              <el-tab-pane
+                label="目录"
+                name="schema"
+              >
                 <SchemaTree :tree="schemaTree" />
               </el-tab-pane>
-              <el-tab-pane label="组件" name="components">
+              <el-tab-pane
+                label="组件"
+                name="components"
+              >
                 <ToolBar />
               </el-tab-pane>
             </el-tabs>

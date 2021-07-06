@@ -84,7 +84,10 @@
             :item="option"
             @delete="deleteOption"
           >
-            <OptionListItem :option="option" :type-value="typeValue" />
+            <OptionListItem
+              :option="option"
+              :type-value="typeValue"
+            />
           </DraggableListItem>
         </template>
         <template v-slot:footer>

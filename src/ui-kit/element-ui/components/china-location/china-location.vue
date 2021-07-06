@@ -25,19 +25,19 @@
       class="example-component"
     /> -->
     <el-button
-      @click="show"
       :style="{ width: fullWidth ? '100%' : '' }"
+      @click="show"
     >
       <i class="el-icon-map-location" />
       {{ btnLabel }}
     </el-button>
     <el-dialog
-      :visible.sync="dialogVisible"
       v-model="dialogVisible"
-      @opened="onShow"
-      @close="popoverVisible = false"
+      :visible.sync="dialogVisible"
       width="600px"
       :append-to-body="true"
+      @opened="onShow"
+      @close="popoverVisible = false"
     >
       <div style="position: relative;">
         <div
@@ -45,11 +45,12 @@
           style="width: 100%; height: 240px;"
         />
         <el-popover
+          v-model="searchPopoverVisible"
           placement="bottom-start"
           width="340"
           trigger="manual"
           :visible.sync="searchPopoverVisible"
-          v-model="searchPopoverVisible">
+        >
           <template v-slot:reference>
             <el-input
               ref="searchInput"
@@ -78,12 +79,13 @@
           </div>
         </el-popover>
         <el-popover
+          v-model="popoverVisible"
+          v-model:visible="popoverVisible"
           placement="top"
           title="附近地点"
           width="340"
           trigger="manual"
-          v-model="popoverVisible"
-          v-model:visible="popoverVisible">
+        >
           <template v-slot:reference>
             <div
               style="position: absolute; left: 50%; top: 160px;"
@@ -109,35 +111,75 @@
       <el-form
         label-position="right"
         label-width="40px"
-        class="china-location-form">
+        class="china-location-form"
+      >
         <el-row :gutter="15">
-          <el-col :span="12" v-if="mapLng">
-            <el-form-item label="经度" style="margin-bottom: 0;">
-              <el-input v-model="lng" style="width: 100%" />
+          <el-col
+            v-if="mapLng"
+            :span="12"
+          >
+            <el-form-item
+              label="经度"
+              style="margin-bottom: 0;"
+            >
+              <el-input
+                v-model="lng"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
-          <el-col :span="12" v-if="mapLat">
-            <el-form-item label="纬度" style="margin-bottom: 0;">
+          <el-col
+            v-if="mapLat"
+            :span="12"
+          >
+            <el-form-item
+              label="纬度"
+              style="margin-bottom: 0;"
+            >
               <el-input v-model="lat" />
             </el-form-item>
           </el-col>
-          <el-col :span="8" v-if="mapProvince">
-            <el-form-item label="省" style="margin-bottom: 0;">
+          <el-col
+            v-if="mapProvince"
+            :span="8"
+          >
+            <el-form-item
+              label="省"
+              style="margin-bottom: 0;"
+            >
               <el-input v-model="province" />
             </el-form-item>
           </el-col>
-          <el-col :span="8" v-if="mapCity">
-            <el-form-item label="市" style="margin-bottom: 0;">
+          <el-col
+            v-if="mapCity"
+            :span="8"
+          >
+            <el-form-item
+              label="市"
+              style="margin-bottom: 0;"
+            >
               <el-input v-model="city" />
             </el-form-item>
           </el-col>
-          <el-col :span="8" v-if="mapDistrict">
-            <el-form-item label="区" style="margin-bottom: 0;">
+          <el-col
+            v-if="mapDistrict"
+            :span="8"
+          >
+            <el-form-item
+              label="区"
+              style="margin-bottom: 0;"
+            >
               <el-input v-model="district" />
             </el-form-item>
           </el-col>
-          <el-col :span="24" v-if="mapAddress">
-            <el-form-item label="地址" style="margin-bottom: 0;">
+          <el-col
+            v-if="mapAddress"
+            :span="24"
+          >
+            <el-form-item
+              label="地址"
+              style="margin-bottom: 0;"
+            >
               <el-input v-model="address" />
             </el-form-item>
           </el-col>
@@ -149,7 +191,8 @@
           <el-button
             type="primary"
             style="float: right; margin-left: 15px;"
-            @click="onPick">
+            @click="onPick"
+          >
             确定
           </el-button>
           <el-button
@@ -287,26 +330,6 @@ export default {
       return this.field.addressKey || 'address'
     },
   },
-  created() {
-    const ak = this.config.baiduAk;
-    if(!ak) {
-      return console.error('未找到百度地图 appkey，请在 config.baiduAk 中设置');
-    }
-    const src = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=BMapInit`;
-    if (!document.querySelector('script[src="' + src + '"]')) {
-      const script = document.createElement('script');
-      script.src = src;
-      window.BMapInit = () => {
-       this.scriptLoaded = true;
-      }
-      document.head.appendChild(script);
-    } else {
-      this.scriptLoaded = true;
-    }
-  },
-  mounted() {
-    this.mounted = true;
-  },
   watch: {
     ready() {
       const map = new BMap.Map(this.$refs.mapRoot, {
@@ -316,7 +339,7 @@ export default {
       map.setDefaultCursor('pointer');
       map.centerAndZoom(new BMap.Point(120.19, 30.26), 15);
       map.enableScrollWheelZoom();
-      map.addEventListener('click', (e) => {
+      map.addEventListener('click', e => {
         this.popoverVisible = false;
         const { point } = e;
         this.pickPoint(point);
@@ -342,6 +365,26 @@ export default {
         localSearch.search(val);
       }
     }
+  },
+  created() {
+    const ak = this.config.baiduAk;
+    if(!ak) {
+      return console.error('未找到百度地图 appkey，请在 config.baiduAk 中设置');
+    }
+    const src = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=BMapInit`;
+    if (!document.querySelector('script[src="' + src + '"]')) {
+      const script = document.createElement('script');
+      script.src = src;
+      window.BMapInit = () => {
+       this.scriptLoaded = true;
+      }
+      document.head.appendChild(script);
+    } else {
+      this.scriptLoaded = true;
+    }
+  },
+  mounted() {
+    this.mounted = true;
   },
   methods: {
     show() {

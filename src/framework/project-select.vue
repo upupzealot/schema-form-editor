@@ -89,10 +89,6 @@ export default {
       dialogVisible: false,
     }
   },
-  async created() {
-    const projectSrv = getService('project');
-    this.projects = await projectSrv.list();
-  },
   computed: {
     projectId: {
       get() {
@@ -108,6 +104,10 @@ export default {
       const projectMap = _.keyBy(this.projects, 'id');
       return projectMap[this.projectId] || {};
     },
+  },
+  async created() {
+    const projectSrv = getService('project');
+    this.projects = await projectSrv.list();
   },
   methods: {
     showDialog(mode) {

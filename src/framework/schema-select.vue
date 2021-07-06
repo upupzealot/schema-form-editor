@@ -106,10 +106,6 @@ export default {
       dialogVisible: false,
     }
   },
-  async created() {
-    const schemaSrv = getService('schema');
-    this.schemaList = await schemaSrv.list();
-  },
   computed: {
     schemaId: {
       get() {
@@ -154,6 +150,10 @@ export default {
       },
       immediate: true,
     }
+  },
+  async created() {
+    const schemaSrv = getService('schema');
+    this.schemaList = await schemaSrv.list();
   },
   methods: {
     showDialog() {
