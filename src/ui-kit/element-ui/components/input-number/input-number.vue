@@ -22,10 +22,23 @@
       :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      :class="{
+        'left-align': field.textAlign === 'left',
+        'right-align': field.textAlign === 'right'
+      }"
       style="width: 100%;"
     />
   </el-form-item>
 </template>
+
+<style scoped>
+>>> .el-input-number.left-align .el-input input {
+  text-align: left;
+}
+>>> .el-input-number.right-align .el-input input {
+  text-align: right;
+}
+</style>
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'

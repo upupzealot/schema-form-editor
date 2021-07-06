@@ -89,6 +89,27 @@
             />
           </el-form-item>
         </el-col>
+        <el-col>
+          <el-form-item
+            label="文本对齐"
+            prop="textAlign"
+          >
+            <el-radio-group
+              v-model="textAlign"
+              style="width: 100%;"
+            >
+              <el-radio-button label="left">
+                左
+              </el-radio-button>
+              <el-radio-button label="center">
+                中
+              </el-radio-button>
+              <el-radio-button label="right">
+                右
+              </el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
       </el-row>
       
       <el-form-item
@@ -170,6 +191,14 @@ export default {
       set(precision) {
         const precisionNum = Number(precision);
         this.$set(this.field, 'precision', isNaN(precisionNum) ? undefined : precisionNum); 
+      }
+    },
+    textAlign: {
+      get() {
+        return this.field.textAlign || 'center';
+      },
+      set(textAlign) {
+        this.$set(this.field, 'textAlign', textAlign === 'center' ? undefined : textAlign); 
       }
     },
   },
