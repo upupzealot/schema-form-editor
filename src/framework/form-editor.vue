@@ -255,11 +255,18 @@ export default {
     }
   },
   data() {
+    let config = localStorage.getItem('$config') || '{}';
+    try {
+      config = JSON.parse(config);
+    } catch(err) {
+      config = {};
+    }
+
     return {
       editorIs,
       schemaDialogVisible: false,
       dataDialogVisible: false,
-      config: {},
+      config,
       propDialogVisible: false,
       previewSchema: {},
       previewData: {},
@@ -416,7 +423,10 @@ export default {
         }
       },
       immediate: true,
-    }
+    },
+    config(val) {
+      localStorage.setItem('$config', JSON.stringify(val));
+    },
   },
   methods: {
     fallback(type) {
