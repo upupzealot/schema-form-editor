@@ -133,7 +133,10 @@
             v-if="field.slotName"
             v-slot:[field.slotName]
           >
-            <slot :name="field.slotName" />
+            <slot
+              :name="field.slotName"
+              v-bind="{ schema, field, data }"
+            />
           </template>
         </SSlot>
         <Wrapper
@@ -145,7 +148,17 @@
           :schema="field"
           :data="data"
           :sup-nodes="supNodeList"
-        />
+        >
+          <template
+            v-for="slotName in slotNames"
+            v-slot:[slotName]="args"
+          >
+            <slot
+              :name="slotName"
+              v-bind="args"
+            />
+          </template>
+        </Wrapper>
         <Subform
           v-if="field.type === 'subform'"
           ref="subformItems"
@@ -155,7 +168,17 @@
           :schema="field"
           :data="data[field.name]"
           :sup-nodes="supNodeList"
-        />
+        >
+          <template
+            v-for="slotName in slotNames"
+            v-slot:[slotName]="args"
+          >
+            <slot
+              :name="slotName"
+              v-bind="args"
+            />
+          </template>
+        </Subform>
         <ItemList
           v-if="field.type === 'item-list'"
           ref="subformItems"
@@ -165,7 +188,17 @@
           :schema="field"
           :data="data"
           :sup-nodes="supNodeList"
-        />
+        >
+          <template
+            v-for="slotName in slotNames"
+            v-slot:[slotName]="args"
+          >
+            <slot
+              :name="slotName"
+              v-bind="args"
+            />
+          </template>
+        </ItemList>
       </component>
     </component>
   </el-form>
@@ -283,6 +316,12 @@ export default {
     },
     fieldList() {
       return this.schema.fieldList;
+    },
+    slotNames() {
+      const $root = this.supNodeList[0];
+      let slotNames = Object.keys($root.$slots || {});
+      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
+      return _.uniq(slotNames);
     },
     validFuncs() {
       return this.schema.validFuncs;

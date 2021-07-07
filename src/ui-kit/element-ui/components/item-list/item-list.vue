@@ -27,7 +27,17 @@
             :sup-nodes="supNodes"
             :scenario="scenario"
             :style="{ width: '100%', marginBottom: `-${marginY}px` }"
-          />
+          >
+            <template
+              v-for="slotName in slotNames"
+              v-slot:[slotName]="args"
+            >
+              <slot
+                :name="slotName"
+                v-bind="args"
+              />
+            </template>
+          </Subform>
         </DraggableListItem>
       </template>
     </DraggableList>
@@ -54,6 +64,8 @@
 </style>
 
 <script>
+import _ from 'lodash';
+
 import formItemMixin from '../../common/form-item/mixin'
 
 import DraggableListItem from '../../../common/draggable-list-item'
@@ -76,6 +88,12 @@ export default {
     }
   },
   computed: {
+    slotNames() {
+      const $root = this.supNodes[0];
+      let slotNames = Object.keys($root.$slots || {});
+      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
+      return _.uniq(slotNames);
+    },
     marginY() {
       return (this.schema.formConf && this.schema.formConf.marginY) || 15;
     },

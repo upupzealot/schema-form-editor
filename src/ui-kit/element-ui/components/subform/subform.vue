@@ -10,7 +10,17 @@
     :sup-nodes="supNodes"
     :class="{subform: true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
-  />
+  >
+    <template
+      v-for="slotName in slotNames"
+      v-slot:[slotName]="args"
+    >
+      <slot
+        :name="slotName"
+        v-bind="args"
+      />
+    </template>
+  </FormRender>
 </template>
 
 <script>
@@ -31,6 +41,14 @@ export default {
         return {};
       }
     }
+  },
+  computed: {
+    slotNames() {
+      const $root = this.supNodes[0];
+      let slotNames = Object.keys($root.$slots || {});
+      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
+      return _.uniq(slotNames);
+    },
   },
   methods: {
     async validate() {
