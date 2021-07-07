@@ -111,5 +111,42 @@ export const SchemaItems = [
   ItemListSchema,
 ]
 
+import Input from './components/input/input.vue'
+import InputNumber from './components/input-number/input-number.vue'
+import InputIp from './components/input-ip/input-ip.vue'
+import InputFile from './components/input-file/input-file.vue'
+import Select from './components/select/select.vue'
+import Cascader from './components/cascader/cascader.vue'
+import ChinaRegion from './components/china-region/china-region.vue'
+import ChinaLocation from './components/china-location/china-location.vue'
+import Radio from './components/radio/radio.vue'
+import Checkbox from './components/checkbox/checkbox.vue'
+import Switch from './components/switch/switch.vue'
+import DatePicker from './components/date-picker/date-picker.vue'
+import Blank from './components/blank/blank.vue'
+import Slot from './components/slot/slot.vue'
+import Wrapper from './components/wrapper/wrapper.vue'
+import Subform from './components/subform/subform.vue'
+import ItemList from './components/item-list/item-list.vue'
+export {
+  Input,
+  InputNumber,
+  InputIp,
+  InputFile,
+  Select,
+  Cascader,
+  ChinaRegion,
+  ChinaLocation,
+  Radio,
+  Checkbox,
+  Switch,
+  DatePicker,
+  Blank,
+  Slot,
+  Wrapper,
+  Subform,
+  ItemList
+}
+
 import FormRender from './form-render.vue'
 export default FormRender;
