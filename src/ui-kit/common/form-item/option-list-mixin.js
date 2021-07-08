@@ -28,8 +28,11 @@ export default {
     'field.remoteConf.api': {
       handler(api) {
         if(api) {
+          const headers = (this.config && this.config.axios && this.config.axios.headers) || {};
+
           axios.get(api, {
             headers:{
+              ...headers,
               'content-type': 'application/json'
             }
           })
