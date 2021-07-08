@@ -38,12 +38,12 @@
             >
               <!-- 表单项 -->
               <component
-                :is="fallback(`editor-${field.type}`) ? `editor-${field.type}` : 'div'"
+                :is="support(`editor-${field.type}`) ? `editor-${field.type}` : 'unsupported-item'"
                 v-bind="{
                   formConf,
                   field,
                   data,
-                  supNodes: fallback(`editor-${field.type}`) ? supNodeList : [],
+                  supNodes: support(`editor-${field.type}`) ? supNodeList : [],
                   class: 'slot-content'
                 }"
               />
@@ -194,6 +194,7 @@ import omitDeep from 'omit-deep-lodash';
 // import DraggableList from '@/framework/common/draggable-list';
 // import DraggableListItem from '@/framework/common/draggable-list-item';
 import JsonDialog from './common/json-dialog';
+import UnsupportedItem from './unsupported-item.vue';
 
 import { EditorItems as ElementItems } from '@/ui-kit/element-ui/index'
 import { EditorItems as AntDesignItems } from '@/ui-kit/ant-design/index'
@@ -225,6 +226,7 @@ export default {
     // DraggableList,
     // DraggableListItem,
     JsonDialog,
+    UnsupportedItem,
     // FormRender,
     ...ItemMap,
   },
@@ -429,7 +431,7 @@ export default {
     },
   },
   methods: {
-    fallback(type) {
+    support(type) {
       return !!ItemMap[type];
     },
     onAdd({ item, index }) {

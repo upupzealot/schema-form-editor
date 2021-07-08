@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{'slot': true, 'form-item': true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
@@ -18,15 +18,17 @@
       v-if="field.slotName"
       :name="field.slotName"
     >
-      <div class="blank" />
+      
     </slot>
   </el-form-item>
 </template>
 
 <style>
->>> .blank {
+.slot .blank {
   width: 100%;
   height: 40px;
+  color: #ccc;
+  text-align: center;
 }
 </style>
 
