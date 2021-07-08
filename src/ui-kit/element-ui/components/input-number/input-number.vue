@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{'input-number': true, 'form-item': true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
@@ -31,11 +31,11 @@
   </el-form-item>
 </template>
 
-<style scoped>
->>> .el-input-number.left-align .el-input input {
+<style>
+.input-number .el-input-number.left-align .el-input input {
   text-align: left;
 }
->>> .el-input-number.right-align .el-input input {
+.input-number .el-input-number.right-align .el-input input {
   text-align: right;
 }
 </style>
