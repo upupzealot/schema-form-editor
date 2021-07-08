@@ -58,6 +58,7 @@ npm run dev3
 
 <script>
 import FormRender from 'schema-form-render'
+import DeviceSchema from './device.schema.json'
 
 export default {
   components: {
@@ -65,6 +66,7 @@ export default {
   },
   data() {
     return {
+      DeviceSchema,
       device: {},
     }
   },
