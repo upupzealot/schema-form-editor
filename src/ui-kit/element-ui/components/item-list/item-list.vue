@@ -21,7 +21,7 @@
         >
           <Subform
             ref="subformItem"
-            :field="field"
+            :field="subformField"
             :schema="subformSchema"
             :data="item"
             :sup-nodes="supNodes"
@@ -99,6 +99,12 @@ export default {
     },
     editable() {
       return !this.readonly && !this.disabled;
+    },
+    subformField() {
+      return {
+        ...this.field,
+        effect: undefined,
+      };
     },
     subformSchema() {
       return {

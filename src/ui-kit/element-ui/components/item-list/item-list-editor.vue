@@ -9,9 +9,11 @@
     <ItemList
       :form-key="field.name"
       :data="data"
+      :v-status="vStatus"
       :field="schema"
       :schema="schema"
       :sup-nodes="supNodes"
+      :class="statusClasses"
     />
     <el-tag
       size="mini"
