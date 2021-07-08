@@ -13,12 +13,12 @@
       >
         <DraggableList
           :list="fieldList"
+          item-key="id"
           :group="{ put: true, pull: true }"
           :selectable="true"
           style="padding-bottom: 50px;"
           list-tag="el-row"
           :list-data="{ props: { gutter: marginX }, gutter: marginX }"
-
           item-tag="el-col"
           :item-data="field => {
             return {
