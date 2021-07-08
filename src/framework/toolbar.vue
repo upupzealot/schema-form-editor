@@ -3,7 +3,7 @@
     <el-col class="item-bar">
       <el-form label-width="80px">
         <el-divider content-position="left">
-          表单项
+          组件栏
         </el-divider>
         <DraggableList
           :list="ToolbarItems"

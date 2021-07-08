@@ -60,7 +60,7 @@
             class="form-editor"
           >
             <el-divider content-position="left">
-              表单项编辑器
+              搭建区
             </el-divider>
             <FormEditor ref="rootEditor" />
           </el-card>
