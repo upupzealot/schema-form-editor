@@ -7,7 +7,7 @@
     placeholder="请输入"
     class="example-component"
   /> -->
-  <el-button>
+  <el-button class="example-component">
     <i class="el-icon-map-location" />
     地图选点
   </el-button>
