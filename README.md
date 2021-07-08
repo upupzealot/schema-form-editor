@@ -49,10 +49,15 @@ npm run dev3
 ```vue
 <template>
   ...
+    <!-- DeviceSchema 为渲染表单需要的 schema -->
+    <!-- device 为表单数据 -->
     <FormRender
       :schema="DeviceSchema"
       :data="device"
     />
+    <el-button @click="updateDevice">
+      提交
+    </el-button>
   ...
 </template>
 
@@ -71,11 +76,18 @@ export default {
     }
   },
   async created() {
+    // 拉取 "device" 数据，并回填到表单中
     this.device = await getDevice();
   },
   methods: {
-    async getDevice() {
-      // fetch "device" data here
+    getDevice() {
+      return axios.get('http://api.com/device/1');
+    },
+    async updateDevice() {
+      // 用户操作表单后 this.device 的数据会实时更新
+      // 这里可以直接通过 this.device 访问到表单中的数据
+      await axios.put('http://api.com/device/1', this.device);
+      this.$message.success('保存成功');
     }
   }
 }
