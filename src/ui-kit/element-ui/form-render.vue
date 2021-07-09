@@ -231,9 +231,42 @@ import SSlot from './components/slot/slot';
 import Wrapper from './components/wrapper/wrapper';
 import Subform from './components/subform/subform';
 // import ItemList from './components/item-list/item-list';
-import isVue2 from 'vue';
+import isVue2, { reactive } from 'vue';
 const IL = isVue2 ? require('./components/item-list/item-list.vue') : require('./components/item-list/item-list3.vue');
 const ItemList = IL.default;
+
+let staticConf = isVue2
+  ? isVue2.observable({ config: {} })
+  : reactive({ config: {} });
+function setConfig(key, value) {
+  if(_.isObject(key)) {
+    if(isVue2) {
+      isVue2.set(staticConf, 'config', key);
+    } else {
+      staticConf.config = key;
+    }
+  } else {
+    if(isVue2) {
+      isVue2.set(staticConf.config, key, value);
+    } else {
+      staticConf.config[key] = value;
+    }
+    staticConf.config = {
+      ...staticConf.config
+    }
+  }
+}
+function getConfig(key) {
+  if(!key) {
+    return staticConf.config;
+  } else {
+    return staticConf.config[key];
+  }
+}
+export {
+  setConfig,
+  getConfig,
+};
 
 export default {
   name: 'FormRender',
@@ -295,6 +328,9 @@ export default {
     }
   },
   computed: {
+    mixedConfig() {
+      return _.merge({}, staticConf.config, this.supNodeList[0].config);
+    },
     supNodeList() {
       if(this.supNodes) {
         return [...this.supNodes, this];

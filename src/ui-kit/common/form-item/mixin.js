@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     config() {
-      return this.supNodes[0].config;
+      return this.supNodes[0].mixedConfig || {};
     },
     parent() {
       if(!this.supNodes || !this.supNodes.length) {

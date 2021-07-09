@@ -125,7 +125,20 @@
               :schema="previewSchema"
               :data="previewData"
               :config="config"
-            />
+            >
+              <template #aaa="{ field }">
+                <div>Slot aaa: {{ field && field.name }}</div>
+              </template>
+              <template #bbb="{ field }">
+                <div>Slot bbb: {{ field && field.name }}</div>
+              </template>
+              <template #ccc="{ field }">
+                <div>Slot ccc: {{ field && field.name }}</div>
+              </template>
+              <template #ddd="{ field }">
+                <div>Slot ddd: {{ field && field.name }}</div>
+              </template>
+            </FormRender>
           </el-card>
         </el-col>
         <el-col :span="12">
@@ -288,6 +301,9 @@ export default {
       } else {
         return [this];
       }
+    },
+    mixedConfig() { // 模拟 FormRender 下的 mixedConfig 属性
+      return this.config;
     },
     // 当前正在编辑的表单和字段
     activeForm: {
