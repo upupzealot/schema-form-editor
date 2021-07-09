@@ -30,19 +30,18 @@ export default {
   mixins: [formItemMixin],
   data() {
     return {
-      calendarId: this.$id(),
+      calendarId: $id(),
     }
   },
   watch: {
     'field.mode': {
       handler() {
         this.$set(this.data, this.field.name, undefined);
-        this.calendarId = this.$id();
+        this.calendarId = $id();
         this.$forceUpdate();
       }
     }
   },
-  methods: { $id },
   defaultSchema: {},
 };
 </script>
