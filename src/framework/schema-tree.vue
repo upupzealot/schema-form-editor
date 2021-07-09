@@ -8,7 +8,10 @@
     @node-click="onSelect"
   >
     <template #default="{ data }">
-      <div style="height: 26px;">
+      <div
+        :class="{ 'active-schema': data.id === schemaId }"
+        style="height: 26px; width: 100%"
+      >
         <i
           :class="{
             'el-icon-folder': !data.isSchema,
@@ -20,6 +23,12 @@
     </template>
   </el-tree>
 </template>
+
+<style scoped>
+.active-schema {
+  background: #f0f9ff;
+}
+</style>
 
 <script>
 import md5 from 'md5';
