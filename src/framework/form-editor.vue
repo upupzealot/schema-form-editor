@@ -103,6 +103,7 @@
     <!-- Config 对话框 -->
     <JsonDialog
       v-model:visible="propDialogVisible"
+      v-model:content="config"
       title="Config"
       :visible.sync="propDialogVisible"
       :content.sync="config"
