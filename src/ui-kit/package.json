@@ -1,6 +1,6 @@
 {
   "name": "schema-form-render",
-  "version": "0.2.18",
+  "version": "0.2.23",
   "description": "",
   "main": "index.js",
   "scripts": {
