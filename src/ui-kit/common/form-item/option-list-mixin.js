@@ -29,8 +29,13 @@ export default {
       handler(api) {
         if(api) {
           const headers = (this.config && this.config.axios && this.config.axios.headers) || {};
+          const baseUrl = (this.config && this.config.axios && this.config.axios.baseUrl) || '';
+          let apiUrl = api;
+          if(api.startsWith('/')) {
+            apiUrl = `${baseUrl}${apiUrl}`;
+          }
 
-          axios.get(api, {
+          axios.get(apiUrl, {
             headers:{
               ...headers,
               'content-type': 'application/json'
