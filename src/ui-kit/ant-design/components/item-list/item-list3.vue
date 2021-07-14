@@ -15,8 +15,10 @@
     <DraggableList
       :list="items"
     >
-      <template #item="{ item }">
+      <template #default="{ list }">
         <DraggableListItem
+          v-for="item in list"
+          :key="item.id"
           :has-control="editable"
           :style="{ marginBottom: `${marginY}px` }"
           @delete="deleteItem(item)"

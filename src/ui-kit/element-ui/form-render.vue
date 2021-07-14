@@ -463,7 +463,7 @@ export default {
 
           const valids = await Promise.all(subformItems.map(subform => {
             return subform.validate();
-          })); 
+          }));
           valids.forEach(valid => {
             valiResult = valiResult && valid;
           })
