@@ -14,14 +14,22 @@ Vue packages version mismatch
 是由于 vue 和 vue-template-compiler 两个依赖的版本不一致导致的，检查 node_modules 中 vue-template-compiler 和 vue 的版本是否一致，否则重新安装即可。
 
 ## 运行表单编辑器
-#### Run with vue(2.x) & element-ui/ant-design-vue(1.x)
+#### 以 vue(2.x) 环境运行
 ```
 npm run dev
 ```
-#### Run with vue(3.x) & element-plus/ant-design-vue(2.x)
+支持的 ui-kit: 
+- element-ui
+- ant-design-vue(1.x)
+
+#### 以 vue(3.x) 环境运行 & element-plus/ant-design-vue(2.x)
 ```
 npm run dev3
 ```
+支持的 ui-kit: 
+- element-plus
+- ant-design-vue(2.x)
+
 启动后打开 `http://localhost:8080/` 访问表单编辑器。
 
 ## 使用表单编辑器
@@ -109,4 +117,5 @@ npm run serve
 #### Serve with vue(3.x) & element-plus/ant-design-vue(2.x)
 ```
 npm run serve3
-``` -->
+```
+-->
