@@ -14,6 +14,7 @@
     @add="addItem"
     @end="selectItem"
   >
+    <slot v-bind="{ list }" />
     <template #item="{ element }">
       <component
         :is="itemTag"

@@ -415,29 +415,46 @@ export default {
     formKey: {
       handler(newKey, oldKey) {
         if(newKey) {
-          this.$store.registerModule(newKey, FormStoreModule);
-          this.$store.commit('addModule', newKey);
-          this.$store.commit(`${newKey}/setFormKey`, this.storeKey);
-
-          if(this.initSchema.formConf) {
-            this.$store.commit(`${newKey}/setFormConf`, this.initSchema.formConf);
-          }
-          if(this.initSchema.fieldList) {
-            this.$store.commit(`${newKey}/setFieldList`, this.initSchema.fieldList);
-          }
-          if(this.initSchema.validFuncs) {
-            this.$store.commit(`${newKey}/setValidFuncs`, this.initSchema.validFuncs);
-          }
-          if(this.initSchema.validRules) {
-            this.$store.commit(`${newKey}/setValidRules`, this.initSchema.validRules);
+          const { $store, initSchema } = this;
+          if($store.hasModule(newKey)) {
+            // already exists and share same schema
+            return;
           }
 
-          // formKey 变换
-          if(oldKey) {
-            // TODO
-            // store 属性迁移
-            this.$store.unregisterModule(oldKey);
-            this.$store.commit('removeModule', oldKey);
+          $store.registerModule(newKey, FormStoreModule);
+          $store.commit('addModule', newKey);
+          $store.commit(`${newKey}/setFormKey`, this.storeKey);
+
+          if(oldKey && $store.hasModule(oldKey)) { // 已有 module 重命名
+            const oldModule = $store.state[oldKey];
+            if(oldModule.formConf) {
+              $store.commit(`${newKey}/setFormConf`, oldModule.formConf);
+            }
+            if(oldModule.fieldList) {
+              $store.commit(`${newKey}/setFieldList`, oldModule.fieldList);
+            }
+            if(oldModule.validFuncs) {
+              $store.commit(`${newKey}/setValidFuncs`, oldModule.validFuncs);
+            }
+            if(oldModule.validRules) {
+              $store.commit(`${newKey}/setValidRules`, oldModule.validRules);
+            }
+
+            $store.unregisterModule(oldKey);
+            $store.commit('removeModule', oldKey);
+          } else { // 新建 module
+            if(initSchema.formConf) {
+              $store.commit(`${newKey}/setFormConf`, initSchema.formConf);
+            }
+            if(initSchema.fieldList) {
+              $store.commit(`${newKey}/setFieldList`, initSchema.fieldList);
+            }
+            if(initSchema.validFuncs) {
+              $store.commit(`${newKey}/setValidFuncs`, initSchema.validFuncs);
+            }
+            if(initSchema.validRules) {
+              $store.commit(`${newKey}/setValidRules`, initSchema.validRules);
+            }
           }
         }
       },
