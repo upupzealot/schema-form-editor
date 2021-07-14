@@ -17,9 +17,7 @@
     <slot
       v-if="field.slotName"
       :name="field.slotName"
-    >
-      
-    </slot>
+    />
   </el-form-item>
 </template>
 

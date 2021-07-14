@@ -1,6 +1,6 @@
 <template>
   <div class="unsupported-item">
-    &lt; 未支持的组件 {{field.type}} &gt;
+    &lt; 未支持的组件 {{ field.type }} &gt;
   </div>
 </template>
 
