@@ -36,13 +36,13 @@
       </template>
     </DraggableList>
 
-    <el-button
+    <a-button
       v-if="editable"
       style="display: block;"
       @click.stop="addItem"
     >
       新增列表项
-    </el-button>
+    </a-button>
   </a-form-model-item>
 </template>
 
