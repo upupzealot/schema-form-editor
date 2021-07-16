@@ -88,8 +88,16 @@
         >
           <template v-slot:reference>
             <div
-              style="position: absolute; left: 50%; top: 160px;"
-            />
+              style="
+                position: absolute;
+                left: 50%; margin-left: -10px;
+                top: 160px; margin-top: -20px;
+                height: 20px; width: 20px;
+                font-size: 20px;
+                color: #F56C6C;"
+            >
+              <i class="el-icon-location" style="" />
+            </div>
           </template>
           <div style="height: 120px; overflow-y: overlay;">
             <div
