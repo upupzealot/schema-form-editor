@@ -48,15 +48,23 @@
       width="30%"
     >
       <el-form
-        v-model="form"
+        ref="projectForm"
+        :model="form"
         label-position="right"
         label-width="80px"
+        :rules="validRules"
       >
-        <el-form-item label="项目名称">
-          <el-input v-model="form.name" />
+        <el-form-item
+          label="项目名称"
+          prop="name"
+        >
+          <el-input v-model.trim="form.name" />
         </el-form-item>
-        <el-form-item label="项目路径">
-          <el-input v-model="form.cwd" />
+        <el-form-item
+          label="项目路径"
+          prop="cwd"
+        >
+          <el-input v-model.trim="form.cwd" />
         </el-form-item>
       </el-form>
       <template
@@ -86,6 +94,16 @@ export default {
       projects: [],
       form: {},
       formMode: 'create',
+      validRules: {
+        name: [{
+          required: true,
+          message: '请输入项目名称'
+        }],
+        cwd: [{
+          required: true,
+          message: '请输入项目路径'
+        }]
+      },
       dialogVisible: false,
     }
   },
@@ -124,12 +142,26 @@ export default {
       this.formMode = mode;
       this.dialogVisible = true;
     },
-    submitDialog() {
+    async submitDialog() {
+      const validatePro = new Promise(resolve => {
+        this.$refs['projectForm'].validate(isValid => {
+          resolve(isValid);
+        })
+      })
+      const isValid = await validatePro;
+      if(!isValid) {
+        return;
+      }
+
       if(this.formMode === 'create') {
-        getService('project').create({
-          name: this.form.name,
-          id: this.form.cwd,
-        });
+        try {
+          getService('project').create({
+            name: this.form.name,
+            id: this.form.cwd,
+          });
+        } catch(err) {
+          return this.$message.error(err.message);
+        }
       } else { // formMode === 'edit'
         getService('project').update({
           name: this.form.name,

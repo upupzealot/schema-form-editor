@@ -45,17 +45,28 @@
       width="30%"
     >
       <el-form
-        v-model="form"
+        ref="schemaForm"
+        :model="form"
         label-position="right"
-        label-width="80px"
+        label-width="120px"
+        :rules="validRules"
       >
-        <el-form-item label="项目 Key">
+        <el-form-item
+          label="Schema Key"
+          prop="key"
+        >
           <el-input v-model="form.key" />
         </el-form-item>
-        <el-form-item label="项目名称">
+        <el-form-item
+          label="Schema 名称"
+          prop="name"
+        >
           <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item label="初始结构">
+        <el-form-item
+          label="初始结构"
+          prop="schemaStr"
+        >
           <el-input
             v-model="form.schemaStr"
             :rows="5"
@@ -107,6 +118,25 @@ export default {
     return {
       schemaList: [],
       form: {},
+      validRules: {
+        key: [{
+          required: true,
+          message: '请输入 schema-key'
+        }, {
+          validator: function(rule, value, callback) {
+            if(/[0-9a-zA-Z\-_]+/.test(value)) {
+              callback();
+            } else {
+              callback('schema-key 只能包含数字字母中划线和下划线');
+            }
+          },
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请输入 schema 名称'
+        }]
+      },
       dialogVisible: false,
     }
   },
@@ -175,12 +205,27 @@ export default {
         this.$set(this.form, 'schemaStr', reader.result);
       }
     },
-    submitDialog() {
-      getService('schema').create({
-        id: this.form.key,
-        name: this.form.name,
-        schemaStr: this.form.schemaStr,
-      });
+    async submitDialog() {
+      const validatePro = new Promise(resolve => {
+        this.$refs['schemaForm'].validate(isValid => {
+          resolve(isValid);
+        })
+      })
+      const isValid = await validatePro;
+      if(!isValid) {
+        return;
+      }
+
+      try {
+        getService('schema').create({
+          id: this.form.key,
+          name: this.form.name,
+          schemaStr: this.form.schemaStr,
+        });
+      } catch(err) {
+        return this.$message.error(err.message);
+      }
+      
       window.location.reload();
     },
     selectSchema(schemaId) {

@@ -6,6 +6,12 @@ function create({ id, name, schemaStr }) {
   localStorage.setItem(id, JSON.stringify(schema || {}));
   
   const schemaList = list();
+  if(_.find(schemaList, { id })) {
+    throw new Error(`已存在 key 为 ${id} 的 schema`);
+  }
+  if(_.find(schemaList, { name })) {
+    throw new Error(`已存在名为 ${name} 的 schema`);
+  }
   schemaList.push({ id, name });
   localStorage.setItem('$schemaList', JSON.stringify(schemaList));
 

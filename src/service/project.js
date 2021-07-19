@@ -2,6 +2,13 @@ import _ from 'lodash';
 
 function create({ id, name }) {  
   const projectList = list();
+  if(_.find(projectList, { name })) {
+    throw new Error(`已存在名为 ${name} 的项目`);
+  }
+  if(_.find(projectList, { id })) {
+    throw new Error(`已存在路径为 ${id} 的项目`);
+  }
+
   projectList.push({ id, name });
   localStorage.setItem('$projectList', JSON.stringify(projectList));
 
