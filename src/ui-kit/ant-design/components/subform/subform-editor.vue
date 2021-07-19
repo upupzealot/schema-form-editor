@@ -10,7 +10,7 @@
       子表单 {{ field.name }}
     </el-tag>
     <FormEditor
-      :form-key="field.name"
+      :form-key="field.id"
       :init-schema="field"
       :data="data[field.name]"
       :sup-nodes="supNodes"

@@ -23,7 +23,7 @@
     </el-tag>
     <FormEditor
       ref="schemaEditor"
-      :form-key="field.name"
+      :form-key="field.id"
       :init-schema="field"
       :data="schemaData"
     />
@@ -68,7 +68,7 @@ export default {
     schema() {
       return {
         ...this.field,
-        ...this.$store.state[this.field.name],
+        ...this.$store.state[this.field.id],
       };
     }
   }

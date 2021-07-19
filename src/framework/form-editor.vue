@@ -364,11 +364,7 @@ export default {
         return this.form.fieldList;
       },
       set(fieldList) {
-        if(!this.formKey) {
-          this.$store.commit('$root/setFieldList', fieldList);
-        } else {
-          this.$store.commit(`${this.storeKey}/setFieldList`, fieldList);
-        }
+        this.$store.commit(`${this.storeKey}/setFieldList`, fieldList);
       },
     },
     validFuncs() {
@@ -391,8 +387,8 @@ export default {
             || field.type === 'item-list') {
             return {
               ...field,
-              ...state[field.name],
-              fieldList: mapFields(state[field.name]?.fieldList),
+              ...state[field.id],
+              fieldList: mapFields(state[field.id]?.fieldList),
             };
           } else {
             return field;

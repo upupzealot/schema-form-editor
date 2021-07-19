@@ -10,7 +10,7 @@
       容器 {{ field.name }}
     </el-tag>
     <FormEditor
-      :form-key="field.name"
+      :form-key="field.id"
       :init-schema="field"
       :data="data"
       :sup-nodes="supNodes"
