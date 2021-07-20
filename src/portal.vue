@@ -191,18 +191,22 @@ export default {
   },
   methods: {
     async onSwitchConnect() {
-      if(!this.connected) {
-        await this.connect();
-      } else {
-        getService('server').disconnect()
+      try {
+        if(!this.connected) {
+          await this.connect();
+        } else {
+          getService('server').disconnect()
+        }
+        window.location.reload();
+      } catch(err) {
+        this.$message.error(err.message);
       }
-      window.location.reload();
     },
     async connect() {
       const { connected } = await getService('server').connect();
       this.connected = connected;
       if(!connected) {
-        this.$message.error('服务连接失败')
+        throw new Error('服务连接失败');
       }
     }
   }

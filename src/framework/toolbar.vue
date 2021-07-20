@@ -97,7 +97,7 @@ import {
   ToolbarUtils as AntDesignUtils
 } from '../ui-kit/ant-design/index'
 
-const uiKit = localStorage.getItem('ui-kit');
+const uiKit = localStorage.getItem('ui-kit') || 'element-ui'; // 防止首次运行时 uiKit 为 null
 let ToolbarItems = [];
 let ToolbarUtils = [];
 if(uiKit === 'element-ui') {

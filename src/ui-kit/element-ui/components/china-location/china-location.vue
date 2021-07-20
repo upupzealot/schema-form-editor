@@ -96,7 +96,7 @@
                 font-size: 20px;
                 color: #F56C6C;"
             >
-              <i class="el-icon-location" style="" />
+              <i class="el-icon-location" />
             </div>
           </template>
           <div style="height: 120px; overflow-y: overlay;">
