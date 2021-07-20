@@ -1,6 +1,8 @@
 # schema-form-maker
 schema-form-maker 是一个基于 vue 编写的可视化表单编辑器。
 <!-- ![编辑器截屏](/public/readme/screenshot.png | width=640) -->
+文档详见 [wiki](https://github.com/upupzealot/schema-form-editor/wiki) 相关章节
+[安装依赖](https://github.com/upupzealot/schema-form-editor/wiki/%E5%AE%89%E8%A3%85) | [运行编辑器](https://github.com/upupzealot/schema-form-editor/wiki/%E8%BF%90%E8%A1%8C) | 搭建表单 | 导出 schema | 渲染
 
 ## 安装依赖
 使用原生 npm 进行安装，**暂时不支持 cnpm**
@@ -16,6 +18,7 @@ npm run dev
 ```
 运行表单编辑器，启动完成后打开 `http://localhost:8080/` 访问。
 
+## 搭建表单
 表单编辑器左中右共分为三个区域：
 <!-- ![编辑器视图分区](/public/readme/editor-view.png | width=640) -->
 <img src="/public/readme/editor-view.png" width="640px" alt="编辑器视图分区" />
