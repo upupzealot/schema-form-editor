@@ -7,13 +7,7 @@ schema-form-maker 是一个基于 vue 编写的可视化表单编辑器。
 ```
 npm install
 ```
-因为用了 npm v6.9.0 以上的 [package-aliases](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md#rationale-and-alternatives) 特性安装所依赖库的不同版本，并进行切换，暂时不支持 cnpm
-
-### 常见错误
-```
-Vue packages version mismatch
-```
-是由于 vue 和 vue-template-compiler 两个依赖的版本不一致导致的，检查 node_modules 中 vue-template-compiler 和 vue 的版本是否一致，否则重新安装即可。
+(详情参考[安装](https://github.com/upupzealot/schema-form-editor/wiki/%E5%AE%89%E8%A3%85))
 
 ## 运行编辑器
 完成安装后，执行
