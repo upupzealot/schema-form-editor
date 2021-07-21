@@ -9,7 +9,7 @@ schema-form-maker 是一个基于 vue 编写的可视化表单编辑器。
 ```
 npm install
 ```
-(详情参考[安装](https://github.com/upupzealot/schema-form-editor/wiki/%E5%AE%89%E8%A3%85))
+(详情参考 [安装](https://github.com/upupzealot/schema-form-editor/wiki/%E5%AE%89%E8%A3%85))
 
 ## 运行编辑器
 完成安装后，执行
@@ -18,10 +18,12 @@ npm run dev
 ```
 运行表单编辑器，启动完成后打开 `http://localhost:8080/` 访问。
 
+(详情参考 [运行](https://github.com/upupzealot/schema-form-editor/wiki/%E8%BF%90%E8%A1%8C))
+
 ## 搭建表单
 表单编辑器左中右共分为三个区域：
 <!-- ![编辑器视图分区](/public/readme/editor-view.png | width=640) -->
-<img src="/public/readme/editor-view.png" width="640px" alt="编辑器视图分区" />
+<img src="/public/readme/editor-view.png" width="640px" alt="编辑器视图分区" />  
 
 #### 组件栏
 视图的最左侧是【组件栏】，可利用拖拽将其中的组件加入中间【搭建区】的表单中。
@@ -29,6 +31,8 @@ npm run dev
 视图的中间是【搭建区】，这里展示了当前正在编辑的表单。  
 单击选中其中的某一表单项后，可在右侧的【配置菜单】，并对其进行编辑。  
 在编辑过程中可以随时按下 <kbd>ctrl</kbd>+<kbd>s</kbd> 或 <kbd>cmd</kbd>+<kbd>s</kbd> 进行保存。
+
+(详情参考 [表单搭建-搭建区](https://github.com/upupzealot/schema-form-editor/wiki/%E6%90%AD%E5%BB%BA%E5%8C%BA))
 #### 配置菜单
 视图的最右侧是【配置菜单】，可对【搭建区】已选中的表单项进行编辑。
 
