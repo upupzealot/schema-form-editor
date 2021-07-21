@@ -16,13 +16,15 @@
       :type="field.mode"
       :disabled="disabled"
       :placeholder="field.placeholder"
-      value-format="timestamp"
+      :value-format="valueFormat"
       style="width: 100%;"
     />
   </el-form-item>
 </template>
 
 <script>
+import isVue2 from 'vue';
+
 import { $id } from '../../../common/util-funcs.js'
 import formItemMixin from '../../common/form-item/mixin'
 
@@ -32,6 +34,11 @@ export default {
     return {
       calendarId: $id(),
     }
+  },
+  computed: {
+    valueFormat() {
+      return isVue2 ? 'timestamp' : 'x';
+    },
   },
   watch: {
     'field.mode': {
