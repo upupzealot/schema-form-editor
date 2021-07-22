@@ -20,7 +20,7 @@
         v-model:value="ip0"
         :type="field.mode"
         :disabled="disabled"
-        :readonly="readonly"
+        :read-only="readonly"
         class="ip-snippet"
       />.
       <a-input
@@ -28,7 +28,7 @@
         v-model:value="ip1"
         :type="field.mode"
         :disabled="disabled"
-        :readonly="readonly"
+        :read-only="readonly"
         class="ip-snippet"
       />.
       <a-input
@@ -36,7 +36,7 @@
         v-model:value="ip2"
         :type="field.mode"
         :disabled="disabled"
-        :readonly="readonly"
+        :read-only="readonly"
         class="ip-snippet"
       />.
       <a-input
@@ -44,7 +44,7 @@
         v-model:value="ip3"
         :type="field.mode"
         :disabled="disabled"
-        :readonly="readonly"
+        :read-only="readonly"
         class="ip-snippet"
       />
     </div>
