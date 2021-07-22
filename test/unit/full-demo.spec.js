@@ -1,21 +1,14 @@
-import { mount } from '@vue/test-utils'
-import SchemaFormRender from '../../src/ui-kit/element-ui'
-
-import Vue from 'vue'
-import ElementUI from 'element-ui'
-Vue.use(ElementUI);
-
 import TestSchema from '../test.schema.json'
 
-describe('SchemaFormRender', () => {
-  const wrapper = mount(SchemaFormRender, {
+describe(`schema-form-render: ${uikit}`, () => {
+  const wrapper = wrap({
     propsData: {
       schema: TestSchema,
       data: {}
     }
   });
 
-  test('is a Vue instance', () => {
+  test('mounted', () => {
     expect(wrapper.vm).toBeTruthy();
   });
 

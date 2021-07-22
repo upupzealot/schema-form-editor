@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server": "node ./server/app.js",
+    "server": "node server/app.js",
     "dev": "node link.js && vue-cli-service serve",
     "dev3": "node link3.js && vue-cli-service serve --vue3",
     "serve": "npm-run-all --parallel server dev",
     "serve3": "npm-run-all --parallel server dev3",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "node link.js && jest --coverage=false",
+    "test": "node link.js && node test/unit/index.js",
     "tv": "node link.js && cd test/pages/element-ui-2 && npm run dev",
     "tv3": "node link3.js && cd test/pages/element-plus-3 && npm run dev"
   },
