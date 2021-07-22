@@ -2,18 +2,23 @@
   <div id="app">
     <el-container>
       <el-header>
-        <h1 style="color: #ccc;">Element UI & Vue 2.x</h1>
+        <h1 style="color: #ccc;">
+          Element UI & Vue 2.x
+        </h1>
       </el-header>
       <el-main>
         <el-row :gutter="20">
           <el-col :span="12">
             <el-card>
-              <FormRender :schema="TestSchema" :data="formData" />
+              <FormRender
+                :schema="TestSchema"
+                :data="formData"
+              />
             </el-card>
           </el-col>
           <el-col :span="12">
             <el-card>
-              <pre>{{dataStr}}</pre>
+              <pre>{{ dataStr }}</pre>
             </el-card>
           </el-col>
         </el-row>
@@ -23,8 +28,8 @@
 </template>
 
 <script>
-import FormRender from '../../../src/ui-kit/element-ui'
-import TestSchema from '../../test.schema.json'
+import FormRender from '../../../../src/ui-kit/element-ui'
+import TestSchema from '../../../test.schema.json'
 
 export default {
   name: 'App',

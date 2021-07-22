@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import FormRender from '../../../src/ui-kit/element-ui'
-import TestSchema from '../../test.schema.json'
+import FormRender from '../../../../src/ui-kit/element-ui'
+import TestSchema from '../../../test.schema.json'
 
 export default {
   name: 'App',
