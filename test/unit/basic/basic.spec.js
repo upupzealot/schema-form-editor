@@ -1,4 +1,4 @@
-import TestSchema from '../test.schema.json'
+import TestSchema from '../../test.schema.json'
 
 describe('基本渲染', () => {
   const wrapper = wrap({
