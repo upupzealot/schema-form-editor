@@ -1,14 +1,11 @@
-const _ = require('lodash');
-
 const fs = require('fs-extra');
 const { version } = fs.readJsonSync('./node_modules/vue/package.json');
 
-module.exports = (uikit)=>{
+module.exports = uikit=>{
   return {
     preset: '@vue/cli-plugin-unit-jest',
     testMatch: ['**/test/unit/**/*.spec.[jt]s?(x)'],
     globals: {
-      _,
       isVue2: version.startsWith('2.'),
       uikit,
     },
