@@ -10,6 +10,7 @@
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
     style="margin-bottom: 0; display: flex;"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
