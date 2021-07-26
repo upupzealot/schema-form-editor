@@ -223,7 +223,7 @@ export default {
       return this.formConf.marginY || 15;
     },
     formConf() {
-      return this.schema.formConf;
+      return this.schema.formConf || {};
     },
     labelWidth() {
       return this.formConf.labelWidth || '80px';
@@ -319,7 +319,7 @@ export default {
   watch: {
     fieldList: {
       handler(fields) {
-        fields.forEach(field => {
+        fields && fields.forEach(field => {
           if(field.type === 'subform' && !this.data[field.name]) {
             this.$set(this.data, field.name, {});
           }
