@@ -154,7 +154,6 @@ const ItemList = IL.default;
 
 export default {
   name: 'FormRender',
-  mixins: [formRenderMixin],
   components: {
     Input,
     InputNumber,
@@ -169,6 +168,7 @@ export default {
     Subform,
     ItemList,
   },
+  mixins: [formRenderMixin],
   computed: {
     formIs() {
       return isVue2 ? 'a-form-model' : 'a-form';

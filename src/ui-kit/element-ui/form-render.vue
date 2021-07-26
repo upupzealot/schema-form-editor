@@ -272,7 +272,6 @@ export {
 
 export default {
   name: 'FormRender',
-  mixins: [formRenderMixin],
   components: {
     Input,
     InputNumber,
@@ -292,6 +291,7 @@ export default {
     Subform,
     ItemList,
   },
+  mixins: [formRenderMixin],
   computed: {
     mixedConfig() {
       return _.merge({}, staticConf.config, this.supNodeList[0].config);

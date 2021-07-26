@@ -22,8 +22,8 @@
           :key="item.id"
           :has-control="editable"
           :style="{ marginBottom: `${subformMarginY}px` }"
-          @delete="deleteItem(item)"
           :sfr-f="`${field.name}[${index}]`"
+          @delete="deleteItem(item)"
         >
           <Subform
             ref="subformItem"
