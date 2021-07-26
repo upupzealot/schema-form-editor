@@ -15,7 +15,7 @@
       "type": "subform",
       "label": "子表单",
       "name": "subform-1",
-      "formKey": "b45e6ca",
+      "formKey": "c5b54e6",
       "formConf": {
         "marginY": 5
       },
@@ -38,6 +38,62 @@
       "type": "input",
       "label": "文本框",
       "name": "input-5"
+    },
+    {
+      "type": "wrapper",
+      "label": "容器",
+      "name": "wrapper-1",
+      "formKey": "5cc3926",
+      "formConf": {
+        "marginY": 5
+      },
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-6"
+        },
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-7"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-8"
+    },
+    {
+      "type": "item-list",
+      "label": "列表",
+      "name": "item-list-1",
+      "formKey": "2b9a62b",
+      "formConf": {
+        "marginY": 5
+      },
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-9"
+        },
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-10"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-11"
     }
   ],
   "validFuncs": [],

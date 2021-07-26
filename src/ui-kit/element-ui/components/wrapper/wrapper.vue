@@ -10,6 +10,7 @@
     :sup-nodes="supNodes"
     :class="{subform: true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
+    :sfr-f="field.name"
   >
     <template
       v-for="slotName in slotNames"
