@@ -1,0 +1,12 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-1"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
