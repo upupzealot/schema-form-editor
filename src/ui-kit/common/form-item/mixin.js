@@ -139,6 +139,9 @@ export default {
         return `${this.marginY}px`;
       }
     },
+    labelPosition() {
+      return this.formConf.labelPosition || 'right';
+    },
     effect() {
       if(!this.field.effect) {
         return null;

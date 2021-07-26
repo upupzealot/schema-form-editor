@@ -6,7 +6,11 @@
     :wrapper-col="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
-    :style="{ marginBottom: colMarginY, display: 'flex' }"
+    :style="{
+      marginBottom: colMarginY,
+      display: 'flex',
+      flexDirection: isLabelTop ? 'column' : '',
+    }"
     :sfr-f="field.name"
   >
     <template v-slot:label>

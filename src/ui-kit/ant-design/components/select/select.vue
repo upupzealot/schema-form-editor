@@ -10,7 +10,11 @@
     :wrapper-col="wrapperCol"
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
-    :style="{ marginBottom: colMarginY, display: 'flex' }"
+    :style="{
+      marginBottom: colMarginY,
+      display: 'flex',
+      flexDirection: isLabelTop ? 'column' : '',
+    }"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

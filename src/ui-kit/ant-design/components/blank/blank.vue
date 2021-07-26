@@ -8,7 +8,11 @@
     :wrapper-col="wrapperCol"
     :colon="false"
     class="blank-wrap"
-    :style="{ marginBottom: colMarginY, display: 'flex' }"
+    :style="{
+      marginBottom: colMarginY,
+      display: 'flex',
+      flexDirection: isLabelTop ? 'column' : '',
+    }"
   >
     <div class="blank" />
   </component>

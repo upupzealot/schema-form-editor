@@ -21,9 +21,12 @@ export default {
     formItemIs() {
       return isVue2 ? 'a-form-model-item' : 'a-form-item';
     },
+    isLabelTop() {
+      return this.labelPosition === 'top';
+    },
     labelCol() {
       return {
-        flex: `0 0 ${this.formConf.labelWidth || '80px'}`,
+        flex: this.isLabelTop ? '' : `0 0 ${this.formConf.labelWidth || '80px'}`,
       }
     },
     wrapperCol() {
