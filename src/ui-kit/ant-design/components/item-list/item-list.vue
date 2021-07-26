@@ -7,6 +7,7 @@
     :colon="false"
     :class="{'form-item': true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY, display: 'flex' }"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
@@ -17,11 +18,12 @@
     >
       <template #default="{ list }">
         <DraggableListItem
-          v-for="item in list"
+          v-for="(item, index) in list"
           :key="item.id"
           :has-control="editable"
           :style="{ marginBottom: `${subformMarginY}px` }"
           @delete="deleteItem(item)"
+          :sfr-f="`${field.name}[${index}]`"
         >
           <Subform
             ref="subformItem"

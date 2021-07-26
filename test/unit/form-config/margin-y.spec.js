@@ -65,4 +65,31 @@ describe(`表单属性-行间距`, () => {
     expect(input7.top - input6.bottom).toEqual(5);
     expect(input8.top - input7.bottom).toEqual(20);
   });
+
+  test('列表独立 marginY', async () => {
+    await page.evaluate(()=>{
+      window.$form.schema.formConf = {
+        marginY: 20
+      }
+      window.$form.formData['item-list-1'] = [
+        {},
+        {}
+      ]
+    });
+
+    const input8 = await boundOf('#app [sfr-f="input-8"]');
+    const itemList1 = await boundOf('#app [sfr-f="item-list-1"]');
+    const item0 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[0]"]');
+    const item1 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[1]"]');
+    const item0input9 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[0]"] [sfr-f="input-9"]');
+    const item0input10 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[0]"] [sfr-f="input-10"]');
+    const item1input9 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[1]"] [sfr-f="input-9"]');
+    const item1input10 = await boundOf('#app [sfr-f="item-list-1"] [sfr-f="item-list-1[1]"] [sfr-f="input-10"]');
+    const input11 = await boundOf('#app [sfr-f="input-11"]');
+    expect(item0.top - input8.bottom).toEqual(20);
+    expect(item1.top - item0.bottom).toEqual(5);
+    expect(item0input10.top - item0input9.bottom).toEqual(5);
+    expect(item1input10.top - item1input9.bottom).toEqual(5);
+    expect(input11.top - itemList1.bottom).toEqual(20);
+  });
 })
