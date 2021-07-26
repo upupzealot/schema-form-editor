@@ -4,7 +4,6 @@
     否则按空格会触发 el-menu-item 的模拟 click 事件，导致弹框被关闭 -->
     <el-menu
       mode="horizontal"
-      @select="selectProject"
     >
       <slot />
       <el-submenu index="">
@@ -15,6 +14,7 @@
           v-for="projectItem in projects"
           :key="projectItem.id"
           :index="projectItem.id"
+          @click="selectProject(projectItem.id)"
         >
           {{ projectItem.name }}
         </el-menu-item>
@@ -40,6 +40,8 @@
       >
         <i class="el-icon-plus" />
       </el-button>
+
+      <UiKitSelect />
     </el-menu>
     <el-dialog
       v-model="dialogVisible"
@@ -87,8 +89,12 @@
 
 <script>
 import getService from '../service'
+import UiKitSelect from './ui-kit-select'
 
 export default {
+  components: {
+    UiKitSelect,
+  },
   data() {
     return {
       projects: [],
