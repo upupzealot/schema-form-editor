@@ -9,7 +9,7 @@
     :scenario="scenario"
     :sup-nodes="supNodes"
     :class="{subform: true, 'readonly': readonly}"
-    style="margin-bottom: 0;"
+    :style="{ marginBottom: colMarginY }"
     :sfr-f="field.name"
   />
 </template>

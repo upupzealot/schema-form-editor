@@ -16,7 +16,6 @@
         v-for="field in fieldList"
         :key="field.name"
         :span="field.span || 24"
-        :style="{ marginBottom: colMarginY(field) }"
       >
         <Input
           v-if="field.type === 'input'"
@@ -174,10 +173,6 @@ export default {
     formIs() {
       return isVue2 ? 'a-form-model' : 'a-form';
     },
-    
-    marginY() {
-      return this.formConf.marginY || 15;
-    },
     layout() {
       return this.inline ? 'inline' :
       (this.labelPosition === 'right'
@@ -188,16 +183,5 @@ export default {
       return this.layout === 'horizontal' ? this.labelPosition : 'right';
     },
   },
-  methods: {
-    colMarginY(field) {
-      if(field.activated === false || field.visible === false) {
-        return '0';
-      } else if(field.type === 'wrapper' || field.type === 'subform' ) {
-        return `${this.marginY - (field.formConf.marginY || 15)}px`;
-      } else {
-        return `${this.marginY}px`;
-      }
-    },
-  }
 }
 </script>
