@@ -1,11 +1,6 @@
 import { boundOf } from '../util'
-import LabelWidthSchema from '../../test.schema.json'
 
 describe('标签宽度', () => {
-  const wrapper = wrap({
-    schema: LabelWidthSchema,
-  });
-
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();
