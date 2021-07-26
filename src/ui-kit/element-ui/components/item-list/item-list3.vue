@@ -18,7 +18,7 @@
           v-for="item in list"
           :key="item.id"
           :has-control="editable"
-          :style="{ marginBottom: `${marginY}px` }"
+          :style="{ marginBottom: `${subformMarginY}px` }"
           @delete="deleteItem(item)"
         >
           <Subform
@@ -28,7 +28,7 @@
             :data="item"
             :sup-nodes="supNodes"
             :scenario="scenario"
-            :style="{ width: '100%', marginBottom: `-${marginY}px` }"
+            :style="{ width: '100%', marginBottom: `-${subformMarginY}px` }"
           >
             <template
               v-for="slotName in slotNames"
@@ -97,7 +97,7 @@ export default {
       slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
       return _.uniq(slotNames);
     },
-    marginY() {
+    subformMarginY() {
       return this.schema.formConf.marginY || 15;
     },
     editable() {
