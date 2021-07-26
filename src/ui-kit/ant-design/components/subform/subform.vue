@@ -10,6 +10,7 @@
     :sup-nodes="supNodes"
     :class="{subform: true, 'readonly': readonly}"
     style="margin-bottom: 0;"
+    :sfr-f="field.name"
   />
 </template>
 

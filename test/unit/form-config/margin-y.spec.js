@@ -1,37 +1,54 @@
-import MarginYSchema from './margin-y.schema.json'
-
 describe(`表单属性-行间距`, () => {
-  function checkMarginBottom(ele, value) {
-    expect(ele.style).toHaveProperty('margin-bottom', `${value}px`);
-  }
-
-  test('默认距离 15px', () => {
-    const $form = wrap({
-      schema: MarginYSchema
+  let page = null;
+  beforeAll(async () => {
+    page = await browser.newPage();
+    await page.goto('http://localhost:4452/?schema=form-config/margin-y', {
+      waitUntil: 'networkidle0',
     });
-    const $input1 = $form.getField('input-1');
-    if(uikit === 'element-ui') {
-      checkMarginBottom($input1.element, 15);
-    }
-    if(uikit === 'ant-design') {
-      checkMarginBottom($input1.element.parentElement, 15);
-    }
   });
 
-  test('设置为 20px', () => {
-    const $form = wrap({
-      schema: _.merge({}, MarginYSchema, {
-        formConf: {
-          marginY: 20
-        }
-      }),
+  async function boundOf(selector) {
+    const res = await page.$eval(selector, $root => {
+      const { bottom, height, left, right, top, width, x, y } = $root.getBoundingClientRect();
+      return { bottom, height, left, right, top, width, x, y };
     });
-    const $input1 = $form.getField('input-1');
-    if(uikit === 'element-ui') {
-      checkMarginBottom($input1.element, 20);
-    }
-    if(uikit === 'ant-design') {
-      checkMarginBottom($input1.element.parentElement, 20);
-    }
+    return res;
+  }
+
+  test('默认距离 15px', async () => {
+    const input1 = await boundOf('#app [sfr-f="input-1"]');
+    const input2 = await boundOf('#app [sfr-f="input-2"]');
+    expect(input2.top - input1.bottom).toEqual(15);
+  });
+
+  test('设置为 20px', async () => {
+    await page.evaluate(()=>{
+      window.$form.schema.formConf = {
+        marginY: 20
+      }
+    });
+
+    const input1 = await boundOf('#app [sfr-f="input-1"]');
+    const input2 = await boundOf('#app [sfr-f="input-2"]');
+    expect(input2.top - input1.bottom).toEqual(20);
+  });
+
+  test('子表单独立 marginY', async () => {
+    await page.evaluate(()=>{
+      window.$form.schema.formConf = {
+        marginY: 20
+      }
+    });
+
+    const input1 = await boundOf('#app [sfr-f="input-1"]');
+    const input2 = await boundOf('#app [sfr-f="input-2"]');
+    // const subform1 = await boundOf('#app [sfr-f="subform-1"]');
+    const input3 = await boundOf('#app [sfr-f="subform-1"] [sfr-f="input-3"]');
+    const input4 = await boundOf('#app [sfr-f="subform-1"] [sfr-f="input-4"]');
+    const input5 = await boundOf('#app [sfr-f="input-5"]');
+    expect(input2.top - input1.bottom).toEqual(20);
+    expect(input3.top - input2.bottom).toEqual(20);
+    expect(input4.top - input3.bottom).toEqual(5);
+    expect(input5.top - input4.bottom).toEqual(20);
   });
 })

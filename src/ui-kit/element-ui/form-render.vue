@@ -436,7 +436,7 @@ export default {
   watch: {
     fieldList: {
       handler(fields) {
-        fields.forEach(field => {
+        fields &&fields.forEach(field => {
           if(field.type === 'subform' && !this.data[field.name]) {
             this.$set(this.data, field.name, {});
           }

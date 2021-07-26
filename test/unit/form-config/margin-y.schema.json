@@ -10,6 +10,34 @@
       "type": "input",
       "label": "文本框",
       "name": "input-2"
+    },
+    {
+      "type": "subform",
+      "label": "子表单",
+      "name": "subform-1",
+      "formKey": "b45e6ca",
+      "formConf": {
+        "marginY": 5
+      },
+      "fieldList": [
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-3"
+        },
+        {
+          "type": "input",
+          "label": "文本框",
+          "name": "input-4"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-5"
     }
   ],
   "validFuncs": [],

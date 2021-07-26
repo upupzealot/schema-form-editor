@@ -10,7 +10,7 @@ module.exports = async () => {
 
   const schemaDir = path.resolve(__dirname, '../');
   const pageDir = path.resolve(__dirname, '../../pages/element-ui-2/dist');
-  exec(`http-server ${schemaDir} --port=4451`);
+  exec(`http-server ${schemaDir} --port=4451 --cors`);
   exec(`http-server ${pageDir} --port=4452`);
 
   await puppeteerSetup();
