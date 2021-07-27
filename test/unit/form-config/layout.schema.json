@@ -1,0 +1,68 @@
+{
+  "formConf": {
+    "labelWidth": "60px"
+  },
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-1"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-2-1",
+      "span": 12
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-2-2",
+      "span": 12
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3-1",
+      "span": 8
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3-2",
+      "span": 8
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3-3",
+      "span": 8
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-4-1",
+      "span": 6
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-4-2",
+      "span": 6
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-4-3",
+      "span": 6
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-4-4",
+      "span": 6
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}

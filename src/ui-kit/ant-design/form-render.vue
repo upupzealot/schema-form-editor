@@ -6,6 +6,7 @@
     :label-align="labelAlign"
     :model="data"
     :rules="validRules"
+    :sfr-form="schema.name || '$root'"
   >
     <component
       :is="inline ? 'span' : 'a-row'"

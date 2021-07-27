@@ -6,6 +6,7 @@
     :label-position="labelPosition"
     :model="data"
     :rules="validRules"
+    :sfr-form="schema.name || '$root'"
   >
     <component
       :is="inline ? 'span' : 'el-row'"
