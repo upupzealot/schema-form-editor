@@ -17,7 +17,7 @@
       "type": "input",
       "label": "文本框",
       "name": "input-3",
-      "desc": "<span style=\"color: red;\">这是 input-3 的字段描述</span>"
+      "desc": "<span class=\"html-test\" style=\"color: red;\">这是 input-3 的字段描述</span>"
     }
   ],
   "validFuncs": [],
