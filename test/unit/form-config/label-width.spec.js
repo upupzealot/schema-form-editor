@@ -4,7 +4,7 @@ describe('标签宽度', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();
-    await page.goto(`http://localhost:${pagePort}/?schema=form-config/label-width`, {
+    await page.goto(`http://localhost:${pagePort}/?schema=input-only`, {
       waitUntil: 'networkidle0',
     });
     await delay(1000);
