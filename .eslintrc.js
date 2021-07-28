@@ -13,7 +13,8 @@ module.exports = {
     parser: 'babel-eslint',
   },
   rules: {
-    'no-console': 'error',
+    // 'no-console': 'error',
+    'no-console': 'warn',
     'no-param-reassign': 'off',
     'arrow-parens': ['error', 'as-needed'],
     'vue/valid-v-model': 'off',
