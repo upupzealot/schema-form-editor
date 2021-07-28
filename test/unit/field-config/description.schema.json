@@ -1,0 +1,25 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-1",
+      "desc": "这是 input-1 的字段描述"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-2",
+      "desc": "这是 input-2 的字段描述\n这是 input-2 的字段描述"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3",
+      "desc": "<span style=\"color: red;\">这是 input-3 的字段描述</span>"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
