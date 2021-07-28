@@ -173,6 +173,9 @@ export default {
           }
 
           let city = this.data[this.cityKey];
+          if(city === province) {
+            city = '市辖区';
+          }
           if(city) {
             if(this.valueFormat === 'name') {
               selected.push(TextToCode[province][city].code);
