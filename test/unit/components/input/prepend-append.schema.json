@@ -1,0 +1,49 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-1",
+      "prepend": "aaa"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-2",
+      "placeholder": "",
+      "append": "bbb"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3",
+      "append": "bbb",
+      "prepend": "aaa"
+    },
+    {
+      "type": "input",
+      "label": "密码框",
+      "name": "input-4",
+      "isPassword": true,
+      "prepend": "aaa"
+    },
+    {
+      "type": "input",
+      "label": "密码框",
+      "name": "input-5",
+      "isPassword": true,
+      "append": "bbb"
+    },
+    {
+      "type": "input",
+      "label": "密码框",
+      "name": "input-6",
+      "isPassword": true,
+      "prepend": "aaa",
+      "append": "bbb"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
