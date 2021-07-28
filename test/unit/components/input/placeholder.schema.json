@@ -1,0 +1,27 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "单行文本",
+      "name": "input-1",
+      "placeholder": "这是 input-1 的占位符"
+    },
+    {
+      "type": "input",
+      "label": "密码框",
+      "name": "input-2",
+      "isPassword": true,
+      "placeholder": "这是 input-2 的占位符"
+    },
+    {
+      "type": "input",
+      "label": "多行文本",
+      "name": "input-3",
+      "mode": "textarea",
+      "placeholder": "这是 input-3 的占位符"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
