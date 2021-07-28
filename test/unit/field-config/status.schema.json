@@ -1,0 +1,36 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-1"
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-2",
+      "activated": false
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-3",
+      "visible": false
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-4",
+      "readonly": true
+    },
+    {
+      "type": "input",
+      "label": "文本框",
+      "name": "input-5",
+      "disabled": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
