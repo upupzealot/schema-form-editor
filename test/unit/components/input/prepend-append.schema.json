@@ -3,20 +3,20 @@
   "fieldList": [
     {
       "type": "input",
-      "label": "文本框",
+      "label": "单行文本",
       "name": "input-1",
       "prepend": "aaa"
     },
     {
       "type": "input",
-      "label": "文本框",
+      "label": "单行文本",
       "name": "input-2",
       "placeholder": "",
       "append": "bbb"
     },
     {
       "type": "input",
-      "label": "文本框",
+      "label": "单行文本",
       "name": "input-3",
       "append": "bbb",
       "prepend": "aaa"
