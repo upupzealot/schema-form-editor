@@ -84,7 +84,7 @@ export default {
         return this.rule.isPreset !== false;
       },
       set(preset) {
-        this.$set(this.rule, 'isPreset', preset === false ? false : undefined);
+        this.$set(this.rule, 'isPreset', preset || undefined);
       }
     },
     isComponent: {
