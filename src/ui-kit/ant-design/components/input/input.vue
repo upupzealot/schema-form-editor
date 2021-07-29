@@ -24,6 +24,10 @@
       v-model="data[field.name]"
       v-model:value="data[field.name]"
       :type="field.mode"
+      :auto-size="field.autosize && {
+        minRows: field.minRows || 2,
+        maxRows: field.maxRows || undefined,
+      }"
       :allow-clear="field.clearable"
       :placeholder="field.placeholder"
       :disabled="disabled"

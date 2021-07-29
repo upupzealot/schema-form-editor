@@ -48,6 +48,44 @@
       </el-row>
       <Clearable v-if="mode !== 'textarea'" />
       <Placeholder />
+      <el-form-item
+        label="高度自适应"
+        label-width="108px"
+        prop="autosize"
+      >
+        <el-switch
+          v-model="autosize"
+        />
+      </el-form-item>
+      <el-row v-if="autosize">
+        <el-col :span="12">
+          <el-form-item
+            label="最小行数"
+            prop="prepend"
+          >
+            <el-input-number
+              v-model="minRows"
+              :min="2"
+              :max="maxRows"
+              :step-strictly="true"
+              style="width: 100%"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            label="最大行数"
+            prop="append"
+          >
+            <el-input-number
+              v-model="maxRows"
+              :min="minRows || 1"
+              :step-strictly="true"
+              style="width: 100%"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
     </template>
 
     <!-- 校验 -->
@@ -101,6 +139,45 @@ export default {
         this.$set(this.field, 'append', val || undefined);
       }
     },
+    autosize: {
+      get() {
+        return !!this.field.autosize;
+      },
+      set(val) {
+        this.$set(this.field, 'autosize', val || undefined);
+      }
+    },
+    minRows: {
+      get() {
+        return this.field.minRows || 2;
+      },
+      set(val) {
+        this.$set(this.field, 'minRows', val === 2 ? undefined : val);
+      }
+    },
+    maxRows: {
+      get() {
+        return this.field.maxRows || undefined;
+      },
+      set(val) {
+        this.$set(this.field, 'maxRows', val || undefined);
+      }
+    }
   },
+  watch: {
+    mode(val) {
+      if(val !== 'textarea') {
+        this.$delete(this.field, 'autosize');
+        this.$delete(this.field, 'minRows');
+        this.$delete(this.field, 'maxRows');
+      }
+    },
+    autosize(val) {
+      if(!val) {
+        this.$delete(this.field, 'minRows');
+        this.$delete(this.field, 'maxRows');
+      }
+    },
+  }
 };
 </script>

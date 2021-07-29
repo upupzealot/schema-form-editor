@@ -15,10 +15,15 @@
       v-model="data[field.name]"
       :type="field.mode"
       :show-password="field.isPassword"
+      :autosize="field.autosize && {
+        minRows: field.minRows || 2,
+        maxRows: field.maxRows || undefined,
+      }"
       :clearable="field.clearable"
       :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      style="min-height: 40px; /* 设置最小高度 40px 防止抖动 */"
     >
       <template
         v-if="field.prepend"
