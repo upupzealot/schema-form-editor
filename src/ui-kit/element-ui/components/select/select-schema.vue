@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
-import OptionList from '@/ui-kit/common/schema-item/option-list';
+import schemaItemMixin from '@/framework/schema-item/mixin';
+import OptionList from '@/framework/schema-item/common/option-list';
 
 export default {
   type: 'select',

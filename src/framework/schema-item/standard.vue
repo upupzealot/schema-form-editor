@@ -144,8 +144,8 @@
 </style>
 
 <script>
-import RequiredRule from './validate-rules/required'
-import Effects from './effects'
+import RequiredRule from './common/validate-rules/required'
+import Effects from './common/effects'
 
 const spanValues = Array.from({ length: 23 }, (v, i) => i + 1);
 

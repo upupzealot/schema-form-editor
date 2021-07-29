@@ -34,9 +34,9 @@ input#file-upload-button {
 </style>
 
 <script>
-import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
+import schemaItemMixin from '@/framework/schema-item/mixin';
 
-import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
+import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
 
 export default {
   type: 'input-file',

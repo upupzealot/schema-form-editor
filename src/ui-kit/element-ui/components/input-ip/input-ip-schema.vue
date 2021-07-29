@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
+import schemaItemMixin from '@/framework/schema-item/mixin';
 
-import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
-import FuncValidate from '@/ui-kit/common/schema-item/validate-rules/func'
+import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
+import FuncValidate from '@/framework/schema-item/common/validate-rules/func'
 
 export default {
   type: 'input-ip',

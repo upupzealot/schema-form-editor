@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import schemaItemMixin from '../../../common/schema-item/mixin';
+import schemaItemMixin from '@/framework/schema-item/mixin';
 
 export default {
   type: 'subform',

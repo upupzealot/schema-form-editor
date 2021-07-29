@@ -105,7 +105,7 @@
 
 <script>
 import _ from 'lodash';
-import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
+import schemaItemMixin from '@/framework/schema-item/mixin';
 
 export default {
   type: 'input-number',

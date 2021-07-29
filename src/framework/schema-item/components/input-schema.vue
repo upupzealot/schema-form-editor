@@ -96,12 +96,12 @@
 </template>
 
 <script>
-import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
+import schemaItemMixin from '@/framework/schema-item/mixin';
 
-import Clearable from '@/ui-kit/common/schema-item/clearable'
-import Placeholder from '@/ui-kit/common/schema-item/placeholder'
-import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
-import FuncValidate from '@/ui-kit/common/schema-item/validate-rules/func'
+import Clearable from '@/framework/schema-item/common/clearable'
+import Placeholder from '@/framework/schema-item/common/placeholder'
+import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
+import FuncValidate from '@/framework/schema-item/common/validate-rules/func'
 
 export default {
   type: 'input',

@@ -54,7 +54,7 @@ export const EditorItems = [
   ItemListEditor,
 ]
 
-import InputSchema from '../common/components/input/input-schema.vue'
+import InputSchema from '../../framework/schema-item/components/input-schema.vue'
 import InputNumberSchema from './components/input-number/input-number-schema.vue'
 import InputIpSchema from './components/input-ip/input-ip-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
