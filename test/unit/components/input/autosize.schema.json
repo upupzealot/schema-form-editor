@@ -1,0 +1,36 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "多行文本",
+      "name": "input-1",
+      "mode": "textarea"
+    },
+    {
+      "type": "input",
+      "label": "自适高度",
+      "name": "input-2",
+      "mode": "textarea",
+      "autosize": true
+    },
+    {
+      "type": "input",
+      "label": "最小行数",
+      "name": "input-3",
+      "mode": "textarea",
+      "autosize": true,
+      "minRows": 3
+    },
+    {
+      "type": "input",
+      "label": "最大行数",
+      "name": "input-4",
+      "mode": "textarea",
+      "autosize": true,
+      "maxRows": 3
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
