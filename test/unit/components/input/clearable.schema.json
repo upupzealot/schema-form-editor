@@ -1,0 +1,20 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input",
+      "label": "单行文本",
+      "name": "input-1",
+      "clearable": true
+    },
+    {
+      "type": "input",
+      "label": "密码框",
+      "name": "input-2",
+      "isPassword": true,
+      "clearable": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
