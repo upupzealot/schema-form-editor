@@ -13,15 +13,10 @@
 
 <script>
 export default {
-  props: {
-    field: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
-  },
   computed: {
+    field() {
+      return this.$store.state.activeField;
+    },
     clearable: {
       get() {
         return !!this.field.clearable;
