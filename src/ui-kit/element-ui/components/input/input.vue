@@ -14,10 +14,11 @@
     <el-input
       v-model="data[field.name]"
       :type="field.mode"
+      :show-password="field.isPassword"
+      :clearable="field.clearable"
       :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
-      :show-password="field.isPassword"
     >
       <template
         v-if="field.prepend"

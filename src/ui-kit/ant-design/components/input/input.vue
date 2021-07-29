@@ -24,6 +24,7 @@
       v-model="data[field.name]"
       v-model:value="data[field.name]"
       :type="field.mode"
+      :allow-clear="field.clearable"
       :placeholder="field.placeholder"
       :disabled="disabled"
       :read-only="readonly"

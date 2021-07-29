@@ -24,7 +24,7 @@
           多行文本
         </el-radio>
       </el-form-item>
-      <el-row>
+      <el-row v-if="mode !== 'textarea'">
         <el-col :span="12">
           <el-form-item
             label="前复合"
@@ -54,6 +54,7 @@
           v-model="field.placeholder"
         />
       </el-form-item>
+      <Clearable v-if="mode !== 'textarea'" />
     </template>
 
     <!-- 校验 -->
@@ -67,12 +68,14 @@
 <script>
 import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
 
+import Clearable from '@/ui-kit/common/schema-item/clearable'
 import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
 import FuncValidate from '@/ui-kit/common/schema-item/validate-rules/func'
 
 export default {
   type: 'input',
   components: {
+    Clearable,
     RegexpValidate,
     FuncValidate,
   },
