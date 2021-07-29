@@ -79,7 +79,7 @@ describe('字段属性-字段描述', () => {
     });
   });
 
-  describe('描述内容换行', () => {
+  describe('HTML 内容', () => {
     let page = null;
     beforeAll(async () => {
       page = await brandnewPage(`http://localhost:${pagePort}/?schema=field-config/description`);
