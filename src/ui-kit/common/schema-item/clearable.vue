@@ -2,8 +2,6 @@
   <el-form-item
     label="可清空"
     prop="clearable"
-    active-text="是"
-    inactive-text="否"
   >
     <el-switch
       v-model="clearable"
