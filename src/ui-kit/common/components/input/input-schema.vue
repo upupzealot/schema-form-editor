@@ -101,18 +101,6 @@ export default {
         this.$set(this.field, 'append', val || undefined);
       }
     },
-    rules: {
-      get() {
-        return this.field.rules || [];
-      },
-      set(rules) {
-        if(rules.length) {
-          this.$set(this.field, 'rules', rules);
-        } else {
-          this.$set(this.field, 'rules', undefined);
-        }
-      }
-    },
   },
 };
 </script>
