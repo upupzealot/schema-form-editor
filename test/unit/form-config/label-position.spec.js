@@ -1,6 +1,6 @@
 import { boundOf, paddingOf } from '../util'
 
-describe('标签位置', () => {
+describe('表单属性-标签位置', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();

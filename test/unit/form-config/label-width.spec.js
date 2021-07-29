@@ -1,6 +1,6 @@
 import { boundOf } from '../util'
 
-describe('标签宽度', () => {
+describe('表单属性-标签宽度', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();

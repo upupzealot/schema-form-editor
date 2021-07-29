@@ -1,11 +1,11 @@
 import { boundOf } from '../util'
 
-describe('布局', () => {
+describe('字段属性-布局', () => {
   let page = null;
   let formWidth = null;
   beforeAll(async () => {
     page = await browser.newPage();
-    await page.goto(`http://localhost:${pagePort}/?schema=form-config/layout`, {
+    await page.goto(`http://localhost:${pagePort}/?schema=field-config/layout`, {
       waitUntil: 'networkidle0',
     });
     await delay(1000);

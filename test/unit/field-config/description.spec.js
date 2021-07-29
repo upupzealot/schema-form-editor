@@ -1,4 +1,4 @@
-describe('字段描述', () => {
+describe('字段属性-字段描述', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();

@@ -1,6 +1,6 @@
 import InputOnlySchema from '../input-only.schema.json'
 
-describe('key 和标签', () => {
+describe('字段属性-key和标签', () => {
   const formData = {};
   const wrapper = wrap({
     schema: InputOnlySchema,

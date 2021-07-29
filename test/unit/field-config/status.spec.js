@@ -1,6 +1,6 @@
 import StatusSchema from './status.schema.json'
 
-describe.only('状态控制', () => {
+describe('字段属性-状态控制', () => {
   const formData = {};
   const wrapper = wrap({
     schema: StatusSchema,
