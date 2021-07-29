@@ -46,15 +46,8 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item
-        label="占位符"
-        prop="placeholder"
-      >
-        <el-input
-          v-model="field.placeholder"
-        />
-      </el-form-item>
       <Clearable v-if="mode !== 'textarea'" />
+      <Placeholder />
     </template>
 
     <!-- 校验 -->
@@ -69,6 +62,7 @@
 import schemaItemMixin from '@/ui-kit/common/schema-item/mixin';
 
 import Clearable from '@/ui-kit/common/schema-item/clearable'
+import Placeholder from '@/ui-kit/common/schema-item/placeholder'
 import RegexpValidate from '@/ui-kit/common/schema-item/validate-rules/regexp'
 import FuncValidate from '@/ui-kit/common/schema-item/validate-rules/func'
 
@@ -76,6 +70,7 @@ export default {
   type: 'input',
   components: {
     Clearable,
+    Placeholder,
     RegexpValidate,
     FuncValidate,
   },
