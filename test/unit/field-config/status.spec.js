@@ -10,8 +10,8 @@ describe('字段属性-状态控制', () => {
   test('是否激活', async () => {
     const $input1 = wrapper.getField('input-1');
     const $input2 = wrapper.getField('input-2');
-    expect($input1.element).toBeTruthy();
-    expect($input2.element).not.toBeTruthy();
+    expect($input1.exists()).toBeTruthy();
+    expect($input2.exists()).not.toBeTruthy();
   });
 
   test('是否显示', async () => {
@@ -25,8 +25,8 @@ describe('字段属性-状态控制', () => {
   // test('是否只读', async () => {
   //   const $input1 = wrapper.getField('input-1').find('input');
   //   const $input4 = wrapper.getField('input-4').find('input');
-  //   expect($input1.element).toBeTruthy();
-  //   expect($input4.element).not.toBeTruthy();
+  //   expect($input1.exists()).toBeTruthy();
+  //   expect($input4.exists()).not.toBeTruthy();
   // });
 
   test('是否禁用', async () => {

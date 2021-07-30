@@ -21,7 +21,7 @@ describe('文本框：可清空', () => {
     if(uikit === 'ant-design') {
       $clearBtn = $input1.find('.anticon.anticon-close-circle');
     }
-    expect($clearBtn.element).toBeTruthy();
+    expect($clearBtn.exists()).toBeTruthy();
 
     await $clearBtn.trigger('click');
     expect(formData['input-1']).not.toBeTruthy();
@@ -38,7 +38,7 @@ describe('文本框：可清空', () => {
     if(uikit === 'ant-design') {
       $clearBtn = $input2.find('.anticon.anticon-close-circle');
     }
-    expect($clearBtn.element).toBeTruthy();
+    expect($clearBtn.exists()).toBeTruthy();
 
     await $clearBtn.trigger('click');
     expect(formData['input-2']).not.toBeTruthy();
