@@ -18,6 +18,9 @@ module.exports = uikit=>{
       `<rootDir>/test/unit/_setup_/setup.common.js`,
       `<rootDir>/test/unit/_setup_/setup.${uikit}.js`,
     ],
+    setupFilesAfterEnv: [
+      '<rootDir>/test/unit/_setup_/setup-after-env.js',
+    ],
     globalSetup: './test/unit/_setup_/setup.js',
     globalTeardown: './test/unit/_setup_/teardown.js',
     collectCoverage: true,

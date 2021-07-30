@@ -12,7 +12,16 @@ if (isVue2) {
 } else {
   VueWrapper.prototype.getField = function getField(name) {
     return this.find(`[sfr-f="${name}"]`);
-  }}
+  }
+}
+
+global.console = {
+  log: console.log,
+  error: console.error,
+  warn: jest.fn(),
+  info: console.info,
+  debug: console.debug,
+};
 
 global._ = _;
 global.delay = delay;

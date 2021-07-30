@@ -24,7 +24,12 @@ module.exports = async () => {
   }
   exec(`http-server ${pageElementUiDir} --port=4452`);
 
-  const pageAntDesignVue1Dir = path.resolve(__dirname, '../../pages/ant-design-vue-1/dist');
+  let pageAntDesignVue1Dir = null;
+  if(isVue2) {
+    pageAntDesignVue1Dir = path.resolve(__dirname, '../../pages/ant-design-vue-1/dist');
+  } else {
+    pageAntDesignVue1Dir = path.resolve(__dirname, '../../pages/ant-design-vue-2/dist');
+  }
   exec(`http-server ${pageAntDesignVue1Dir} --port=4454`);
 
   await puppeteerSetup();
