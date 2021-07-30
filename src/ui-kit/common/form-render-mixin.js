@@ -1,4 +1,4 @@
-export default {
+const mixin = {
   props: {
     inline: {
       type: Boolean,
@@ -184,3 +184,15 @@ export default {
     }
   }
 }
+
+import isVue2 from 'vue';
+if(!isVue2) {
+  mixin.methods.$set = function(obj, key, val) {
+    obj[key] = val;
+  };
+  mixin.methods.$delete = function(obj, key, val) {
+    delete obj[key];
+  };
+}
+
+export default mixin;

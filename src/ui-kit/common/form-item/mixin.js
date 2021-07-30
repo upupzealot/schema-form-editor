@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default {
+const mixin = {
   props: {
     scenario: {
       type: String,
@@ -216,3 +216,16 @@ export default {
   },
   defaultSchema: {},
 };
+
+import isVue2 from 'vue';
+if(!isVue2) {
+  mixin.methods = {};
+  mixin.methods.$set = (obj, key, val) => {
+    obj[key] = val;
+  };
+  mixin.methods.$delete = (obj, key) => {
+    delete obj[key];
+  };
+}
+
+export default mixin;
