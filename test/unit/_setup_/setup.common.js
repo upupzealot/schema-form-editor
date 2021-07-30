@@ -1,22 +1,31 @@
 import _ from 'lodash';
 import delay from 'delay';
-import { mount, Wrapper } from '@vue/test-utils'
-import puppeteer from 'puppeteer'
 
+import puppeteer from 'puppeteer'
 import launchConf from './puppeteer/launch.config';
 
-Wrapper.prototype.getField = function getField(name) {
-  return this.find(`[sfr-f="${name}"]`);
-}
+const { mount, Wrapper, VueWrapper } = require('vue-test-util-alias');
+if (isVue2) {
+  Wrapper.prototype.getField = function getField(name) {
+    return this.find(`[sfr-f="${name}"]`);
+  }
+} else {
+  VueWrapper.prototype.getField = function getField(name) {
+    return this.find(`[sfr-f="${name}"]`);
+  }}
 
 global._ = _;
 global.delay = delay;
 global.wrap = (option) => {
   let opt = option;
   if(!option.propsData) {
-    opt = {
-      propsData: option,
-    };
+    opt = {};
+    opt[isVue2 ? 'propsData' : 'props'] = option;
+  }
+  if(global.UIKIT) {
+    opt.global = _.merge({}, opt.global, {
+      plugins: [global.UIKIT]
+    });
   }
   return mount(SchemaFormRender, opt);
 }

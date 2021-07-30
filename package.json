@@ -11,6 +11,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "node link.js && node test/unit/index.js",
+    "test3": "node link3.js && node test/unit/index.js",
     "tv": "node link.js && cd test/pages/element-ui-2 && npm run dev",
     "tv3": "node link3.js && cd test/pages/element-plus-3 && npm run dev"
   },
@@ -45,7 +46,6 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.11",
     "@vue/eslint-config-airbnb": "^5.0.2",
-    "@vue/test-utils": "^1.2.1",
     "babel-eslint": "^10.1.0",
     "delay": "^5.0.0",
     "eslint": "^6.7.2",
@@ -58,6 +58,9 @@
     "less-loader": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "puppeteer": "^10.1.0",
-    "vue-template-compiler": "^2.6.14"
+    "vue-jest": "^5.0.0-alpha.10",
+    "vue-template-compiler": "^2.6.14",
+    "vue-test-util-alias1": "npm:vue-test-util-alias@^1.0.1",
+    "vue-test-util-alias2": "npm:vue-test-util-alias@^2.0.1"
   }
 }

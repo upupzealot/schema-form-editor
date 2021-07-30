@@ -1,13 +1,17 @@
 const fs = require('fs-extra');
 const { version } = fs.readJsonSync('./node_modules/vue/package.json');
+const isVue2 = version.startsWith('2.');
 
 module.exports = uikit=>{
   return {
     preset: '@vue/cli-plugin-unit-jest',
+    transform: isVue2 ? {} : {
+      '^.+\\.vue$': 'vue-jest',
+    },
     testEnvironment: './test/unit/_setup_/puppeteer/enviroment.js',
     testMatch: ['**/test/unit/**/*.spec.[jt]s?(x)'],
     globals: {
-      isVue2: version.startsWith('2.'),
+      isVue2,
       uikit,
     },
     setupFiles: [

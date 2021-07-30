@@ -32,4 +32,11 @@ if(!isVue2) {
     stdio: 'inherit',
   });
   execSync('npm link ant-design-vue');
+
+  console.log('linking: @vue/test-utils')
+  execSync('npm link --production', {
+    cwd: './node_modules/vue-test-util-alias1',
+    stdio: 'inherit',
+  });
+  execSync('npm link vue-test-util-alias');
 }
