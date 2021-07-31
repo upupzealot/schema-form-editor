@@ -5,11 +5,10 @@
       v-if="hasTooltip"
       placement="topLeft"
     >
-      <a-icon
-        v-if="isVue2"
+      <component
+        :is="isVue2 ? 'a-icon' : ExclamationCircleOutlined"
         type="exclamation-circle"
       />
-      <ExclamationCircleOutlined v-if="!isVue2" />
       <template v-slot:title>
         <span v-html="content" />
       </template>
