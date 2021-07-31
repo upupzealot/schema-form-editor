@@ -4,12 +4,14 @@
     <a-tooltip
       v-if="hasTooltip"
       placement="topLeft"
+      :getPopupContainer="getPopupContainer"
+      :destroyTooltipOnHide="true"
     >
       <component
-        :is="isVue2 ? 'a-icon' : ExclamationCircleOutlined"
+        :is="iconComponent"
         type="exclamation-circle"
       />
-      <template v-slot:title>
+      <template v-slot:title ref="labelRoot">
         <span v-html="content" />
       </template>
     </a-tooltip>
@@ -21,9 +23,6 @@ import isVue2 from 'vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 
 export default {
-  components: {
-    ExclamationCircleOutlined,
-  },
   props: {
     field: {
       type: Object,
@@ -38,8 +37,15 @@ export default {
     }
   },
   computed: {
+    iconComponent() {
+      return !!isVue2 ? 'a-icon' : ExclamationCircleOutlined;
+    },
     hasTooltip() {
       return !!this.field.desc;
+    },
+    getPopupContainer() {
+      console.log(this)
+      return this.$refs['labelRoot'];
     },
     content() {
       return this.field.desc && this.field.desc.replace(/\n/g, '<br>');
