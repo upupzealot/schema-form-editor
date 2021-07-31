@@ -19,10 +19,9 @@
       <Tooltip :field="field" />
     </template>
     <component
-      :is="field.isPassword ? 'a-input-password' : 'a-input'"
+      :is="component"
       v-model="data[field.name]"
       v-model:value="data[field.name]"
-      :type="field.mode"
       :auto-size="field.autosize && {
         minRows: field.minRows || 2,
         maxRows: field.maxRows || undefined,
@@ -53,5 +52,18 @@ import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],
+  computed: {
+    component() {
+      if(this.field.mode === 'textarea') {
+        return 'a-textarea';
+      } else {
+        if(this.field.isPassword) {
+          return 'a-input-password';
+        } else {
+          return 'a-input';
+        }
+      }
+    }
+  },
 };
 </script>

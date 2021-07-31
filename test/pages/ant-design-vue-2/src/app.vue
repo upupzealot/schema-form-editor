@@ -3,7 +3,7 @@
     <a-layout>
       <a-layout-header>
         <h1 style="color: #ccc;">
-          Ant Design Vue 1.x & Vue 2.x
+          Ant Design Vue 2.x & Vue 3.x
         </h1>
       </a-layout-header>
       <a-layout-content>
