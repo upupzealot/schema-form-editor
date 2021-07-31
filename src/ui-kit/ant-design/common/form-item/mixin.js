@@ -21,6 +21,9 @@ export default {
     formItemIs() {
       return isVue2 ? 'a-form-model-item' : 'a-form-item';
     },
+    formItemPropName() {
+      return isVue2 ? 'prop' : 'name';
+    },
     isLabelTop() {
       return this.labelPosition === 'top';
     },
