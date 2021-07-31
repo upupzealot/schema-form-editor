@@ -9,7 +9,7 @@ describe('字段属性-字段描述', () => {
   });
 
   test('展示描述图标', async () => {
-    const $input1 = await page.$('#app [sfr-f="input-1"] label i');
+    const $input1 = await page.$('#app [sfr-f="input-1"] label i, #app [sfr-f="input-1"] label svg');
     expect($input1).toBeTruthy();
   });
 
@@ -27,7 +27,7 @@ describe('字段属性-字段描述', () => {
     });
 
     test('弹出描述气泡', async () => {  
-      await page.hover('#app [sfr-f="input-1"] label i');
+      await page.hover('#app [sfr-f="input-1"] label i, #app [sfr-f="input-1"] label svg');
       await delay(1000);
   
       const tooltipObjs = await page.$$eval('[role="tooltip"]', $eles => {
@@ -59,7 +59,7 @@ describe('字段属性-字段描述', () => {
     });
 
     test('描述内容换行', async () => {
-      await page.hover('#app [sfr-f="input-2"] label i');
+      await page.hover('#app [sfr-f="input-2"] label i, #app [sfr-f="input-2"] label svg');
       await delay(200);
   
       const tooltipObjs = await page.$$eval('[role="tooltip"]', $eles => {
@@ -93,7 +93,7 @@ describe('字段属性-字段描述', () => {
     });
 
     test('HTML 内容', async () => {
-      await page.hover('#app [sfr-f="input-3"] label i');
+      await page.hover('#app [sfr-f="input-3"] label i, #app [sfr-f="input-3"] label svg');
       await delay(200);
   
       const tooltipObjs = await page.$$eval('[role="tooltip"]', $eles => {

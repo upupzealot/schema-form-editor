@@ -5,7 +5,11 @@
       v-if="hasTooltip"
       placement="topLeft"
     >
-      <a-icon type="exclamation-circle" />
+      <a-icon
+        v-if="isVue2"
+        type="exclamation-circle"
+      />
+      <ExclamationCircleOutlined v-if="!isVue2" />
       <template v-slot:title>
         <span v-html="content" />
       </template>
@@ -14,7 +18,13 @@
 </template>
 
 <script>
+import isVue2 from 'vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+
 export default {
+  components: {
+    ExclamationCircleOutlined,
+  },
   props: {
     field: {
       type: Object,
@@ -22,6 +32,11 @@ export default {
         return {};
       }
     },
+  },
+  data() {
+    return {
+      isVue2: !!isVue2,
+    }
   },
   computed: {
     hasTooltip() {
