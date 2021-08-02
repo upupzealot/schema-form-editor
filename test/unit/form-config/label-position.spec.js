@@ -27,7 +27,7 @@ describe('表单属性-标签位置', () => {
         label1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label');
         labelPadding1 = await paddingOf(page, '#app [sfr-f="input-1"] .ant-form-item-label');
         labelText1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label label');
-        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control-wrapper');
+        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control');
       }
       labelPaddingRight = parseInt(labelPadding1.right);
     });
@@ -63,7 +63,7 @@ describe('表单属性-标签位置', () => {
       if(uikit === 'ant-design') {
         label1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label');
         labelText1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label label');
-        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control-wrapper');
+        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control');
       }
     });
 
@@ -98,7 +98,7 @@ describe('表单属性-标签位置', () => {
       if(uikit === 'ant-design') {
         label1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label');
         labelText1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-label label');
-        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control-wrapper');
+        content1 = await boundOf(page, '#app [sfr-f="input-1"] .ant-form-item-control');
       }
     });
 
