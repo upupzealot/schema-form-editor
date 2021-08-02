@@ -14,15 +14,15 @@
     @add="addItem"
     @end="selectItem"
   >
-    <slot v-bind="{ list }" />
-    <template #item="{ element }">
+    <!-- <slot v-bind="{ list }" /> -->
+    <template #item="{ element, index }">
       <component
         :is="itemTag"
         v-bind="getItemData(itemData, element)"
       >
         <slot
           name="item"
-          v-bind="{ item: element }"
+          v-bind="{ item: element, index }"
         />
       </component>
     </template>

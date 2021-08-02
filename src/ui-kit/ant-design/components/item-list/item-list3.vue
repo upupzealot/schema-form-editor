@@ -20,10 +20,11 @@
     <DraggableList
       :list="items"
     >
-      <template #default="{ list }">
+      <template
+        #item="{ item, index }"
+        itemKey="id"
+      >
         <DraggableListItem
-          v-for="(item, index) in list"
-          :key="item.id"
           :has-control="editable"
           :style="{ marginBottom: `${subformMarginY}px` }"
           :sfr-f="`${field.name}[${index}]`"
