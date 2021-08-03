@@ -22,6 +22,7 @@
       <component
         :is="fallbackComponent(`schema-${field.type}`)"
         v-if="field.type"
+        :ui-kit="uiKit"
       />
     </el-col>
   </el-row>
@@ -50,14 +51,11 @@ import { SchemaItems as ElementItems } from '@/ui-kit/element-ui/index'
 import { SchemaItems as AntDesignItems } from '@/ui-kit/ant-design/index'
 const uiKit = localStorage.getItem('ui-kit');
 let SchemaItems = [];
-let schemaIs = 'div';
 if(uiKit === 'element-ui') {
   SchemaItems = ElementItems;
-  schemaIs = 'el-form';
 }
 if(uiKit === 'ant-design') {
   SchemaItems = AntDesignItems;
-  schemaIs = 'a-form';
 }
 const ItemMap = _(SchemaItems)
   .keyBy('type')
@@ -75,7 +73,7 @@ export default {
   },
   data() {
     return {
-      schemaIs,
+      uiKit,
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,

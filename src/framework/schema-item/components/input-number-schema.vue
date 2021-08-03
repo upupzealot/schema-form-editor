@@ -7,8 +7,10 @@
             label="最小值"
             prop="min"
           >
-            <el-input
-              v-model.number="min"
+            <el-input-number
+              v-model="min"
+              :controls="false"
+              style="width: 100%;"
             />
           </el-form-item>
         </el-col>
@@ -17,13 +19,16 @@
             label="最大值"
             prop="max"
           >
-            <el-input
-              v-model.number="max"
+            <el-input-number
+              v-model="max"
+              :controls="false"
+              style="width: 100%;"
             />
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <!-- ant-design-vue 下不支持是否显示控制按钮的设置 -->
+      <el-row v-if="uiKit === 'element-ui'">
         <el-col :span="12">
           <el-form-item
             label="控制按钮"
@@ -60,12 +65,15 @@
             label="步长"
             prop="step"
           >
-            <el-input
-              v-model.number="step"
+            <el-input-number
+              v-model="step"
+              :controls="false"
+              style="width: 100%;"
             />
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <!-- ant-design-vue 下不支持严格步进的设置 -->
+        <el-col :span="12" v-if="uiKit === 'element-ui'">
           <el-form-item
             label="严格步进"
             prop="step-only"
@@ -81,10 +89,12 @@
             prop="precision"
           >
             <el-input-number
-              v-model.number="precision"
+              v-model="precision"
               controls-position="right"
               :min="0"
               :max="100"
+              :step="1"
+              step-strictly
               style="width: 100%;"
             />
           </el-form-item>
@@ -97,6 +107,7 @@
             <el-radio-group
               v-model="textAlign"
               style="width: 100%;"
+              class="text-align-radio-group"
             >
               <el-radio-button label="left">
                 左
@@ -111,26 +122,36 @@
           </el-form-item>
         </el-col>
       </el-row>
-      
-      <el-form-item
-        label="占位符"
-        prop="placeholder"
-      >
-        <el-input
-          v-model="field.placeholder"
-        />
-      </el-form-item>
+      <Placeholder />
     </template>
   </StandardForm>
 </template>
 
+<style>
+.el-radio-group.text-align-radio-group {
+  width: 100%;
+  display: flex;
+}
+.el-radio-group.text-align-radio-group .el-radio-button {
+  flex: 1 1 auto;
+}
+.el-radio-group.text-align-radio-group .el-radio-button__inner {
+  width: 100%;
+}
+</style>
+
 <script>
 import _ from 'lodash';
+
 import schemaItemMixin from '@/framework/schema-item/mixin';
+import Placeholder from '@/framework/schema-item/common/placeholder'
 
 export default {
   type: 'input-number',
   mixins: [schemaItemMixin],
+  components: {
+    Placeholder
+  },
   computed: {
     min: {
       get() {
@@ -157,7 +178,7 @@ export default {
       },
       set(val) {
         const number = Number(val);
-        this.$set(this.field, 'step', isNaN(number) ? undefined : number);
+        this.$set(this.field, 'step', (isNaN(number) || number === 1) ? undefined : number);
       }
     },
     stepOnly: {
