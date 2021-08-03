@@ -49,6 +49,7 @@
       <Clearable v-if="mode !== 'textarea'" />
       <Placeholder />
       <el-form-item
+        v-if="mode === 'textarea'"
         label="自适高度"
         prop="autosize"
       >
