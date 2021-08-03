@@ -7,7 +7,11 @@
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
     :colon="false"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{
+      'form-item': true,
+      'input-number': true,
+      'readonly': readonly
+    }"
     :style="{
       marginBottom: colMarginY,
       display: 'flex',
@@ -27,10 +31,30 @@
       :placeholder="field.placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      :class="{
+        'left-align': field.textAlign === 'left',
+        'center-align': !field.textAlign,
+        'right-align': field.textAlign === 'right'
+      }"
       style="width: 100%;"
     />
   </component>
 </template>
+
+<style>
+.input-number .ant-input-number.left-align input {
+  text-align: left;
+}
+.input-number .ant-input-number.center-align input {
+  text-align: center;
+}
+.input-number .ant-input-number.right-align input {
+  text-align: right;
+}
+.input-number .ant-input-number.right-align input:hover {
+  padding-right: 33px; /* space for control-btn */
+}
+</style>
 
 <script>
 import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
