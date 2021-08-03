@@ -4,14 +4,17 @@
     <a-tooltip
       v-if="hasTooltip"
       placement="topLeft"
-      :getPopupContainer="getPopupContainer"
-      :destroyTooltipOnHide="true"
+      :get-popup-container="getPopupContainer"
+      :destroy-tooltip-on-hide="true"
     >
       <component
         :is="iconComponent"
         type="exclamation-circle"
       />
-      <template v-slot:title ref="labelRoot">
+      <template
+        v-slot:title
+        ref="labelRoot"
+      >
         <span v-html="content" />
       </template>
     </a-tooltip>
