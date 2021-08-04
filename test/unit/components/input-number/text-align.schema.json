@@ -1,0 +1,24 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-number",
+      "label": "中间对齐",
+      "name": "input-number-1"
+    },
+    {
+      "type": "input-number",
+      "label": "左对齐",
+      "name": "input-number-2",
+      "textAlign": "left"
+    },
+    {
+      "type": "input-number",
+      "label": "左对齐",
+      "name": "input-number-3",
+      "textAlign": "right"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
