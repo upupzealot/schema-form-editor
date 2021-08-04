@@ -1,6 +1,6 @@
 import { deleteIn } from '../../util'
 
-describe('数字框：最大值/最小值', () => {
+describe('数字框：步长控制', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();
