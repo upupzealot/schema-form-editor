@@ -48,7 +48,7 @@
               v-model="controlPosition"
               label=""
             >
-              左右
+              两侧
             </el-radio>
             <el-radio
               v-model="controlPosition"
