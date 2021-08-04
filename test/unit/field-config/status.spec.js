@@ -32,8 +32,8 @@ describe('字段属性-状态控制', () => {
   test('是否禁用', async () => {
     const $input1 = wrapper.getField('input-1').find('input');
     const $input5 = wrapper.getField('input-5').find('input');
-    $input1.setValue('aaaaa');
-    $input5.setValue('aaaaa');
+    await $input1.setValue('aaaaa');
+    await $input5.setValue('aaaaa');
     expect(formData['input-1']).toEqual('aaaaa');
     expect(formData['input-5']).not.toBeTruthy();
   });

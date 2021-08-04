@@ -1,6 +1,6 @@
 import { boundOf } from '../../util'
 
-describe('文本框：控制按钮', () => {
+describe('数字框：控制按钮', () => {
   let page = null;
   beforeAll(async () => {
     page = await browser.newPage();
