@@ -1,0 +1,13 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-number",
+      "label": "精度 2",
+      "name": "input-number-1",
+      "precision": 2
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
