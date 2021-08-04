@@ -18,7 +18,19 @@ export const paddingOf = async (page, selector) => {
   return res;
 }
 export const deleteIn = async (page, field) => {
-  await page.$eval(`#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`, $el => $el.value = '');
-  await page.type(`#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`, ' ');
+  const selector = `#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`;
+  const tagName = await page.$eval(selector, async $el => {
+    console.log($el.tagName)
+    if($el.tagName === 'INPUT') {
+      $el.focus();
+      $el.select();
+    } else {
+      $el.value = '';
+    }
+    return $el.tagName;
+  });
+  if(tagName !== 'INPUT') { //textarea
+    await page.type(selector, ' ');
+  }
   await page.keyboard.press('Backspace');
 }
