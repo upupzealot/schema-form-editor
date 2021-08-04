@@ -1,25 +1,38 @@
-import MaxMinSchema from './max-min.schema.json'
-
-describe(' 数字框：最大值/最小值', () => {
-  const wrapper = wrap({
-    schema: MaxMinSchema,
+describe('数字框：最大值/最小值', () => {
+  let page = null;
+  beforeAll(async () => {
+    page = await browser.newPage();
+    await page.goto(`http://localhost:${pagePort}/?schema=components/input-number/max-min`, {
+      waitUntil: 'networkidle0',
+    });
+    await delay(1000);
   });
 
   test('最大值', async () => {
-    const $input1 = wrapper.getField('input-number-1').find('input');
-    expect($input1.exists()).toBeTruthy();
-
-    $input1.setValue('11');
-    await $input1.trigger('blur'); // 数字框 blur 之后触发赋值
-    expect($input1.element.value).toEqual('10');
+    const inputSelector = '#app [sfr-f="input-number-1"] input';
+    await page.type(inputSelector, '11');
+    await page.$eval(inputSelector, $el => {
+      $el.blur();
+    });
+    await delay(300); // wait for value change in ant-design
+    const value = await page.$eval(inputSelector, $el => {
+      return $el.value;
+    });
+    
+    expect(value).toEqual('10');
   });
 
   test('最小值', async () => {
-    const $input2 = wrapper.getField('input-number-2').find('input');
-    expect($input2.exists()).toBeTruthy();
-
-    $input2.setValue('1');
-    await $input2.trigger('blur'); // 数字框 blur 之后触发赋值
-    expect($input2.element.value).toEqual('2');
+    const inputSelector = '#app [sfr-f="input-number-2"] input';
+    await page.type(inputSelector, '1');
+    await page.$eval(inputSelector, $el => {
+      $el.blur();
+    });
+    await delay(300); // wait for value change in ant-design
+    const value = await page.$eval(inputSelector, $el => {
+      return $el.value;
+    });
+    
+    expect(value).toEqual('2');
   });
 })
