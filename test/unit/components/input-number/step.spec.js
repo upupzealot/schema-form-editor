@@ -47,7 +47,7 @@ describe('数字框：最大值/最小值', () => {
     antSkip = describe.skip;
   }
   antSkip('严格步长', () => {
-    beforeAll(async ()=> {
+    beforeEach(async ()=> {
       await deleteIn(page, 'input-number-3');
     });
 
