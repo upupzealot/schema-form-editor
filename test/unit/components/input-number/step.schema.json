@@ -1,0 +1,24 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-number",
+      "label": "默认步长",
+      "name": "input-number-1"
+    },
+    {
+      "type": "input-number",
+      "label": "步长 10",
+      "name": "input-number-2",
+      "step": 10
+    },
+    {
+      "type": "input-number",
+      "label": "严格步长",
+      "name": "input-number-3",
+      "stepOnly": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
