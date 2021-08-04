@@ -17,3 +17,8 @@ export const paddingOf = async (page, selector) => {
   });
   return res;
 }
+export const deleteIn = async (page, field) => {
+  await page.$eval(`#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`, $el => $el.value = '');
+  await page.type(`#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`, ' ');
+  await page.keyboard.press('Backspace');
+}

@@ -1,3 +1,5 @@
+import { deleteIn } from '../../util'
+
 describe('文本框：自适高度', () => {
   let page = null;
   beforeAll(async () => {
@@ -24,11 +26,6 @@ describe('文本框：自适高度', () => {
   async function typeIn(field, content) {
     await page.type(`#app [sfr-f="${field}"] textarea`, content);
   }
-  async function deleteIn(field) {
-    await page.$eval(`#app [sfr-f="${field}"] textarea`, $el => $el.value = '');
-    await page.type(`#app [sfr-f="${field}"] textarea`, ' ');
-    await page.keyboard.press('Backspace');
-  }
 
   test('无自适应', async () => {
     const oldHeight = await heightOf('input-1');
@@ -51,7 +48,7 @@ describe('文本框：自适高度', () => {
     const scrolled = await isScrolled('input-2');
     expect(scrolled).not.toBeTruthy();
 
-    await deleteIn('input-2');
+    await deleteIn(page, 'input-2');
     height2 = await heightOf('input-2');
     expect(height2).toEqual(height1);
   });
@@ -67,7 +64,7 @@ describe('文本框：自适高度', () => {
     const scrolled = await isScrolled('input-3');
     expect(scrolled).not.toBeTruthy();
 
-    await deleteIn('input-3');
+    await deleteIn(page, 'input-3');
     newHeight3 = await heightOf('input-3');
     expect(newHeight3).toEqual(height3);
   });
