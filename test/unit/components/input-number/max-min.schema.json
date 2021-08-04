@@ -1,0 +1,19 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-number",
+      "label": "最大值",
+      "name": "input-number-1",
+      "max": 10
+    },
+    {
+      "type": "input-number",
+      "label": "最小值",
+      "name": "input-number-2",
+      "min": 2
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}

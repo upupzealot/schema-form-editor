@@ -10,6 +10,7 @@
       'readonly': readonly
     }"
     :style="{ marginBottom: colMarginY }"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

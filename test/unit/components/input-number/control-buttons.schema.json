@@ -1,0 +1,26 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-number",
+      "label": "数字框",
+      "name": "input-number-1",
+      "min": 2
+    },
+    {
+      "type": "input-number",
+      "label": "数字框",
+      "name": "input-number-2",
+      "max": 10,
+      "hasControl": false
+    },
+    {
+      "type": "input-number",
+      "label": "数字框",
+      "name": "input-number-3",
+      "controlPosition": "right"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
