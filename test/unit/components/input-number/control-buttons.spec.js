@@ -59,13 +59,13 @@ describe('数字框：控制按钮', () => {
   });
 
   test('控制按钮在右侧', async () => {
-    const input1 = await boundOf(page, '#app [sfr-f="input-number-1"] input');
+    const input1 = await boundOf(page, '#app [sfr-f="input-number-3"] input');
     const incBtn = await boundOf(page, `
-    #app [sfr-f="input-number-1"] .el-input-number__increase,
-    #app [sfr-f="input-number-1"] .ant-input-number-handler.ant-input-number-handler-up`);
+    #app [sfr-f="input-number-3"] .el-input-number__increase,
+    #app [sfr-f="input-number-3"] .ant-input-number-handler.ant-input-number-handler-up`);
     const decBtn = await boundOf(page, `
-    #app [sfr-f="input-number-1"] .el-input-number__decrease,
-    #app [sfr-f="input-number-1"] .ant-input-number-handler.ant-input-number-handler-down`);
+    #app [sfr-f="input-number-3"] .el-input-number__decrease,
+    #app [sfr-f="input-number-3"] .ant-input-number-handler.ant-input-number-handler-down`);
 
     Less1(incBtn.top, input1.top);
     Less1(decBtn.bottom, input1.bottom);
