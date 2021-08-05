@@ -21,6 +21,7 @@
     </template>
     <div style="display: flex; align-items: center;">
       <a-input
+        ref="snippet0"
         v-model="ip0"
         v-model:value="ip0"
         :type="field.mode"
@@ -29,6 +30,7 @@
         class="ip-snippet"
       />.
       <a-input
+        ref="snippet1"
         v-model="ip1"
         v-model:value="ip1"
         :type="field.mode"
@@ -37,6 +39,7 @@
         class="ip-snippet"
       />.
       <a-input
+        ref="snippet2"
         v-model="ip2"
         v-model:value="ip2"
         :type="field.mode"
@@ -45,6 +48,7 @@
         class="ip-snippet"
       />.
       <a-input
+        ref="snippet3"
         v-model="ip3"
         v-model:value="ip3"
         :type="field.mode"
