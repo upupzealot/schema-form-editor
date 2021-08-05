@@ -62,10 +62,11 @@
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'
+import inputIpMixin from '../../../common/components/input-ip-mixin'
 
 export default {
   type: 'input-ip',
-  mixins: [formItemMixin],
+  mixins: [formItemMixin, inputIpMixin],
   validators: [{
     name: 'IP',
     key: 'ip',
@@ -96,68 +97,5 @@ export default {
       callback();
     }
   }],
-  computed: {
-    ip0: {
-      get() { return this.getSnippet(0) },
-      set(val) { this.setSnippet(0, val) },
-    },
-    ip1: {
-      get() { return this.getSnippet(1) },
-      set(val) { this.setSnippet(1, val) },
-    },
-    ip2: {
-      get() { return this.getSnippet(2) },
-      set(val) { this.setSnippet(2, val) },
-    },
-    ip3: {
-      get() { return this.getSnippet(3) },
-      set(val) { this.setSnippet(3, val) },
-    }
-  },
-  methods: {
-    getSnippet(index) {
-      const ipStr = this.data[this.field.name];
-      if(ipStr) {
-        const snippets = ipStr.split('.');
-        if(snippets.length === 4) {
-          const snippet = snippets[index];
-          return /^[0]+$/.test(snippet) ? '0' : snippet.replace(/^[0]+/, '');
-        }
-      };
-      return '';
-    },
-    setSnippet(index, val) {
-      const snippets = [];
-      for(let i = 0; i < 4; i++) {
-        if(i !== index) {
-          snippets.push(this[`ip${i}`]);
-        } else {
-          let next = false;
-          const number = parseInt(val);
-          if(number || number === 0) {
-            snippets.push(`${Math.max(0, Math.min(255, number))}`);
-            if(val.length >= 3 || val.endsWith('.') || (number < 100 && number > 25)) {
-              next = true;
-            }
-          } else {
-            snippets.push('');
-          }
-          if(next && index !== 3) {
-            this.$refs[`snippet${index + 1}`].select();
-          }
-        }
-      }
-      let ipStr = snippets.join('.');
-      if(ipStr === '...') {
-        ipStr = '';
-      }
-      this.$set(this.data, this.field.name, ipStr);
-    },
-    async validate() {
-      return new Promise(async resolve => {
-        return resolve(false);
-      })
-    }
-  }
 };
 </script>
