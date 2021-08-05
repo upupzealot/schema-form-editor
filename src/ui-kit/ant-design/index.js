@@ -56,7 +56,7 @@ export const EditorItems = [
 
 import InputSchema from '../../framework/schema-item/components/input-schema.vue'
 import InputNumberSchema from '../../framework/schema-item/components/input-number-schema.vue'
-import InputIpSchema from './components/input-ip/input-ip-schema.vue'
+import InputIpSchema from '../../framework/schema-item/components/input-ip-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
 import RadioSchema from './components/radio/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
