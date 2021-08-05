@@ -18,9 +18,6 @@ export default [{
           callback(new Error(errMsg));
           break;
         }
-        if(!i && num === 0) {
-          callback(new Error('首位不能为 0'));
-        }
       }
     } else {
       callback(new Error(errMsg));
