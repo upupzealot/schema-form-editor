@@ -35,8 +35,19 @@ export default {
         if(i !== index) {
           snippets.push(this[`ip${i}`]);
         } else {
-          const snippet = /^[0]+$/.test(val) ? '0' : val.replace(/^[0]+/, '');
-          snippets.push(snippet);
+          let next = false;
+          const number = parseInt(val);
+          if(number || number === 0) {
+            snippets.push(`${Math.max(0, Math.min(255, number))}`);
+            if(val.length >= 3 || val.endsWith('.') || (number < 100 && number > 25)) {
+              next = true;
+            }
+          } else {
+            snippets.push('');
+          }
+          if(next && index !== 3) {
+            this.$refs[`snippet${index + 1}`].select();
+          }
         }
       }
       let ipStr = snippets.join('.');
