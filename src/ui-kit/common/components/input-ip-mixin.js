@@ -1,3 +1,5 @@
+import isVue2 from 'vue'
+
 export default {
   computed: {
     ip0: {
@@ -55,6 +57,16 @@ export default {
         ipStr = '';
       }
       this.$set(this.data, this.field.name, ipStr);
+    },
+    onDelete(index) {
+      if(isVue2 && !this[`ip${index}`]) {
+        this.$refs[`snippet${index - 1}`].select();
+      }
+    },
+    onDeleteNative(index) {
+      if(!isVue2 && !this[`ip${index}`]) {
+        this.$refs[`snippet${index - 1}`].select();
+      }
     },
     async validate() {
       return new Promise(async resolve => {

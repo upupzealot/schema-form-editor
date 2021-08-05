@@ -26,6 +26,8 @@
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
+        @keyup.backspace="onDelete(1)"
+        @keyup.backspace.native="onDeleteNative(1)"
         class="ip-snippet"
       />.
       <el-input
@@ -34,6 +36,8 @@
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
+        @keyup.backspace="onDelete(2)"
+        @keyup.backspace.native="onDeleteNative(2)"
         class="ip-snippet"
       />.
       <el-input
@@ -42,6 +46,8 @@
         :type="field.mode"
         :disabled="disabled"
         :readonly="readonly"
+        @keyup.backspace="onDelete(3)"
+        @keyup.backspace.native="onDeleteNative(3)"
         class="ip-snippet"
       />
     </div>
