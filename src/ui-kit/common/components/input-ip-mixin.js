@@ -2,6 +2,18 @@ import isVue2 from 'vue'
 
 export default {
   computed: {
+    placeholder0() {
+      return this.getPlaceholder(0);
+    },
+    placeholder1() {
+      return this.getPlaceholder(1);
+    },
+    placeholder2() {
+      return this.getPlaceholder(2);
+    },
+    placeholder3() {
+      return this.getPlaceholder(3);
+    },
     ip0: {
       get() { return this.getSnippet(0) },
       set(val) { this.setSnippet(0, val) },
@@ -20,6 +32,16 @@ export default {
     }
   },
   methods: {
+    getPlaceholder(index) {
+      const placeholderStr = this.field.placeholder;
+      if(placeholderStr) {
+        const snippets = placeholderStr.split('.');
+        if(snippets.length === 4) {
+          return snippets[index];
+        }
+      };
+      return '';
+    },
     getSnippet(index) {
       const ipStr = this.data[this.field.name];
       if(ipStr) {
