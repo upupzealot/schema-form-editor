@@ -18,9 +18,14 @@ export const paddingOf = async (page, selector) => {
   return res;
 }
 export const deleteIn = async (page, field) => {
-  const selector = `#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`;
+  let selector = null;
+  if(field.startsWith('#app')) {
+    selector = field
+  } else {
+    selector = `#app [sfr-f="${field}"] input, #app [sfr-f="${field}"] textarea`;
+  }
+  
   const tagName = await page.$eval(selector, async $el => {
-    console.log($el.tagName)
     if($el.tagName === 'INPUT') {
       $el.focus();
       $el.select();

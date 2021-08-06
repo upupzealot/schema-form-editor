@@ -1,0 +1,17 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-ip",
+      "label": "IP 框",
+      "name": "input-ip-1"
+    },
+    {
+      "type": "input-ip",
+      "label": "IP 框",
+      "name": "input-ip-2"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
