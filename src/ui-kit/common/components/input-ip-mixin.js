@@ -81,12 +81,12 @@ export default {
       this.$set(this.data, this.field.name, ipStr);
     },
     onDelete(index) {
-      if(isVue2 && !this[`ip${index}`]) {
+      if(!isVue2 && !this[`ip${index}`]) {
         this.$refs[`snippet${index - 1}`].select();
       }
     },
     onDeleteNative(index) {
-      if(!isVue2 && !this[`ip${index}`]) {
+      if(!!isVue2 && !this[`ip${index}`]) {
         this.$refs[`snippet${index - 1}`].select();
       }
     },
