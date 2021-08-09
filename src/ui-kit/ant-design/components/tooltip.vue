@@ -47,7 +47,6 @@ export default {
       return !!this.field.desc;
     },
     getPopupContainer() {
-      console.log(this)
       return this.$refs['labelRoot'];
     },
     content() {
