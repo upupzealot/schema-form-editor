@@ -31,7 +31,7 @@
       :precision="field.precision"
       :placeholder="field.placeholder"
       :disabled="disabled"
-      :readonly="readonly"
+      :[readonlyProp]="readonly"
       :class="{
         'left-align': field.textAlign === 'left',
         'center-align': !field.textAlign,

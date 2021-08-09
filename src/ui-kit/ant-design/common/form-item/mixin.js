@@ -37,5 +37,8 @@ export default {
         flex: 'auto',
       }
     },
+    readonlyProp() {
+      return isVue2 ? 'read-only' : 'readonly';
+    }
   }
 }

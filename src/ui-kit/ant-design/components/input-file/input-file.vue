@@ -31,6 +31,7 @@
       <a-input
         v-model="filename"
         :read-only="true"
+        :[readonlyProp]="true"
         :clearable="true"
       />
       <div

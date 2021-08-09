@@ -29,7 +29,7 @@
       :allow-clear="field.clearable"
       :placeholder="field.placeholder"
       :disabled="disabled"
-      :read-only="readonly"
+      :[readonlyProp]="readonly"
     >
       <template
         v-if="field.prepend"
