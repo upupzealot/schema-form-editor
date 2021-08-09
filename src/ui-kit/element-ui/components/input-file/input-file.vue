@@ -6,6 +6,7 @@
     :prop="field.name"
     :class="{'form-item': true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
@@ -22,16 +23,17 @@
       class="upload-item"
     >
       <el-input
-        v-model="text"
+        v-model="filename"
         :readonly="true"
         :clearable="true"
+      />
+      <div
+        v-if="filename"
+        class="clear-btn"
+        @click.stop="onClear"
       >
-        <template v-slot:append>
-          <el-button @click.stop="onClear">
-            <i class="el-icon-circle-close" />
-          </el-button>
-        </template>
-      </el-input>
+        <i class="el-icon-circle-close" style="color: #DCDFE6" />
+      </div>
     </el-upload>
   </el-form-item>
 </template>
@@ -40,6 +42,19 @@
 .upload-item .el-upload.el-upload--text {
   width: 100%;
 }
+.upload-item .clear-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0 10px 0 5px;
+  text-align: center;
+  color: #DCDFE6;
+  display: none;
+}
+.upload-item:hover .clear-btn {
+  display: block;
+}
 </style>
 
 <script>
@@ -47,22 +62,20 @@ import formItemMixin from '../../common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],
-  data() {
-    return {
-      text: '',
+  computed: {
+    filename() {
+      const file = this.data[this.field.name];
+      return file && file.name;
     }
   },
   methods: {
     onChange(elFile) {
-      this.text = elFile.name;
       this.$set(this.data, this.field.name, elFile.raw);
     },
     onExceed([elFile]) {
-      this.text = elFile.name;
       this.$set(this.data, this.field.name, elFile);
     },
     onClear() {
-      this.text = '';
       this.$set(this.data, this.field.name, undefined);
     }
   }

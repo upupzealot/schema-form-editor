@@ -19,11 +19,6 @@
         />
       </el-form-item>
     </template>
-
-    <!-- 校验 -->
-    <template v-slot:valid>
-      <RegexpValidate />
-    </template>
   </StandardForm>
 </template>
 
@@ -36,13 +31,8 @@ input#file-upload-button {
 <script>
 import schemaItemMixin from '@/framework/schema-item/mixin';
 
-import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
-
 export default {
   type: 'input-file',
-  components: {
-    RegexpValidate,
-  },
   mixins: [schemaItemMixin],
   computed: {
     accept: {

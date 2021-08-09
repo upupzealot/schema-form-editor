@@ -42,6 +42,14 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <InputFile
+          v-if="field.type === 'input-file'"
+          :scenario="scenario"
+          :form-conf="formConf"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Select
           v-if="field.type === 'select'"
           :scenario="scenario"
@@ -139,6 +147,7 @@ import formRenderMixin from '../common/form-render-mixin';
 import Input from './components/input/input';
 import InputNumber from './components/input-number/input-number';
 import InputIp from './components/input-ip/input-ip';
+import InputFile from './components/input-file/input-file';
 import Select from './components/select/select';
 import Radio from './components/radio/radio';
 import Checkbox from './components/checkbox/checkbox';
@@ -159,6 +168,7 @@ export default {
     Input,
     InputNumber,
     InputIp,
+    InputFile,
     Select,
     Radio,
     Checkbox,

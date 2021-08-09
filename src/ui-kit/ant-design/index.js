@@ -1,6 +1,7 @@
 import InputToolbar from './components/input/input-toolbar.vue'
 import InputNumberToolbar from './components/input-number/input-number-toolbar.vue'
 import InputIpToolbar from './components/input-ip/input-ip-toolbar.vue'
+import InputFileToolbar from './components/input-file/input-file-toolbar.vue'
 import SelectToolbar from './components/select/select-toolbar.vue'
 import RadioToolbar from './components/radio/radio-toolbar.vue'
 import CheckboxToolbar from './components/checkbox/checkbox-toolbar.vue'
@@ -10,6 +11,7 @@ export const ToolbarItems = [
   InputToolbar,
   InputNumberToolbar,
   InputIpToolbar,
+  InputFileToolbar,
   SelectToolbar,
   RadioToolbar,
   CheckboxToolbar,
@@ -30,6 +32,7 @@ export const ToolbarUtils = [
 import InputEditor from './components/input/input-editor.vue'
 import InputNumberEditor from './components/input-number/input-number-editor.vue'
 import InputIpEditor from './components/input-ip/input-ip-editor.vue'
+import InputFileEditor from './components/input-file/input-file-editor.vue'
 import SelectEditor from './components/select/select-editor.vue'
 import RadioEditor from './components/radio/radio-editor.vue'
 import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
@@ -43,6 +46,7 @@ export const EditorItems = [
   InputEditor,
   InputNumberEditor,
   InputIpEditor,
+  InputFileEditor,
   SelectEditor,
   RadioEditor,
   CheckboxEditor,
@@ -57,6 +61,7 @@ export const EditorItems = [
 import InputSchema from '../../framework/schema-item/components/input-schema.vue'
 import InputNumberSchema from '../../framework/schema-item/components/input-number-schema.vue'
 import InputIpSchema from '../../framework/schema-item/components/input-ip-schema.vue'
+import InputFileSchema from '../../framework/schema-item/components/input-file-schema.vue'
 import SelectSchema from './components/select/select-schema.vue'
 import RadioSchema from './components/radio/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
@@ -70,6 +75,7 @@ export const SchemaItems = [
   InputSchema,
   InputNumberSchema,
   InputIpSchema,
+  InputFileSchema,
   SelectSchema,
   RadioSchema,
   CheckboxSchema,
@@ -84,6 +90,7 @@ export const SchemaItems = [
 import Input from './components/input/input.vue'
 import InputNumber from './components/input-number/input-number.vue'
 import InputIp from './components/input-ip/input-ip.vue'
+import InputFile from './components/input-file/input-file.vue'
 import Select from './components/select/select.vue'
 import Radio from './components/radio/radio.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
@@ -97,6 +104,7 @@ export {
   Input,
   InputNumber,
   InputIp,
+  InputFile,
   Select,
   Radio,
   Checkbox,
