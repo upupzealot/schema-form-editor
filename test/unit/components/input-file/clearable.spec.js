@@ -6,12 +6,12 @@ describe('文件选择：可清空', () => {
     page = await brandnewPage(`http://localhost:${pagePort}/?schema=components/input-file/clearable`);
     await delay(1000);
   }, 10 * 1000);
-  // afterAll(async () => {
-  //   if(browser) {
-  //     const browser = await page.browser();
-  //     await browser.close();
-  //   }
-  // });
+  afterAll(async () => {
+    if(browser) {
+      const browser = await page.browser();
+      await browser.close();
+    }
+  });
 
   test('清空按钮展示', async () => {
     await uploadFile(page, 'input-file-1');
