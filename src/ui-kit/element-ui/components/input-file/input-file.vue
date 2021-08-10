@@ -48,7 +48,10 @@
   top: 0;
   bottom: 0;
   right: 0;
-  padding: 0 10px 0 5px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   text-align: center;
   color: #C0C4CC;
   display: none;

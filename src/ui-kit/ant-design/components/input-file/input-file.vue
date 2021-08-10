@@ -59,16 +59,17 @@
 }
 .ant-form-item .upload-item .clear-btn {
   position: absolute;
-  top: 4px;
+  top: 0;
+  bottom: 0;
   right: 16px;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: rgba(0, 0, 0, 0.25);
   transition-duration: .3s;
-  display: block;
   cursor: pointer;
 }
 .ant-form-item .upload-item .clear-btn.v2 {
-  top: -3px;
   right: 12px;
 }
 .ant-form-item .upload-item:hover .clear-btn {
