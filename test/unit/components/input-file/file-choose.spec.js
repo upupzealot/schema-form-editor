@@ -18,7 +18,6 @@ describe('文件选择：文件数据', () => {
 
   test('文件数据', async () => {
     await uploadFile('input-file-1');
-    await delay(500);
     const fileSelected = await page.evaluate(() => {
       const formData = window.$form.formData;
       const file = formData['input-file-1'];
@@ -31,5 +30,13 @@ describe('文件选择：文件数据', () => {
     expect(fileSelected.name).toEqual('banner.jpg');
     expect(fileSelected.size).toEqual(335797);
     expect(fileSelected.type).toEqual('image/jpeg');
+  });
+
+  test('文件名展示', async () => {
+    await uploadFile('input-file-2');
+    const textValue = await page.$eval(`#app [sfr-f="input-file-2"] input[type="text"]`, $el => {
+      return $el.value;
+    });
+    expect(textValue).toEqual('banner.jpg');
   });
 })
