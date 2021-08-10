@@ -1,4 +1,4 @@
-import path from 'path'
+import { uploadFile } from './util'
 
 describe('文件选择：文件数据', () => {
   let page = null;
@@ -10,14 +10,8 @@ describe('文件选择：文件数据', () => {
     await delay(1000);
   });
 
-  async function uploadFile(field) {
-    const uploadEle = await page.$(`#app [sfr-f="${field}"] input[type="file"]`);
-    const uploadFile = path.resolve(__dirname, './banner.jpg');
-    await uploadEle.uploadFile(uploadFile);
-  }
-
   test('文件数据', async () => {
-    await uploadFile('input-file-1');
+    await uploadFile(page, 'input-file-1');
     const fileSelected = await page.evaluate(() => {
       const formData = window.$form.formData;
       const file = formData['input-file-1'];
@@ -33,7 +27,7 @@ describe('文件选择：文件数据', () => {
   });
 
   test('文件名展示', async () => {
-    await uploadFile('input-file-2');
+    await uploadFile(page, 'input-file-2');
     const textValue = await page.$eval(`#app [sfr-f="input-file-2"] input[type="text"]`, $el => {
       return $el.value;
     });
