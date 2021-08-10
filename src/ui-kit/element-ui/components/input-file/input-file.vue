@@ -12,6 +12,7 @@
       <Tooltip :field="field" />
     </template>
     <el-upload
+      ref="uploader"
       action=""
       :auto-upload="false" 
       :multiple="false"
@@ -63,9 +64,18 @@ import formItemMixin from '../../common/form-item/mixin'
 export default {
   mixins: [formItemMixin],
   computed: {
+    file() {
+      return this.data[this.field.name];
+    },
     filename() {
-      const file = this.data[this.field.name];
-      return file && file.name;
+      return this.file && this.file.name;
+    }
+  },
+  watch: {
+    file(newVal, oldVal) {
+      if(!!oldVal && !newVal) {
+        this.$refs['uploader'].clearFiles();
+      }
     }
   },
   methods: {

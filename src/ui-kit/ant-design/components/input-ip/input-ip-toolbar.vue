@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex;">
+  <div style="display: flex; align-items: center;">
     <a-input
       v-model="value[0]"
       v-model:value="value[0]"

@@ -30,7 +30,7 @@
     >
       <a-input
         v-model="filename"
-        :read-only="true"
+        v-model:value="filename"
         :[readonlyProp]="true"
         :clearable="true"
       />
