@@ -1,0 +1,22 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "input-file",
+      "label": "文件选择",
+      "name": "input-file-1"
+    },
+    {
+      "type": "input-file",
+      "label": "文件选择",
+      "name": "input-file-2"
+    },
+    {
+      "type": "input-file",
+      "label": "文件选择",
+      "name": "input-file-3"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
