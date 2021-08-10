@@ -40,20 +40,20 @@
 </template>
 
 <style>
-.upload-item .el-upload.el-upload--text {
+.el-form-item .upload-item .el-upload.el-upload--text {
   width: 100%;
 }
-.upload-item .clear-btn {
+.el-form-item .upload-item .clear-btn {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   padding: 0 10px 0 5px;
   text-align: center;
-  color: #DCDFE6;
+  color: #C0C4CC;
   display: none;
 }
-.upload-item:hover .clear-btn {
+.el-form-item .upload-item:hover .clear-btn {
   display: block;
 }
 </style>

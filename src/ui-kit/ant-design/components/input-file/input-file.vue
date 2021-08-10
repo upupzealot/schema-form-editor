@@ -36,7 +36,10 @@
       />
       <div
         v-if="filename"
-        class="clear-btn"
+        :class="{
+          'clear-btn': true,
+          v2: isVue2
+        }"
         @click.stop="onClear"
       >
         <component
@@ -51,34 +54,40 @@
 </template>
 
 <style>
-.upload-item .ant-upload.ant-upload-select-text {
+.ant-form-item .upload-item .ant-upload.ant-upload-select-text {
   width: 100%;
 }
-.upload-item .clear-btn {
+.ant-form-item .upload-item .clear-btn {
   position: absolute;
-  top: -3px;
-  right: 3px;
+  top: 4px;
+  right: 16px;
   text-align: center;
   color: rgba(0, 0, 0, 0.25);
+  transition-duration: .3s;
   display: block;
   cursor: pointer;
 }
-.upload-item:hover .clear-btn {
+.ant-form-item .upload-item .clear-btn.v2 {
+  top: -3px;
+  right: 12px;
+}
+.ant-form-item .upload-item:hover .clear-btn {
   color: rgba(0, 0, 0, 0.45);
 }
 </style>
 
 <script>
 import isVue2 from 'vue';
-import { CloseCircle } from '@ant-design/icons-vue'
+import { CloseCircleFilled } from '@ant-design/icons-vue'
 
 import formItemMixin from '../../common/form-item/mixin'
 
 export default {
   mixins: [formItemMixin],
+  data() { return { isVue2 } },
   computed: {
     iconComponent() {
-      return !!isVue2 ? 'a-icon' : CloseCircle;
+      return !!isVue2 ? 'a-icon' : CloseCircleFilled;
     },
     filename() {
       const file = this.data[this.field.name];
