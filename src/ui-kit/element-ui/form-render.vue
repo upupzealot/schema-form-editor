@@ -297,12 +297,6 @@ export default {
     mixedConfig() {
       return _.merge({}, staticConf.config, this.supNodeList[0].config);
     },
-    slotNames() {
-      const $root = this.supNodeList[0];
-      let slotNames = Object.keys($root.$slots || {});
-      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
-      return _.uniq(slotNames);
-    },
   },
 }
 </script>

@@ -19,11 +19,13 @@ export const ToolbarItems = [
   DatePickerToolbar,
 ];
 import BlankToolbar from './components/blank/blank-toolbar.vue'
+import SlotToolbar from './components/slot/slot-toolbar.vue'
 import WrapperToolbar from './components/wrapper/wrapper-toolbar.vue'
 import SubformToolbar from './components/subform/subform-toolbar.vue'
 import ItemListToolbar from './components/item-list/item-list-toolbar.vue'
 export const ToolbarUtils = [
   BlankToolbar,
+  SlotToolbar,
   WrapperToolbar,
   SubformToolbar,
   ItemListToolbar,
@@ -39,6 +41,7 @@ import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
 import SwitchEditor from './components/switch/switch-editor.vue'
 import DatePickerEditor from './components/date-picker/date-picker-editor.vue'
 import BlankEditor from './components/blank/blank-editor.vue'
+import SlotEditor from './components/slot/slot-editor.vue'
 import WrapperEditor from './components/wrapper/wrapper-editor.vue'
 import SubformEditor from './components/subform/subform-editor.vue'
 import ItemListEditor from './components/item-list/item-list-editor.vue'
@@ -53,6 +56,7 @@ export const EditorItems = [
   SwitchEditor,
   DatePickerEditor,
   BlankEditor,
+  SlotEditor,
   WrapperEditor,
   SubformEditor,
   ItemListEditor,
@@ -68,6 +72,7 @@ import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
 import DatePickerSchema from './components/date-picker/date-picker-schema.vue'
 import BlankSchema from './components/blank/blank-schema.vue'
+import SlotSchema from '../../framework/schema-item/components/slot-schema.vue'
 import WrapperSchema from './components/wrapper/wrapper-schema.vue'
 import SubformSchema from './components/subform/subform-schema.vue'
 import ItemListSchema from './components/item-list/item-list-schema.vue'
@@ -82,6 +87,7 @@ export const SchemaItems = [
   SwitchSchema,
   DatePickerSchema,
   BlankSchema,
+  SlotSchema,
   WrapperSchema,
   SubformSchema,
   ItemListSchema,

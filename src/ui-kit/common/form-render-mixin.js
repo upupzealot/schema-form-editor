@@ -70,6 +70,12 @@ const mixin = {
     fieldList() {
       return this.schema.fieldList;
     },
+    slotNames() {
+      const $root = this.supNodeList[0];
+      let slotNames = Object.keys($root.$slots || {});
+      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
+      return _.uniq(slotNames);
+    },
     validFuncs() {
       return this.schema.validFuncs;
     },
