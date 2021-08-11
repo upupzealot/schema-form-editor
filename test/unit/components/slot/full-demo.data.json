@@ -1,0 +1,15 @@
+{
+  "slot-1": "aaa",
+  "slot-2": "bbb",
+  "subform-1": {
+    "slot-3": "ccc"
+  },
+  "item-list-1": [
+    {
+      "slot-4": "ddd-1"
+    },
+    {
+      "slot-4": "ddd-2"
+    }
+  ]
+}

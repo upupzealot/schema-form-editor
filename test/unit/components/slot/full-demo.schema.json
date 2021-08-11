@@ -1,0 +1,72 @@
+{
+  "formConf": {
+    "labelWidth": "100px"
+  },
+  "fieldList": [
+    {
+      "type": "slot",
+      "label": "插槽",
+      "name": "slot-1",
+      "slotName": "aaa"
+    },
+    {
+      "type": "wrapper",
+      "label": "容器",
+      "name": "wrapper-1",
+      "formKey": "ad0acd9",
+      "formConf": {
+        "labelWidth": "100px"
+      },
+      "fieldList": [
+        {
+          "type": "slot",
+          "label": "容器插槽",
+          "name": "slot-2",
+          "slotName": "bbb"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "subform",
+      "label": "子表单",
+      "name": "subform-1",
+      "formKey": "fadb66c",
+      "formConf": {
+        "labelWidth": "100px"
+      },
+      "fieldList": [
+        {
+          "type": "slot",
+          "label": "子表单插槽",
+          "name": "slot-3",
+          "slotName": "ccc"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    },
+    {
+      "type": "item-list",
+      "label": "列表",
+      "name": "item-list-1",
+      "formKey": "4e9f635",
+      "formConf": {
+        "labelWidth": "100px"
+      },
+      "fieldList": [
+        {
+          "type": "slot",
+          "label": "列表插槽",
+          "name": "slot-4",
+          "slotName": "ddd"
+        }
+      ],
+      "validFuncs": [],
+      "validRules": {}
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
