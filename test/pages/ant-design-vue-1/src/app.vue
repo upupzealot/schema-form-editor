@@ -13,7 +13,14 @@
               <FormRender
                 :schema="schema"
                 :data="formData"
-              />
+              >
+                <template v-slot:[slotName]="{ schema, field, data }">
+                  <component
+                    :is="slotComponent"
+                    v-bind="{ schema, field, data }"
+                  />
+                </template>
+              </FormRender>
             </a-card>
           </a-col>
           <a-col :span="12">

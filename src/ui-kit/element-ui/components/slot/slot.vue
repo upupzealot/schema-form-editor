@@ -6,6 +6,7 @@
     :prop="field.name"
     :class="{'slot': true, 'form-item': true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

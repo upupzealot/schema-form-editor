@@ -1,0 +1,13 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "slot",
+      "label": "插槽",
+      "name": "slot-1",
+      "slotName": "test"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
