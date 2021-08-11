@@ -5,7 +5,7 @@ export default {
     return {
       schema: {},
       formData: {},
-      slotName: 'default',
+      slotNames: [],
       slotComponent: 'div',
     };
   },
@@ -33,14 +33,19 @@ export default {
       this.schema = TestSchema;
     }
 
+    // data
+    if(query.data) {
+      fetch(`http://localhost:4451/${query.data}.data.json`)
+        .then(response => response.json())
+        .then(data => this.formData = data);
+    }
+
     // slot
     if(query.slotName) {
-      this.slotName = query.slotName;
-      console.log(this.slotName)
+      this.slotNames = query.slotName.split(',');
     }
     if(query.slotComponent) {
       const comp = require(`../unit/components/slot/${query.slotComponent}.vue`)
-      console.log(comp.default)
       this.slotComponent = comp.default;
     }
 

@@ -14,7 +14,10 @@
                 :schema="schema"
                 :data="formData"
               >
-                <template v-slot:[slotName]="{ schema, field, data }">
+                <template
+                  v-for="(slotName, i) in slotNames"
+                  :key="i"
+                  v-slot:[slotName]="{ schema, field, data }">
                   <component
                     :is="slotComponent"
                     v-bind="{ schema, field, data }"
