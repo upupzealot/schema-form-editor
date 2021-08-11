@@ -29,41 +29,13 @@
 
 <script>
 import FormRender from '../../../../src/ui-kit/element-ui'
-import TestSchema from '../../../test.schema.json'
+import appMixin from '../../app-mixin'
 
 export default {
   name: 'App',
+  mixins: [appMixin],
   components: {
     FormRender,
-  },
-  data() {
-    return {
-      schema: {},
-      formData: {}
-    };
-  },
-  computed: {
-    dataStr() {
-      return JSON.stringify(this.formData, null, 2);
-    }
-  },
-  created() {
-    const query = {};
-    window.location.search
-      .replace('?', '')
-      .split('&')
-      .forEach(q => {
-        const [k, v] = q.split('=');
-        query[k] = v;
-      })
-    if(query.schema) {
-      fetch(`http://localhost:4451/${query.schema}.schema.json`)
-        .then(response => response.json())
-        .then(schema => this.schema = schema);
-    } else {
-      this.schema = TestSchema;
-    }
-    window.$form = this;
   },
 }
 </script>
