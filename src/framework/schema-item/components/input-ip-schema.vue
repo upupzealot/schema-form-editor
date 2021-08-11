@@ -3,6 +3,7 @@
     <template v-slot:basic>
       <Placeholder />
     </template>
+
     <!-- 校验 -->
     <template v-slot:valid>
       <RegexpValidate />
