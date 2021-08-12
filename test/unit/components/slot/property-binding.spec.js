@@ -24,4 +24,59 @@ describe('插槽：属性绑定', () => {
       expect(innerText).toEqual('Slot: slot-1');
     });
   })
+
+  describe('容器插槽', () => {
+    test('基本渲染', async () => {
+      const hasSlot = await page.$eval('#app [sfr-f="wrapper-1"] [sfr-f="slot-2"]', $el => {
+        return !!$el;
+      });
+      expect(hasSlot).toBeTruthy();
+    });
+  
+    test('属性绑定', async () => {
+      const innerText = await page.$eval(`#app [sfr-f="wrapper-1"] [sfr-f="slot-2"] .el-form-item__content,
+      #app [sfr-f="wrapper-1"] [sfr-f="slot-2"] .ant-form-item-control`, $el => {
+        return $el.innerText;
+      });
+      expect(innerText).toEqual('Slot: slot-2');
+    });
+  })
+
+  describe('子表单插槽', () => {
+    test('基本渲染', async () => {
+      const hasSlot = await page.$eval('#app [sfr-f="subform-1"] [sfr-f="slot-3"]', $el => {
+        return !!$el;
+      });
+      expect(hasSlot).toBeTruthy();
+    });
+  
+    test('属性绑定', async () => {
+      const innerText = await page.$eval(`#app [sfr-f="subform-1"] [sfr-f="slot-3"] .el-form-item__content,
+      #app [sfr-f="subform-1"] [sfr-f="slot-3"] .ant-form-item-control`, $el => {
+        return $el.innerText;
+      });
+      expect(innerText).toEqual('Slot: slot-3');
+    });
+  })
+
+  describe('列表插槽', () => {
+    test('基本渲染', async () => {
+      for(let i = 0; i < 2; i++) {
+        const hasSlot = await page.$eval(`#app [sfr-f="item-list-1[${i}]"] [sfr-f="slot-4"]`, $el => {
+          return !!$el;
+        });
+        expect(hasSlot).toBeTruthy();
+      }
+    });
+  
+    test('属性绑定', async () => {
+      for(let i = 0; i < 2; i++) {
+        const innerText = await page.$eval(`#app [sfr-f="item-list-1[${i}]"] [sfr-f="slot-4"] .el-form-item__content,
+        #app [sfr-f="item-list-1[${i}]"] [sfr-f="slot-4"] .ant-form-item-control`, $el => {
+          return $el.innerText;
+        });
+        expect(innerText).toEqual('Slot: slot-4');
+      }
+    });
+  })
 })
