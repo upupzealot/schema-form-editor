@@ -21,9 +21,17 @@
   </el-input>
 </template>
 
-<style>
-.form-item .upper-case-btn {
-  border-right: 1px solid #dcdfe6;
+<style scoped>
+.upper-case-btn,
+.lower-case-btn {
+  margin-left: 0;
+  margin-right: 0;
+}
+.upper-case-btn {
+  margin-left: -20px;
+}
+.lower-case-btn {
+  margin-right: -20px;
 }
 </style>
 

@@ -1,11 +1,14 @@
 describe('插槽：数据回填', () => {
   let page = null;
   beforeAll(async () => {
-    page = await browser.newPage();
-    await page.goto(`http://localhost:${pagePort}/?schema=components/slot/full-demo&data=components/slot/full-demo-empty&slotName=aaa,bbb,ccc,ddd&slotComponent=upper-lower-input-${uikit}`, {
-      waitUntil: 'networkidle0',
-    });
+    page = await brandnewPage(`http://localhost:${pagePort}/?schema=components/slot/full-demo&data=components/slot/full-demo-empty&slotName=aaa,bbb,ccc,ddd&slotComponent=upper-lower-input-${uikit}`);
     await delay(1000);
+  }, 10 * 1000);
+  afterAll(async () => {
+    if(browser) {
+      const browser = await page.browser();
+      await browser.close();
+    }
   });
 
   test('基础插槽', async () => {
