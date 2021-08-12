@@ -1,19 +1,43 @@
 <template>
   <a-input
     v-model="data[field.name]"
+    v-model:value="data[field.name]"
   >
     <template
-      v-slot:append
+      v-slot:addonAfter
     >
-      <a-button class="upper-case-btn">
+      <div
+        class="upper-case-btn"
+        style="
+          border-right: 1px solid #d9d9d9;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;"
+      >
         ABC
-      </a-button>
-      <a-button class="lower-case-btn">
+      </div>
+      <div class="lower-case-btn">
         abc
-      </a-button>
+      </div>
     </template>
   </a-input>
 </template>
+
+<style scoped>
+.upper-case-btn {
+  margin-left: -11px;
+}
+.lower-case-btn {
+  margin-right: -11px;
+}
+.upper-case-btn,
+.lower-case-btn {
+  display: inline-block;
+  padding: 0 11px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+</style>
 
 <script>
 export default {

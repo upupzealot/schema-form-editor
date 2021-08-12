@@ -5,7 +5,13 @@
     <template
       v-slot:append
     >
-      <el-button class="upper-case-btn">
+      <el-button
+        class="upper-case-btn"
+        style="
+          border-right: 1px solid #dcdfe6;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;"
+      >
         ABC
       </el-button>
       <el-button class="lower-case-btn">
@@ -14,6 +20,12 @@
     </template>
   </el-input>
 </template>
+
+<style>
+.form-item .upper-case-btn {
+  border-right: 1px solid #dcdfe6;
+}
+</style>
 
 <script>
 export default {
