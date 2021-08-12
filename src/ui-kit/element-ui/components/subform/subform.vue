@@ -29,40 +29,13 @@ import _ from 'lodash';
 import isVue2, { defineAsyncComponent } from 'vue'
 
 import formItemMixin from '../../common/form-item/mixin'
+import subformMixin from '../../../common/components/subform-mixin'
 
 export default {
   name: 'Subform',
   components: {
     FormRender: isVue2 ? () => import('../../form-render') : defineAsyncComponent(() => import('../../form-render')),
   },
-  mixins: [formItemMixin],
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
-  },
-  computed: {
-    slotNames() {
-      const $root = this.supNodes[0];
-      let slotNames = Object.keys($root.$slots || {});
-      slotNames = slotNames.concat(Object.keys($root.$scopedSlots || {}));
-      return _.uniq(slotNames);
-    },
-  },
-  methods: {
-    async validate() {
-      return new Promise(async resolve => {
-        if(this.$refs['formRender']) { // incase not activated
-          const valid = await this.$refs['formRender'].validate();
-          resolve(valid);
-        } else {
-          resolve(true);
-        }
-      })
-    }
-  }
+  mixins: [formItemMixin, subformMixin],
 }
 </script>
