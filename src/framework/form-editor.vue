@@ -126,6 +126,7 @@
               :schema="previewSchema"
               :data="previewData"
               :config="config"
+              @field-submit="onPreviewFieldSubmit"
             >
               <template #aaa="{ field }">
                 <div>Slot aaa: {{ field && field.name }}</div>
@@ -504,6 +505,9 @@ export default {
       this.previewSchema = _.cloneDeep(this.schema);
       this.previewData = _.cloneDeep(this.data);
       this.previewDialogVisible = true;
+    },
+    onPreviewFieldSubmit({ field: { name }, data }) {
+      console.log(name, data[name]);
     },
     async validateForm() {
       const isValid = await this.$refs['previewForm'].validate();
