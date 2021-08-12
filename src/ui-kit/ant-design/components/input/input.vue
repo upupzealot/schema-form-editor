@@ -30,6 +30,8 @@
       :placeholder="field.placeholder"
       :disabled="disabled"
       :[readonlyProp]="readonly"
+      @keyup.enter="fieldSubmitUnnative"
+      @keyup.enter.native="fieldSubmitNative"
     >
       <template
         v-if="field.prepend"
@@ -48,10 +50,11 @@
 </template>
 
 <script>
-import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
+import formItemMixin from '../../common/form-item/mixin'
+import inputMixin from '../../../common/components/input-mixin'
 
 export default {
-  mixins: [formItemMixin],
+  mixins: [formItemMixin, inputMixin],
   computed: {
     component() {
       if(this.field.mode === 'textarea') {

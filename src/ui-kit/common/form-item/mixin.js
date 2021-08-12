@@ -214,12 +214,20 @@ const mixin = {
       this.effect(...this.effectParams.map(p => p.value));
     }
   },
+  methods: {
+    fieldSubmit() {
+      const $root = this.supNodes[0];
+      $root.$emit('field-submit', {
+        field: this.field,
+        data: this.data
+      });
+    }
+  },
   defaultSchema: {},
 };
 
 import isVue2 from 'vue';
 if(!isVue2) {
-  mixin.methods = {};
   mixin.methods.$set = (obj, key, val) => {
     obj[key] = val;
   };

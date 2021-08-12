@@ -24,6 +24,8 @@
       :disabled="disabled"
       :readonly="readonly"
       style="min-height: 40px; /* 设置最小高度 40px 防止抖动 */"
+      @keyup.enter="fieldSubmitUnnative"
+      @keyup.enter.native="fieldSubmitNative"
     >
       <template
         v-if="field.prepend"
@@ -43,8 +45,9 @@
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'
+import inputMixin from '../../../common/components/input-mixin'
 
 export default {
-  mixins: [formItemMixin]
+  mixins: [formItemMixin, inputMixin]
 };
 </script>
