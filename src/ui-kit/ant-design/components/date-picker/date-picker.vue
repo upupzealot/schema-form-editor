@@ -33,6 +33,7 @@
       :get-calendar-container="() => $refs.formItem.$el"
       @openChange="onOpenChange"
       @panelChange="onPanelChange"
+      @change="fieldSubmitOnChange"
     />
   </component>
 </template>
@@ -127,7 +128,12 @@ export default {
         this.$set(this.data, this.field.name, value.map(v => v.format(this.valueFormat)));
         this.panelMode = ['year', 'year'];
       }
+    },
+    fieldSubmitOnChange() {
+      if(this.field.submitOnChange) {
+        this.fieldSubmit();
+      }
     }
-  }
+  },
 };
 </script>
