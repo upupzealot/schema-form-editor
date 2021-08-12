@@ -14,34 +14,30 @@
       flexDirection: isLabelTop ? 'column' : '',
     }"
     :sfr-f="field.name"
-  />
+  >
+    <template
+      v-for="slotName in slotNames"
+      v-slot:[slotName]="args"
+    >
+      <slot
+        :name="slotName"
+        v-bind="args"
+      />
+    </template>
+  </FormRender>
 </template>
 
 <script>
-import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
-
 import isVue2, { defineAsyncComponent } from 'vue'
+
+import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
+import wrapperMixin from '../../../common/components/wrapper-mixin'
 
 export default {
   name: 'Wrapper',
   components: {
     FormRender: isVue2 ? () => import('../../form-render') : defineAsyncComponent(() => import('../../form-render')),
   },
-  mixins: [formItemMixin],
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
-  },
-  methods: {
-    async validate() {
-      return new Promise(async resolve => {
-        await this.$refs['formRender'].validate(resolve);
-      })
-    }
-  }
+  mixins: [formItemMixin, wrapperMixin],
 }
 </script>
