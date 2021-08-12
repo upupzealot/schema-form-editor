@@ -15,6 +15,7 @@
     }"
     :sfr-f="field.name"
   >
+    <div style="display: none;"/>
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
