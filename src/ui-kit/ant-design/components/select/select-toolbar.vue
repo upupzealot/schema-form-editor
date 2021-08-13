@@ -3,6 +3,7 @@
     v-model="value"
     placeholder="请选择"
     class="example-component"
+    style="width: 100%"
   >
     <a-select-option
       value="option1"
