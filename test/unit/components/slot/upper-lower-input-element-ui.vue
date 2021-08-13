@@ -11,10 +11,14 @@
           border-right: 1px solid #dcdfe6;
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;"
+        @click="toUpperCase({ field, data })"
       >
         ABC
       </el-button>
-      <el-button class="lower-case-btn">
+      <el-button
+        class="lower-case-btn"
+        @click="toLowerCase({ field, data })"
+      >
         abc
       </el-button>
     </template>
@@ -36,26 +40,9 @@
 </style>
 
 <script>
+import upperLowerInputMixin from './upper-lower-input-mixin'
+
 export default {
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
-    field: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
-    data: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
-  }
+  mixins: [upperLowerInputMixin],
 }
 </script>
