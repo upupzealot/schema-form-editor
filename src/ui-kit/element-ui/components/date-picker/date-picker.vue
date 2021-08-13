@@ -18,7 +18,7 @@
       :placeholder="field.placeholder"
       :value-format="valueFormat"
       style="width: 100%;"
-      @change="fieldSubmit"
+      @change="fieldSubmitOnChange"
     />
   </el-form-item>
 </template>

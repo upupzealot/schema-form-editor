@@ -18,6 +18,7 @@
       :multiple="field.multiple"
       style="width: 100%"
       @change="fieldSubmitOnChange"
+      @clear="fieldSubmitOnChange"
     >
       <el-option
         v-for="option in optionList"
