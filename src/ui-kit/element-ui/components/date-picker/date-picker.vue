@@ -18,7 +18,8 @@
       :placeholder="field.placeholder"
       :value-format="valueFormat"
       style="width: 100%;"
-      @change="fieldSubmitOnChange"
+      @change="fieldSubmit"
+      @clear="fieldSubmit"
     />
   </el-form-item>
 </template>
@@ -47,13 +48,6 @@ export default {
         this.$set(this.data, this.field.name, undefined);
         this.calendarId = $id();
         this.$forceUpdate();
-      }
-    }
-  },
-  methods: {
-    fieldSubmitOnChange() {
-      if(this.field.submitOnChange) {
-        this.fieldSubmit();
       }
     }
   },

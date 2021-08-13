@@ -216,11 +216,13 @@ const mixin = {
   },
   methods: {
     fieldSubmit() {
-      const $root = this.supNodes[0];
-      $root.$emit('field-submit', {
-        field: this.field,
-        data: this.data
-      });
+      if(this.field.submitOnChange || true) {
+        const $root = this.supNodes[0];
+        $root.$emit('field-submit', {
+          field: this.field,
+          data: this.data
+        });
+      }
     }
   },
   defaultSchema: {},

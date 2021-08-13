@@ -27,7 +27,7 @@
       :mode="field.multiple ? 'multiple' : undefined"
       :get-popup-container="() => $refs.formItem.$el"
       style="width: 100%"
-      @select="fieldSubmitOnChange"
+      @change="fieldSubmit"
     >
       <a-select-option
         v-for="option in optionList"
@@ -52,12 +52,5 @@ import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
-  methods: {
-    fieldSubmitOnChange() {
-      if(this.field.submitOnChange) {
-        this.fieldSubmit();
-      }
-    }
-  }
 };
 </script>

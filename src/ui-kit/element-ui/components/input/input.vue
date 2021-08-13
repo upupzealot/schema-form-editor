@@ -26,6 +26,7 @@
       style="min-height: 40px; /* 设置最小高度 40px 防止抖动 */"
       @keyup.enter="fieldSubmitUnnative"
       @keyup.enter.native="fieldSubmitNative"
+      @clear="fieldSubmit"
     >
       <template
         v-if="field.prepend"

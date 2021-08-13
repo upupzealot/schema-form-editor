@@ -17,8 +17,8 @@
       :clearable="field.clearable"
       :multiple="field.multiple"
       style="width: 100%"
-      @change="fieldSubmitOnChange"
-      @clear="fieldSubmitOnChange"
+      @change="fieldSubmit"
+      @clear="fieldSubmit"
     >
       <el-option
         v-for="option in optionList"
@@ -42,12 +42,5 @@ import optionListMixin from '../../../common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
-  methods: {
-    fieldSubmitOnChange() {
-      if(this.field.submitOnChange) {
-        this.fieldSubmit();
-      }
-    }
-  }
 };
 </script>

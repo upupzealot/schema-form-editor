@@ -52,9 +52,21 @@
 <script>
 import formItemMixin from '../../common/form-item/mixin'
 import inputMixin from '../../../common/components/input-mixin'
+import { includes } from 'lodash';
 
 export default {
   mixins: [formItemMixin, inputMixin],
+  mounted() {
+    this.$el.addEventListener('click', event => {
+        const icon = event.path.filter(ele => {          
+          return includes(ele.classList, 'anticon')
+              && includes(ele.classList, 'ant-input-clear-icon');
+        })
+        if(icon.length) {
+          this.fieldSubmit();
+        }
+    });
+  },
   computed: {
     component() {
       if(this.field.mode === 'textarea') {
