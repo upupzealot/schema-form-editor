@@ -1,0 +1,17 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-1",
+      "isRemote": true,
+      "remoteConf": {
+        "type": "func",
+        "func": "const apiUrl = \"http://127.0.0.1:4451/field-config/remote-options/standard-format.api.json\";\nconst { data: { data: options } } = await axios.get(apiUrl);\nthis.optionList = options.map(option => ({\n  label: option.name,\n  value: option.id,\n}));\n"
+      }
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}

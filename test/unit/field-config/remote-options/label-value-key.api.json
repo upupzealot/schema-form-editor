@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "success": true,
+  "data": [
+    {
+      "aaa": "option1",
+      "bbb": "选项一"
+    },
+    {
+      "aaa": "option2",
+      "bbb": "选项二"
+    }
+  ]
+}

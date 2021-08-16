@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "success": true,
+  "data": [
+    {
+      "id": "option1",
+      "name": "选项一"
+    },
+    {
+      "id": "option2",
+      "name": "选项二"
+    }
+  ]
+}

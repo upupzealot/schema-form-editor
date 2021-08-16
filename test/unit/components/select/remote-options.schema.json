@@ -1,0 +1,31 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-1",
+      "isRemote": true,
+      "remoteConf": {
+        "type": "api",
+        "api": "http://127.0.0.1:4451/field-config/remote-options/standard-format.api.json",
+        "valueKey": "",
+        "labelKey": ""
+      }
+    },
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-2",
+      "remoteConf": {
+        "type": "api",
+        "api": "http://127.0.0.1:4451/field-config/remote-options/label-value-key.api.json",
+        "valueKey": "aaa",
+        "labelKey": "bbb"
+      },
+      "isRemote": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}

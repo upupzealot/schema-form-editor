@@ -72,10 +72,10 @@ export default {
     'field.remoteConf.func': {
       handler(func) {
         if(func) {
-          let fetchFunc = new Function(func);
+          let fetchFunc = new Function('axios', `(async ()=>{${func}})();`);
           fetchFunc = fetchFunc.bind(this);
           try {
-            const list = fetchFunc() || [];
+            const list = fetchFunc(axios) || [];
             const options = this.parseOptions(list);
             this.optionList = options;
           } catch (err) {}
