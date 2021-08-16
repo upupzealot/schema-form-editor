@@ -14,6 +14,7 @@
       display: 'flex',
       flexDirection: isLabelTop ? 'column' : '',
     }"
+    :sfr-f="field.name"
   >
     <template v-slot:label>
       <Tooltip :field="field" />

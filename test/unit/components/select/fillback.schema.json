@@ -1,0 +1,54 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-1",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-2",
+      "typeValue": true,
+      "options": [
+        {
+          "label": "选项一",
+          "value": 111
+        },
+        {
+          "label": "选项二",
+          "value": 222
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-3",
+      "options": [
+        {
+          "label": "选项一",
+          "value": true
+        },
+        {
+          "label": "选项二",
+          "value": false
+        }
+      ],
+      "typeValue": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
