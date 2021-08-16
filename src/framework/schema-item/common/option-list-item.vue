@@ -2,7 +2,7 @@
   <el-form label-width="40px">
     <el-row>
       <el-col :span="12">
-        <el-form-item label="键">
+        <el-form-item label="标签">
           <el-input v-model="option.label" />
         </el-form-item>
       </el-col>
@@ -11,7 +11,7 @@
           label="值"
           label-width="40px"
         >
-          <el-input v-model="option.value" />
+          <el-input v-model="value" />
         </el-form-item>
       </el-col>
     </el-row>
@@ -34,14 +34,21 @@ export default {
       }
     }
   },
-  watch: {
-    'option.value': {
-      handler(val) {
+  computed: {
+    value: {
+      get() {
+        return `${this.option.value}`
+      },
+      set(val) {
         if(this.typeValue) {
           this.$set(this.option, 'value', this.transValue(val));
+        } else {
+          this.$set(this.option, 'value', val);
         }
       }
     },
+  },
+  watch: {
     typeValue(val) {
       if(val) {
         this.$set(this.option, 'value', this.transValue(this.option.value));
@@ -51,10 +58,9 @@ export default {
     }
   },
   methods: {
-    transValue(value) {
-      let val = value;
-      if(val === 'true' || val === 'false') {
-        return JSON.parse(value);
+    transValue(val) {
+      if(`${val}` === 'true' || `${val}` === 'false') {
+        return JSON.parse(val);
       }
       const numVal = Number(val)
       if(numVal || numVal === 0) {

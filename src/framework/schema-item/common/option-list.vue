@@ -220,21 +220,7 @@ export default {
         return this.isRemote ? [] : this.tempOptions;
       },
       set(val) {
-        let optionList = val;
-        if(this.typeValue) {
-          optionList = optionList.map(option => {
-            let { value } = option;
-            if(value === 'true' || value === 'false') {
-              option.value = JSON.parse(value);
-            }
-            if(Number(value)) {
-              option.value = Number(value)
-            }
-            return option;
-          });
-        }
-
-        this.tempOptions = optionList;
+        this.tempOptions = val;
         this.$set(this.field, 'options', this.options);
       }
     }
