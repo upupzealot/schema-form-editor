@@ -78,7 +78,7 @@ import InputSchema from '../../framework/schema-item/components/input-schema.vue
 import InputNumberSchema from '../../framework/schema-item/components/input-number-schema.vue'
 import InputIpSchema from '../../framework/schema-item/components/input-ip-schema.vue'
 import InputFileSchema from '../../framework/schema-item/components/input-file-schema.vue'
-import SelectSchema from './components/select/select-schema.vue'
+import SelectSchema from '../../framework/schema-item/components/select-schema.vue'
 import CascaderSchema from './components/cascader/cascader-schema.vue'
 import ChinaRegionSchema from './components/china-region/china-region-schema.vue'
 import ChinaLocationSchema from './components/china-location/china-location-schema.vue'
