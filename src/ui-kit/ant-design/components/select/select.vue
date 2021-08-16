@@ -20,8 +20,8 @@
       <Tooltip :field="field" />
     </template>
     <a-select
-      v-model="data[field.name]"
-      v-model:value="data[field.name]"
+      v-model="fieldValue"
+      v-model:value="fieldValue"
       :disabled="disabled"
       :placeholder="field.placeholder"
       :allow-clear="field.clearable"
@@ -33,7 +33,7 @@
       <a-select-option
         v-for="option in optionList"
         :key="option.value"
-        :value="option.value"
+        :value="isBoolean(option.value) ? `${option.value}` : option.value"
       >
         {{ option.label }}
       </a-select-option>
@@ -48,10 +48,32 @@
 </style>
 
 <script>
+import { isBoolean } from 'lodash';
 import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
+  computed: {
+    fieldValue: {
+      get() {
+        const fv = this.data[this.field.name];
+        if(fv === true || fv === false) {
+          return `${fv}`;
+        }
+        return fv;
+      },
+      set(val) {
+        if(this.field.typeValue && (val === 'true' || val === 'false')) {
+          this.$set(this.data, this.field.name, JSON.parse(val));
+        } else {
+          this.$set(this.data, this.field.name, val);
+        }
+      }
+    }
+  },
+  methods: {
+    isBoolean
+  }
 };
 </script>
