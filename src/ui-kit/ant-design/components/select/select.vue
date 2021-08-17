@@ -51,9 +51,10 @@
 import { isBoolean } from 'lodash';
 import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
+import selectMixin from '../../../common/components/select-mixin'
 
 export default {
-  mixins: [formItemMixin, optionListMixin],
+  mixins: [formItemMixin, optionListMixin, selectMixin],
   computed: {
     fieldValue: {
       get() {

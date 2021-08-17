@@ -40,8 +40,9 @@
 <script>
 import formItemMixin from '../../common/form-item/mixin'
 import optionListMixin from '../../../common/form-item/option-list-mixin.js'
+import selectMixin from '../../../common/components/select-mixin'
 
 export default {
-  mixins: [formItemMixin, optionListMixin],
+  mixins: [formItemMixin, optionListMixin, selectMixin],
 };
 </script>
