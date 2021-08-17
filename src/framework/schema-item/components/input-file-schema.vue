@@ -1,14 +1,7 @@
 <template>
   <StandardForm>
     <template v-slot:basic>
-      <el-form-item
-        label="占位符"
-        prop="placeholder"
-      >
-        <el-input
-          v-model="field.placeholder"
-        />
-      </el-form-item>
+      <Placeholder />
 
       <el-form-item
         label="文件类型"
@@ -31,9 +24,14 @@ input#file-upload-button {
 <script>
 import schemaItemMixin from '@/framework/schema-item/mixin';
 
+import Placeholder from '@/framework/schema-item/common/placeholder'
+
 export default {
   type: 'input-file',
   mixins: [schemaItemMixin],
+  components: {
+    Placeholder
+  },
   computed: {
     accept: {
       get() {

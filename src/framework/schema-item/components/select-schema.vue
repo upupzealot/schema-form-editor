@@ -1,28 +1,12 @@
 <template>
   <StandardForm>
     <template v-slot:basic>
-      <el-form-item
-        label="占位符"
-        prop="placeholder"
-      >
-        <el-input
-          v-model="field.placeholder"
-        />
-      </el-form-item>
+      <Placeholder />
       <OptionList
         :field="field"
         class="schema-form"
       />
-      <el-form-item
-        label="可清空"
-        prop="clearable"
-        active-text="是"
-        inactive-text="否"
-      >
-        <el-switch
-          v-model="field.clearable"
-        />
-      </el-form-item>
+      <Clearable />
       <el-form-item
         label="可多选"
         prop="multiple"
@@ -41,10 +25,15 @@
 import schemaItemMixin from '@/framework/schema-item/mixin';
 import OptionList from '@/framework/schema-item/common/option-list';
 
+import Clearable from '@/framework/schema-item/common/clearable'
+import Placeholder from '@/framework/schema-item/common/placeholder'
+
 export default {
   type: 'select',
   components: {
     OptionList,
+    Clearable,
+    Placeholder
   },
   mixins: [schemaItemMixin],
 };
