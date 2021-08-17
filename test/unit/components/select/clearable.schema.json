@@ -1,0 +1,39 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-1",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "clearable": true
+    },
+    {
+      "type": "select",
+      "label": "下拉选项",
+      "name": "select-2",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "clearable": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
