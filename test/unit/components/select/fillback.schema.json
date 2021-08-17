@@ -3,7 +3,7 @@
   "fieldList": [
     {
       "type": "select",
-      "label": "下拉选项",
+      "label": "字符选项",
       "name": "select-1",
       "options": [
         {
@@ -18,7 +18,7 @@
     },
     {
       "type": "select",
-      "label": "下拉选项",
+      "label": "数字选项",
       "name": "select-2",
       "typeValue": true,
       "options": [
@@ -34,7 +34,7 @@
     },
     {
       "type": "select",
-      "label": "下拉选项",
+      "label": "布尔选项",
       "name": "select-3",
       "options": [
         {
@@ -47,6 +47,22 @@
         }
       ],
       "typeValue": true
+    },
+    {
+      "type": "select",
+      "label": "多选",
+      "name": "select-4",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "multiple": true
     }
   ],
   "validFuncs": [],

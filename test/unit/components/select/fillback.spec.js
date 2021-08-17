@@ -8,6 +8,10 @@ describe('下拉选项：回填', () => {
         'select-1': 'option1',
         'select-2': 111,
         'select-3': true,
+        "select-4": [
+          "option1",
+          "option2"
+        ],
       }
     }
   });
@@ -43,5 +47,10 @@ describe('下拉选项：回填', () => {
       const $select = wrapper.getField('select-3').find('.ant-select');
       expect($select.text()).toEqual('选项一');
     }
+  });
+
+  test('多选', () => {
+    const $select = wrapper.getField('select-4').find('.el-select, .ant-select');
+    expect($select.text().replace(/\s/g, '')).toEqual('选项一选项二');
   });
 })
