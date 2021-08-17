@@ -66,6 +66,7 @@
       <el-col :span="24">
         <CodeEditor
           v-model="func"
+          style="margin-bottom: 22px;"
         />
       </el-col>
     </el-row>
