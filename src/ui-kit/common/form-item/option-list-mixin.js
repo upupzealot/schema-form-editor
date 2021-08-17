@@ -70,15 +70,20 @@ export default {
       immediate: true,
     },
     'field.remoteConf.func': {
-      handler(func) {
+      async handler(func) {
         if(func) {
-          let fetchFunc = new Function('axios', `(async ()=>{${func}})();`);
+          const getAsyncFunction = new Function(`return Object.getPrototypeOf(async function(){}).constructor;`);
+          const AsyncFunction = getAsyncFunction();
+          // 只能这样拿到 AsyncFunction
+          // 直接写 Object.getPrototypeOf(async function(){}).constructor
+          // 会被 babel 转成 Function
+          
+          let fetchFunc = new AsyncFunction('axios', `${func}`);
           fetchFunc = fetchFunc.bind(this);
           try {
-            const list = fetchFunc(axios) || [];
-            const options = this.parseOptions(list);
+            const options = (await fetchFunc(axios)) || [];
             this.optionList = options;
-          } catch (err) {}
+          } catch (err) { console.log(err) }
         }
       },
       immediate: true,
