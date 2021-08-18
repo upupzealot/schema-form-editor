@@ -1,9 +1,11 @@
 {
-  "formConf": {},
+  "formConf": {
+    "labelWidth": "100px"
+  },
   "fieldList": [
     {
       "type": "radio",
-      "label": "单选框",
+      "label": "默认",
       "name": "radio-1",
       "options": [
         {
@@ -21,7 +23,7 @@
     },
     {
       "type": "radio",
-      "label": "单选框",
+      "label": "带边框",
       "name": "radio-2",
       "options": [
         {
@@ -40,7 +42,7 @@
     },
     {
       "type": "radio",
-      "label": "单选框",
+      "label": "按钮组",
       "name": "radio-3",
       "options": [
         {
@@ -59,7 +61,7 @@
     },
     {
       "type": "radio",
-      "label": "单选框",
+      "label": "边框按钮组",
       "name": "radio-4",
       "options": [
         {
