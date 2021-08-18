@@ -21,15 +21,17 @@
     <a-radio-group
       v-model="data[field.name]"
       v-model:value="data[field.name]"
+      :button-style="buttonStyle"
       :disabled="disabled"
     >
-      <a-radio
+      <component
+        :is="buttonComponent"
         v-for="option in optionList"
         :key="option.value"
         :value="option.value"
       >
         {{ option.label }}
-      </a-radio>
+      </component>
     </a-radio-group>
   </component>
 </template>
@@ -40,5 +42,24 @@ import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
+  computed: {
+    buttonComponent() {
+      if(this.field.mode === 'button'
+      || this.field.mode === 'border-button') {
+        return 'a-radio-button';
+      } else {
+        return 'a-radio';
+      }
+    },
+    buttonStyle() {
+      if(this.field.mode === 'button') {
+        return 'solid';
+      } else if (this.field.mode === 'border-button') {
+        return 'outline';
+      } else {
+        return undefined;
+      }
+    }
+  }
 };
 </script>

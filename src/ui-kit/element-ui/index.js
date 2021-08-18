@@ -82,7 +82,7 @@ import SelectSchema from '../../framework/schema-item/components/select-schema.v
 import CascaderSchema from './components/cascader/cascader-schema.vue'
 import ChinaRegionSchema from './components/china-region/china-region-schema.vue'
 import ChinaLocationSchema from './components/china-location/china-location-schema.vue'
-import RadioSchema from './components/radio/radio-schema.vue'
+import RadioSchema from '../../framework/schema-item/components/radio-schema.vue'
 import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
 import DatePickerSchema from './components/date-picker/date-picker-schema.vue'

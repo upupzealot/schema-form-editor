@@ -11,16 +11,19 @@
       <Tooltip :field="field" />
     </template>
     
+    <el-radio-group v-model="data[field.name]">
     <!-- 这里的 label 是值 -->
-    <el-radio
-      v-for="option in optionList"
-      :key="option.value"
-      v-model="data[field.name]"
-      :label="option.value"
-      :disabled="disabled"
-    >
-      {{ option.label }}
-    </el-radio>
+      <component
+        :is="buttonComponent"
+        v-for="option in optionList"
+        :key="option.value"
+        :label="option.value"
+        :border="hasBorder"
+        :disabled="disabled"
+      >
+        {{ option.label }}
+      </component>
+    </el-radio-group>
   </el-form-item>
 </template>
 
@@ -30,5 +33,18 @@ import optionListMixin from '../../../common/form-item/option-list-mixin.js'
 
 export default {
   mixins: [formItemMixin, optionListMixin],
+  computed: {
+    buttonComponent() {
+      if(this.field.mode === 'button'
+      || this.field.mode === 'border-button') {
+        return 'el-radio-button';
+      } else {
+        return 'el-radio';
+      }
+    },
+    hasBorder() {
+      return this.field.mode === 'border';
+    }
+  }
 };
 </script>
