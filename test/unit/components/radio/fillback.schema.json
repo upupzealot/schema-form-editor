@@ -1,0 +1,82 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "radio",
+      "label": "单选框",
+      "name": "radio-1",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "remoteConf": {
+        "type": "api"
+      }
+    },
+    {
+      "type": "radio",
+      "label": "单选框",
+      "name": "radio-2",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "mode": "border",
+      "remoteConf": {
+        "type": "api"
+      }
+    },
+    {
+      "type": "radio",
+      "label": "单选框",
+      "name": "radio-3",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "mode": "button",
+      "remoteConf": {
+        "type": "api"
+      }
+    },
+    {
+      "type": "radio",
+      "label": "单选框",
+      "name": "radio-4",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "remoteConf": {
+        "type": "api"
+      },
+      "mode": "border-button"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
