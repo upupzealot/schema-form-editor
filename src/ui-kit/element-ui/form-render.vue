@@ -7,6 +7,7 @@
     :model="data"
     :rules="validRules"
     :sfr-form="schema.name || '$root'"
+    @submit.native.prevent
   >
     <component
       :is="inline ? 'span' : 'el-row'"
