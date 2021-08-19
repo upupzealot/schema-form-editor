@@ -68,7 +68,7 @@ import InputIpSchema from '../../framework/schema-item/components/input-ip-schem
 import InputFileSchema from '../../framework/schema-item/components/input-file-schema.vue'
 import SelectSchema from '../../framework/schema-item/components/select-schema.vue'
 import RadioSchema from '../../framework/schema-item/components/radio-schema.vue'
-import CheckboxSchema from './components/checkbox/checkbox-schema.vue'
+import CheckboxSchema from '../../framework/schema-item/components/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
 import DatePickerSchema from './components/date-picker/date-picker-schema.vue'
 import BlankSchema from './components/blank/blank-schema.vue'
