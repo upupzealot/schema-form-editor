@@ -5,6 +5,30 @@
         :field="field"
         class="schema-form"
       />
+      <el-form-item
+        v-if="uiKit === 'element-ui'"
+        label="组件模式"
+        prop="schema-form"
+      >
+        <el-radio
+          v-model="mode"
+          label="radio"
+        >
+          默认
+        </el-radio>
+        <el-radio
+          v-model="mode"
+          label="border"
+        >
+          带有边框
+        </el-radio>
+        <el-radio
+          v-model="mode"
+          label="button"
+        >
+          按钮组
+        </el-radio>
+      </el-form-item>
     </template>
   </StandardForm>
 </template>
@@ -19,5 +43,15 @@ export default {
     OptionList,
   },
   mixins: [schemaItemMixin],
+  computed: {
+    mode: {
+      get() {
+        return this.field.mode || 'radio';
+      },
+      set(mode) {
+        this.$set(this.field, 'mode', mode === 'radio' ? undefined : mode);
+      }
+    },
+  }
 };
 </script>

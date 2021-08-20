@@ -1,0 +1,60 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "checkbox",
+      "label": "默认",
+      "name": "checkbox-1",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "label": "带边框",
+      "name": "checkbox-2",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "remoteConf": {
+        "type": "api"
+      },
+      "mode": "border"
+    },
+    {
+      "type": "checkbox",
+      "label": "按钮组",
+      "name": "checkbox-3",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "remoteConf": {
+        "type": "api"
+      },
+      "mode": "button"
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
