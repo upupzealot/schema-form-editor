@@ -54,7 +54,7 @@ export default {
       get() {
         return this.field.mode || 'radio';
       },
-      set(val) {
+      set(mode) {
         this.$set(this.field, 'mode', mode === 'radio' ? undefined : mode);
       }
     },
