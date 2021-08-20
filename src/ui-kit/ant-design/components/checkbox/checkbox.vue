@@ -19,10 +19,21 @@
       <Tooltip :field="field" />
     </template>
 
+    <div>
+      <a-checkbox
+        v-if="field.hasSelectAll"
+        :checked="checkAll"
+        :indeterminate="isIndeterminate"
+        @change="onCheckAllChange"
+      >
+        全选
+      </a-checkbox>
+    </div>
     <a-checkbox-group
-      v-model="data[field.name]"
+      :value="data[field.name]"
       v-model:value="data[field.name]"
       :disabled="disabled"
+      @change="onChange"
     >
       <!-- 这里的 label 是值 -->
       <a-checkbox
@@ -37,16 +48,11 @@
 </template>
 
 <script>
-import isVue2 from 'vue';
 import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 import optionListMixin from '@/ui-kit/common/form-item/option-list-mixin.js'
+import checkboxMixin from '../../../common/components/checkbox-mixin'
 
 export default {
-  mixins: [formItemMixin, optionListMixin],
-  created() {
-    if(!this.data[this.field.name]) {
-      this.$set(this.data, this.field.name, []);
-    }    
-  }
+  mixins: [formItemMixin, optionListMixin, checkboxMixin],
 };
 </script>

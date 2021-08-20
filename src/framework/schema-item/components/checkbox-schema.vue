@@ -29,6 +29,12 @@
           按钮组
         </el-radio>
       </el-form-item>
+      <el-form-item
+        label="全选按钮"
+        prop="select-all"
+      >
+        <el-switch v-model="hasSelectAll" />
+      </el-form-item>
     </template>
   </StandardForm>
 </template>
@@ -48,10 +54,18 @@ export default {
       get() {
         return this.field.mode || 'radio';
       },
-      set(mode) {
+      set(val) {
         this.$set(this.field, 'mode', mode === 'radio' ? undefined : mode);
       }
     },
+    hasSelectAll: {
+      get() {
+        return this.field.hasSelectAll || false;
+      },
+      set(val) {
+        this.$set(this.field, 'hasSelectAll', val || undefined);
+      }
+    }
   }
 };
 </script>

@@ -12,7 +12,17 @@
       <Tooltip :field="field" />
     </template>
 
-    <el-checkbox-group v-model="data[field.name]">
+    <el-checkbox
+      v-if="field.hasSelectAll"
+      v-model="checkAll"
+      label="全选"
+      :indeterminate="isIndeterminate"
+      @change="onCheckAllChange"
+    />
+    <el-checkbox-group
+      v-model="data[field.name]"
+      @change="onChange"
+    >
       <!-- 这里的 label 是值 -->
       <component
         :is="buttonComponent"
@@ -31,14 +41,10 @@
 <script>
 import formItemMixin from '../../common/form-item/mixin'
 import optionListMixin from '../../../common/form-item/option-list-mixin.js'
+import checkboxMixin from '../../../common/components/checkbox-mixin'
 
 export default {
-  mixins: [formItemMixin, optionListMixin],
-  created() {
-    if(!this.data[this.field.name]) {
-      this.$set(this.data, this.field.name, []);
-    }    
-  },
+  mixins: [formItemMixin, optionListMixin, checkboxMixin],
   computed: {
     buttonComponent() {
       if(this.field.mode === 'button') {
