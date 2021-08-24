@@ -109,7 +109,7 @@ export default {
       handler({ id: newId, name: newName}, { id: oldId, name: oldName}) {
         // id 的改变是切换字段触发的
         // 只有当 id 不变时，name 的变化才触发 updateFieldName
-        if(newId === oldId && newName && oldName) {
+        if(newId === oldId && newName && oldName && newName !== oldName) {
           this.$store.commit(`${this.form.formKey}/updateFieldName`, {
             newName,
             oldName,
