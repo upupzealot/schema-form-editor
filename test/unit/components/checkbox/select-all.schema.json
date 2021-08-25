@@ -1,0 +1,23 @@
+{
+  "formConf": {},
+  "fieldList": [
+    {
+      "type": "checkbox",
+      "label": "复选框",
+      "name": "checkbox-1",
+      "options": [
+        {
+          "label": "选项一",
+          "value": "option1"
+        },
+        {
+          "label": "选项二",
+          "value": "option2"
+        }
+      ],
+      "hasSelectAll": true
+    }
+  ],
+  "validFuncs": [],
+  "validRules": {}
+}
