@@ -1,6 +1,6 @@
 import FillbackSchema from './fillback.schema.json'
 
-describe('单选框：回填', () => {
+describe('复选框：回填', () => {
   const wrapper = wrap({
     propsData: {
       schema: FillbackSchema,
