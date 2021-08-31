@@ -67,6 +67,7 @@ import InputNumberSchema from '../../framework/schema-item/components/input-numb
 import InputIpSchema from '../../framework/schema-item/components/input-ip-schema.vue'
 import InputFileSchema from '../../framework/schema-item/components/input-file-schema.vue'
 import SelectSchema from '../../framework/schema-item/components/select-schema.vue'
+import CascaderSchema from '../../framework/schema-item/components/cascader-schema.vue'
 import RadioSchema from '../../framework/schema-item/components/radio-schema.vue'
 import CheckboxSchema from '../../framework/schema-item/components/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
@@ -82,6 +83,7 @@ export const SchemaItems = [
   InputIpSchema,
   InputFileSchema,
   SelectSchema,
+  CascaderSchema,
   RadioSchema,
   CheckboxSchema,
   SwitchSchema,
