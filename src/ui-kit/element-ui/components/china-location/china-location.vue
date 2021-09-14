@@ -10,20 +10,6 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    <!-- <el-input
-      v-model="valueText"
-      type="textarea"
-      :rows="2"
-      :autosize="{ minRows: 2, maxRows: 2}"
-      resize="none"
-      :readonly="true"
-      @focus="show"
-      @click.native="show"
-      @click="show"
-      :placeholder="field.placeholder || '地图选点'"
-      :clearable="field.clearable"
-      class="example-component"
-    /> -->
     <el-button
       :style="{ width: fullWidth ? '100%' : '' }"
       @click="show"
@@ -51,7 +37,9 @@
           trigger="manual"
           :visible.sync="searchPopoverVisible"
         >
-          <template v-slot:reference>
+          <template
+            slot="reference"
+          >
             <el-input
               ref="searchInput"
               v-model="search"
@@ -86,13 +74,15 @@
           width="340"
           trigger="manual"
         >
-          <template v-slot:reference>
+          <template
+            slot="reference"
+          >
             <div
               style="
                 position: absolute;
                 left: 50%; margin-left: -10px;
-                top: 160px; margin-top: -20px;
-                height: 20px; width: 20px;
+                top: 100px;
+                height: 20px; width: 20px; line-height: 20px;
                 font-size: 20px;
                 color: #F56C6C;"
             >
@@ -215,7 +205,7 @@
   </el-form-item>
 </template>
 
-<style scoped lang="less">
+<style scoped>
 /* 滚动条样式 */
 ::-webkit-scrollbar {
   width: 8px;
@@ -236,31 +226,30 @@
   margin-right: 20px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
-  &:last-of-type {
-    border-bottom: none;
-  }
-  &:hover {
-    background-color: #ecf5ff;
-  }
-
-  .title {
-    height: 18px;
-    line-height: 18px;
-    color: #777;
-    text-overflow: ellipsis;
-    overflow: hidden; 
-    white-space: nowrap;
-  }
-  .address {
-    margin-top: 4px;
-    height: 12px;
-    line-height: 12px;
-    font-size: 12px;
-    color: #aaa;
-    text-overflow: ellipsis;
-    overflow: hidden; 
-    white-space: nowrap;
-  }
+}
+.location-item:last-of-type {
+  border-bottom: none;
+}
+.location-item:hover {
+  background-color: #ecf5ff;
+}
+.location-item .title {
+  height: 18px;
+  line-height: 18px;
+  color: #777;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+}
+.location-item .address {
+  margin-top: 4px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 12px;
+  color: #aaa;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
 }
 </style>
 
@@ -345,7 +334,11 @@ export default {
       });
       this.map = map;
       map.setDefaultCursor('pointer');
-      map.centerAndZoom(new BMap.Point(120.19, 30.26), 15);
+      // map.centerAndZoom(new BMap.Point(this.lng, this.lat), 15);
+      this.lng = this.mapLng ? (this.data[this.lngKey] || 120.19) : 120.19;
+      this.lat = this.mapLat ? (this.data[this.latKey] || 30.26) : 30.26;
+      this.centerToPoint(new BMap.Point(this.lng, this.lat), true);
+      
       map.enableScrollWheelZoom();
       map.addEventListener('click', e => {
         this.popoverVisible = false;
@@ -401,6 +394,17 @@ export default {
     },
     onShow() {
       this.showed = true;
+
+      this.lng = this.mapLng ? (this.data[this.lngKey] || 120.19)  : 120.19;
+      this.lat = this.mapLat ? (this.data[this.latKey] || 30.26) : 30.26;
+      if(this.map) {
+        this.centerToPoint(new BMap.Point(this.lng, this.lat));
+      }
+
+      this.province = this.mapProvince ? this.data[this.provinceKey] : '';
+      this.city = this.mapCity ? this.data[this.cityKey] : '';
+      this.district = this.mapDistrict ? this.data[this.districtKey] : '';
+      this.address = this.mapAddress ? this.data[this.addressKey] : '';
     },
     onPick() {
       if(this.mapLng) {
@@ -445,22 +449,21 @@ export default {
         this.popoverVisible = true;
       });
     },
-    centerToPoint(point) {
+    centerToPoint(point, init) {
       const map = this.map;
-      let center = map.pointToPixel(point);
-      center = map.pixelToPoint({
-        x: center.x,
-        y: center.y - 40,
-      });
-      map.panTo(center);
+      if(!init) {
+        map.panTo(point);
+      } else {
+        map.centerAndZoom(point, 15);
+      }
     },
     makeShortAddress(point, province, city) {
       const { address } = point;
       let shortAddress = address;
-      if(shortAddress.startsWith(province)) {
+      if(shortAddress && shortAddress.startsWith(province)) {
         shortAddress = shortAddress.replace(province, '');
       }
-      if(shortAddress.startsWith(city)) {
+      if(shortAddress && shortAddress.startsWith(city)) {
         shortAddress = shortAddress.replace(city, '');
       }
       point.shortAddress = shortAddress;
