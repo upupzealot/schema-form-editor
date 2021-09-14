@@ -124,6 +124,11 @@
       </el-row>
       <Placeholder />
     </template>
+
+    <!-- 校验 -->
+    <template v-slot:valid>
+      <FuncValidate />
+    </template>
   </StandardForm>
 </template>
 
@@ -145,6 +150,7 @@ import _ from 'lodash';
 
 import schemaItemMixin from '@/framework/schema-item/mixin';
 import Placeholder from '@/framework/schema-item/common/placeholder'
+import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
 
 export default {
   type: 'input-number',
