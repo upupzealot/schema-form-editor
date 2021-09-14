@@ -37,9 +37,7 @@
           trigger="manual"
           :visible.sync="searchPopoverVisible"
         >
-          <template
-            slot="reference"
-          >
+          <template #reference>
             <el-input
               ref="searchInput"
               v-model="search"
@@ -74,9 +72,7 @@
           width="340"
           trigger="manual"
         >
-          <template
-            slot="reference"
-          >
+          <template #reference>
             <div
               style="
                 position: absolute;
