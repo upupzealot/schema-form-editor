@@ -150,14 +150,14 @@ import _ from 'lodash';
 
 import schemaItemMixin from '@/framework/schema-item/mixin';
 import Placeholder from '@/framework/schema-item/common/placeholder'
-import RegexpValidate from '@/framework/schema-item/common/validate-rules/regexp'
+import FuncValidate from '@/framework/schema-item/common/validate-rules/func'
 
 export default {
   type: 'input-number',
   mixins: [schemaItemMixin],
   components: {
     Placeholder,
-    RegexpValidate
+    FuncValidate
   },
   computed: {
     min: {
