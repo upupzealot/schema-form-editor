@@ -156,7 +156,8 @@ export default {
   type: 'input-number',
   mixins: [schemaItemMixin],
   components: {
-    Placeholder
+    Placeholder,
+    RegexpValidate
   },
   computed: {
     min: {
