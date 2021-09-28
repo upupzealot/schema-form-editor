@@ -33,7 +33,6 @@
       :value="data[field.name]"
       v-model:value="data[field.name]"
       :disabled="disabled"
-      @change="onChange"
     >
       <!-- 这里的 label 是值 -->
       <a-checkbox

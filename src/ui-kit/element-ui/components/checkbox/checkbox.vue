@@ -21,7 +21,6 @@
     />
     <el-checkbox-group
       v-model="data[field.name]"
-      @change="onChange"
     >
       <!-- 这里的 label 是值 -->
       <component
