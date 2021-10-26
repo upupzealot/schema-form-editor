@@ -10,6 +10,7 @@ import RadioToolbar from './components/radio/radio-toolbar.vue'
 import CheckboxToolbar from './components/checkbox/checkbox-toolbar.vue'
 import SwitchToolbar from './components/switch/switch-toolbar.vue'
 import DatePickerToolbar from './components/date-picker/date-picker-toolbar.vue'
+import TimePickerToolbar from './components/time-picker/time-picker-toolbar.vue'
 export const ToolbarItems = [
   InputToolbar,
   InputNumberToolbar,
@@ -23,6 +24,7 @@ export const ToolbarItems = [
   CheckboxToolbar,
   SwitchToolbar,
   DatePickerToolbar,
+  TimePickerToolbar,
 ];
 import BlankToolbar from './components/blank/blank-toolbar.vue'
 import SlotToolbar from './components/slot/slot-toolbar.vue'
@@ -49,6 +51,7 @@ import RadioEditor from './components/radio/radio-editor.vue'
 import CheckboxEditor from './components/checkbox/checkbox-editor.vue'
 import SwitchEditor from './components/switch/switch-editor.vue'
 import DatePickerEditor from './components/date-picker/date-picker-editor.vue'
+import TimePickerEditor from './components/time-picker/time-picker-editor.vue'
 import BlankEditor from './components/blank/blank-editor.vue'
 import SlotEditor from './components/slot/slot-editor.vue'
 import WrapperEditor from './components/wrapper/wrapper-editor.vue'
@@ -67,6 +70,7 @@ export const EditorItems = [
   CheckboxEditor,
   SwitchEditor,
   DatePickerEditor,
+  TimePickerEditor,
   BlankEditor,
   SlotEditor,
   WrapperEditor,
@@ -86,6 +90,7 @@ import RadioSchema from '../../framework/schema-item/components/radio-schema.vue
 import CheckboxSchema from '../../framework/schema-item/components/checkbox-schema.vue'
 import SwitchSchema from './components/switch/switch-schema.vue'
 import DatePickerSchema from './components/date-picker/date-picker-schema.vue'
+import TimePickerSchema from './components/time-picker/time-picker-schema.vue'
 import BlankSchema from './components/blank/blank-schema.vue'
 import SlotSchema from '../../framework/schema-item/components/slot-schema.vue'
 import WrapperSchema from './components/wrapper/wrapper-schema.vue'
@@ -104,6 +109,7 @@ export const SchemaItems = [
   CheckboxSchema,
   SwitchSchema,
   DatePickerSchema,
+  TimePickerSchema,
   BlankSchema,
   SlotSchema,
   WrapperSchema,
@@ -123,6 +129,7 @@ import Radio from './components/radio/radio.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
 import Switch from './components/switch/switch.vue'
 import DatePicker from './components/date-picker/date-picker.vue'
+import TimePicker from './components/time-picker/time-picker.vue'
 import Blank from './components/blank/blank.vue'
 import Slot from './components/slot/slot.vue'
 import Wrapper from './components/wrapper/wrapper.vue'
@@ -141,6 +148,7 @@ export {
   Checkbox,
   Switch,
   DatePicker,
+  TimePicker,
   Blank,
   Slot,
   Wrapper,

@@ -115,6 +115,14 @@
           :data="data"
           :sup-nodes="supNodeList"
         />
+        <TimePicker
+          v-if="field.type === 'time-picker'"
+          :form-conf="formConf"
+          :scenario="scenario"
+          :field="field"
+          :data="data"
+          :sup-nodes="supNodeList"
+        />
         <Blank
           v-if="field.type === 'blank'"
           :form-conf="formConf"
@@ -229,6 +237,7 @@ import Radio from './components/radio/radio';
 import Checkbox from './components/checkbox/checkbox';
 import SSwitch from './components/switch/switch';
 import DatePicker from './components/date-picker/date-picker';
+import TimePicker from './components/time-picker/time-picker';
 
 import Blank from './components/blank/blank';
 import SSlot from './components/slot/slot';
@@ -287,6 +296,7 @@ export default {
     Checkbox,
     SSwitch,
     DatePicker,
+    TimePicker,
     Blank,
     SSlot,
     Wrapper,
