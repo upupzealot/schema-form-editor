@@ -369,7 +369,7 @@ export default {
       // eslint-disable-next-line
       return console.error('未找到百度地图 appkey，请在 config.baiduAk 中设置');
     }
-    const src = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=BMapInit`;
+    const src = `//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=BMapInit`;
     if (!document.querySelector('script[src="' + src + '"]')) {
       const script = document.createElement('script');
       script.src = src;
