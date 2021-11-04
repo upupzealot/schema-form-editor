@@ -17,6 +17,7 @@
       :placeholder="field.placeholder"
       :clearable="field.clearable"
       :multiple="field.multiple"
+      :filterable="field.searchable"
       style="width: 100%"
       @change="fieldSubmit"
       @clear="fieldSubmit"

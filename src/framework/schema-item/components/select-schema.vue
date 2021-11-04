@@ -17,6 +17,16 @@
           v-model="field.multiple"
         />
       </el-form-item>
+      <el-form-item
+        label="可搜索"
+        prop="searchable"
+        active-text="是"
+        inactive-text="否"
+      >
+        <el-switch
+          v-model="field.searchable"
+        />
+      </el-form-item>
     </template>
   </StandardForm>
 </template>
