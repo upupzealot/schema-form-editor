@@ -86,6 +86,27 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-form-item
+        label="字数统计"
+        prop="wordLimit"
+      >
+        <el-switch
+          v-model="wordLimit"
+        />
+      </el-form-item>
+      <el-form-item
+        v-if="wordLimit"
+        label="最大长度"
+        prop="wordLimit"
+      >
+        <el-input-number
+          v-model="maxLength"
+          :min="0"
+          :step-strictly="true"
+          placeholder="50"
+          style="width: 100%"
+        />
+      </el-form-item>
     </template>
 
     <!-- 校验 -->
@@ -162,6 +183,23 @@ export default {
       set(val) {
         this.$set(this.field, 'maxRows', val || undefined);
       }
+    },
+    wordLimit: {
+      get() {
+        return !!this.field.wordLimit;
+      },
+      set(val) {
+        this.$set(this.field, 'wordLimit', val || undefined);
+      }
+    },
+    maxLength: {
+      get() {
+        return this.field.maxLength || 50;
+      },
+      set(val) {
+        const length = val === 50 ? undefined : val;
+        this.$set(this.field, 'maxLength', length);
+      }
     }
   },
   watch: {
@@ -176,6 +214,11 @@ export default {
       if(!val) {
         this.$delete(this.field, 'minRows');
         this.$delete(this.field, 'maxRows');
+      }
+    },
+    wordLimit(val) {
+      if(!val) {
+        this.$delete(this.field, 'maxLength');
       }
     },
   }

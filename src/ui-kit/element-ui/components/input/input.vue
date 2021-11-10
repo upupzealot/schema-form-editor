@@ -15,6 +15,8 @@
       v-model="data[field.name]"
       :type="field.mode"
       :show-password="field.isPassword"
+      :show-word-limit="field.wordLimit"
+      :maxlength="field.wordLimit ? (field.maxLength || 50) : undefined"
       :autosize="field.autosize && {
         minRows: field.minRows || 2,
         maxRows: field.maxRows || undefined,
