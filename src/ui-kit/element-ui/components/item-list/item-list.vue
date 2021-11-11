@@ -51,7 +51,7 @@
       style="display: block;"
       @click.stop="addItem"
     >
-      新增列表项
+      {{ field.createBtnText || '新增列表项' }}
     </el-button>
   </el-form-item>
 </template>
