@@ -2,7 +2,7 @@
   <StandardForm :config="{ hasValid: false }">
     <template v-slot:basic>
       <el-form-item
-        label="新增按钮"
+        label="按钮文本"
         prop="createBtnText"
       >
         <el-input
