@@ -129,8 +129,12 @@ const mixin = {
                     return null;
                   }
                 } else {
-                  const funcStr = validFuncMap[rule.preset].func;
-                  validFunc = new Function('rule', 'value', 'callback', funcStr);
+                  if (rule.preset) {
+                    const funcStr = validFuncMap[rule.preset].func;
+                    validFunc = new Function('rule', 'value', 'callback', funcStr);
+                  } else { // rule.preset not selected
+                    validFunc = (rule, value, callback) => { callback() };
+                  }
                 }
               } else {
                 const funcStr = rule.func;
