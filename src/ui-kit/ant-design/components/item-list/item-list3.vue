@@ -30,6 +30,20 @@
           :sfr-f="`${field.name}[${index}]`"
           @delete="deleteItem(item)"
         >
+          <template #sortIcon>
+            <component :is="sortIcon"/>
+          </template>
+          <template #deleteIcon="{ onDelete }">
+            <component
+              :is="deleteIcon"
+              @click="onDelete"
+            />
+            <!-- <a-icon
+              :type="deleteIcon.replace('-filled', '')"
+              :theme="/-filled$/.test(deleteIcon) ? 'filled' : undefined"
+              @click="onDelete"
+            /> -->
+          </template>
           <Subform
             ref="subformItem"
             :field="subformField"
@@ -86,18 +100,31 @@
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'
-import itemListMixin from '../../../common/components/item-list-mixin'
+import itemListMixin from './item-list-mixin'
 
 import DraggableList from '../../../common/draggable-list3'
 import DraggableListItem from '../../../common/draggable-list-item'
 import Subform from '../subform/subform'
+import {
+  SwapOutlined as Swap, 
+  DragOutlined as Drag,
+  VerticalAlignMiddleOutlined as VerticalAlignMiddle,
+  ColumnHeightOutlined as ColumnHeight,
+  CloseOutlined as Close,
+  CloseCircleOutlined as CloseCircle,
+  CloseCircleFilled,
+  DeleteOutlined as Delete,
+  DeleteFilled,
+} from '@ant-design/icons-vue'
 
 export default {
   name: 'ItemList',
   components: {
     DraggableList,
     DraggableListItem,
-    Subform
+    Subform,
+    Swap, Drag, VerticalAlignMiddle, ColumnHeight,
+    Close, CloseCircle, CloseCircleFilled, Delete, DeleteFilled,
   },
   mixins: [formItemMixin, itemListMixin],
 }

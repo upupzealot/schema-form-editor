@@ -95,7 +95,7 @@ import BlankSchema from './components/blank/blank-schema.vue'
 import SlotSchema from '../../framework/schema-item/components/slot-schema.vue'
 import WrapperSchema from './components/wrapper/wrapper-schema.vue'
 import SubformSchema from './components/subform/subform-schema.vue'
-import ItemListSchema from './components/item-list/item-list-schema.vue'
+import ItemListSchema from '../../framework/schema-item/components/item-list-schema.vue'
 export const SchemaItems = [
   InputSchema,
   InputNumberSchema,

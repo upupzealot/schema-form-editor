@@ -19,6 +19,8 @@
           v-for="(item, index) in list"
           :key="item.id"
           :has-control="editable"
+          :sort-icon="sortIcon"
+          :delete-icon="deleteIcon"
           :style="{ marginBottom: `${subformMarginY}px` }"
           :sfr-f="`${field.name}[${index}]`"
           @delete="deleteItem(item)"
@@ -69,7 +71,7 @@
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'
-import itemListMixin from '../../../common/components/item-list-mixin'
+import itemListMixin from './item-list-mixin'
 
 import DraggableListItem from '../../../common/draggable-list-item'
 import Subform from '../subform/subform'

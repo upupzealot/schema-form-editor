@@ -7,7 +7,13 @@
       v-if="hasControl"
       class="control drag drag-handle"
     >
-      <i class="el-icon-sort" />
+      <slot
+        name="sortIcon"
+      >
+        <i
+          :class="[sortIcon]"
+        />
+      </slot>
     </div>
 
     <slot />
@@ -16,10 +22,15 @@
       v-if="hasControl"
       class="control close"
     >
-      <i
-        class="el-icon-close"
-        @click="onDelete"
-      />
+      <slot
+        name="deleteIcon"
+        v-bind="{ onDelete }"
+      >
+        <i
+          :class="[deleteIcon]"
+          @click="onDelete"
+        />
+      </slot>
     </div>
   </div>
 </template>
@@ -46,7 +57,7 @@
   margin-left: 5px;
   cursor: pointer;
 }
-.draggable-list .draggable-list-item .control.close .el-icon-close:hover {
+.draggable-list .draggable-list-item .control.close :hover {
   color: #F56C6C;
 }
 .draggable-list .draggable-list-item .el-form-item__label {
@@ -73,6 +84,18 @@ export default {
       type: Boolean,
       default() {
         return true;
+      }
+    },
+    sortIcon: {
+      type: String,
+      default() {
+        return 'el-icon-sort';
+      }
+    },
+    deleteIcon: {
+      type: String,
+      default() {
+        return 'el-icon-close';
       }
     },
     active: {
