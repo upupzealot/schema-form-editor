@@ -16,6 +16,8 @@
       :disabled="disabled"
       :placeholder="field.placeholder"
       :clearable="field.clearable"
+      @change="fieldSubmit"
+      @clear="fieldSubmit"
       style="width: 100%"
     />
   </el-form-item>
