@@ -16,6 +16,8 @@
       :is-range="field.mode === 'timerange'"
       :disabled="disabled"
       :placeholder="field.placeholder"
+      :start-placeholder="field.startPlaceholder"
+      :end-placeholder="field.endPlaceholder"
       :value-format="valueFormat"
       style="width: 100%;"
       @change="fieldSubmit"

@@ -18,11 +18,32 @@
         </el-select>
       </el-form-item>
       <el-form-item
+        v-if="!isRange"
         label="占位符"
         prop="placeholder"
       >
         <el-input
           v-model="field.placeholder"
+        />
+      </el-form-item>
+      <el-form-item
+        v-if="isRange"
+        label="开始占位符"
+        label-width="90px"
+        prop="start-placeholder"
+      >
+        <el-input
+          v-model="field.startPlaceholder"
+        />
+      </el-form-item>
+      <el-form-item
+        v-if="isRange"
+        label="结束占位符"
+        label-width="90px"
+        prop="end-placeholder"
+      >
+        <el-input
+          v-model="field.endPlaceholder"
         />
       </el-form-item>
     </template>
@@ -35,5 +56,10 @@ import schemaItemMixin from '@/framework/schema-item/mixin';
 export default {
   type: 'time-picker',
   mixins: [schemaItemMixin],
+  computed: {
+    isRange() {
+      return (this.field.mode || 'time').endsWith('range');
+    }
+  }
 };
 </script>
