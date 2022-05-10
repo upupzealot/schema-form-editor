@@ -71,14 +71,19 @@ export default {
     },
   },
   methods: {
-    setValue(key, val) {
+    setValue(key, value = this.field[key]) {
+      let val = value;
       if (this.field.typeValue) {
-        this.$set(this.field, key, val || this.transValue(this.field[key]));
+        val =  this.transValue(val);
       } else {
-        this.$set(this.field, key, `${val || this.field[key]}`);
+        val =  `${val}`;
       }
+      this.$set(this.field, key, val);
     },
     transValue(val) {
+      if (val === '') {
+        return val;
+      }
       if(`${val}` === 'true' || `${val}` === 'false') {
         return JSON.parse(val);
       }
