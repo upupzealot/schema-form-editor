@@ -14,10 +14,14 @@
           v-if="isVue2"
           :class="[sortIcon]"
         />
-        <component
-          :is="sortIcon"
+        <el-icon
           v-else
-        />
+          :size="14"
+        >
+          <component
+            :is="sortIcon"
+          />
+        </el-icon>
       </slot>
     </div>
 
@@ -36,11 +40,15 @@
           :class="[deleteIcon]"
           @click="onDelete"
         />
-        <component
-          :is="deleteIcon"
+        <el-icon
           v-else
-          @click="onDelete"
-        />
+          :size="14"
+        >
+          <component
+            :is="deleteIcon"
+            @click="onDelete"
+          />
+        </el-icon>
       </slot>
     </div>
   </div>

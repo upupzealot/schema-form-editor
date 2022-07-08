@@ -10,9 +10,12 @@
           v-if="isVue2"
           class="el-icon-warning-outline"
         />
-        <Warning
+        <el-icon
           v-else
-        />
+          :size="14"
+        >
+          <Warning />
+        </el-icon>
       </template>
       <template v-slot:content>
         <span v-html="content" />

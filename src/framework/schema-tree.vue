@@ -19,8 +19,18 @@
             'el-icon-document': data.isSchema,
           }"
         />
-        <Folder v-else-if="!data.isSchema" />
-        <Document v-else-if="data.isSchema" />
+        <el-icon
+          v-else-if="!data.isSchema"
+          :size="14"
+        >
+          <Folder />
+        </el-icon>
+        <el-icon
+          v-else-if="data.isSchema"
+          :size="14"
+        >
+          <Document />
+        </el-icon>
         {{ data.label }}
       </div>
     </template>

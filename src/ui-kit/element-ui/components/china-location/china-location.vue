@@ -18,7 +18,12 @@
         v-if="isVue2"
         class="el-icon-map-location"
       />
-      <MapLocation v-else />
+      <el-icon
+        v-else
+        :size="14"
+      >
+        <MapLocation />
+      </el-icon>
       {{ btnLabel }}
     </el-button>
     <el-dialog
@@ -90,7 +95,12 @@
                 v-if="isVue2"
                 class="el-icon-location"
               />
-              <Location v-else />
+              <el-icon
+                v-else
+                :size="14"
+              >
+                <LocationFilled />
+              </el-icon>
             </div>
           </template>
           <div style="height: 120px; overflow-y: overlay;">

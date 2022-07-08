@@ -12,7 +12,12 @@
       v-if="isVue2"
       class="el-icon-map-location"
     />
-    <MapLocation v-else />
+    <el-icon
+      v-else
+      :size="14"
+    >
+      <MapLocation />
+    </el-icon>
     地图选点
   </el-button>
 </template>

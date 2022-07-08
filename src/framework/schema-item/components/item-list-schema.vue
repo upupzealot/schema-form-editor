@@ -24,7 +24,11 @@
               :key="icon"
               :label="`el-icon-${icon}`"
             >
-              <component :is="icon" />
+              <el-icon
+                :size="14"
+              >
+                <component :is="icon" />
+              </el-icon>
             </el-radio-button>
           </template>
         </el-radio-group>
@@ -71,7 +75,11 @@
               :key="icon"
               :label="`el-icon-${icon}`"
             >
-              <component :is="icon" />
+              <el-icon
+                :size="14"
+              >
+                <component :is="icon" />
+              </el-icon>
             </el-radio-button>
           </template>
         </el-radio-group>
@@ -127,8 +135,8 @@ import schemaItemMixin from '@/framework/schema-item/mixin';
 
 const DEFAULT_ICONS = {
   'element-ui': {
-    sortIcon: 'el-icon-sort',
-    deleteIcon: 'el-icon-close',
+    sortIcon: isVue2 ? 'el-icon-sort' : 'Sort',
+    deleteIcon: isVue2 ? 'el-icon-close' : 'Close',
   },
   'ant-design': {
     sortIcon: 'swap',

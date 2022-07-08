@@ -10,14 +10,22 @@
             :class="{ 'el-icon-circle-plus-outline': !layoutOpen, 'el-icon-remove-outline': layoutOpen }"
             @click="layoutOpen = !layoutOpen"
           />
-          <CirclePlus
+          <el-icon
             v-else-if="!layoutOpen"
-            @click="layoutOpen = !layoutOpen"
-          />
-          <Remove
+            :size="14"
+          >
+            <CirclePlus
+              @click="layoutOpen = !layoutOpen"
+            />
+          </el-icon>
+          <el-icon
             v-else-if="layoutOpen"
-            @click="layoutOpen = !layoutOpen"
-          />
+            :size="14"
+          >
+            <Remove
+              @click="layoutOpen = !layoutOpen"
+            />
+          </el-icon>
           布局
         </el-divider>
       </div>
@@ -46,14 +54,22 @@
             :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
             @click="basicOpen = !basicOpen"
           />
-          <CirclePlus
+          <el-icon
             v-else-if="!basicOpen"
-            @click="basicOpen = !basicOpen"
-          />
-          <Remove
+            :size="14"
+          >
+            <CirclePlus
+              @click="basicOpen = !basicOpen"
+            />
+          </el-icon>
+          <el-icon
             v-else-if="basicOpen"
-            @click="basicOpen = !basicOpen"
-          />
+            :size="14"
+          >
+            <Remove
+              @click="basicOpen = !basicOpen"
+            />
+          </el-icon>
           表单项属性
         </el-divider>
       </div>
@@ -119,14 +135,22 @@
             :class="{ 'el-icon-circle-plus-outline': !validOpen, 'el-icon-remove-outline': validOpen }"
             @click="validOpen = !validOpen"
           />
-          <CirclePlus
+          <el-icon
             v-else-if="!validOpen"
-            @click="validOpen = !validOpen"
-          />
-          <Remove
+            :size="14"
+          >
+            <CirclePlus
+              @click="validOpen = !validOpen"
+            />
+          </el-icon>
+          <el-icon
             v-else-if="validOpen"
-            @click="validOpen = !validOpen"
-          />
+            :size="14"
+          >
+            <Remove
+              @click="validOpen = !validOpen"
+            />
+          </el-icon>
           校验
         </el-divider>
       </div>
@@ -150,14 +174,22 @@
             :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
             @click="effectOpen = !effectOpen"
           />
-          <CirclePlus
+          <el-icon
             v-else-if="!effectOpen"
-            @click="effectOpen = !effectOpen"
-          />
-          <Remove
+            :size="14"
+          >
+            <CirclePlus
+              @click="effectOpen = !effectOpen"
+            />
+          </el-icon>
+          <el-icon
             v-else-if="effectOpen"
-            @click="effectOpen = !effectOpen"
-          />
+            :size="14"
+          >
+            <Remove
+              @click="effectOpen = !effectOpen"
+            />
+          </el-icon>
           联动
         </el-divider>
       </div>
