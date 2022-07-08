@@ -5,7 +5,7 @@
         :is="connected ? 'ProjectSelect' : 'SchemaSelect'"
       >
         <el-tag
-          :type="connected ? 'primary' : 'info'"
+          :type="connected ? '' : 'info'"
           style="float: left; margin-top: 15px; cursor: pointer;"
           @click="onSwitchConnect"
         >
