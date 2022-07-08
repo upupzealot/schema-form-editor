@@ -72,7 +72,7 @@
 </style>
 
 <script>
-import isVue2 from '../../../common/util-funcs'
+import isVue2 from '../../../common/util-is-vue2'
 import formItemMixin from '../../common/form-item/mixin'
 
 export default {

@@ -30,6 +30,7 @@
 
 <script>
 import _ from 'lodash';
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   data() {
@@ -44,6 +45,7 @@ export default {
     }];
 
     return {
+      isVue2,
       uiKey: localStorage.getItem('ui-kit'),
       uiKitList,
       uiKitMap: _.keyBy(uiKitList, 'key'),
