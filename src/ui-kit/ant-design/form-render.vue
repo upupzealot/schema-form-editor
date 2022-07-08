@@ -206,10 +206,11 @@ import Blank from './components/blank/blank';
 import SSlot from './components/slot/slot';
 import Wrapper from './components/wrapper/wrapper';
 import Subform from './components/subform/subform';
-// import ItemList from './components/item-list/item-list';
+// import ItemList from './components/item-list/item-list3';
 import isVue2 from '../common/util-is-vue2';
 import { defineAsyncComponent } from 'vue';
-const ItemList = isVue2 ? require('./components/item-list/item-list.vue') : defineAsyncComponent(() => import('./components/item-list/item-list3.vue'));
+
+const ItemList = isVue2 ? () => import('./components/item-list/item-list.vue') : defineAsyncComponent(() => import('./components/item-list/item-list3.vue'));
 
 export default {
   name: 'FormRender',

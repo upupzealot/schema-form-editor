@@ -138,7 +138,7 @@ import Subform from './components/subform/subform.vue'
 import isVue2 from '../common/util-is-vue2';
 import { defineAsyncComponent } from 'vue';
 
-const ItemList = isVue2 ? require('./components/item-list/item-list.vue') : defineAsyncComponent(() => import('./components/item-list/item-list3.vue'));
+const ItemList = isVue2 ? () => import('./components/item-list/item-list.vue') : defineAsyncComponent(() => import('./components/item-list/item-list3.vue'));
 
 export {
   Input,

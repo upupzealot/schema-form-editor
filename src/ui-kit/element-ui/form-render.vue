@@ -249,8 +249,7 @@ import isVue2 from '../common/util-is-vue2'
 import * as Vue2 from 'vue'
 import { reactive, defineAsyncComponent } from 'vue';
 
-
-const ItemList = isVue2 ? require('./components/item-list/item-list') : defineAsyncComponent(() => import('./components/item-list/item-list3'));
+const ItemList = isVue2 ? () => import('./components/item-list/item-list') : defineAsyncComponent(() => import('./components/item-list/item-list3'));
 
 let staticConf = isVue2
   ? Vue2.default.observable({ config: {} })
