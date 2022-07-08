@@ -130,6 +130,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import md5 from 'md5';
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'

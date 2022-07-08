@@ -1,10 +1,12 @@
+import _ from 'lodash';
+
 function create({ id, name, schemaStr }) {
   const schema = schemaStr ? JSON.parse(schemaStr) : {};
   if(name) {
     schema.name = name;
   }
   localStorage.setItem(id, JSON.stringify(schema || {}));
-  
+
   const schemaList = list();
   if(_.find(schemaList, { id })) {
     throw new Error(`已存在 key 为 ${id} 的 schema`);

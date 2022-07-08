@@ -44,6 +44,7 @@
 </style>
 
 <script>
+import _ from 'lodash';
 import ruleMixin from './rule-mixin';
 
 export default {

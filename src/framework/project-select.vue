@@ -119,6 +119,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'
 import isVue2 from '@/ui-kit/common/util-is-vue2';
