@@ -11,4 +11,18 @@ module.exports = {
     },
   },
   lintOnSave: false,
+  configureWebpack: {
+    resolve: {
+      extensions: ['.ts', '.js', '.mjs', '.json'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/i,
+          include: /node_modules/,
+          type: 'javascript/auto',
+        },
+      ],
+    }
+  }
 };

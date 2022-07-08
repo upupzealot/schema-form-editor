@@ -1,10 +1,12 @@
 <template>
-  <el-submenu
+  <component
+    :is="isVue2 ? 'el-submenu' : 'el-sub-menu'"
     index="ui-kit"
-    style="float: right;"
+    style="position: absolute; right: 0;"
   >
     <template v-slot:title>
       <el-image
+        class="ui-kit-img"
         :src="uiKit.icon"
         style="width: 30px; height: 30px; margin-right: 10px;"
       />
@@ -17,12 +19,13 @@
       @click="onSelectUiKit(uiKitItem.key)"
     >
       <el-image
+        class="ui-kit-img"
         :src="uiKitItem.icon"
         style="width: 30px; height: 30px; margin-right: 10px;"
       />
       {{ uiKitItem.name }}
     </el-menu-item>
-  </el-submenu>
+  </component>
 </template>
 
 <script>
@@ -59,3 +62,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.ui-kit-img img {
+  vertical-align: top;
+}
+</style>

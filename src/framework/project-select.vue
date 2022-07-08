@@ -4,9 +4,13 @@
     否则按空格会触发 el-menu-item 的模拟 click 事件，导致弹框被关闭 -->
     <el-menu
       mode="horizontal"
+      style="position: relative;"
     >
       <slot />
-      <el-submenu index="">
+      <component
+        :is="isVue2 ? 'el-submenu' : 'el-sub-menu'"
+        index=""
+      >
         <template v-slot:title>
           项目：{{ project.name }}
         </template>
@@ -18,7 +22,7 @@
         >
           {{ projectItem.name }}
         </el-menu-item>
-      </el-submenu>
+      </component>
       <el-button
         type="text"
         style="margin-top: 10px;"

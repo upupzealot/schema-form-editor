@@ -2,9 +2,15 @@
   <div>
     <!-- 这里 dialog 不能放在 el-menu 里面
     否则按空格会触发 el-menu-item 的模拟 click 事件，导致弹框被关闭 -->
-    <el-menu mode="horizontal">
+    <el-menu
+      mode="horizontal"
+      style="position: relative;"
+    >
       <slot />
-      <el-submenu index="schema">
+      <component
+        :is="isVue2 ? 'el-submenu' : 'el-sub-menu'"
+        index="schema"
+      >
         <template v-slot:title>
           {{ schema.name }}
         </template>
@@ -16,7 +22,7 @@
         >
           {{ schemaItem.name }}
         </el-menu-item>
-      </el-submenu>
+      </component>
 
       <!-- 删除当前 schema -->
       <el-button
@@ -29,7 +35,12 @@
           v-if="isVue2"
           class="el-icon-delete"
         />
-        <Delete v-else />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Delete />
+        </el-icon>
       </el-button>
       <!-- 新增 schema -->
       <el-button
@@ -41,7 +52,12 @@
           v-if="isVue2"
           class="el-icon-plus"
         />
-        <Plus v-else />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Plus />
+        </el-icon>
       </el-button>
 
       <UiKitSelect />
