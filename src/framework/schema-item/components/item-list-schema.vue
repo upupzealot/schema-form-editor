@@ -22,7 +22,7 @@
             <el-radio-button
               v-for="icon in ['Sort', 'Rank', 'DCaret']"
               :key="icon"
-              :label="`el-icon-${icon}`"
+              :label="icon"
             >
               <el-icon
                 :size="14"
@@ -73,7 +73,7 @@
             <el-radio-button
               v-for="icon in ['Close', 'CircleClose', 'CircleCloseFilled', 'Delete', 'DeleteFilled']"
               :key="icon"
-              :label="`el-icon-${icon}`"
+              :label="icon"
             >
               <el-icon
                 :size="14"
