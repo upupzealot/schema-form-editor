@@ -6,17 +6,19 @@ export default {
   computed: {
     ...itemListMixin.computed,
     sortIcon() {
+      const defaultIcon = isVue2 ? 'el-icon-sort' : 'Sort';
       if(!this.field.sortIcon) {
-        return isVue2 ? 'el-icon-sort' : 'Sort';
+        return defaultIcon;
       } else {
-        return this.field.sortIcon['element-ui'] || isVue2 ? 'el-icon-sort' : 'Sort';
+        return this.field.sortIcon['element-ui'] || defaultIcon;
       }
     },
     deleteIcon() {
+      const defaultIcon = isVue2 ? 'el-icon-close' : 'Close';
       if(!this.field.deleteIcon) {
-        return isVue2 ? 'el-icon-close' : 'Close';
+        return defaultIcon;
       } else {
-        return this.field.deleteIcon['element-ui'] || isVue2 ? 'el-icon-close' : 'Close';
+        return this.field.deleteIcon['element-ui'] || defaultIcon;
       }
     },
   }
