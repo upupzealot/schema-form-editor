@@ -7,15 +7,24 @@
       height: '40px',
     }"
   >
-    <el-tag size="mini">
+    <el-tag
+      :size="tagSize"
+    >
       容器
     </el-tag>
   </div>
 </template>
 
 <script>
+import isVue2 from '../../../common/util-is-vue2';
+
 export default {
   type: 'wrapper',
   label: '容器',
+  data() {
+    return {
+      tagSize: isVue2 ? 'mini' : 'small',
+    };
+  },
 }
 </script>

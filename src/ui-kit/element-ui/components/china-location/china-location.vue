@@ -50,7 +50,7 @@
             <el-input
               ref="searchInput"
               v-model="search"
-              size="mini"
+              :size="inputSize"
               :prefix-icon="isVue2 ? 'el-icon-search' : Search"
               clearable
               style="position: absolute; top: 10px; left: 10px; width: 200px;"
@@ -276,6 +276,7 @@ export default {
   data() {
     return {
       isVue2,
+      inputSize: isVue2 ? 'mini' : 'small',
       valueText: '',
       dialogVisible: false,
       scriptLoaded: false,

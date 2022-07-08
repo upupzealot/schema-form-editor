@@ -7,15 +7,24 @@
       height: '40px',
     }"
   >
-    <el-tag size="mini">
+    <el-tag
+      :size="tagSize"
+    >
       插槽
     </el-tag>
   </div>
 </template>
 
 <script>
+import isVue2 from '../../../common/util-is-vue2'
+
 export default {
   type: 'slot',
   label: '插槽',
+  data() {
+    return {
+      tagSize: isVue2 ? 'mini' : 'small',
+    };
+  },
 }
 </script>

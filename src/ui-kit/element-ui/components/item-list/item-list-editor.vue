@@ -1,7 +1,7 @@
 <template>
   <div class="subform-wrap">
     <el-tag
-      size="mini"
+      :size="tagSize"
       class="form-tag"
     >
       列表 {{ field.name }}
@@ -16,7 +16,7 @@
       :class="statusClasses"
     />
     <el-tag
-      size="mini"
+      :size="tagSize"
       class="form-tag"
     >
       列表项表单
@@ -61,6 +61,7 @@ export default {
   mixins: [editorItemMixin],
   data() {
     return {
+      tagSize: isVue2 ? 'mini' : 'small',
       schemaData: {},
     };
   },
