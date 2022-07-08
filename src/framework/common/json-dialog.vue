@@ -14,18 +14,18 @@
     <!-- 下载按钮 -->
     <el-button
       style="float: right; margin-left: 10px;"
-      icon="el-icon-download"
+      :icon="isVue2 ? 'el-icon-download' : Download"
       circle
       @click="onDownload"
     />
     <!-- 复制按钮 -->
     <el-button
       style="float: right;"
-      icon="el-icon-copy-document"
+      :icon="isVue2 ? 'el-icon-copy-document' : CopyDocument"
       circle
       @click="onCopy"
     />
-    
+
     <!-- JSON 展示 -->
     <pre v-if="!editable">{{ contentStr }}</pre>
     <div
@@ -62,6 +62,7 @@
 
 <script>
 // import CodeEditor from '@/framework/common/code-editor'
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   components: {
@@ -101,6 +102,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       editorStr: '',
       downloadStr: '',
       hasError: false,

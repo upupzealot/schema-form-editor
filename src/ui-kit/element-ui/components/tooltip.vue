@@ -5,10 +5,15 @@
       v-if="hasTooltip"
       placement="top-start"
     >
-      <i
-        v-if="hasTooltip"
-        class="el-icon-warning-outline"
-      />
+      <template v-if="hasTooltip">
+        <i
+          v-if="isVue2"
+          class="el-icon-warning-outline"
+        />
+        <Warning
+          v-else
+        />
+      </template>
       <template v-slot:content>
         <span v-html="content" />
       </template>
@@ -17,6 +22,8 @@
 </template>
 
 <script>
+import isVue2 from '../../common/util-is-vue2';
+
 export default {
   props: {
     field: {
@@ -25,6 +32,11 @@ export default {
         return {};
       }
     },
+  },
+  data() {
+    return {
+      isVue2,
+    };
   },
   computed: {
     hasTooltip() {

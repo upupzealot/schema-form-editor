@@ -67,7 +67,7 @@
       >
         数据
       </el-button>
-    
+
       <el-button
         :size="btnSize"
         style="float: right;"
@@ -202,9 +202,10 @@
 </style>
 
 <script>
-import isVue2, { reactive } from 'vue';
+import { reactive } from 'vue';
 import _ from 'lodash';
 import omitDeep from 'omit-deep-lodash';
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 // import DraggableList from '@/framework/common/draggable-list';
 // import DraggableListItem from '@/framework/common/draggable-list-item';
@@ -379,7 +380,7 @@ export default {
     },
     schema() {
       const state = this.$store.state;
-      
+
       function mapFields(fields) {
         const fieldList = _.cloneDeep(fields || []);
         return fieldList.map(field => {

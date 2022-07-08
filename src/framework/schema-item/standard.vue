@@ -6,7 +6,16 @@
       <div class="divider-wrap">
         <el-divider content-position="left">
           <i
+            v-if="isVue2"
             :class="{ 'el-icon-circle-plus-outline': !layoutOpen, 'el-icon-remove-outline': layoutOpen }"
+            @click="layoutOpen = !layoutOpen"
+          />
+          <CirclePlus
+            v-else-if="!layoutOpen"
+            @click="layoutOpen = !layoutOpen"
+          />
+          <Remove
+            v-else-if="layoutOpen"
             @click="layoutOpen = !layoutOpen"
           />
           布局
@@ -33,7 +42,16 @@
       <div class="divider-wrap">
         <el-divider content-position="left">
           <i
+            v-if="isVue2"
             :class="{ 'el-icon-circle-plus-outline': !basicOpen, 'el-icon-remove-outline': basicOpen }"
+            @click="basicOpen = !basicOpen"
+          />
+          <CirclePlus
+            v-else-if="!basicOpen"
+            @click="basicOpen = !basicOpen"
+          />
+          <Remove
+            v-else-if="basicOpen"
             @click="basicOpen = !basicOpen"
           />
           表单项属性
@@ -97,7 +115,16 @@
       <div class="divider-wrap">
         <el-divider content-position="left">
           <i
+            v-if="isVue2"
             :class="{ 'el-icon-circle-plus-outline': !validOpen, 'el-icon-remove-outline': validOpen }"
+            @click="validOpen = !validOpen"
+          />
+          <CirclePlus
+            v-else-if="!validOpen"
+            @click="validOpen = !validOpen"
+          />
+          <Remove
+            v-else-if="validOpen"
             @click="validOpen = !validOpen"
           />
           校验
@@ -119,7 +146,16 @@
       <div class="divider-wrap">
         <el-divider content-position="left">
           <i
+            v-if="isVue2"
             :class="{ 'el-icon-circle-plus-outline': !effectOpen, 'el-icon-remove-outline': effectOpen }"
+            @click="effectOpen = !effectOpen"
+          />
+          <CirclePlus
+            v-else-if="!effectOpen"
+            @click="effectOpen = !effectOpen"
+          />
+          <Remove
+            v-else-if="effectOpen"
             @click="effectOpen = !effectOpen"
           />
           联动
@@ -144,6 +180,7 @@
 </style>
 
 <script>
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 import RequiredRule from './common/validate-rules/required'
 import Effects from './common/effects'
 
@@ -164,6 +201,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       formConfOpen: false,
       layoutOpen: false,
       basicOpen: true,

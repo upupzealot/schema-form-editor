@@ -20,13 +20,13 @@
     </template>
     <a-upload
       action=""
-      :before-upload="() => false" 
+      :before-upload="() => false"
       :multiple="false"
       :limit="1"
       :accept="field.accept"
-      @change="onChange"
       :show-upload-list="false"
       class="upload-item"
+      @change="onChange"
     >
       <a-input
         v-model="filename"
@@ -78,7 +78,7 @@
 </style>
 
 <script>
-import isVue2 from 'vue';
+import isVue2 from '../../../common/util-is-vue2'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 
 import formItemMixin from '../../common/form-item/mixin'

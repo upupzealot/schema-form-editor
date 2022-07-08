@@ -38,14 +38,14 @@
           <template slot-scope="scope">
             <el-link
               type="primary"
-              icon="el-icon-edit"
+              :icon="isVue2 ? 'el-icon-edit' : Edit"
               @click="showFormDialog(scope.row)"
             >
               编辑
             </el-link>
             <el-link
               type="danger"
-              icon="el-icon-delete"
+              :icon="isVue2 ? 'el-icon-delete' : Delete"
               style="margin-left: 10px;"
               @click="onDelete(scope.row)"
             >
@@ -85,6 +85,7 @@
 </style>
 
 <script>
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 import ruleMixin from './rule-mixin';
 
 import FuncFormDialog from './func-form-dialog'
@@ -96,6 +97,7 @@ export default {
   mixins: [ruleMixin],
   data() {
     return {
+      isVue2,
       dialogVisible: false,
     }
   },

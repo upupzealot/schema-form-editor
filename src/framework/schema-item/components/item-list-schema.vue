@@ -9,12 +9,24 @@
           v-if="uiKit === 'element-ui'"
           v-model="sortIcon"
         >
-          <el-radio-button
-            v-for="icon in ['sort', 'rank', 'd-caret']"
-            :label="`el-icon-${icon}`"
-            :key="icon">
-            <i :class="`el-icon-${icon}`"/>
-          </el-radio-button>
+          <template v-if="isVue2">
+            <el-radio-button
+              v-for="icon in ['sort', 'rank', 'd-caret']"
+              :key="icon"
+              :label="`el-icon-${icon}`"
+            >
+              <i :class="`el-icon-${icon}`" />
+            </el-radio-button>
+          </template>
+          <template v-else>
+            <el-radio-button
+              v-for="icon in ['Sort', 'Rank', 'DCaret']"
+              :key="icon"
+              :label="`el-icon-${icon}`"
+            >
+              <component :is="icon" />
+            </el-radio-button>
+          </template>
         </el-radio-group>
         <el-radio-group
           v-if="uiKit === 'ant-design'"
@@ -22,15 +34,16 @@
         >
           <el-radio-button
             v-for="icon in ['swap', 'drag', 'vertical-align-middle', 'column-height']"
+            :key="icon"
             :label="icon"
-            :key="icon">
+          >
             <a-icon
               v-if="isVue2"
-             :type="icon"
+              :type="icon"
             />
             <component
-              v-if="!isVue2"
               :is="icon"
+              v-if="!isVue2"
             />
           </el-radio-button>
         </el-radio-group>
@@ -43,12 +56,24 @@
           v-if="uiKit === 'element-ui'"
           v-model="deleteIcon"
         >
-          <el-radio-button
-            v-for="icon in ['close', 'circle-close', 'error', 'delete', 'delete-solid']"
-            :label="`el-icon-${icon}`"
-            :key="icon">
-            <i :class="`el-icon-${icon}`"/>
-          </el-radio-button>
+          <template v-if="isVue2">
+            <el-radio-button
+              v-for="icon in ['close', 'circle-close', 'error', 'delete', 'delete-solid']"
+              :key="icon"
+              :label="`el-icon-${icon}`"
+            >
+              <i :class="`el-icon-${icon}`" />
+            </el-radio-button>
+          </template>
+          <template v-else>
+            <el-radio-button
+              v-for="icon in ['Close', 'CircleClose', 'CircleCloseFilled', 'Delete', 'DeleteFilled']"
+              :key="icon"
+              :label="`el-icon-${icon}`"
+            >
+              <component :is="icon" />
+            </el-radio-button>
+          </template>
         </el-radio-group>
         <el-radio-group
           v-if="uiKit === 'ant-design'"
@@ -56,16 +81,17 @@
         >
           <el-radio-button
             v-for="icon in ['close', 'close-circle', 'close-circle-filled', 'delete', 'delete-filled']"
+            :key="icon"
             :label="icon"
-            :key="icon">
+          >
             <a-icon
               v-if="isVue2"
               :type="icon.replace('-filled', '')"
               :theme="/-filled$/.test(icon) ? 'filled' : undefined"
             />
             <component
-              v-if="!isVue2"
               :is="icon"
+              v-if="!isVue2"
             />
           </el-radio-button>
         </el-radio-group>
@@ -84,9 +110,9 @@
 </template>
 
 <script>
-import isVue2 from 'vue';
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 import {
-  SwapOutlined as Swap, 
+  SwapOutlined as Swap,
   DragOutlined as Drag,
   VerticalAlignMiddleOutlined as VerticalAlignMiddle,
   ColumnHeightOutlined as ColumnHeight,
@@ -142,11 +168,11 @@ function setIcon(self, iconKey, val) {
 
 export default {
   type: 'item-list',
-  mixins: [schemaItemMixin],
   components: {
     Swap, Drag, VerticalAlignMiddle, ColumnHeight,
     Close, CloseCircle, CloseCircleFilled, Delete, DeleteFilled,
   },
+  mixins: [schemaItemMixin],
   data() {
     return {
       isVue2

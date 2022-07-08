@@ -10,7 +10,7 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
     <DraggableList
       :list="items"
     >

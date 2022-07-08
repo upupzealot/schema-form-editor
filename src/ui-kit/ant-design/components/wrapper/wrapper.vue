@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import isVue2, { defineAsyncComponent } from 'vue'
+import isVue2 from '../../../common/util-is-vue2'
+import { defineAsyncComponent } from 'vue'
 
 import formItemMixin from '@/ui-kit/ant-design/common/form-item/mixin'
 import wrapperMixin from '../../../common/components/wrapper-mixin'

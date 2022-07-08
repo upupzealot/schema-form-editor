@@ -134,7 +134,12 @@ import Blank from './components/blank/blank.vue'
 import Slot from './components/slot/slot.vue'
 import Wrapper from './components/wrapper/wrapper.vue'
 import Subform from './components/subform/subform.vue'
-import ItemList from './components/item-list/item-list.vue'
+
+import isVue2 from '../common/util-is-vue2';
+import { defineAsyncComponent } from 'vue';
+
+const ItemList = isVue2 ? require('./components/item-list/item-list.vue') : defineAsyncComponent(() => import('./components/item-list/item-list3.vue'));
+
 export {
   Input,
   InputNumber,

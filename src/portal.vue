@@ -17,7 +17,16 @@
             v-if="connected"
             class="el-icon-circle-check"
           /> -->
-          <i class="el-icon-connection" />
+          <i
+            v-if="isVue2"
+            class="el-icon-connection"
+          />
+          <el-icon
+            v-else
+            :size="14"
+          >
+            <Connection />
+          </el-icon>
         </el-tag>
       </component>
     </el-header>
@@ -136,6 +145,7 @@ import ToolBar from '@/framework/toolbar';
 // 全局引入，避免循环引用
 // import FormEditor from '@/framework/form-editor';
 import ItemEditor from '@/framework/item-editor';
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   components: {
@@ -148,6 +158,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       connected: getService('server').status(),
       sidebarTab: 'components',
       schemaTree: [],

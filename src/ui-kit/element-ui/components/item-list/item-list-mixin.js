@@ -1,3 +1,4 @@
+import isVue2 from '../../../common/util-is-vue2'
 import itemListMixin from '../../../common/components/item-list-mixin'
 
 export default {
@@ -6,16 +7,16 @@ export default {
     ...itemListMixin.computed,
     sortIcon() {
       if(!this.field.sortIcon) {
-        return 'el-icon-sort';
+        return isVue2 ? 'el-icon-sort' : 'Sort';
       } else {
-        return this.field.sortIcon['element-ui'] || 'el-icon-sort';
+        return this.field.sortIcon['element-ui'] || isVue2 ? 'el-icon-sort' : 'Sort';
       }
     },
     deleteIcon() {
       if(!this.field.deleteIcon) {
-        return 'el-icon-close';
+        return isVue2 ? 'el-icon-close' : 'Close';
       } else {
-        return this.field.deleteIcon['element-ui'] || 'el-icon-close';
+        return this.field.deleteIcon['element-ui'] || isVue2 ? 'el-icon-close' : 'Close';
       }
     },
   }

@@ -1,4 +1,4 @@
-import isVue2 from 'vue';
+import isVue2 from '../../../common/util-is-vue2'
 import commonMixin from '@/ui-kit/common/form-item/mixin'
 import Tooltip from '@/ui-kit/ant-design/components/tooltip.vue'
 

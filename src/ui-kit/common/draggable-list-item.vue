@@ -11,7 +11,12 @@
         name="sortIcon"
       >
         <i
+          v-if="isVue2"
           :class="[sortIcon]"
+        />
+        <component
+          :is="sortIcon"
+          v-else
         />
       </slot>
     </div>
@@ -27,7 +32,13 @@
         v-bind="{ onDelete }"
       >
         <i
+          v-if="isVue2"
           :class="[deleteIcon]"
+          @click="onDelete"
+        />
+        <component
+          :is="deleteIcon"
+          v-else
           @click="onDelete"
         />
       </slot>
@@ -72,6 +83,8 @@
 </style>
 
 <script>
+import isVue2 from './util-is-vue2';
+
 export default {
   props: {
     item: {
@@ -89,13 +102,13 @@ export default {
     sortIcon: {
       type: String,
       default() {
-        return 'el-icon-sort';
+        return isVue2 ? 'el-icon-sort' : 'Sort';
       }
     },
     deleteIcon: {
       type: String,
       default() {
-        return 'el-icon-close';
+        return isVue2 ? 'el-icon-close' : 'Close';
       }
     },
     active: {
@@ -104,6 +117,11 @@ export default {
         return false;
       },
     }
+  },
+  data() {
+    return {
+      isVue2
+    };
   },
   mounted() {
     this.$el.$vm = this;

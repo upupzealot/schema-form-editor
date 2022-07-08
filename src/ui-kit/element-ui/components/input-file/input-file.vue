@@ -14,12 +14,12 @@
     <el-upload
       ref="uploader"
       action=""
-      :auto-upload="false" 
+      :auto-upload="false"
       :multiple="false"
       :limit="1"
       :accept="field.accept"
       :on-change="onChange"
-      :on-exceed="onExceed" 
+      :on-exceed="onExceed"
       :show-file-list="false"
       class="upload-item"
     >
@@ -33,7 +33,17 @@
         class="clear-btn"
         @click.stop="onClear"
       >
-        <i class="el-icon-circle-close" style="color: #DCDFE6" />
+        <i
+          v-if="isVue2"
+          class="el-icon-circle-close"
+          style="color: #DCDFE6"
+        />
+        <el-icon
+          v-else
+          style="color: #DCDFE6"
+        >
+          <CircleClose />
+        </el-icon>
       </div>
     </el-upload>
   </el-form-item>
@@ -62,6 +72,7 @@
 </style>
 
 <script>
+import isVue2 from '../../../common/util-funcs'
 import formItemMixin from '../../common/form-item/mixin'
 
 export default {
@@ -72,6 +83,9 @@ export default {
     },
     filename() {
       return this.file && this.file.name;
+    },
+    isVue2() {
+      return isVue2
     }
   },
   watch: {

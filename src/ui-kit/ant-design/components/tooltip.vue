@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import isVue2 from 'vue';
+import isVue2 from '../../common/util-is-vue2';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 
 export default {

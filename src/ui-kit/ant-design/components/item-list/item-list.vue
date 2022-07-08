@@ -16,7 +16,7 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
     <DraggableList
       :list="items"
     >
@@ -30,7 +30,7 @@
           @delete="deleteItem(item)"
         >
           <template #sortIcon>
-            <a-icon :type="sortIcon"/>
+            <a-icon :type="sortIcon" />
           </template>
           <template #deleteIcon="{ onDelete }">
             <a-icon

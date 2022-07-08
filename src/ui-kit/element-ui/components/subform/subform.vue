@@ -26,7 +26,8 @@
 
 <script>
 import _ from 'lodash';
-import isVue2, { defineAsyncComponent } from 'vue'
+import isVue2 from '../../../common/util-is-vue2'
+import { defineAsyncComponent } from 'vue'
 
 import formItemMixin from '../../common/form-item/mixin'
 import subformMixin from '../../../common/components/subform-mixin'

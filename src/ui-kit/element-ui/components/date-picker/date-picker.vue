@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import isVue2 from 'vue';
+import isVue2 from '../../../common/util-is-vue2'
 
 import { $id } from '../../../common/util-funcs.js'
 import formItemMixin from '../../common/form-item/mixin'

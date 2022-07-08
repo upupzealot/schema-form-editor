@@ -228,7 +228,7 @@ const mixin = {
   defaultSchema: {},
 };
 
-import isVue2 from 'vue';
+import isVue2 from '../util-is-vue2'
 if(!isVue2) {
   mixin.methods.$set = (obj, key, val) => {
     obj[key] = val;

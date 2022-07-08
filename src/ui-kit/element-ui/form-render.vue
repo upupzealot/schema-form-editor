@@ -243,24 +243,28 @@ import Blank from './components/blank/blank';
 import SSlot from './components/slot/slot';
 import Wrapper from './components/wrapper/wrapper';
 import Subform from './components/subform/subform';
-// import ItemList from './components/item-list/item-list';
-import isVue2, { reactive } from 'vue';
-const IL = isVue2 ? require('./components/item-list/item-list.vue') : require('./components/item-list/item-list3.vue');
-const ItemList = IL.default;
+// import ItemList2 from './components/item-list/item-list';
+// import ItemList3 from './components/item-list/item-list3';
+import isVue2 from '../common/util-is-vue2'
+import * as Vue2 from 'vue'
+import { reactive, defineAsyncComponent } from 'vue';
+
+
+const ItemList = isVue2 ? require('./components/item-list/item-list') : defineAsyncComponent(() => import('./components/item-list/item-list3'));
 
 let staticConf = isVue2
-  ? isVue2.observable({ config: {} })
+  ? Vue2.default.observable({ config: {} })
   : reactive({ config: {} });
 function setConfig(key, value) {
   if(_.isObject(key)) {
     if(isVue2) {
-      isVue2.set(staticConf, 'config', key);
+      Vue2.default.set(staticConf, 'config', key);
     } else {
       staticConf.config = key;
     }
   } else {
     if(isVue2) {
-      isVue2.set(staticConf.config, key, value);
+      Vue2.default.set(staticConf.config, key, value);
     } else {
       staticConf.config[key] = value;
     }

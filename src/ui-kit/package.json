@@ -9,10 +9,12 @@
   "author": "eric",
   "license": "ISC",
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.4",
     "axios": "^0.21.0",
     "element-china-area-data": "^5.0.2",
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "vuedraggable4": "npm:vuedraggable@^4.1.0"
   }
 }

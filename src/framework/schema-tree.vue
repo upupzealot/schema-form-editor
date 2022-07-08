@@ -13,11 +13,14 @@
         style="height: 26px; width: 100%"
       >
         <i
+          v-if="isVue2"
           :class="{
             'el-icon-folder': !data.isSchema,
             'el-icon-document': data.isSchema,
           }"
         />
+        <Folder v-else-if="!data.isSchema" />
+        <Document v-else-if="data.isSchema" />
         {{ data.label }}
       </div>
     </template>
@@ -33,6 +36,7 @@
 <script>
 import md5 from 'md5';
 import getService from '../service'
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   props: {
@@ -45,6 +49,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       schemaId: getService('schema').currentId(),
       treeConf: {
         label: 'label',

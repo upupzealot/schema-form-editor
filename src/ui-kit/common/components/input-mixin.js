@@ -1,4 +1,4 @@
-import isVue2 from 'vue';
+import isVue2 from '../util-is-vue2'
 
 export default {
   methods: {

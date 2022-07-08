@@ -25,7 +25,11 @@
         style="margin-top: 10px;"
         @click="deleteSchema"
       >
-        <i class="el-icon-delete" />
+        <i
+          v-if="isVue2"
+          class="el-icon-delete"
+        />
+        <Delete v-else />
       </el-button>
       <!-- 新增 schema -->
       <el-button
@@ -33,7 +37,11 @@
         style="margin-top: 10px; margin-left: 10px;"
         @click="showDialog"
       >
-        <i class="el-icon-plus" />
+        <i
+          v-if="isVue2"
+          class="el-icon-plus"
+        />
+        <Plus v-else />
       </el-button>
 
       <UiKitSelect />
@@ -81,7 +89,7 @@
           >
           <el-button
             style="position: absolute; right: 0; top: 0;"
-            icon="el-icon-upload2"
+            :icon="isVue2 ? 'el-icon-upload2' : Upload"
             circle
             @click="selectSchemaFile"
           />
@@ -109,6 +117,7 @@
 import md5 from 'md5';
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   components: {
@@ -116,6 +125,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       schemaList: [],
       form: {},
       validRules: {
@@ -225,7 +235,7 @@ export default {
       } catch(err) {
         return this.$message.error(err.message);
       }
-      
+
       window.location.reload();
     },
     selectSchema(schemaId) {
@@ -239,7 +249,7 @@ export default {
       }).then(() => {
         const schemaSrv = getService('schema');
         schemaSrv.delet(this.schemaId);
-        
+
         this.schemaId = 'default';
         this.schemaList = schemaSrv.list();
 

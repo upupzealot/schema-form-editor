@@ -14,7 +14,11 @@
       :style="{ width: fullWidth ? '100%' : '' }"
       @click="show"
     >
-      <i class="el-icon-map-location" />
+      <i
+        v-if="isVue2"
+        class="el-icon-map-location"
+      />
+      <MapLocation v-else />
       {{ btnLabel }}
     </el-button>
     <el-dialog
@@ -42,7 +46,7 @@
               ref="searchInput"
               v-model="search"
               size="mini"
-              prefix-icon="el-icon-search"
+              :prefix-icon="isVue2 ? 'el-icon-search' : Search"
               clearable
               style="position: absolute; top: 10px; left: 10px; width: 200px;"
               @focus="popoverVisible = false"
@@ -82,7 +86,11 @@
                 font-size: 20px;
                 color: #F56C6C;"
             >
-              <i class="el-icon-location" />
+              <i
+                v-if="isVue2"
+                class="el-icon-location"
+              />
+              <Location v-else />
             </div>
           </template>
           <div style="height: 120px; overflow-y: overlay;">
@@ -234,7 +242,7 @@
   line-height: 18px;
   color: #777;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 }
 .location-item .address {
@@ -244,18 +252,20 @@
   font-size: 12px;
   color: #aaa;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 }
 </style>
 
 <script>
 import formItemMixin from '../../common/form-item/mixin'
+import isVue2 from '../../../common/util-is-vue2'
 
 export default {
   mixins: [formItemMixin],
   data() {
     return {
+      isVue2,
       valueText: '',
       dialogVisible: false,
       scriptLoaded: false,
@@ -334,7 +344,7 @@ export default {
       this.lng = this.mapLng ? (this.data[this.lngKey] || 120.19) : 120.19;
       this.lat = this.mapLat ? (this.data[this.latKey] || 30.26) : 30.26;
       this.centerToPoint(new BMap.Point(this.lng, this.lat), true);
-      
+
       map.enableScrollWheelZoom();
       map.addEventListener('click', e => {
         this.popoverVisible = false;
@@ -355,7 +365,7 @@ export default {
             const point = res.getPoi(i);
             suggestions.push(this.makeShortAddress(point, province, city));
           }
-          
+
           this.searchLocations = suggestions;
           this.searchPopoverVisible = true;
         });
@@ -421,7 +431,7 @@ export default {
       if(this.mapAddress) {
         this.$set(this.data, this.addressKey, this.address);
       }
-      
+
       this.dialogVisible = false;
     },
     pickPoint(point) {

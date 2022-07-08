@@ -24,21 +24,48 @@
         style="margin-top: 10px;"
         @click="showDialog('edit')"
       >
-        <i class="el-icon-edit" />
+        <i
+          v-if="isVue2"
+          class="el-icon-edit"
+        />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Edit />
+        </el-icon>
       </el-button>
       <el-button
         type="text"
         style="margin-top: 10px;"
         @click="deleteProject"
       >
-        <i class="el-icon-delete" />
+        <i
+          v-if="isVue2"
+          class="el-icon-delete"
+        />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Delete />
+        </el-icon>
       </el-button>
       <el-button
         type="text"
         style="margin-top: 10px; margin-left: 10px;"
         @click="showDialog('create')"
       >
-        <i class="el-icon-plus" />
+        <i
+          v-if="isVue2"
+          class="el-icon-plus"
+        />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Plus />
+        </el-icon>
       </el-button>
 
       <UiKitSelect />
@@ -90,6 +117,7 @@
 <script>
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
   components: {
@@ -97,6 +125,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       projects: [],
       form: {},
       formMode: 'create',
@@ -144,7 +173,7 @@ export default {
           cwd: project.id,
         };
       }
-      
+
       this.formMode = mode;
       this.dialogVisible = true;
     },
@@ -174,7 +203,7 @@ export default {
           id: this.form.cwd,
         });
       }
-      
+
       window.location.reload();
     },
     selectProject(projectId) {

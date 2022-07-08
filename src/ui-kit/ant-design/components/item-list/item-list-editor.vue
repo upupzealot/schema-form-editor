@@ -42,9 +42,10 @@
 </style>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import editorItemMixin from '@/ui-kit/common/editor-item/mixin'
 
-import isVue2 from 'vue';
+import isVue2 from '../../../common/util-is-vue2'
 
 // 全局引入，避免循环引用
 // import FormEditor from '@/ui-kit/form-editor'
@@ -54,7 +55,7 @@ export default {
   name: 'IItemList',
   components: {
     // FormEditor,
-    ItemList: isVue2 ? require('./item-list').default : require('./item-list3').default,
+    ItemList: isVue2 ? require('./item-list') : defineAsyncComponent(() => import('./item-list3')),
   },
   mixins: [editorItemMixin],
   data() {

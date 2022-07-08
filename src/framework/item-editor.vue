@@ -4,9 +4,26 @@
       <!-- 表单属性 -->
       <el-divider content-position="left">
         <i
+          v-if="isVue2"
           :class="{ 'el-icon-circle-plus-outline': !formConfOpen, 'el-icon-remove-outline': formConfOpen }"
           @click="formConfOpen = !formConfOpen"
         />
+        <el-icon
+          v-else-if="formConfOpen"
+          :size="14"
+        >
+          <Remove
+            @click="formConfOpen = !formConfOpen"
+          />
+        </el-icon>
+        <el-icon
+          v-else-if="!formConfOpen"
+          :size="14"
+        >
+          <CirclePlus
+            @click="formConfOpen = !formConfOpen"
+          />
+        </el-icon>
         表单属性
       </el-divider>
       <el-collapse-transition>
@@ -46,6 +63,7 @@
 
 <script>
 import FormConfEditor from '@/ui-kit/element-ui/form-conf-editor';
+import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 import { SchemaItems as ElementItems } from '@/ui-kit/element-ui/index'
 import { SchemaItems as AntDesignItems } from '@/ui-kit/ant-design/index'
@@ -73,6 +91,7 @@ export default {
   },
   data() {
     return {
+      isVue2,
       uiKit,
       formConfOpen: false,
       layoutOpen: false,

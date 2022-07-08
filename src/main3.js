@@ -12,11 +12,16 @@ import CodeEditor from '@/framework/common/code-editor3.vue'
 import DraggableList from '@/ui-kit/common/draggable-list3';
 import DraggableListItem from '@/ui-kit/common/draggable-list-item';
 import store from '@/framework/store/index3';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/dist/index.css'
 import 'ant-design-vue/dist/antd.css';
 
 const app = createApp(App);
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 app.config.globalProperties.$id = $id;
 app.config.globalProperties.$clipboard = clipboardy;

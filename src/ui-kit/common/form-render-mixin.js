@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const mixin = {
   props: {
     inline: {
@@ -173,7 +175,7 @@ const mixin = {
     async validate() {
       return new Promise(resolve => {
         let valiResult = true;
-        
+
         this.$refs['form'].validate(async isValid => {
           valiResult = valiResult && isValid;
 
@@ -195,7 +197,7 @@ const mixin = {
   }
 }
 
-import isVue2 from 'vue';
+import isVue2 from './util-is-vue2'
 if(!isVue2) {
   mixin.methods.$set = function(obj, key, val) {
     obj[key] = val;
