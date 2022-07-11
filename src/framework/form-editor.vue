@@ -376,7 +376,7 @@ export default {
       return this.form.validRules;
     },
     btnSize() {
-      return this.formKey ? 'mini' : '';
+      return this.formKey ? (isVue2 ? 'mini' : 'small') : '';
     },
     schema() {
       const state = this.$store.state;
