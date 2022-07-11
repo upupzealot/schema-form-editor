@@ -23,9 +23,8 @@
           {{ projectItem.name }}
         </el-menu-item>
       </component>
-      <el-button
-        type="text"
-        style="margin-top: 10px;"
+      <el-link
+        style="margin-left: 10px;"
         @click="showDialog('edit')"
       >
         <i
@@ -38,10 +37,9 @@
         >
           <Edit />
         </el-icon>
-      </el-button>
-      <el-button
-        type="text"
-        style="margin-top: 10px;"
+      </el-link>
+      <el-link
+        style="margin-left: 10px;"
         @click="deleteProject"
       >
         <i
@@ -54,10 +52,9 @@
         >
           <Delete />
         </el-icon>
-      </el-button>
-      <el-button
-        type="text"
-        style="margin-top: 10px; margin-left: 10px;"
+      </el-link>
+      <el-link
+        style="margin-left: 10px;"
         @click="showDialog('create')"
       >
         <i
@@ -70,7 +67,7 @@
         >
           <Plus />
         </el-icon>
-      </el-button>
+      </el-link>
 
       <UiKitSelect />
     </el-menu>

@@ -25,10 +25,9 @@
       </component>
 
       <!-- 删除当前 schema -->
-      <el-button
+      <el-link
         v-if="schemaId !== 'default'"
-        type="text"
-        style="margin-top: 10px;"
+        style="margin-left: 10px;"
         @click="deleteSchema"
       >
         <i
@@ -41,11 +40,10 @@
         >
           <Delete />
         </el-icon>
-      </el-button>
+      </el-link>
       <!-- 新增 schema -->
-      <el-button
-        type="text"
-        style="margin-top: 10px; margin-left: 10px;"
+      <el-link
+        style="margin-left: 10px;"
         @click="showDialog"
       >
         <i
@@ -58,7 +56,7 @@
         >
           <Plus />
         </el-icon>
-      </el-button>
+      </el-link>
 
       <UiKitSelect />
     </el-menu>
