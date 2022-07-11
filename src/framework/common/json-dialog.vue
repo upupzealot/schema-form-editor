@@ -62,6 +62,7 @@
 
 <script>
 // import CodeEditor from '@/framework/common/code-editor'
+import { Download, CopyDocument } from '@element-plus/icons-vue';
 import isVue2 from '@/ui-kit/common/util-is-vue2';
 
 export default {
@@ -102,6 +103,8 @@ export default {
   },
   data() {
     return {
+      Download,
+      CopyDocument,
       isVue2,
       editorStr: '',
       downloadStr: '',

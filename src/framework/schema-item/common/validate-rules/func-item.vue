@@ -49,6 +49,7 @@
 
 <script>
 import _ from 'lodash';
+import { Setting } from '@element-plus/icons-vue';
 
 import isVue2 from '@/ui-kit/common/util-is-vue2';
 import ruleMixin from './rule-mixin';
@@ -74,6 +75,7 @@ export default {
   },
   data() {
     return {
+      Setting,
       isVue2,
       componentValidators: [],
       tempPreset: undefined,

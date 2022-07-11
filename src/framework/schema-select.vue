@@ -130,6 +130,7 @@
 <script>
 import _ from 'lodash';
 import md5 from 'md5';
+import { Upload } from '@element-plus/icons-vue';
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'
 import isVue2 from '@/ui-kit/common/util-is-vue2';
@@ -140,6 +141,7 @@ export default {
   },
   data() {
     return {
+      Upload,
       isVue2,
       schemaList: [],
       form: {},

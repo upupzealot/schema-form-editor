@@ -85,6 +85,7 @@
 </style>
 
 <script>
+import { Edit, Delete } from '@element-plus/icons-vue';
 import isVue2 from '@/ui-kit/common/util-is-vue2';
 import ruleMixin from './rule-mixin';
 
@@ -97,6 +98,8 @@ export default {
   mixins: [ruleMixin],
   data() {
     return {
+      Edit,
+      Delete,
       isVue2,
       dialogVisible: false,
     }
