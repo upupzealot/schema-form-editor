@@ -27,10 +27,20 @@
         />
       </el-select>
       <el-button
-        :icon="isVue2 ? 'el-icon-setting' : Setting"
         style="margin-left: 10px;"
         @click="$refs['funcPresetDialog'].show()"
-      />
+      >
+        <i
+          v-if="isVue2"
+          class="el-icon-setting"
+        />
+        <el-icon
+          v-else
+          :size="14"
+        >
+          <Setting />
+        </el-icon>
+      </el-button>
       <FuncPresetDialog ref="funcPresetDialog" />
     </el-form-item>
     <el-form-item
@@ -49,7 +59,6 @@
 
 <script>
 import _ from 'lodash';
-import { Setting } from '@element-plus/icons-vue';
 
 import isVue2 from '@/ui-kit/common/util-is-vue2';
 import ruleMixin from './rule-mixin';
@@ -75,7 +84,6 @@ export default {
   },
   data() {
     return {
-      Setting,
       isVue2,
       componentValidators: [],
       tempPreset: undefined,

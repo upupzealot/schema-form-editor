@@ -35,20 +35,52 @@
           label="操作"
           width="180"
         >
-          <template slot-scope="scope">
+          <template
+            v-if="isVue2"
+            slot-scope="scope"
+          >
             <el-link
               type="primary"
-              :icon="isVue2 ? 'el-icon-edit' : Edit"
+              icon="el-icon-edit"
               @click="showFormDialog(scope.row)"
             >
               编辑
             </el-link>
             <el-link
               type="danger"
-              :icon="isVue2 ? 'el-icon-delete' : Delete"
+              icon="el-icon-delete"
               style="margin-left: 10px;"
               @click="onDelete(scope.row)"
             >
+              删除
+            </el-link>
+          </template>
+
+          <template
+            v-if="!isVue2"
+            #default="scope"
+          >
+            <el-link
+              type="primary"
+              @click="showFormDialog(scope.row)"
+            >
+              <el-icon
+                :size="14"
+              >
+                <Edit />
+              </el-icon>
+              编辑
+            </el-link>
+            <el-link
+              type="danger"
+              style="margin-left: 10px;"
+              @click="onDelete(scope.row)"
+            >
+              <el-icon
+                :size="14"
+              >
+                <Delete />
+              </el-icon>
               删除
             </el-link>
           </template>
@@ -85,7 +117,6 @@
 </style>
 
 <script>
-import { Edit, Delete } from '@element-plus/icons-vue';
 import isVue2 from '@/ui-kit/common/util-is-vue2';
 import ruleMixin from './rule-mixin';
 
@@ -98,8 +129,6 @@ export default {
   mixins: [ruleMixin],
   data() {
     return {
-      Edit,
-      Delete,
       isVue2,
       dialogVisible: false,
     }

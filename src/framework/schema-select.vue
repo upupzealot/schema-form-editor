@@ -103,10 +103,20 @@
           >
           <el-button
             style="position: absolute; right: 0; top: 0;"
-            :icon="isVue2 ? 'el-icon-upload2' : Upload"
             circle
             @click="selectSchemaFile"
-          />
+          >
+            <i
+              v-if="isVue2"
+              class="el-icon-upload2"
+            />
+            <el-icon
+              v-else
+              :size="14"
+            >
+              <Upload />
+            </el-icon>
+          </el-button>
         </el-form-item>
       </el-form>
       <template
@@ -130,7 +140,6 @@
 <script>
 import _ from 'lodash';
 import md5 from 'md5';
-import { Upload } from '@element-plus/icons-vue';
 import getService from '../service'
 import UiKitSelect from './ui-kit-select'
 import isVue2 from '@/ui-kit/common/util-is-vue2';
@@ -141,7 +150,6 @@ export default {
   },
   data() {
     return {
-      Upload,
       isVue2,
       schemaList: [],
       form: {},
