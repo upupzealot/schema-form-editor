@@ -24,7 +24,7 @@
         </el-menu-item>
       </component>
       <el-link
-        style="margin-left: 10px;"
+        style="height: 58px; margin-left: 10px;"
         @click="showDialog('edit')"
       >
         <i

@@ -2,7 +2,7 @@
   <component
     :is="isVue2 ? 'el-submenu' : 'el-sub-menu'"
     index="ui-kit"
-    style="position: absolute; right: 0;"
+    :style="submenuStyle"
   >
     <template v-slot:title>
       <el-image
@@ -49,6 +49,12 @@ export default {
       uiKey: localStorage.getItem('ui-kit'),
       uiKitList,
       uiKitMap: _.keyBy(uiKitList, 'key'),
+      submenuStyle: {
+        position: isVue2 ? 'relative':'absolute',
+        right: 0,
+        top: 0,
+        float: isVue2 ? 'right' : 'none'
+      }
     }
   },
   computed: {

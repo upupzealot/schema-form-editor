@@ -27,7 +27,7 @@
       <!-- 删除当前 schema -->
       <el-link
         v-if="schemaId !== 'default'"
-        style="margin-left: 10px;"
+        style="height: 58px; margin-left: 10px;"
         @click="deleteSchema"
       >
         <i
