@@ -13,6 +13,7 @@ import DraggableList from '@/ui-kit/common/draggable-list3';
 import DraggableListItem from '@/ui-kit/common/draggable-list-item';
 import store from '@/framework/store/index3';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import zhCn from "element-plus/es/locale/lang/zh-cn"; // element-plus 语言
 
 import 'element-plus/dist/index.css'
 import 'ant-design-vue/dist/antd.css';
@@ -31,7 +32,11 @@ app.config.globalProperties.$set = (obj, key, val) => {
 app.config.globalProperties.$delete = (obj, key) => { delete obj[key] };
 
 app.use(AntDesignVue);
-app.use(ElementPlus); // ElementUI 放在最后引入，保证类似 $message 的方法最终可用
+// ElementUI 放在最后引入，保证类似 $message 的方法最终可用
+app.use(ElementPlus, {
+  // 全局注册 element-plus
+  locale: zhCn, // 使用中文
+});
 
 app.component('CodeEditor', CodeEditor);
 app.component('DraggableList', DraggableList);
