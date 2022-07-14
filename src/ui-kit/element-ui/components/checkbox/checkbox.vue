@@ -17,6 +17,7 @@
       v-model="checkAll"
       label="全选"
       :indeterminate="isIndeterminate"
+      style="margin-right: 30px;"
       @change="onCheckAllChange"
     />
     <el-checkbox-group

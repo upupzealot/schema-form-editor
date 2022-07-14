@@ -24,14 +24,15 @@
         v-if="field.hasSelectAll"
         :checked="checkAll"
         :indeterminate="isIndeterminate"
+        style="margin-right: 30px;"
         @change="onCheckAllChange"
       >
         全选
       </a-checkbox>
     </div>
     <a-checkbox-group
-      :value="data[field.name]"
       v-model:value="data[field.name]"
+      :value="data[field.name]"
       :disabled="disabled"
     >
       <!-- 这里的 label 是值 -->
