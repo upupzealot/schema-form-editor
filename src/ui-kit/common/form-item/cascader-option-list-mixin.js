@@ -73,9 +73,9 @@ mixin.watch.optionMap = {
 }
 
 mixin.methods.parseOptions = function (options) {
-  const valueKey = this.field.remoteConf.valueKey || 'id';
-  const labelKey = this.field.remoteConf.labelKey || 'name';
-  const childrenKey = this.field.remoteConf.childrenKey || 'children';
+  const valueKey = this.field.remoteConf?.valueKey || 'id';
+  const labelKey = this.field.remoteConf?.labelKey || 'name';
+  const childrenKey = this.field.remoteConf?.childrenKey || 'children';
 
   return options.map(option => {
     return {
@@ -90,7 +90,7 @@ mixin.methods.parseOptions = function (options) {
   });
 }
 mixin.methods.flatOptions = function (options) {
-  const childrenKey = this.field.remoteConf.childrenKey || 'children';
+  const childrenKey = this.field.remoteConf?.childrenKey || 'children';
   return _.flatMap(options, option => {
     return [_.omit(option, childrenKey), ...this.flatOptions(option[childrenKey])];
   });
