@@ -11,7 +11,9 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
+    <!-- 使用 :key="field.multiple + field.searchable || undefined" 解决切换 field.multiple、field.searchable 时报错的问题 -->
     <el-select
+      :key="field.multiple + field.searchable || undefined"
       v-model="data[field.name]"
       :disabled="disabled"
       :placeholder="field.placeholder"
