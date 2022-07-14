@@ -48,7 +48,10 @@
       label="规则"
       style="margin-bottom: 15px;"
     >
-      <CodeEditor v-model="func" />
+      <CodeEditor
+        v-model="func"
+        style="width: 100%;"
+      />
     </el-form-item>
     <RuleItem
       :rule="rule"

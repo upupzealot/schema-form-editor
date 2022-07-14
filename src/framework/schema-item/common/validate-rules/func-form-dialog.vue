@@ -38,7 +38,7 @@
           >
             <CodeEditor
               v-model="funcForm.func"
-              height="width: 100%;240px"
+              style="width: 100%;"
             />
           </el-form-item>
         </el-col>
