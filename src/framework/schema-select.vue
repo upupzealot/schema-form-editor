@@ -43,7 +43,7 @@
       </el-link>
       <!-- 新增 schema -->
       <el-link
-        style="margin-left: 10px;"
+        style="height: 58px; margin-left: 10px;"
         @click="showDialog"
       >
         <i
