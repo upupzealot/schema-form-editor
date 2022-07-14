@@ -56,7 +56,7 @@ export default {
   name: 'IItemList',
   components: {
     // FormEditor,
-    ItemList: isVue2 ? require('./item-list') : defineAsyncComponent(() => import('./item-list3')),
+    ItemList: isVue2 ? () => import('./item-list.vue') : defineAsyncComponent(() => import('./item-list3.vue')),
   },
   mixins: [editorItemMixin],
   data() {
