@@ -13,6 +13,7 @@
 
     <DraggableList
       :list="items"
+      style="width: 100%;"
     >
       <template
         #item="{ item, index }"
