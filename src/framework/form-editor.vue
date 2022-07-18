@@ -474,6 +474,9 @@ export default {
       }
     },
     onSelect(field, $event) {
+      if (field instanceof Event && field.target instanceof Element) {
+        return
+      }
       this.activeField = field;
       this.activeForm = this.form;
     },
