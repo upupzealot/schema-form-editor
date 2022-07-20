@@ -204,12 +204,12 @@ export default {
 
           this.selected = selected;
         } else {
-          let selected = this.data[this.field.name];
+          let selected = this.data[this.field.name] || [];
           if(this.valueFormat === 'name') {
             let data = TextToCode;
-            this.selected = selected.map(v => {
+            this.selected = selected?.map(v => {
               data = data[v];
-              return data.code;
+              return data?.code;
             });
           } else {
             this.selected = selected;
