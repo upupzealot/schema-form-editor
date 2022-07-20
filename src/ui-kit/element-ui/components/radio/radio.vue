@@ -11,9 +11,9 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
     <el-radio-group v-model="data[field.name]">
-    <!-- 这里的 label 是值 -->
+      <!-- 这里的 label 是值 -->
       <component
         :is="buttonComponent"
         v-for="option in optionList"
@@ -49,3 +49,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.el-radio-group .el-radio.is-bordered{
+  margin-bottom: 8px;
+}
+</style>

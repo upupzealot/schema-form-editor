@@ -59,3 +59,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.el-checkbox-group .el-checkbox.is-bordered{
+  margin-bottom: 8px;
+}
+</style>
