@@ -1,6 +1,6 @@
 {
-  "name": "schema-form-render",
-  "version": "0.2.39",
+  "name": "schema-form-render-vue3",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
