@@ -4,16 +4,13 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{ 'form-item': true, readonly: readonly }"
     :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    <el-button
-      :style="{ width: fullWidth ? '100%' : '' }"
-      @click="show"
-    >
+    <el-button :style="{ width: fullWidth ? '100%' : '' }" @click="show">
       <i class="el-icon-map-location" />
       {{ btnLabel }}
     </el-button>
@@ -26,10 +23,7 @@
       @close="popoverVisible = false"
     >
       <div style="position: relative;">
-        <div
-          ref="mapRoot"
-          style="width: 100%; height: 240px;"
-        />
+        <div ref="mapRoot" style="width: 100%; height: 240px;" />
         <el-popover
           v-model="searchPopoverVisible"
           placement="bottom-start"
@@ -102,78 +96,35 @@
           </div>
         </el-popover>
       </div>
-      <el-form
-        label-position="right"
-        label-width="40px"
-        class="china-location-form"
-      >
+      <el-form label-position="right" label-width="40px" class="china-location-form">
         <el-row :gutter="15">
-          <el-col
-            v-if="mapLng"
-            :span="12"
-          >
-            <el-form-item
-              label="经度"
-              style="margin-bottom: 0;"
-            >
-              <el-input
-                v-model="lng"
-                style="width: 100%"
-              />
+          <el-col v-if="mapLng" :span="12">
+            <el-form-item label="经度" style="margin-bottom: 0;">
+              <el-input v-model="lng" style="width: 100%" />
             </el-form-item>
           </el-col>
-          <el-col
-            v-if="mapLat"
-            :span="12"
-          >
-            <el-form-item
-              label="纬度"
-              style="margin-bottom: 0;"
-            >
+          <el-col v-if="mapLat" :span="12">
+            <el-form-item label="纬度" style="margin-bottom: 0;">
               <el-input v-model="lat" />
             </el-form-item>
           </el-col>
-          <el-col
-            v-if="mapProvince"
-            :span="8"
-          >
-            <el-form-item
-              label="省"
-              style="margin-bottom: 0;"
-            >
+          <el-col v-if="mapProvince" :span="8">
+            <el-form-item label="省" style="margin-bottom: 0;">
               <el-input v-model="province" />
             </el-form-item>
           </el-col>
-          <el-col
-            v-if="mapCity"
-            :span="8"
-          >
-            <el-form-item
-              label="市"
-              style="margin-bottom: 0;"
-            >
+          <el-col v-if="mapCity" :span="8">
+            <el-form-item label="市" style="margin-bottom: 0;">
               <el-input v-model="city" />
             </el-form-item>
           </el-col>
-          <el-col
-            v-if="mapDistrict"
-            :span="8"
-          >
-            <el-form-item
-              label="区"
-              style="margin-bottom: 0;"
-            >
+          <el-col v-if="mapDistrict" :span="8">
+            <el-form-item label="区" style="margin-bottom: 0;">
               <el-input v-model="district" />
             </el-form-item>
           </el-col>
-          <el-col
-            v-if="mapAddress"
-            :span="24"
-          >
-            <el-form-item
-              label="地址"
-              style="margin-bottom: 0;"
-            >
+          <el-col v-if="mapAddress" :span="24">
+            <el-form-item label="地址" style="margin-bottom: 0;">
               <el-input v-model="address" />
             </el-form-item>
           </el-col>
@@ -182,17 +133,10 @@
       </el-form>
       <template v-slot:footer>
         <div style="height: 40px;">
-          <el-button
-            type="primary"
-            style="float: right; margin-left: 15px;"
-            @click="onPick"
-          >
+          <el-button type="primary" style="float: right; margin-left: 15px;" @click="onPick">
             确定
           </el-button>
-          <el-button
-            style="float: right;"
-            @click="dialogVisible = false"
-          >
+          <el-button style="float: right;" @click="dialogVisible = false">
             取消
           </el-button>
         </div>
@@ -234,7 +178,7 @@
   line-height: 18px;
   color: #777;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 }
 .location-item .address {
@@ -244,19 +188,19 @@
   font-size: 12px;
   color: #aaa;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 }
 </style>
 
 <script>
-import formItemMixin from '../../common/form-item/mixin'
+import formItemMixin from "../../common/form-item/mixin";
 
 export default {
   mixins: [formItemMixin],
   data() {
     return {
-      valueText: '',
+      valueText: "",
       dialogVisible: false,
       scriptLoaded: false,
       mounted: false,
@@ -264,24 +208,24 @@ export default {
       map: null,
       popoverVisible: false,
       popoverLocations: [],
-      search: '',
+      search: "",
       searchLocations: [],
       searchPopoverVisible: false,
-      lng: '',
-      lat: '',
-      province: '',
-      city: '',
-      district: '',
-      address: '',
+      lng: "",
+      lat: "",
+      province: "",
+      city: "",
+      district: "",
+      address: ""
       // imgSrc: ''
-    }
+    };
   },
   computed: {
     ready() {
       return this.scriptLoaded && this.mounted && this.showed;
     },
     btnLabel() {
-      return this.field.btnLabel || '地图选点';
+      return this.field.btnLabel || "地图选点";
     },
     fullWidth() {
       return !!this.field.fullWidth;
@@ -290,72 +234,72 @@ export default {
       return !!this.field.mapLng;
     },
     lngKey() {
-      return this.field.lngKey || 'longitude';
+      return this.field.lngKey || "longitude";
     },
     mapLat() {
       return !!this.field.mapLat;
     },
     latKey() {
-      return this.field.latKey || 'latitude'
+      return this.field.latKey || "latitude";
     },
     mapProvince() {
       return !!this.field.mapProvince;
     },
     provinceKey() {
-      return this.field.provinceKey || 'province'
+      return this.field.provinceKey || "province";
     },
     mapCity() {
       return !!this.field.mapCity;
     },
     cityKey() {
-      return this.field.cityKey || 'city'
+      return this.field.cityKey || "city";
     },
     mapDistrict() {
       return !!this.field.mapDistrict;
     },
     districtKey() {
-      return this.field.districtKey || 'district'
+      return this.field.districtKey || "district";
     },
     mapAddress() {
       return !!this.field.mapAddress;
     },
     addressKey() {
-      return this.field.addressKey || 'address'
-    },
+      return this.field.addressKey || "address";
+    }
   },
   watch: {
     ready() {
       const map = new BMap.Map(this.$refs.mapRoot, {
-        enableMapClick: false,
+        enableMapClick: false
       });
       this.map = map;
-      map.setDefaultCursor('pointer');
+      map.setDefaultCursor("pointer");
       // map.centerAndZoom(new BMap.Point(this.lng, this.lat), 15);
-      this.lng = this.mapLng ? (this.data[this.lngKey] || 120.19) : 120.19;
-      this.lat = this.mapLat ? (this.data[this.latKey] || 30.26) : 30.26;
+      this.lng = this.mapLng ? this.data[this.lngKey] || 120.19 : 120.19;
+      this.lat = this.mapLat ? this.data[this.latKey] || 30.26 : 30.26;
       this.centerToPoint(new BMap.Point(this.lng, this.lat), true);
-      
+
       map.enableScrollWheelZoom();
-      map.addEventListener('click', e => {
+      map.addEventListener("click", e => {
         this.popoverVisible = false;
         const { point } = e;
         this.pickPoint(point);
       });
     },
     search(val) {
-      if(val) {
+      if (val) {
         const localSearch = new BMap.LocalSearch(this.map, {
-          pageCapacity: 6,
+          pageCapacity: 6
         });
         localSearch.setSearchCompleteCallback(res => {
           const suggestions = [];
           const { province, city } = res;
           const num = res.getCurrentNumPois();
-          for(let i = 0; i < num; i++) {
+          for (let i = 0; i < num; i++) {
             const point = res.getPoi(i);
             suggestions.push(this.makeShortAddress(point, province, city));
           }
-          
+
           this.searchLocations = suggestions;
           this.searchPopoverVisible = true;
         });
@@ -365,17 +309,17 @@ export default {
   },
   created() {
     const ak = this.config.baiduAk;
-    if(!ak) {
+    if (!ak) {
       // eslint-disable-next-line
-      return console.error('未找到百度地图 appkey，请在 config.baiduAk 中设置');
+      return console.error("未找到百度地图 appkey，请在 config.baiduAk 中设置");
     }
     const src = `//api.map.baidu.com/api?v=2.0&ak=${ak}&callback=BMapInit`;
     if (!document.querySelector('script[src="' + src + '"]')) {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src = src;
       window.BMapInit = () => {
-       this.scriptLoaded = true;
-      }
+        this.scriptLoaded = true;
+      };
       document.head.appendChild(script);
     } else {
       this.scriptLoaded = true;
@@ -391,37 +335,37 @@ export default {
     onShow() {
       this.showed = true;
 
-      this.lng = this.mapLng ? (this.data[this.lngKey] || 120.19)  : 120.19;
-      this.lat = this.mapLat ? (this.data[this.latKey] || 30.26) : 30.26;
-      if(this.map) {
+      this.lng = this.mapLng ? this.data[this.lngKey] || 120.19 : 120.19;
+      this.lat = this.mapLat ? this.data[this.latKey] || 30.26 : 30.26;
+      if (this.map) {
         this.centerToPoint(new BMap.Point(this.lng, this.lat));
       }
 
-      this.province = this.mapProvince ? this.data[this.provinceKey] : '';
-      this.city = this.mapCity ? this.data[this.cityKey] : '';
-      this.district = this.mapDistrict ? this.data[this.districtKey] : '';
-      this.address = this.mapAddress ? this.data[this.addressKey] : '';
+      this.province = this.mapProvince ? this.data[this.provinceKey] : "";
+      this.city = this.mapCity ? this.data[this.cityKey] : "";
+      this.district = this.mapDistrict ? this.data[this.districtKey] : "";
+      this.address = this.mapAddress ? this.data[this.addressKey] : "";
     },
     onPick() {
-      if(this.mapLng) {
+      if (this.mapLng) {
         this.$set(this.data, this.lngKey, this.lng);
       }
-      if(this.mapLat) {
+      if (this.mapLat) {
         this.$set(this.data, this.latKey, this.lat);
       }
-      if(this.mapProvince) {
+      if (this.mapProvince) {
         this.$set(this.data, this.provinceKey, this.province);
       }
-      if(this.mapCity) {
+      if (this.mapCity) {
         this.$set(this.data, this.cityKey, this.city);
       }
-      if(this.mapDistrict) {
+      if (this.mapDistrict) {
         this.$set(this.data, this.districtKey, this.district);
       }
-      if(this.mapAddress) {
+      if (this.mapAddress) {
         this.$set(this.data, this.addressKey, this.address);
       }
-      
+
       this.dialogVisible = false;
     },
     pickPoint(point) {
@@ -447,7 +391,7 @@ export default {
     },
     centerToPoint(point, init) {
       const map = this.map;
-      if(!init) {
+      if (!init) {
         map.panTo(point);
       } else {
         map.centerAndZoom(point, 15);
@@ -456,11 +400,11 @@ export default {
     makeShortAddress(point, province, city) {
       const { address } = point;
       let shortAddress = address;
-      if(shortAddress && shortAddress.startsWith(province)) {
-        shortAddress = shortAddress.replace(province, '');
+      if (shortAddress && shortAddress.startsWith(province)) {
+        shortAddress = shortAddress.replace(province, "");
       }
-      if(shortAddress && shortAddress.startsWith(city)) {
-        shortAddress = shortAddress.replace(city, '');
+      if (shortAddress && shortAddress.startsWith(city)) {
+        shortAddress = shortAddress.replace(city, "");
       }
       point.shortAddress = shortAddress;
       return point;
@@ -474,10 +418,11 @@ export default {
         const { province, city, district } = res.addressComponents;
         this.province = province;
         const addr = shortAddress.endsWith(title) ? shortAddress : `${shortAddress}${title}`;
-        if(province === city) { // 考虑直辖市情况
-          this.city = '市辖区';
+        if (province === city) {
+          // 考虑直辖市情况
+          this.city = "市辖区";
           this.address = `${province}${addr}`;
-          this.valueText = `${province}\n${addr}`
+          this.valueText = `${province}\n${addr}`;
         } else {
           this.city = city;
           this.address = `${province}${city}${addr}`;
@@ -490,8 +435,8 @@ export default {
       this.popoverVisible = false;
       this.searchPopoverVisible = false;
       this.$refs.searchInput.blur();
-      this.search = '';
+      this.search = "";
     }
   }
-}
+};
 </script>

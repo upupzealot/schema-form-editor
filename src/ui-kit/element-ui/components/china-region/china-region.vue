@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{ 'form-item': true, readonly: readonly }"
     :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
@@ -29,43 +29,43 @@
 </style>
 
 <script>
-import { provinceAndCityData, regionData, CodeToText, TextToCode } from 'element-china-area-data'
+import { provinceAndCityData, regionData, CodeToText, TextToCode } from "element-china-area-data";
 
-import formItemMixin from '../../common/form-item/mixin'
+import formItemMixin from "../../common/form-item/mixin";
 
 export default {
   mixins: [formItemMixin],
   data() {
     return {
-      selected: this.data[this.field.name] || [],
-    }
+      selected: this.data[this.field.name] || []
+    };
   },
   computed: {
     options() {
-      return this.mode === 'province-city-district'
-        ? regionData : provinceAndCityData;
+      return this.mode === "province-city-district" ? regionData : provinceAndCityData;
     },
     mode() {
-      return this.field.mode || 'province-city-district';
+      return this.field.mode || "province-city-district";
     },
     valueFormat() {
-      return this.field.valueFormat || 'code';
+      return this.field.valueFormat || "code";
     },
     mapLevels() {
       return !!this.field.mapLevels;
     },
     provinceKey() {
-      return this.field.provinceKey || 'province';
+      return this.field.provinceKey || "province";
     },
     cityKey() {
-      return this.field.cityKey || 'city';
+      return this.field.cityKey || "city";
     },
     districtKey() {
-      return this.field.districtKey || 'district';
+      return this.field.districtKey || "district";
     },
-    provinceVal() { // 省级字段值
-      if(this.selected && this.selected.length) {
-        if(this.valueFormat === 'code') {
+    provinceVal() {
+      // 省级字段值
+      if (this.selected && this.selected.length) {
+        if (this.valueFormat === "code") {
           return this.selected[0];
         } else {
           return CodeToText[this.selected[0]];
@@ -74,9 +74,10 @@ export default {
         return undefined;
       }
     },
-    cityVal() { // 市级字段值
-      if(this.selected && this.selected.length) {
-        if(this.valueFormat === 'code') {
+    cityVal() {
+      // 市级字段值
+      if (this.selected && this.selected.length) {
+        if (this.valueFormat === "code") {
           return this.selected[1];
         } else {
           return CodeToText[this.selected[1]];
@@ -85,9 +86,10 @@ export default {
         return undefined;
       }
     },
-    districtVal() { // 区级字段值
-      if(this.selected && this.selected.length && this.mode === 'province-city-district') {
-        if(this.valueFormat === 'code') {
+    districtVal() {
+      // 区级字段值
+      if (this.selected && this.selected.length && this.mode === "province-city-district") {
+        if (this.valueFormat === "code") {
           return this.selected[2];
         } else {
           return CodeToText[this.selected[2]];
@@ -97,8 +99,8 @@ export default {
       }
     },
     arrayVal() {
-      if(this.selected && this.selected.length && !this.mapLevels) {
-        if(this.mode === 'province-city-district') {
+      if (this.selected && this.selected.length && !this.mapLevels) {
+        if (this.mode === "province-city-district") {
           return [this.provinceVal, this.cityVal, this.districtVal];
         } else {
           return [this.provinceVal, this.cityVal];
@@ -108,19 +110,22 @@ export default {
       }
     },
     updater() {
-      return this.selected && `${this.selected.join(',')}|${this.mode}|${this.mapLevels}|${this.valueFormat}`;
+      return (
+        this.selected &&
+        `${this.selected.join(",")}|${this.mode}|${this.mapLevels}|${this.valueFormat}`
+      );
     },
     dataUpdater() {
-      if(this.mapLevels) {
+      if (this.mapLevels) {
         const data = this.data;
-        if(this.mode === 'province-city-district') {
+        if (this.mode === "province-city-district") {
           return `${data[this.provinceKey]}|${data[this.cityKey]}|${data[this.districtKey]}`;
         } else {
           return `${data[this.provinceKey]}|${data[this.cityKey]}`;
         }
       } else {
         const data = this.data[this.field.name];
-        return data && data.join('|');
+        return data && data.join("|");
       }
     }
   },
@@ -132,37 +137,37 @@ export default {
       this.$set(this.data, this.field.name, this.arrayVal);
     },
     provinceKey(val, oldVal) {
-      if(oldVal) {
+      if (oldVal) {
         this.$set(this.data, oldVal, undefined);
       }
-      if(this.mapLevels) {
+      if (this.mapLevels) {
         this.$set(this.data, val, this.selected[0]);
       }
     },
     cityKey(val, oldVal) {
-      if(oldVal) {
+      if (oldVal) {
         this.$set(this.data, oldVal, undefined);
       }
-      if(this.mapLevels) {
+      if (this.mapLevels) {
         this.$set(this.data, val, this.selected[1]);
       }
     },
     districtKey(val, oldVal) {
-      if(oldVal) {
+      if (oldVal) {
         this.$set(this.data, oldVal, undefined);
       }
-      if(this.mapLevels) {
+      if (this.mapLevels) {
         this.$set(this.data, val, this.selected[2]);
       }
     },
     dataUpdater: {
       handler() {
-        if(this.mapLevels) {
+        if (this.mapLevels) {
           const selected = [];
 
           let province = this.data[this.provinceKey];
-          if(province) {
-            if(this.valueFormat === 'name') {
+          if (province) {
+            if (this.valueFormat === "name") {
               selected.push(TextToCode[province].code);
             } else {
               selected.push(province);
@@ -173,11 +178,11 @@ export default {
           }
 
           let city = this.data[this.cityKey];
-          if(city === province) {
-            city = '市辖区';
+          if (city === province) {
+            city = "市辖区";
           }
-          if(city) {
-            if(this.valueFormat === 'name') {
+          if (city) {
+            if (this.valueFormat === "name") {
               selected.push(TextToCode[province][city].code);
             } else {
               selected.push(city);
@@ -187,10 +192,10 @@ export default {
             return;
           }
 
-          if(this.mode === 'province-city-district') {
+          if (this.mode === "province-city-district") {
             let district = this.data[this.districtKey];
-            if(district) {
-              if(this.valueFormat === 'name') {
+            if (district) {
+              if (this.valueFormat === "name") {
                 selected.push(TextToCode[province][city][district].code);
               } else {
                 selected.push(district);
@@ -204,7 +209,7 @@ export default {
           this.selected = selected;
         } else {
           let selected = this.data[this.field.name];
-          if(this.valueFormat === 'name') {
+          if (this.valueFormat === "name") {
             let data = TextToCode;
             this.selected = selected.map(v => {
               data = data[v];
@@ -215,7 +220,7 @@ export default {
           }
         }
       },
-      immediate: true,
+      immediate: true
     }
   }
 };
