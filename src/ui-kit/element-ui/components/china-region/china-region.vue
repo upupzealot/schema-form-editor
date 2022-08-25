@@ -29,7 +29,13 @@
 </style>
 
 <script>
-import { provinceAndCityData, regionData, CodeToText, TextToCode } from "element-china-area-data";
+import {
+  provinceAndCityData,
+  regionData,
+  CodeToText,
+  TextToCode,
+  getCityName
+} from "./china-area-data";
 
 import formItemMixin from "../../common/form-item/mixin";
 
@@ -131,10 +137,13 @@ export default {
   },
   watch: {
     updater() {
-      this.$set(this.data, this.provinceKey, this.provinceVal);
-      this.$set(this.data, this.cityKey, this.cityVal);
-      this.$set(this.data, this.districtKey, this.districtVal);
-      this.$set(this.data, this.field.name, this.arrayVal);
+      if (this.mapLevels) {
+        this.$set(this.data, this.provinceKey, this.provinceVal);
+        this.$set(this.data, this.cityKey, this.cityVal);
+        this.$set(this.data, this.districtKey, this.districtVal);
+      } else {
+        this.$set(this.data, this.field.name, this.arrayVal);
+      }
     },
     provinceKey(val, oldVal) {
       if (oldVal) {
@@ -168,7 +177,7 @@ export default {
           let province = this.data[this.provinceKey];
           if (province) {
             if (this.valueFormat === "name") {
-              selected.push(TextToCode[province].code);
+              selected.push(TextToCode[province]?.code);
             } else {
               selected.push(province);
             }
@@ -177,10 +186,8 @@ export default {
             return;
           }
 
-          let city = this.data[this.cityKey];
-          if (city === province) {
-            city = "市辖区";
-          }
+          // 处理特殊城市名
+          let city = getCityName(this.data[this.cityKey], this.data[this.districtKey]);
           if (city) {
             if (this.valueFormat === "name") {
               selected.push(TextToCode[province][city].code);
@@ -205,19 +212,22 @@ export default {
               return;
             }
           }
-
           this.selected = selected;
         } else {
           let selected = this.data[this.field.name];
           if (this.valueFormat === "name") {
             let data = TextToCode;
-            this.selected = selected.map(v => {
-              data = data[v];
-              return data.code;
+            selected = selected?.map((v, i) => {
+              let key = v;
+              if (i === 1 && data.length > 2) {
+                // 处理特殊城市名
+                key = getCityName(v, data[2]);
+              }
+              data = data[key];
+              return data?.code;
             });
-          } else {
-            this.selected = selected;
           }
+          this.selected = selected;
         }
       },
       immediate: true

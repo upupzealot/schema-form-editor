@@ -74,7 +74,7 @@
                 top: 100px;
                 height: 20px; width: 20px; line-height: 20px;
                 font-size: 20px;
-                color: #F56C6C;"
+                color: #006EBBFF;"
             >
               <i class="el-icon-location" />
             </div>
@@ -378,8 +378,9 @@ export default {
       geocoder.getLocation(point, res => {
         this.address = res.address;
         const { province, city, district } = res.addressComponents;
-        this.province = province;
-        this.city = city;
+        this.province = this.getSpecialRegion(province);
+        // 考虑直辖市情况
+        this.city = this.getCity(province, city, district);
         this.district = district;
         this.popoverLocations = res.surroundingPois.map(point => {
           return this.makeShortAddress(point, province, city);
@@ -416,17 +417,22 @@ export default {
       const geocoder = new BMap.Geocoder();
       geocoder.getLocation(point, res => {
         const { province, city, district } = res.addressComponents;
-        this.province = province;
-        const addr = shortAddress.endsWith(title) ? shortAddress : `${shortAddress}${title}`;
+        const resProvince = this.getSpecialRegion(province);
+        this.province = resProvince;
+        let addr = shortAddress.endsWith(title) ? shortAddress : `${shortAddress}${title}`;
+        // 解决 addr 与省市一致的情况
+        if (addr === resProvince || addr === city) {
+          addr = district;
+        }
+        this.city = city;
         if (province === city) {
           // 考虑直辖市情况
-          this.city = "市辖区";
-          this.address = `${province}${addr}`;
-          this.valueText = `${province}\n${addr}`;
+          this.city = this.getCity(province, city, district);
+          this.address = `${resProvince}${addr}`;
+          this.valueText = `${resProvince}\n${addr}`;
         } else {
-          this.city = city;
-          this.address = `${province}${city}${addr}`;
-          this.valueText = `${province}${city}\n${addr}`;
+          this.address = `${resProvince}${city}${addr}`;
+          this.valueText = `${resProvince}${city}\n${addr}`;
         }
         this.district = district;
       });
@@ -436,6 +442,27 @@ export default {
       this.searchPopoverVisible = false;
       this.$refs.searchInput.blur();
       this.search = "";
+    },
+    getCity(province, city, district) {
+      if (province !== city) {
+        return city;
+      }
+      // 处理重庆特殊情况
+      if (city === "重庆市" && district) {
+        let suffix = "市辖区";
+        if (district.endsWith("县")) {
+          suffix = "县";
+        }
+        return `${city}-${suffix}`;
+      }
+      return this.getSpecialRegion(city);
+    },
+    // 处理特区名称
+    getSpecialRegion(name) {
+      if (name === "香港" || name === "澳门") {
+        return `${name}特别行政区`;
+      }
+      return name;
     }
   }
 };
