@@ -4,7 +4,7 @@
     v-show="visible"
     :label="field.label"
     :prop="field.name"
-    :class="{'form-item': true, 'readonly': readonly}"
+    :class="{ 'form-item': true, readonly: readonly }"
     :style="{ marginBottom: colMarginY }"
   >
     <template v-slot:label>
@@ -18,6 +18,7 @@
       :placeholder="field.placeholder"
       :start-placeholder="field.startPlaceholder"
       :end-placeholder="field.endPlaceholder"
+      :format="format"
       :value-format="valueFormat"
       style="width: 100%;"
       @change="fieldSubmit"
@@ -27,25 +28,33 @@
 </template>
 
 <script>
-import isVue2 from 'vue';
+import isVue2 from "vue";
 
-import { $id } from '../../../common/util-funcs.js'
-import formItemMixin from '../../common/form-item/mixin'
+import { $id } from "../../../common/util-funcs.js";
+import formItemMixin from "../../common/form-item/mixin";
 
 export default {
   mixins: [formItemMixin],
   data() {
     return {
-      calendarId: $id(),
-    }
+      calendarId: $id()
+    };
   },
   computed: {
-    valueFormat() {
-      return isVue2 ? 'timestamp' : 'x';
+    format() {
+      if (this.field.format) {
+        return this.field.format;
+      }
     },
+    valueFormat() {
+      if (this.field.valueFormat) {
+        return this.field.valueFormat;
+      }
+      return isVue2 ? "timestamp" : "x";
+    }
   },
   watch: {
-    'field.mode': {
+    "field.mode": {
       handler() {
         this.$set(this.data, this.field.name, undefined);
         this.calendarId = $id();
@@ -53,6 +62,6 @@ export default {
       }
     }
   },
-  defaultSchema: {},
+  defaultSchema: {}
 };
 </script>

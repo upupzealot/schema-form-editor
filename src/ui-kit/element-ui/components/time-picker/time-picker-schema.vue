@@ -18,6 +18,50 @@
         </el-select>
       </el-form-item>
       <el-form-item
+        label="选项模式"
+        class="schema-form"
+      >
+        <el-select v-model="field.format">
+          <!-- year/month/date/dates/ week/datetime/datetimerange/ daterange/monthrange -->
+          <el-option
+            label="时分秒"
+            value="HH:mm:ss"
+          />
+          <el-option
+            label="时分"
+            value="HH:mm"
+          />
+          <el-option
+            label="时"
+            value="HH"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item
+        label="值模式"
+        class="schema-form"
+      >
+        <el-select v-model="field.valueFormat">
+          <!-- year/month/date/dates/ week/datetime/datetimerange/ daterange/monthrange -->
+          <el-option
+            label="时间戳"
+            value="timestamp"
+          />
+          <el-option
+            label="HH:mm:ss"
+            value="HH:mm:ss"
+          />
+          <el-option
+            label="HH:mm"
+            value="HH:mm"
+          />
+          <el-option
+            label="HH"
+            value="HH"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item
         v-if="!isRange"
         label="占位符"
         prop="placeholder"
