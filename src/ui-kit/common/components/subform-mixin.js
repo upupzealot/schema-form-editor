@@ -2,6 +2,10 @@ import _ from 'lodash';
 
 export default {
   props: {
+    inline: {
+      type: Boolean,
+      default: false
+    },
     schema: {
       type: Object,
       default() {

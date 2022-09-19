@@ -158,6 +158,7 @@
           :schema="field"
           :data="data"
           :sup-nodes="supNodeList"
+          :inline="inline"
         >
           <template
             v-for="slotName in slotNames"
@@ -178,6 +179,7 @@
           :schema="field"
           :data="data[field.name]"
           :sup-nodes="supNodeList"
+          :inline="inline"
         >
           <template
             v-for="slotName in slotNames"

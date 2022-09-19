@@ -11,6 +11,7 @@
     :class="{subform: true, 'readonly': readonly}"
     :style="{ marginBottom: colMarginY }"
     :sfr-f="field.name"
+    :inline="inline"
   >
     <template
       v-for="slotName in slotNames"
