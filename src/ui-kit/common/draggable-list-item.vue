@@ -19,7 +19,7 @@
     <slot />
 
     <div
-      v-if="hasControl"
+      v-if="hasControl && hasDelete"
       class="control close"
     >
       <slot
@@ -53,6 +53,7 @@
   width: 40px;
   line-height: 40px;
 }
+.draggable-list .draggable-list-item .control.add,
 .draggable-list .draggable-list-item .control.close {
   margin-left: 5px;
   cursor: pointer;
@@ -81,6 +82,12 @@ export default {
       },
     },
     hasControl: {
+      type: Boolean,
+      default() {
+        return true;
+      }
+    },
+    hasDelete: {
       type: Boolean,
       default() {
         return true;

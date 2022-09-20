@@ -10,7 +10,16 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
+    <el-button
+      class="add"
+      v-if="reversal && !firstItemAdd && editable"
+      style="display: block;margin-bottom: 15px;"
+      @click.stop="addItem"
+    >
+      {{ field.createBtnText || '新增列表项' }}
+    </el-button>
+
     <DraggableList
       :list="items"
     >
@@ -19,6 +28,7 @@
           v-for="(item, index) in list"
           :key="item.id"
           :has-control="editable"
+          :has-delete="!firstItemAdd || firstItemAdd && index !== 0"
           :sort-icon="sortIcon"
           :delete-icon="deleteIcon"
           :style="{ marginBottom: `${subformMarginY}px` }"
@@ -44,12 +54,23 @@
               />
             </template>
           </Subform>
+          <div
+            class="add control"
+            v-if="firstItemAdd && index === 0 && editable"
+          >
+            <i
+              :class="addIcon"
+              @click.stop="addItem"
+            >
+            </i>
+          </div>
         </DraggableListItem>
       </template>
     </DraggableList>
 
     <el-button
-      v-if="editable"
+      class="add"
+      v-if="!reversal && editable"
       style="display: block;"
       @click.stop="addItem"
     >

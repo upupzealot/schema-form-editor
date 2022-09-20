@@ -71,6 +71,25 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item
+        label="布局"
+        prop="createBtnText"
+      >
+        <el-select v-model="field.layout">
+          <el-option
+            label="默认"
+            value="default"
+          />
+          <el-option
+            label="新增按钮在前面"
+            value="reversal"
+          />
+          <el-option
+            label="新增按钮在第一项后面"
+            value="firstItemAdd"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item
         label="按钮文本"
         prop="createBtnText"
       >
@@ -86,7 +105,7 @@
 <script>
 import isVue2 from 'vue';
 import {
-  SwapOutlined as Swap, 
+  SwapOutlined as Swap,
   DragOutlined as Drag,
   VerticalAlignMiddleOutlined as VerticalAlignMiddle,
   ColumnHeightOutlined as ColumnHeight,

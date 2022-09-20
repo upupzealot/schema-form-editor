@@ -22,6 +22,32 @@ export default {
     editable() {
       return !this.readonly && !this.disabled;
     },
+    reversal() {
+      if (this.firstItemAdd || this.layout === 'reversal') {
+        return true;
+      }
+      return false;
+    },
+    layout() {
+      // default reversal firstItemAdd
+      return this.field.layout || 'default';
+    },
+    firstItemAdd() {
+      return this.field.layout === 'firstItemAdd';
+    },
+    addIcon() {
+      if (this.deleteIcon === 'el-icon-close') {
+        return 'el-icon-plus';
+      }
+      const solidMap = {
+        'el-icon-error': 1,
+        'el-icon-delete-solid': 1
+      };
+      if (solidMap[this.deleteIcon]) {
+        return 'el-icon-circle-plus';
+      }
+      return 'el-icon-circle-plus-outline';
+    },
     subformField() {
       return {
         ...this.field,
@@ -50,7 +76,11 @@ export default {
   },
   methods: {
     addItem() {
-      this.items = [...this.items, {}];
+      let items = [...this.items, {}];
+      if (this.reversal) {
+        items = [{}, ...this.items];
+      }
+      this.items = items;
     },
     deleteItem(item) {
       this.$confirm('确认删除?', null, {
