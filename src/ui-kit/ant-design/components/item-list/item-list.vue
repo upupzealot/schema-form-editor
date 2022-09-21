@@ -16,7 +16,16 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
+    <a-button
+      class="add"
+      v-if="reversal && !firstItemAdd && editable"
+      style="display: block;margin-bottom: 15px;"
+      @click.stop="addItem"
+    >
+      {{ field.createBtnText || '新增列表项' }}
+    </a-button>
+
     <DraggableList
       :list="items"
     >
@@ -25,6 +34,7 @@
           v-for="(item, index) in list"
           :key="item.id"
           :has-control="editable"
+          :has-delete="!firstItemAdd || firstItemAdd && index !== 0"
           :style="{ marginBottom: `${subformMarginY}px` }"
           :sfr-f="`${field.name}[${index}]`"
           @delete="deleteItem(item)"
@@ -58,12 +68,23 @@
               />
             </template>
           </Subform>
+          <div
+            class="add control"
+            v-if="firstItemAdd && index === 0 && editable"
+          >
+            <a-icon
+              :type="addIcon.replace('-filled', '')"
+              :theme="/-filled$/.test(addIcon) ? 'filled' : undefined"
+              @click="addItem"
+            />
+          </div>
         </DraggableListItem>
       </template>
     </DraggableList>
 
     <a-button
-      v-if="editable"
+      class="add"
+      v-if="!reversal && editable"
       style="display: block;"
       @click.stop="addItem"
     >

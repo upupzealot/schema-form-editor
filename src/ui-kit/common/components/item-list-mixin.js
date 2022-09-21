@@ -35,19 +35,6 @@ export default {
     firstItemAdd() {
       return this.field.layout === 'firstItemAdd';
     },
-    addIcon() {
-      if (this.deleteIcon === 'el-icon-close') {
-        return 'el-icon-plus';
-      }
-      const solidMap = {
-        'el-icon-error': 1,
-        'el-icon-delete-solid': 1
-      };
-      if (solidMap[this.deleteIcon]) {
-        return 'el-icon-circle-plus';
-      }
-      return 'el-icon-circle-plus-outline';
-    },
     subformField() {
       return {
         ...this.field,
@@ -68,6 +55,18 @@ export default {
         this.$set(this.data, this.field.name, items);
       }
     }
+  },
+  watch: {
+    firstItemAdd: {
+      immediate: true,
+      handler(val) {
+        // 新增按钮在第一项之后时，确保有一项数据
+        const data = this.data[this.field.name];
+        if (val && (!data || data.length === 0)) {
+          this.$set(this.data, this.field.name, [{}]);
+        }
+      },
+    },
   },
   created() {
     if(!this.items) {

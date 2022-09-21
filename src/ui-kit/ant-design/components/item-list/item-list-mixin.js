@@ -18,5 +18,18 @@ export default {
         return this.field.deleteIcon['ant-design'] || 'close';
       }
     },
+    addIcon() {
+      if (this.deleteIcon === 'close') {
+        return 'plus';
+      }
+      const solidMap = {
+        'close-circle-filled': 1,
+        'delete-filled': 1
+      };
+      if (solidMap[this.deleteIcon]) {
+        return 'plus-circle-filled';
+      }
+      return 'plus-circle';
+    },
   }
 }

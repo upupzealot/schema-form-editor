@@ -18,5 +18,18 @@ export default {
         return this.field.deleteIcon['element-ui'] || 'el-icon-close';
       }
     },
+    addIcon() {
+      if (this.deleteIcon === 'el-icon-close') {
+        return 'el-icon-plus';
+      }
+      const solidMap = {
+        'el-icon-error': 1,
+        'el-icon-delete-solid': 1
+      };
+      if (solidMap[this.deleteIcon]) {
+        return 'el-icon-circle-plus';
+      }
+      return 'el-icon-circle-plus-outline';
+    },
   }
 }

@@ -16,7 +16,16 @@
     <template v-slot:label>
       <Tooltip :field="field" />
     </template>
-    
+
+    <a-button
+      class="add"
+      v-if="reversal && !firstItemAdd && editable"
+      style="display: block;margin-bottom: 15px;"
+      @click.stop="addItem"
+    >
+      {{ field.createBtnText || '新增列表项' }}
+    </a-button>
+
     <DraggableList
       :list="items"
     >
@@ -26,6 +35,7 @@
       >
         <DraggableListItem
           :has-control="editable"
+          :has-delete="!firstItemAdd || firstItemAdd && index !== 0"
           :style="{ marginBottom: `${subformMarginY}px` }"
           :sfr-f="`${field.name}[${index}]`"
           @delete="deleteItem(item)"
@@ -63,16 +73,27 @@
               />
             </template>
           </Subform>
+          <div
+            class="add control"
+            v-if="firstItemAdd && index === 0 && editable"
+          >
+            <a-icon
+              :type="addIcon.replace('-filled', '')"
+              :theme="/-filled$/.test(addIcon) ? 'filled' : undefined"
+              @click="addItem"
+            />
+          </div>
         </DraggableListItem>
       </template>
     </DraggableList>
 
     <a-button
-      v-if="editable"
+      class="add"
+      v-if="!reversal && editable"
       style="display: block;"
       @click.stop="addItem"
     >
-      新增列表项
+      {{ field.createBtnText || '新增列表项' }}
     </a-button>
   </a-form-item>
 </template>
@@ -106,7 +127,7 @@ import DraggableList from '../../../common/draggable-list3'
 import DraggableListItem from '../../../common/draggable-list-item'
 import Subform from '../subform/subform'
 import {
-  SwapOutlined as Swap, 
+  SwapOutlined as Swap,
   DragOutlined as Drag,
   VerticalAlignMiddleOutlined as VerticalAlignMiddle,
   ColumnHeightOutlined as ColumnHeight,
